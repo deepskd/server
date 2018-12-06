@@ -14,7 +14,7 @@ const teamSchema = new Schema({
 teamSchema.statics.findByName = function(name, cb) {
   return this.find(
     { name: new RegExp(name, "i") },
-    { name: 1, mascot: 1, city: 1, state: 1, colors: 1 },
+    { name: 1, mascot: 1, city: 1, state: 1 },
     cb
   ).limit(20);
 };
