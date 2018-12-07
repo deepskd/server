@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import { findTeam } from "../actions";
+import { findTeams } from "../actions";
 
 class SearchBar extends React.Component {
   onFormSubmit = event => {
@@ -25,5 +25,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { findTeam }
+  { findTeams }
 )(SearchBar);

@@ -22,7 +22,7 @@ teamSchema.statics.findByNameState = function(q, cb) {
     ? input[1]
         .trim()
         .substring(0, 2)
-        .replace(/[^a-z]/, "")
+        .replace(/[^a-z]/i, "")
     : "";
 
   if (!schoolName) {
