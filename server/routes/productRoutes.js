@@ -5,16 +5,17 @@ require("../models/Team");
 
 const Team = mongoose.model("teams");
 
-const products = {};
+var products = {};
 try {
-  products = yaml.safeLoad(fs.readFileSync("../product/product.yml", "utf8"));
-  console.log(products);
+  products = yaml.safeLoad(fs.readFileSync("product.yml", "utf8"));
 } catch (e) {
   console.log(e);
 }
 
 module.exports = app => {
   app.get("/api/products/", async (req, res) => {
+    const colors = await Team.getColorsforSchool(req.query.id);
+    console.log(colors);
     res.send(products);
   });
 };
