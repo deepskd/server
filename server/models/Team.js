@@ -12,7 +12,11 @@ const teamSchema = new Schema({
 });
 
 teamSchema.statics.findByNameState = function(q, cb) {
-  const input = q.split(",");
+  const input = q ? q.split(",") : "";
+
+  if (!input) {
+    return;
+  }
   const schoolName = input[0].trim().replace(/([^\w\s+*:;,.()/\\]+)/gi, "");
   const state = input[1]
     ? input[1]
