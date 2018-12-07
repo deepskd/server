@@ -32,4 +32,8 @@ teamSchema.statics.findByNameState = function(q, cb) {
   ).limit(20);
 };
 
+teamSchema.statics.getColorsforSchool = function(_id, cb) {
+  return this.findById(_id, "colors", cb);
+};
+
 mongoose.model("teams", teamSchema);

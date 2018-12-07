@@ -14,6 +14,7 @@ const app = express();
 app.use(bodyParser.json());
 
 require("./routes/teamRoutes")(app);
+require("./routes/productRoutes")(app);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT);
