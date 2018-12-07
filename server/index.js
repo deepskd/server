@@ -3,6 +3,8 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const keys = require("./config/keys");
 
+require("./models/Team");
+
 mongoose.connect(
   keys.mongoURI,
   { useNewUrlParser: true }

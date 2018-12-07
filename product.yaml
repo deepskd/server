@@ -1,0 +1,261 @@
+sports: american football
+model:
+  - name: A1 PrimeKnit Jersey
+    type: Jersey
+    gender: Men
+    embodeeVNT: APP18_pn1_com
+    model: FSQ26
+    sizes:
+      - human: S
+        sourcing: 50
+        techIndex: 330
+      - human: M
+        sourcing: 54
+        techIndex: 350
+      - human: L
+        sourcing: 58
+        techIndex: 370
+      - human: XL
+        sourcing: 62
+        techIndex: 390
+    articles:
+      - articleNo: DQ3450
+        color: Dark Green
+        colorCode: sld_pn_dark_green
+      - articleNo: DQ3457
+        color: Black
+        colorCode: sld_pn_black
+      - articleNo: DQ3449
+        color: Collegiate Burgundy
+        colorCode: sld_pn_collegiate_burgundy
+      - articleNo: DQ3452
+        color: Collegiate Burgundy
+        colorCode: sld_pn_collegiate_burgundy
+      - articleNo: DQ3454
+        color: Collegiate Gold
+        colorCode: sld_pn_collegiate_gold
+      - articleNo: DQ3445
+        color: Collegiate Navy
+        colorCode: sld_pn_collegiate_navy
+      - articleNo: DQ3456
+        color: Collegiate Purple
+        colorCode: sld_pn_collegiate_purple
+      - articleNo: DQ3453
+        color: Collegiate Royal
+        colorCode: sld_pn_collegiate_royal
+      - articleNo: DQ3455
+        color: Maroon
+        colorCode: sld_pn_maroon
+      - articleNo: DQ3451
+        color: Onix
+        colorCode: sld_pn_onix
+      - articleNo: DP8440
+        color: Power Red
+        colorCode: sld_pn_power_red
+      - articleNo: DQ3459
+        color: White
+        colorCode: sld_pn_white
+      - articleNo: DQ3461
+        color: Green
+        colorCode: sld_pn_green
+      - articleNo: DQ3447
+        color: Light Blue
+        colorCode: sld_pn_light_blue
+      - articleNo: DQ3448
+        color: Sand
+        colorCode: sld_pn_sand
+      - articleNo: DQ3460
+        color: Gray
+        colorCode: sld_pn_grey
+      - articleNo: DQ3458
+        color: White Navy
+        colorCode: sld_pn_white_navy
+      - articleNo: DQ3462
+        color: White Red
+        colorCode: sld_pn_white_red
+      - articleNo: DQ3463
+        color: White Royal
+        colorCode: sld_pn_white_royal
+    decoration:
+      text: Name and Number
+      fonts:
+        - name: Red Zone
+          code: red_zone_2015
+        - name: Invader
+          code: invader
+        - name: Pro Full Block
+          code: full_block
+        - name: Western
+          code: western
+        - name: Roadrunner
+          code: roadrunner
+        - name: Louisville
+          code: louisville
+        - name: Half Block
+          code: half_block_2015
+      colors:
+        - name: Black
+          code:
+            sp: sld_pn_black_sp
+            ht: sld_pn_obsidian_shine_ht
+        - name: White
+          color:
+            sp: sld_pn_black_sp
+            ht: sld_pn_white_ht
+        - name: Onix
+          color:
+            sp: sld_pn_pnix_sp
+            ht: sld_pn_onix_ht
+        - name: Collegiate Navy
+          color:
+            sp: sld_pn_collegiate_navy_sp
+            ht: sld_pn_collegiate_navy_ht
+        - name: Collegiate Royal
+          color:
+            sp: sld_pn_collegiate_royal_sp
+            ht: sld_pn_collegiate_royal_ht
+        - name: Light Blue
+          color:
+            sp: sld_pn_light_blue_sp
+        - name: Collegiate Purple
+          color:
+            sp: sld_pn_collegiate_purple_sp
+            ht: sld_pn_collegiate_purple_ht
+        - name: Coffee
+          color:
+            sp: sld_pn_coffee_sp
+        - name: Maroon
+          color:
+            sp: sld_pn_maroon_sp
+            ht: sld_pn_maroon_ht
+        - name: Collegiate Burgundy
+          color:
+            sp: sld_pn_collegiate_burgundy_sp
+            ht: sld_pn_collegiate_burgundy_ht
+        - name: Power Red
+          color:
+            sp: sld_pn_power_red_sp
+            ht: sld_pn_matte_power_red_ht
+        - name: Collegiate Gold
+          color:
+            sp: sld_pn_collegiate_royal_sp
+            ht: sld_pn_collegiate_royal_ht
+        - name: Dark Green
+          color:
+            sp: sld_dark_green_sp
+            ht: sld_dark_green_ht
+        - name: Kelly Green
+          color:
+            sp: sld_pn_kelly_green_sp
+        - name: Aqua
+          color:
+            sp: sld_pn_aqua_sp
+        - name: Green
+          color:
+            sp: sld_pn_green_sp
+        - name: Bombay Brown
+          color:
+            sp: sld_pn_bombay_brown_sp
+        - name: Vegas Gold
+          color:
+            sp: sld_pn_vegas_gold_sp
+        - name: Sand
+          color:
+            sp: sld_pn_sand_sp
+        - name: Stone
+          color:
+            sp: sld_pn_stone_sp
+        - name: Teal
+          color:
+            sp: sld_pn_teal_sp
+        - name: Solar Red
+          color:
+            sp: sld_pn_solar_red_sp
+        - name: Neon Green
+          color:
+            sp: sld_pn_neon_green_sp
+        - name: Sterling Silver
+          color:
+            ht: sld_pn_sterling_silver_ht
+        - name: 24 Karat Gold
+          color:
+            ht: sld_pn_24_karat_ht
+        - name: Collegiate Gold Shine
+          color:
+            ht: sld_pn_collegiate_gold_ht
+        - name: Carbon Silver
+          color:
+            ht: sld_pn_carbon_silver_ht
+        - name: Chameleon Green
+          color:
+            ht: sld_pn_chameleon_ht
+  - name: A1 PrimeKnit Pant
+    type: Pant
+    gender: Men
+    embodeeVNT: APP18_pn1_pco
+    model: FSQ23
+    sizes:
+      - human: M
+        sourcing: 50
+        techIndex: 330
+      - human: L
+        sourcing: 54
+        techIndex: 350
+      - human: XL
+        sourcing: 58
+        techIndex: 370
+      - human: 2XL
+        sourcing: 62
+        techIndex: 390
+      - human: 3XL
+        sourcing: 66
+        techIndex: 410
+    articles:
+      - articleNo: DQ3425
+        color: Dark Green
+        colorCode: sld_pn_dark_green
+      - articleNo: DQ3428
+        color: Black
+        colorCode: sld_pn_black
+      - articleNo: DQ3427
+        color: Collegiate Burgundy
+        colorCode: sld_pn_collegiate_burgundy
+      - articleNo:
+        color: Collegiate Burgundy
+        colorCode: sld_pn_collegiate_burgundy
+      - articleNo: DQ3426
+        color: Collegiate Gold
+        colorCode: sld_pn_collegiate_gold
+      - articleNo: DQ3423
+        color: Collegiate Navy
+        colorCode: sld_pn_collegiate_navy
+      - articleNo: DQ3421
+        color: Collegiate Purple
+        colorCode: sld_pn_collegiate_purple
+      - articleNo: DQ3420
+        color: Collegiate Royal
+        colorCode: sld_pn_collegiate_royal
+      - articleNo: DQ3422
+        color: Maroon
+        colorCode: sld_pn_maroon
+      - articleNo: DQ3417
+        color: Onix
+        colorCode: sld_pn_onix
+      - articleNo: DP8450
+        color: Power Red
+        colorCode: sld_pn_power_red
+      - articleNo: DQ3416
+        color: White
+        colorCode: sld_pn_white
+      - articleNo: DQ3414
+        color: Green
+        colorCode: sld_pn_green
+      - articleNo: DQ3415
+        color: Light Blue
+        colorCode: sld_pn_light_blue
+      - articleNo: DQ3419
+        color: Sand
+        colorCode: sld_pn_sand
+      - articleNo: DQ3418
+        color: Gray
+        colorCode: sld_pn_grey

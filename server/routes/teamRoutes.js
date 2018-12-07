@@ -4,8 +4,7 @@ const Team = mongoose.model("teams");
 
 module.exports = app => {
   app.get("/api/teams", async (req, res) => {
-    console.log(req.query.name);
-    const teams = await Team.findByName(req.query.name);
+    const teams = await Team.findByNameState(req.query.q);
     console.log(teams);
     res.send(teams);
   });
