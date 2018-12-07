@@ -13,9 +13,7 @@ try {
 }
 
 module.exports = app => {
-  app.get("/api/products/", async (req, res) => {
-    const colors = await Team.getColorsforSchool(req.query.id);
-    console.log(colors);
+  app.get("/api/products", async (req, res) => {
     res.send(products);
   });
 };

@@ -8,4 +8,9 @@ module.exports = app => {
     console.log(teams);
     res.send(teams);
   });
+
+  app.get("api/team", async (req, res) => {
+    const colors = await Team.getColorsforSchool(req.query.id);
+    res.send(colors);
+  });
 };
