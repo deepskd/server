@@ -13,7 +13,7 @@ class TeamList extends React.Component {
           <div className="header">
             <h3>{team.name}</h3>
           </div>
-          <div class="right floated content">{team.mascot}</div>
+          <div className="right floated content">{team.mascot}</div>
           <div className="contents">
             {team.city},{team.state}
           </div>
