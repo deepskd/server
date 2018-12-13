@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { findTeams } from "../actions";
+import { Link } from "react-router-dom";
 
 class TeamList extends React.Component {
   componentDidMount() {
@@ -10,13 +11,15 @@ class TeamList extends React.Component {
     return this.props.teams.map(team => {
       return (
         <div className="item" key={team._id}>
-          <div className="header">
-            <h3>{team.name}</h3>
-          </div>
-          <div className="right floated content">{team.mascot}</div>
-          <div className="contents">
-            {team.city},{team.state}
-          </div>
+          <Link to="/school">
+            <div className="header">
+              <h4>{team.name}</h4>
+            </div>
+            <div className="right floated content">{team.mascot}</div>
+            <div className="contents">
+              {team.city},{team.state}
+            </div>
+          </Link>
         </div>
       );
     });
