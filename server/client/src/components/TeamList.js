@@ -5,12 +5,20 @@ import { Link } from "react-router-dom";
 
 class TeamList extends React.Component {
   componentDidMount() {
-    this.props.findTeams();
+    // this.props.findTeams();
   }
+
+  schoolSelected(event) {
+    console.log(event);
+  }
+
   renderTeams() {
+    if (!this.props.teams) {
+      return null;
+    }
     return this.props.teams.map(team => {
       return (
-        <div className="item" key={team._id}>
+        <div className="item" key={team._id} onClick={this.schoolSelected}>
           <Link to="/school">
             <div className="header">
               <h4>{team.name}</h4>
