@@ -8,7 +8,7 @@ export const findTeams = term => async dispatch => {
 
 export const selectTeam = team => async dispatch => {
   const colors = await gts.get(`/team?id=${team._id}`);
-  const products = await gts.get(`/product`);
-  const payload = { products, colors };
+  const products = await gts.get(`/products`);
+  const payload = { products: products.data, colors: colors.data };
   dispatch({ type: SELECTED_TEAM, payload });
 };
