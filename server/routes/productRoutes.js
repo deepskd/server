@@ -15,6 +15,6 @@ try {
 module.exports = app => {
   app.get("/api/products", async (req, res) => {
     res.setHeader("Access-Control-Allow-Origin", "*");
-    res.staus(200).json(products);
+    res.status(200).json(products);
   });
 };

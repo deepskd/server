@@ -3,10 +3,6 @@ import { connect } from "react-redux";
 import TeamItem from "./TeamItem";
 
 class TeamList extends React.Component {
-  schoolSelected(event) {
-    console.log(event);
-  }
-
   renderTeams() {
     if (!this.props.teams) {
       return null;

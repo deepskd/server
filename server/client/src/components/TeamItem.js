@@ -1,9 +1,12 @@
 import React from "react";
+import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+
+import { selectTeam } from "../actions";
 
 class TeamItem extends React.Component {
   onTeamSelect(team) {
-    console.log(team);
+    this.props.selectTeam(team);
   }
   render() {
     return (
@@ -22,4 +25,7 @@ class TeamItem extends React.Component {
   }
 }
 
-export default TeamItem;
+export default connect(
+  null,
+  { selectTeam }
+)(TeamItem);
