@@ -1,13 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
-import { findTeams } from "../actions";
-import { Link } from "react-router-dom";
+import TeamItem from "./TeamItem";
 
 class TeamList extends React.Component {
-  componentDidMount() {
-    // this.props.findTeams();
-  }
-
   schoolSelected(event) {
     console.log(event);
   }
@@ -17,19 +12,7 @@ class TeamList extends React.Component {
       return null;
     }
     return this.props.teams.map(team => {
-      return (
-        <div className="item" key={team._id} onClick={this.schoolSelected}>
-          <Link to="/school">
-            <div className="header">
-              <h4>{team.name}</h4>
-            </div>
-            <div className="right floated content">{team.mascot}</div>
-            <div className="contents">
-              {team.city},{team.state}
-            </div>
-          </Link>
-        </div>
-      );
+      return <TeamItem key={team._id} team={team} />;
     });
   }
 
@@ -44,7 +27,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  { findTeams }
-)(TeamList);
+export default connect(mapStateToProps)(TeamList);
