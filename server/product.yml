@@ -3,7 +3,6 @@ model:
   - name: A1 PrimeKnit Jersey
     type: Jersey
     gender: Men
-    embodeeVNT: APP18_pn1_com
     model: FSQ26
     sizes:
       - human: S
@@ -189,6 +188,40 @@ model:
         - name: Chameleon Green
           color:
             ht: sld_pn_chameleon_ht
+    config:
+      embodeeURL: https://embodee.adidas.com/api2/rewrite/adidas16/is/image/adidasAG/agm?&src=ir{adidasAGRender/
+      VNT: APP18_pn1_com?&
+      parts:
+        - novariance: obj=a/f/nvr&show&
+        - base: obj=a/m/bas&src=$COLOR&show&
+        - groundshadow: obj=a/s/shg&show&
+        - stripe:
+            stripe1: obj=a/o/st1_s6&src=$ONE&show&
+            stripe2: obj=a/o/st2_t6&src=$TWO&show&
+        - logo: obj=a/o/log&src=$COLOR&show&
+        - cuffs: obj=a/o/cuf&src=$COLOR&show&
+        - piping: obj=a/o/pip&src=$COLOR&show&
+        - teamName:
+            front: obj=a/o/ufr&decal&show&res=10.053222945002956&pos=0,0&src=fxg{APP18_pn1_jht_teamname&
+            text: $text=$TEAMNAME&
+            font: $font=$FONT&
+            textColor: $text_color=$COLOR&
+            strokeColor: $stroke_color=$COLOR&
+            application: $application=$APPLICATION}&
+        - teamNumber:
+            - front: obj=a/o/cfr&decal&show&res=10.567757977621218&pos=0,0&src=fxg{APP18_pn1_jht_playernumber?&
+              text: $text=$NUMBER&
+              font: $font=$FONT&
+              textColor: $text_color=$COLOR&
+              strokeColor: $stroke_color=$COLOR&
+              application: $application=$APPLICATION}&
+            - back: obj=a/o/cba&decal&show&res=8.800690250215704&pos=0,0&src=fxg{APP18_pn1_jht_playernumber?&
+              text: $text=$NUMBER&
+              font: $font=$FONT&
+              textColor: $text_color=$COLOR&
+              strokeColor: $stroke_color=$COLOR&
+              application: $application=$APPLICATION}&
+        - tail: obj=a&req=object}&resMode=sharp2&op_usm=1.2,1,4,0
   - name: A1 PrimeKnit Pant
     type: Pant
     gender: Men

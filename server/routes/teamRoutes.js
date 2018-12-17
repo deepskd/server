@@ -9,7 +9,7 @@ module.exports = app => {
   });
 
   app.get("/api/team", async (req, res) => {
-    const colors = await Team.getColorsforSchool(req.query.id);
-    res.status(200).send(colors);
+    const team = await Team.getTeam(req.query.id);
+    res.status(200).send(team);
   });
 };
