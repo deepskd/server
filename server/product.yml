@@ -28,14 +28,14 @@ model:
         color: Collegiate Burgundy
         colorCode: sld_pn_collegiate_burgundy
       - articleNo: DQ3452
-        color: Collegiate Burgundy
-        colorCode: sld_pn_collegiate_burgundy
-      - articleNo: DQ3454
         color: Collegiate Gold
         colorCode: sld_pn_collegiate_gold
-      - articleNo: DQ3445
+      - articleNo: DQ3454
         color: Collegiate Navy
         colorCode: sld_pn_collegiate_navy
+      - articleNo: DQ3445
+        color: Collegiate Orange
+        colorCode: sld_pn_collegiate_orange
       - articleNo: DQ3456
         color: Collegiate Purple
         colorCode: sld_pn_collegiate_purple
@@ -99,7 +99,7 @@ model:
             ht: sld_pn_obsidian_shine_ht
         - name: White
           color:
-            sp: sld_pn_black_sp
+            sp: sld_pn_white_sp
             ht: sld_pn_white_ht
         - name: Onix
           color:

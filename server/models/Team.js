@@ -37,7 +37,7 @@ teamSchema.statics.findByNameState = function(q, cb) {
 };
 
 teamSchema.statics.getTeam = function(_id, cb) {
-  return this.findById(_id, "name colors city state", cb);
+  return this.findById(_id, "name colors city state mascot", cb);
 };
 
 mongoose.model("teams", teamSchema);
