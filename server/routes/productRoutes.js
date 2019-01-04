@@ -162,11 +162,7 @@ const awayColors = (away, color) => {
     // color.secondary = colors[1];
     // color.terinary = colors[3];
   } else {
-    away = _.replace(
-      away,
-      /(TEAM|NUMBER)TEXTCOLOR/,
-      "sld_pn_obsidian_shine_ht"
-    );
+    away = _.replace(away, /(TEAM|NUMBER)TEXTCOLOR/, "sld_pn_white_ht");
   }
   return away;
 };
