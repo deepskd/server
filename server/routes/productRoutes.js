@@ -48,7 +48,6 @@ obj=a&req=object}\
 &op_usm=1.2,1,4,0`;
 
 const colorMapHT = color => {
-  console.log(color);
   let colorHT = "";
   switch (color) {
     case "black":
@@ -72,17 +71,59 @@ const colorMapHT = color => {
     case "dark green":
       colorHT = "sld_pn_dark_green_ht";
       break;
-    case "dark green":
-      colorHT = "sld_pn_dark_green_ht";
+    case "green":
+      colorHT = "sld_pn_chameleon_ht";
       break;
     case "burgandy":
       colorHT = "sld_pn_collegiate_burgundy_ht";
       break;
+    case "red":
+      colorHT = "sld_pn_power_red_ht";
+      break;
     default:
       colorHT = "sld_pn_obsidian_shine_ht";
   }
-  console.log(colorHT);
   return colorHT;
+};
+
+const colorMapBase = color => {
+  let colorBase = "";
+  switch (color) {
+    case "black":
+      colorBase = "sld_pn_black";
+      break;
+    case "orange":
+      colorBase = "sld_pn_collegiate_orange";
+      break;
+    case "purple":
+      colorBase = "sld_pn_collegiate_purple";
+      break;
+    case "maroon":
+      colorBase = "sld_pn_maroon";
+      break;
+    case "navy":
+      colorBase = "sld_pn_collegiate_navy";
+      break;
+    case "navy":
+      colorBase = "sld_pn_collegiate_navy";
+      break;
+    case "dark green":
+      colorBase = "sld_pn_dark_green";
+      break;
+    case "green":
+      colorBase = "sld_pn_green";
+      break;
+    case "burgandy":
+      colorBase = "sld_pn_collegiate_burgundy";
+      break;
+    case "red":
+      colorBase = "sld_pn_power_red";
+      break;
+    default:
+      colorBase = "sld_pn_black";
+  }
+
+  return colorBase;
 };
 
 const homeColors = (home, colors) => {
