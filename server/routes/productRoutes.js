@@ -130,14 +130,14 @@ const colorMapBase = color => {
 };
 
 const homeColors = (home, colors) => {
-  console.log("Colors:", colors.length);
   const color = {};
   if (colors.length === 2) {
     color.primary = colorMapHT(colors[0]);
     home = _.replace(home, /(TEAM|NUMBER)TEXTCOLOR/g, color.primary);
     color.secondary = colors[1];
   } else if (colors.length === 3) {
-    color.primary = colors[0];
+    color.primary = colorMapHT(colors[0]);
+    home = _.replace(home, /(TEAM|NUMBER)TEXTCOLOR/g, color.primary);
     color.secondary = colors[1];
     color.terinary = colors[3];
   } else {
@@ -151,6 +151,23 @@ const homeColors = (home, colors) => {
 };
 
 const awayColors = (away, color) => {
+  const color = {};
+  if (colors.length === 2) {
+    color.primary = colorMapHT(colors[1]);
+    away = _.replace(away, /(TEAM|NUMBER)TEXTCOLOR/g, color.primary);
+    // color.secondary = colors[1];
+  } else if (colors.length === 3) {
+    color.primary = colorMapHT(colors[1]);
+    away = _.replace(away, /(TEAM|NUMBER)TEXTCOLOR/g, color.primary);
+    // color.secondary = colors[1];
+    // color.terinary = colors[3];
+  } else {
+    away = _.replace(
+      away,
+      /(TEAM|NUMBER)TEXTCOLOR/,
+      "sld_pn_obsidian_shine_ht"
+    );
+  }
   return away;
 };
 
