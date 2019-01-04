@@ -1,9 +1,11 @@
 const mongoose = require("mongoose");
 const yaml = require("js-yaml");
 const fs = require("fs");
+const _ = require("lodash");
 require("../models/Team");
 
 const Team = mongoose.model("teams");
+
 const url = `https://embodee.adidas.com/api2/rewrite/adidas16/is/image/adidasAG/agm?&src=ir\
 {adidasAGRender/APP18_pn1_com_1?&obj=a/f/nvr&show&\
 obj=a/m/bas&src=sld_pn_white&show&\
@@ -45,16 +47,16 @@ obj=a&req=object}\
 &resMode=sharp2\
 &op_usm=1.2,1,4,0`;
 
-var products = { home: url, away: url };
-// try {
-//   products = yaml.safeLoad(fs.readFileSync("product.yml", "utf8"));
-// } catch (e) {
-//   console.log(e);
-// }
+const teamProducts = team => {
+  const home = _.replace(url, "EAGLES", _.toUpper(team.mascot));
+  const away = _.replace(url, "EAGLES", _.toUpper(team.name));
+  return { home, away };
+};
 
 module.exports = app => {
   app.get("/api/products", async (req, res) => {
     res.setHeader("Access-Control-Allow-Origin", "*");
-    res.status(200).json(products);
+    const team = await Team.getTeam(req.query.id);
+    res.status(200).json(teamProducts(team));
   });
 };
