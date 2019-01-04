@@ -12,7 +12,7 @@ obj=a/m/bas&src=BASECOLOR&show&\
 obj=a/s/shg&show&\
 obj=a/o/st1_s0&show&\
 obj=a/o/st2_t0&show&\
-obj=a/o/log&src=sld_pn_black&show&\
+obj=a/o/log&src=LOGOCOLOR&show&\
 obj=a/o/cuf&src=sld_pn_white&show&\
 obj=a/o/pip&src=sld_pn_white&show&\
 obj=a/o/ufr&decal&show&res=10.053222945002956&pos=0,0&\
@@ -80,6 +80,12 @@ const colorMapHT = color => {
     case "red":
       colorHT = "sld_pn_power_red_ht";
       break;
+    case "white":
+      colorHT = "sld_pn_white_ht";
+      break;
+    case "vegas gold":
+      colorHT = "sld_pn_24_karat_ht";
+      break;
     default:
       colorHT = "sld_pn_obsidian_shine_ht";
   }
@@ -104,9 +110,6 @@ const colorMapBase = color => {
     case "navy":
       colorBase = "sld_pn_collegiate_navy";
       break;
-    case "navy":
-      colorBase = "sld_pn_collegiate_navy";
-      break;
     case "dark green":
       colorBase = "sld_pn_dark_green";
       break;
@@ -122,20 +125,22 @@ const colorMapBase = color => {
     case "white":
       colorBase = "sld_pn_white";
       break;
+    case "gold":
+      colorBase = "sld_pn_collegiate_gold";
+      break;
     default:
       colorBase = "sld_pn_black";
   }
-
   return colorBase;
 };
 
-const homeColors = (home, colors) => {
+const homeDecorations = (home, colors) => {
   const color = {};
-  if (colors.length === 2) {
+  if (colors && colors.length === 2) {
     color.primary = colorMapHT(colors[0]);
     home = _.replace(home, /(TEAM|NUMBER)TEXTCOLOR/g, color.primary);
     color.secondary = colors[1];
-  } else if (colors.length === 3) {
+  } else if (colors && colors.length === 3) {
     color.primary = colorMapHT(colors[0]);
     home = _.replace(home, /(TEAM|NUMBER)TEXTCOLOR/g, color.primary);
     color.secondary = colors[1];
@@ -150,7 +155,7 @@ const homeColors = (home, colors) => {
   return home;
 };
 
-const awayColors = (away, color) => {
+const awayDecorations = (away, colors) => {
   const color = {};
   if (colors.length === 2) {
     color.primary = colorMapHT(colors[1]);
@@ -170,10 +175,18 @@ const awayColors = (away, color) => {
 const teamProducts = team => {
   let home = _.replace(url, /TEAMNAME/, _.toUpper(team.mascot));
   home = _.replace(home, /BASECOLOR/, colorMapBase("white"));
-  home = homeColors(home, team.colors);
+  home = _.replace(home, /LOGOCOLOR/, colorMapBase("black"));
+  home = homeDecorations(home, team.colors);
+
   let away = _.replace(url, /TEAMNAME/, _.toUpper(team.name));
-  away = _.replace(away, /BASECOLOR/, colorMapBase(team.colors[0] || "black"));
-  away = awayColors(away, team.colors);
+  let awayBaseColor = team.colors[0] || "black";
+  if (awayBaseColor === "black") {
+    away = _.replace(away, "cuf&src=sld_pn_white", "cuf&src=sld_pn_black");
+    away = _.replace(away, "pip&src=sld_pn_white", "pip&src=sld_pn_black");
+  }
+  away = _.replace(away, /BASECOLOR/, colorMapBase(awayBaseColor));
+  away = _.replace(away, /LOGOCOLOR/, colorMapBase("white"));
+  away = awayDecorations(away, team.colors);
   return { home, away };
 };
 
