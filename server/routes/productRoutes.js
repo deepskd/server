@@ -8,7 +8,7 @@ const Team = mongoose.model("teams");
 
 const url = `https://embodee.adidas.com/api2/rewrite/adidas16/is/image/adidasAG/agm?&src=ir\
 {adidasAGRender/APP18_pn1_com_1?&obj=a/f/nvr&show&\
-obj=a/m/bas&src=sld_pn_white&show&\
+obj=a/m/bas&src=BASECOLOR&show&\
 obj=a/s/shg&show&\
 obj=a/o/st1_s0&show&\
 obj=a/o/st2_t0&show&\
@@ -119,6 +119,9 @@ const colorMapBase = color => {
     case "red":
       colorBase = "sld_pn_power_red";
       break;
+    case "white":
+      colorBase = "sld_pn_white";
+      break;
     default:
       colorBase = "sld_pn_black";
   }
@@ -152,9 +155,11 @@ const awayColors = (away, color) => {
 };
 
 const teamProducts = team => {
-  var home = _.replace(url, /TEAMNAME/, _.toUpper(team.mascot));
+  let home = _.replace(url, /TEAMNAME/, _.toUpper(team.mascot));
+  home = _.replace(home, /BASECOLOR/, colorMapBase("white"));
   home = homeColors(home, team.colors);
-  var away = _.replace(url, /TEAMNAME/, _.toUpper(team.name));
+  let away = _.replace(url, /TEAMNAME/, _.toUpper(team.name));
+  away = _.replace(away, /BASECOLOR/, colorMapBase(team.colors[0] || "black"));
   away = awayColors(away, team.colors);
   return { home, away };
 };
