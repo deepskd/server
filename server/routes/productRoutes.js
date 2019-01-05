@@ -65,13 +65,19 @@ const colorMapHT = color => {
     case "navy":
       colorHT = "sld_pn_collegiate_navy_ht";
       break;
-    case "navy":
+    case "navy blue":
       colorHT = "sld_pn_collegiate_navy_ht";
       break;
     case "dark green":
       colorHT = "sld_pn_dark_green_ht";
       break;
+    case "forest green":
+      colorHT = "sld_pn_dark_green_ht";
+      break;
     case "green":
+      colorHT = "sld_pn_chameleon_ht";
+      break;
+    case "kelly green":
       colorHT = "sld_pn_chameleon_ht";
       break;
     case "burgandy":
@@ -88,6 +94,21 @@ const colorMapHT = color => {
       break;
     case "vegas gold":
       colorHT = "sld_pn_24_karat_ht";
+      break;
+    case "blue":
+      colorHT = "sld_pn_onix_ht"; //no match available
+      break;
+    case "royal blue":
+      colorHT = "sld_pn_collegiate_royal_ht";
+      break;
+    case "silver":
+      colorHT = "sld_pn_sterling_silver_ht";
+      break;
+    case "cardinal":
+      colorHT = "sld_pn_matte_power_red_ht"; //approx match
+      break;
+    case "scarlet":
+      colorHT = "sld_pn_matte_power_red_ht"; //approx match
       break;
     default:
       colorHT = "sld_pn_obsidian_shine_ht";
