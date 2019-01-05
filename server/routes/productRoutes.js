@@ -134,10 +134,19 @@ const colorMapBase = color => {
     case "navy":
       colorBase = "sld_pn_collegiate_navy";
       break;
+    case "navy blue":
+      colorBase = "sld_pn_collegiate_navy";
+      break;
     case "dark green":
       colorBase = "sld_pn_dark_green";
       break;
+    case "forest green":
+      colorBase = "sld_pn_dark_green";
+      break;
     case "green":
+      colorBase = "sld_pn_green";
+      break;
+    case "kelly green":
       colorBase = "sld_pn_green";
       break;
     case "burgandy":
@@ -151,6 +160,15 @@ const colorMapBase = color => {
       break;
     case "gold":
       colorBase = "sld_pn_collegiate_gold";
+      break;
+    case "blue":
+      colorBase = "sld_pn_light_blue";
+      break;
+    case "carolina blue":
+      colorBase = "sld_pn_light_blue";
+      break;
+    case "loght blue":
+      colorBase = "sld_pn_light_blue";
       break;
     default:
       colorBase = "sld_pn_black";
