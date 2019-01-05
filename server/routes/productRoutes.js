@@ -20,7 +20,7 @@ src=fxg{APP18_pn1_jht_teamname?&\
 $text=TEAMNAME&\
 $font=red_zone_2015&\
 $text_color=TEAMTEXTCOLOR&\
-$stroke_color=sld_pn_collegiate_gold_ht&\
+$stroke_color=TEAMSTROKECOLOR&\
 $application=heat_transfer}&
 obj=a/o/cfr&decal&show&res=10.567757977621218&pos=0,0&\
 src=fxg{APP18_pn1_jht_playernumber?&\
@@ -28,7 +28,7 @@ $application=heat_transfer&\
 $text=99&\
 $font=red_zone_2015&\
 $text_color=NUMBERTEXTCOLOR&\
-$stroke_color=sld_pn_collegiate_gold_ht}&\
+$stroke_color=NUMBERSTROKECOLOR}&\
 obj=a/o/cba&decal&show&res=8.800690250215704&pos=0,0&\
 src=fxg{APP18_pn1_jht_playernumber?&\
 $application=heat_transfer&\
@@ -42,7 +42,7 @@ $application=heat_transfer&\
 $text=99&
 $font=red_zone_2015&
 $text_color=NUMBERTEXTCOLOR&\
-$stroke_color=sld_pn_collegiate_gold_ht}&\
+$stroke_color=NUMBERSTROKECOLOR}&\
 obj=a&req=object}\
 &resMode=sharp2\
 &op_usm=1.2,1,4,0`;
@@ -82,6 +82,9 @@ const colorMapHT = color => {
       break;
     case "white":
       colorHT = "sld_pn_white_ht";
+      break;
+    case "gold":
+      colorHT = "sld_pn_collegiate_gold_ht";
       break;
     case "vegas gold":
       colorHT = "sld_pn_24_karat_ht";
@@ -137,19 +140,25 @@ const colorMapBase = color => {
 const homeDecorations = (home, colors) => {
   const color = {};
   if (colors && colors.length === 2) {
-    color.primary = colorMapHT(colors[0]);
-    home = _.replace(home, /(TEAM|NUMBER)TEXTCOLOR/g, color.primary);
-    color.secondary = colors[1];
+    color.text = colorMapHT(colors[0]);
+    color.stroke = colorMapHT(colors[1]);
+    home = _.replace(home, /(TEAM|NUMBER)TEXTCOLOR/g, color.text);
+    home = _.replace(home, /(TEAM|NUMBER)STROKECOLOR/g, color.stroke);
   } else if (colors && colors.length === 3) {
-    color.primary = colorMapHT(colors[0]);
-    home = _.replace(home, /(TEAM|NUMBER)TEXTCOLOR/g, color.primary);
-    color.secondary = colors[1];
-    color.terinary = colors[3];
+    color.text = colorMapHT(colors[0]);
+    color.stroke = colorMapHT(colors[1]);
+    home = _.replace(home, /(TEAM|NUMBER)TEXTCOLOR/g, color.text);
+    home = _.replace(home, /(TEAM|NUMBER)STROKECOLOR/g, color.stroke);
   } else {
     home = _.replace(
       home,
-      /(TEAM|NUMBER)TEXTCOLOR/,
+      /(TEAM|NUMBER)TEXTCOLOR/g,
       "sld_pn_obsidian_shine_ht"
+    );
+    home = _.replace(
+      home,
+      /(TEAM|NUMBER)STROKECOLOR/g,
+      "sld_pn_matte_power_red_ht"
     );
   }
   return home;
@@ -157,17 +166,22 @@ const homeDecorations = (home, colors) => {
 
 const awayDecorations = (away, colors) => {
   const color = {};
-  if (colors.length === 2) {
-    color.primary = colorMapHT(colors[1]);
-    away = _.replace(away, /(TEAM|NUMBER)TEXTCOLOR/g, color.primary);
-    // color.secondary = colors[1];
-  } else if (colors.length === 3) {
-    color.primary = colorMapHT(colors[1]);
-    away = _.replace(away, /(TEAM|NUMBER)TEXTCOLOR/g, color.primary);
-    // color.secondary = colors[1];
-    // color.terinary = colors[3];
+  if (colors && colors.length === 2) {
+    color.text = colorMapHT(colors[1]);
+    away = _.replace(away, /(TEAM|NUMBER)TEXTCOLOR/g, color.text);
+    away = _.replace(away, /(TEAM|NUMBER)STROKECOLOR/g, color.text);
+  } else if (colors && colors.length === 3) {
+    color.text = colorMapHT(colors[1]);
+    away = _.replace(away, /(TEAM|NUMBER)TEXTCOLOR/g, color.text);
+    color.stroke = colorMapHT(colors[2]);
+    away = _.replace(away, /(TEAM|NUMBER)STROKECOLOR/g, color.stroke);
   } else {
-    away = _.replace(away, /(TEAM|NUMBER)TEXTCOLOR/, "sld_pn_white_ht");
+    away = _.replace(away, /(TEAM|NUMBER)TEXTCOLOR/g, "sld_pn_white_ht");
+    away = _.replace(
+      away,
+      /(TEAM|NUMBER)STROKECOLOR/g,
+      "sld_pn_matte_power_red_ht"
+    );
   }
   return away;
 };
