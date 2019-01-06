@@ -12,4 +12,9 @@ module.exports = app => {
     const team = await Team.getTeam(req.query.id);
     res.status(200).send(team);
   });
+
+  app.get("/", (req, res) => {
+    const x = { hello: "hello" };
+    res.status(200).send(x);
+  });
 };
