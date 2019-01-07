@@ -4,48 +4,9 @@ const fs = require("fs");
 const _ = require("lodash");
 require("../models/Team");
 
-const Team = mongoose.model("teams");
+const a1PrimeKnitUniform = require("../uniforms/a1PrimeKnit");
 
-const url = `https://embodee.adidas.com/api2/rewrite/adidas16/is/image/adidasAG/agm?&src=ir\
-{adidasAGRender/APP18_pn1_com_1?&obj=a/f/nvr&show&\
-obj=a/m/bas&src=BASECOLOR&show&\
-obj=a/s/shg&show&\
-obj=a/o/st1_s0&show&\
-obj=a/o/st2_t0&show&\
-obj=a/o/log&src=LOGOCOLOR&show&\
-obj=a/o/cuf&src=sld_pn_white&show&\
-obj=a/o/pip&src=sld_pn_white&show&\
-obj=a/o/ufr&decal&show&res=10.053222945002956&pos=0,0&\
-src=fxg{APP18_pn1_jht_teamname?&\
-$text=TEAMNAME&\
-$font=TEAMFONT&\
-$text_color=TEAMTEXTCOLOR&\
-$stroke_color=TEAMSTROKECOLOR&\
-$application=heat_transfer}&
-obj=a/o/cfr&decal&show&res=10.567757977621218&pos=0,0&\
-src=fxg{APP18_pn1_jht_playernumber?&\
-$application=heat_transfer&\
-$text=PLAYERNUMBER&\
-$font=NUMBERFONT&\
-$text_color=NUMBERTEXTCOLOR&\
-$stroke_color=NUMBERSTROKECOLOR}&\
-obj=a/o/cba&decal&show&res=8.800690250215704&pos=0,0&\
-src=fxg{APP18_pn1_jht_playernumber?&\
-$application=heat_transfer&\
-$text=PLAYERNUMBER&\
-$font=NUMBERFONT&\
-$text_color=NUMBERTEXTCOLOR&\
-$stroke_color=sld_pn_collegiate_gold_ht}&\
-obj=a/o/sln&decal&show&res=35.78947368421053&pos=0,0&\
-src=fxg{APP18_pn1_jht_playernumber?&\
-$application=heat_transfer&\
-$text=PLAYERNUMBER&
-$font=NUMBERFONT&
-$text_color=NUMBERTEXTCOLOR&\
-$stroke_color=NUMBERSTROKECOLOR}&\
-obj=a&req=object}\
-&resMode=sharp2\
-&op_usm=1.2,1,4,0`;
+const Team = mongoose.model("teams");
 
 const FONTS = [
   "red_zone_2015",
@@ -255,7 +216,11 @@ const teamProducts = team => {
   const font = _.sample(FONTS);
   const mascot = _.replace(team.mascot || team.name, "/", " ");
 
-  let home = _.replace(url, /TEAMNAME/, _.toUpper(mascot));
+  let home = _.replace(
+    a1PrimeKnitUniform.JERSEY_URL,
+    /TEAMNAME/,
+    _.toUpper(mascot)
+  );
   home = _.replace(home, /BASECOLOR/, colorMapBase("white"));
   home = _.replace(home, /LOGOCOLOR/, colorMapBase("black"));
   home = _.replace(home, /PLAYERNUMBER/g, playerNumber);
@@ -263,7 +228,7 @@ const teamProducts = team => {
   home = homeDecorations(home, team.colors);
 
   let away = _.replace(
-    url,
+    a1PrimeKnitUniform.JERSEY_URL,
     /TEAMNAME/,
     _.toUpper(_.replace(team.name, "/", " "))
   );
