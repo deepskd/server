@@ -195,7 +195,7 @@ const homeDecorations = (home, colors) => {
     home = _.replace(home, /(TEAM|NUMBER)STROKECOLOR/g, color.stroke);
   } else if (colors && colors.length === 3) {
     color.text = colorMapHT(colors[0]);
-    color.stroke = colorMapHT(colors[1]);
+    color.stroke = colorMapHT(colors[1] === "white" ? colors[2] : colors[1]);
     home = _.replace(home, /(TEAM|NUMBER)TEXTCOLOR/g, color.text);
     home = _.replace(home, /(TEAM|NUMBER)STROKECOLOR/g, color.stroke);
   } else if (colors && colors.length === 1) {
@@ -253,7 +253,7 @@ const awayDecorations = (away, colors) => {
 const teamProducts = team => {
   const playerNumber = _.padStart(_.random(0, 99), 2, "0");
   const font = _.sample(FONTS);
-  const mascot = team.mascot || team.name;
+  const mascot = _.replace(team.mascot || team.name, "/", " ");
 
   let home = _.replace(url, /TEAMNAME/, _.toUpper(mascot));
   home = _.replace(home, /BASECOLOR/, colorMapBase("white"));
@@ -262,7 +262,11 @@ const teamProducts = team => {
   home = _.replace(home, /(TEAM|NUMBER)FONT/g, font);
   home = homeDecorations(home, team.colors);
 
-  let away = _.replace(url, /TEAMNAME/, _.toUpper(team.name));
+  let away = _.replace(
+    url,
+    /TEAMNAME/,
+    _.toUpper(_.replace(team.name, "/", " "))
+  );
   let awayBaseColor = team.colors ? team.colors[0] : "black";
   if (awayBaseColor === "black") {
     away = _.replace(away, "cuf&src=sld_pn_white", "cuf&src=sld_pn_black");
