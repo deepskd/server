@@ -18,34 +18,44 @@ obj=a/o/pip&src=sld_pn_white&show&\
 obj=a/o/ufr&decal&show&res=10.053222945002956&pos=0,0&\
 src=fxg{APP18_pn1_jht_teamname?&\
 $text=TEAMNAME&\
-$font=red_zone_2015&\
+$font=TEAMFONT&\
 $text_color=TEAMTEXTCOLOR&\
 $stroke_color=TEAMSTROKECOLOR&\
 $application=heat_transfer}&
 obj=a/o/cfr&decal&show&res=10.567757977621218&pos=0,0&\
 src=fxg{APP18_pn1_jht_playernumber?&\
 $application=heat_transfer&\
-$text=99&\
-$font=red_zone_2015&\
+$text=PLAYERNUMBER&\
+$font=NUMBERFONT&\
 $text_color=NUMBERTEXTCOLOR&\
 $stroke_color=NUMBERSTROKECOLOR}&\
 obj=a/o/cba&decal&show&res=8.800690250215704&pos=0,0&\
 src=fxg{APP18_pn1_jht_playernumber?&\
 $application=heat_transfer&\
-$text=99&\
-$font=red_zone_2015&\
+$text=PLAYERNUMBER&\
+$font=NUMBERFONT&\
 $text_color=NUMBERTEXTCOLOR&\
 $stroke_color=sld_pn_collegiate_gold_ht}&\
 obj=a/o/sln&decal&show&res=35.78947368421053&pos=0,0&\
 src=fxg{APP18_pn1_jht_playernumber?&\
 $application=heat_transfer&\
-$text=99&
-$font=red_zone_2015&
+$text=PLAYERNUMBER&
+$font=NUMBERFONT&
 $text_color=NUMBERTEXTCOLOR&\
 $stroke_color=NUMBERSTROKECOLOR}&\
 obj=a&req=object}\
 &resMode=sharp2\
 &op_usm=1.2,1,4,0`;
+
+const FONTS = [
+  "red_zone_2015",
+  "invader",
+  "full_block",
+  "western",
+  "roadrunner",
+  "louisville",
+  "half_block_2015"
+];
 
 const colorMapHT = color => {
   let colorHT = "";
@@ -226,9 +236,15 @@ const awayDecorations = (away, colors) => {
 };
 
 const teamProducts = team => {
-  let home = _.replace(url, /TEAMNAME/, _.toUpper(team.mascot));
+  const playerNumber = _.random(0, 99);
+  const font = _.sample(FONTS);
+  const mascot = team.mascot || team.name;
+
+  let home = _.replace(url, /TEAMNAME/, _.toUpper(mascot));
   home = _.replace(home, /BASECOLOR/, colorMapBase("white"));
   home = _.replace(home, /LOGOCOLOR/, colorMapBase("black"));
+  home = _.replace(home, /PLAYERNUMBER/g, playerNumber);
+  home = _.replace(home, /(TEAM|NUMBER)FONT/g, font);
   home = homeDecorations(home, team.colors);
 
   let away = _.replace(url, /TEAMNAME/, _.toUpper(team.name));
@@ -239,6 +255,8 @@ const teamProducts = team => {
   }
   away = _.replace(away, /BASECOLOR/, colorMapBase(awayBaseColor));
   away = _.replace(away, /LOGOCOLOR/, colorMapBase("white"));
+  away = _.replace(away, /PLAYERNUMBER/g, playerNumber);
+  away = _.replace(away, /(TEAM|NUMBER)FONT/g, font);
   away = awayDecorations(away, team.colors);
   return { home, away };
 };
