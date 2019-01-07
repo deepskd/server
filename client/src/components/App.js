@@ -6,6 +6,7 @@ import SchoolDetail from "./SchoolDetail";
 import { BrowserRouter, Route } from "react-router-dom";
 
 const App = () => {
+  initializeReactGA();
   return (
     <div className="ui container">
       <BrowserRouter>
