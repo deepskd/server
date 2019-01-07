@@ -248,7 +248,7 @@ const teamProducts = team => {
   home = homeDecorations(home, team.colors);
 
   let away = _.replace(url, /TEAMNAME/, _.toUpper(team.name));
-  let awayBaseColor = team.colors[0] || "black";
+  let awayBaseColor = team.colors ? team.colors[0] : "black";
   if (awayBaseColor === "black") {
     away = _.replace(away, "cuf&src=sld_pn_white", "cuf&src=sld_pn_black");
     away = _.replace(away, "pip&src=sld_pn_white", "pip&src=sld_pn_black");
