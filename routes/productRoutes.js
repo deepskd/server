@@ -198,6 +198,11 @@ const homeDecorations = (home, colors) => {
     color.stroke = colorMapHT(colors[1]);
     home = _.replace(home, /(TEAM|NUMBER)TEXTCOLOR/g, color.text);
     home = _.replace(home, /(TEAM|NUMBER)STROKECOLOR/g, color.stroke);
+  } else if (colors && colors.length === 1) {
+    color.text = colorMapHT(colors[0]);
+    color.stroke = colorMapHT("black");
+    home = _.replace(home, /(TEAM|NUMBER)TEXTCOLOR/g, color.text);
+    home = _.replace(home, /(TEAM|NUMBER)STROKECOLOR/g, color.stroke);
   } else {
     home = _.replace(
       home,
@@ -217,12 +222,22 @@ const awayDecorations = (away, colors) => {
   const color = {};
   if (colors && colors.length === 2) {
     color.text = colorMapHT(colors[1]);
+    if (colors[1].match(/gold/)) {
+      color.stroke = colorMapHT("white");
+    } else {
+      color.stroke = colorMapHT(_.sample[("gold", "black")]);
+    }
     away = _.replace(away, /(TEAM|NUMBER)TEXTCOLOR/g, color.text);
-    away = _.replace(away, /(TEAM|NUMBER)STROKECOLOR/g, color.text);
+    away = _.replace(away, /(TEAM|NUMBER)STROKECOLOR/g, color.stroke);
   } else if (colors && colors.length === 3) {
     color.text = colorMapHT(colors[1]);
-    away = _.replace(away, /(TEAM|NUMBER)TEXTCOLOR/g, color.text);
     color.stroke = colorMapHT(colors[2]);
+    away = _.replace(away, /(TEAM|NUMBER)TEXTCOLOR/g, color.text);
+    away = _.replace(away, /(TEAM|NUMBER)STROKECOLOR/g, color.stroke);
+  } else if (colors && colors.length === 1) {
+    color.text = colorMapHT("white");
+    color.stroke = colorMapHT("black");
+    away = _.replace(away, /(TEAM|NUMBER)TEXTCOLOR/g, color.text);
     away = _.replace(away, /(TEAM|NUMBER)STROKECOLOR/g, color.stroke);
   } else {
     away = _.replace(away, /(TEAM|NUMBER)TEXTCOLOR/g, "sld_pn_white_ht");
@@ -236,7 +251,7 @@ const awayDecorations = (away, colors) => {
 };
 
 const teamProducts = team => {
-  const playerNumber = _.random(0, 99);
+  const playerNumber = _.padStart(_.random(0, 99), 2, "0");
   const font = _.sample(FONTS);
   const mascot = team.mascot || team.name;
 
