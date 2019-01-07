@@ -26,10 +26,10 @@ class SchoolDetail extends React.Component {
         </div>
         <div className="ui fluid row images medium">
           <div className="column eight wide">
-            <img src={products.home} alt={"Home Football Jersey"} />
+            <img src={products.home.jersey} alt={"Home Football Jersey"} />
           </div>
           <div className="column eight wide">
-            <img src={products.away} alt={"Away Football Jersey"} />
+            <img src={products.away.jersey} alt={"Away Football Jersey"} />
           </div>
         </div>
       </div>

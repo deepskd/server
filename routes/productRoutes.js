@@ -79,37 +79,59 @@ const teamProducts = team => {
   const font = _.sample(a1PrimeKnitUniform.FONTS);
   const mascot = _.replace(team.mascot || team.name, "/", " ");
 
-  let home = _.replace(
+  let home = {};
+  home.jersey = _.replace(
     a1PrimeKnitUniform.JERSEY_URL,
     /TEAMNAME/,
     _.toUpper(mascot)
   );
-  home = _.replace(home, /BASECOLOR/, a1PrimeKnitUniform.colorMapBase("white"));
-  home = _.replace(home, /LOGOCOLOR/, a1PrimeKnitUniform.colorMapBase("black"));
-  home = _.replace(home, /PLAYERNUMBER/g, playerNumber);
-  home = _.replace(home, /(TEAM|NUMBER)FONT/g, font);
-  home = homeDecorations(home, team.colors);
+  home.jersey = _.replace(
+    home.jersey,
+    /BASECOLOR/,
+    a1PrimeKnitUniform.colorMapBase("white")
+  );
+  home.jersey = _.replace(
+    home.jersey,
+    /LOGOCOLOR/,
+    a1PrimeKnitUniform.colorMapBase("black")
+  );
+  home.jersey = _.replace(home.jersey, /PLAYERNUMBER/g, playerNumber);
+  home.jersey = _.replace(home.jersey, /(TEAM|NUMBER)FONT/g, font);
+  home.jersey = homeDecorations(home.jersey, team.colors);
 
-  let away = _.replace(
+  let away = {};
+  away.jersey = _.replace(
     a1PrimeKnitUniform.JERSEY_URL,
     /TEAMNAME/,
     _.toUpper(_.replace(team.name, "/", " "))
   );
   let awayBaseColor = team.colors ? team.colors[0] : "black";
   if (awayBaseColor === "black") {
-    away = _.replace(away, "cuf&src=sld_pn_white", "cuf&src=sld_pn_black");
-    away = _.replace(away, "pip&src=sld_pn_white", "pip&src=sld_pn_black");
+    away.jersey = _.replace(
+      away,
+      "cuf&src=sld_pn_white",
+      "cuf&src=sld_pn_black"
+    );
+    away.jersey = _.replace(
+      away,
+      "pip&src=sld_pn_white",
+      "pip&src=sld_pn_black"
+    );
   }
-  away = _.replace(
-    away,
+  away.jersey = _.replace(
+    away.jersey,
     /BASECOLOR/,
     a1PrimeKnitUniform.colorMapBase(awayBaseColor)
   );
-  away = _.replace(away, /LOGOCOLOR/, a1PrimeKnitUniform.colorMapBase("white"));
-  away = _.replace(away, /PLAYERNUMBER/g, playerNumber);
-  away = _.replace(away, /(TEAM|NUMBER)FONT/g, font);
-  away = awayDecorations(away, team.colors);
-  return { home, away };
+  away.jersey = _.replace(
+    away.jersey,
+    /LOGOCOLOR/,
+    a1PrimeKnitUniform.colorMapBase("white")
+  );
+  away.jersey = _.replace(away.jersey, /PLAYERNUMBER/g, playerNumber);
+  away.jersey = _.replace(away.jersey, /(TEAM|NUMBER)FONT/g, font);
+  away.jersey = awayDecorations(away.jersey, team.colors);
+  return { home, away, FONTS: a1PrimeKnitUniform.FONTS, selectedFont: font };
 };
 
 module.exports = app => {
