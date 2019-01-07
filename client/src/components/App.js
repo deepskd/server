@@ -1,4 +1,5 @@
 import React from "react";
+import ReactGA from "react-ga";
 import SearchBar from "./SearchBar";
 import TeamList from "./TeamList";
 import SchoolDetail from "./SchoolDetail";
@@ -17,5 +18,10 @@ const App = () => {
     </div>
   );
 };
+
+function initializeReactGA() {
+  ReactGA.initialize("UA-131840948-1");
+  ReactGA.pageview("/homepage");
+}
 
 export default App;
