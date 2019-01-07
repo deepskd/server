@@ -106,7 +106,7 @@ const colorMapHT = color => {
       colorHT = "sld_pn_24_karat_ht";
       break;
     case "blue":
-      colorHT = "sld_pn_onix_ht"; //no match available
+      colorHT = "sld_pn_collegiate_royal_ht"; //no match available
       break;
     case "royal blue":
       colorHT = "sld_pn_collegiate_royal_ht";
