@@ -188,6 +188,13 @@ const colorMapBase = color => {
       break;
     case "silver":
       colorBase = "sld_pn_onix";
+      break;
+    case "cardinal":
+      colorBase = "sld_pn_power_red";
+      break;
+    case "scarlet":
+      colorBase = "sld_pn_power_red";
+      break;
     default:
       colorBase = "sld_pn_black";
   }
