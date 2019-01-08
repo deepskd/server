@@ -76,7 +76,7 @@ const awayDecorations = (away, colors) => {
 
 const teamProducts = team => {
   const playerNumber = _.padStart(_.random(0, 99), 2, "0");
-  const font = _.sample(a1PrimeKnitUniform.FONTS);
+  const font = _.sample(Object.keys(a1PrimeKnitUniform.FONTS));
   const mascot = _.replace(team.mascot || team.name, "/", " ");
 
   let home = {};

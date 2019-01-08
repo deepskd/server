@@ -47,15 +47,15 @@ obj=a/o/log&src=LOGOCOLOR&show&\
 obj=a&req=object}\
 &resMode=sharp2&op_usm=1.2,1,4,0&$configLarge$`;
 
-const FONTS = [
-  "red_zone_2015",
-  "invader",
-  "full_block",
-  "western",
-  "roadrunner",
-  "louisville",
-  "half_block_2015"
-];
+const FONTS = {
+  red_zone_2015: "Red Zone",
+  invader: "Invader",
+  full_block: "Full Block",
+  western: "Western",
+  roadrunner: "Road Runner",
+  louisville: "Louisville",
+  half_block_2015: "Half Block"
+};
 
 const colorMapHT = color => {
   let colorHT = "";

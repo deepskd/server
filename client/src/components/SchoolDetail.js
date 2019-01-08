@@ -7,11 +7,11 @@ class SchoolDetail extends React.Component {
   }
 
   fontOptions(fonts, selectedFont) {
-    return fonts.map(font => {
+    return Object.keys(fonts).map(font => {
       if (font === selectedFont) {
         return (
           <button key={font} className="positive ui button">
-            {font}
+            {fonts[font]}
           </button>
         );
       } else {
@@ -21,7 +21,7 @@ class SchoolDetail extends React.Component {
             className="ui button"
             onClick={() => this.fontChanged(font)}
           >
-            {font}
+            {fonts[font]}
           </button>
         );
       }
