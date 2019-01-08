@@ -2,6 +2,15 @@ import React from "react";
 import { connect } from "react-redux";
 
 class SchoolDetail extends React.Component {
+  fontOptions(fonts, selectedFont) {
+    return fonts.map(f => {
+      if (f === selectedFont) {
+        return <button className="positive ui button">{f}</button>;
+      } else {
+        return <button className="ui button">{f}</button>;
+      }
+    });
+  }
   render() {
     const { team } = this.props.teamProducts || null;
     const { products } = this.props.teamProducts || null;
@@ -39,6 +48,9 @@ class SchoolDetail extends React.Component {
           <div className="column eight wide">
             <img src={products.away.pants} alt={"Away Football Pants"} />
           </div>
+        </div>
+        <div className="ui fluid row">
+          {this.fontOptions(products.FONTS, products.selectedFont)}
         </div>
       </div>
     );
