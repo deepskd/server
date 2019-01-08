@@ -1,9 +1,11 @@
 import React from "react";
 import { connect } from "react-redux";
 
+import { fontChanged } from "../actions";
+
 class SchoolDetail extends React.Component {
   fontChanged(font) {
-    console.log(font);
+    this.props.fontChanged(font);
   }
 
   fontOptions(fonts, selectedFont) {
@@ -78,4 +80,7 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(SchoolDetail);
+export default connect(
+  mapStateToProps,
+  { fontChanged }
+)(SchoolDetail);
