@@ -121,12 +121,12 @@ const teamProducts = team => {
 
   if (awayJerseyBaseColor === "black") {
     away.jersey = _.replace(
-      away,
+      away.jersey,
       "cuf&src=sld_pn_white",
       "cuf&src=sld_pn_black"
     );
     away.jersey = _.replace(
-      away,
+      away.jersey,
       "pip&src=sld_pn_white",
       "pip&src=sld_pn_black"
     );
