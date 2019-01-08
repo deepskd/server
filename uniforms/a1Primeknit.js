@@ -177,9 +177,17 @@ const colorMapBase = color => {
     case "carolina blue":
       colorBase = "sld_pn_light_blue";
       break;
-    case "loght blue":
+    case "light blue":
       colorBase = "sld_pn_light_blue";
       break;
+    case "gray":
+      colorBase = "sld_pn_grey";
+      break;
+    case "gray":
+      colorBase = "sld_pn_grey";
+      break;
+    case "silver":
+      colorBase = "sld_pn_onix";
     default:
       colorBase = "sld_pn_black";
   }
