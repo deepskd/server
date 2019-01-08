@@ -161,7 +161,7 @@ const teamProducts = team => {
     )
   );
 
-  return { home, away, FONTS: a1PrimeKnitUniform.FONTS, selectedFont: font };
+  return { home, away, fonts: a1PrimeKnitUniform.FONTS, selectedFont: font };
 };
 
 module.exports = app => {

@@ -2,22 +2,26 @@ import React from "react";
 import { connect } from "react-redux";
 
 class SchoolDetail extends React.Component {
-  fontChanged(f) {
-    console.log(f);
+  fontChanged(font) {
+    console.log(font);
   }
 
   fontOptions(fonts, selectedFont) {
-    return fonts.map(f => {
-      if (f === selectedFont) {
+    return fonts.map(font => {
+      if (font === selectedFont) {
         return (
-          <button key={f} className="positive ui button">
-            {f}
+          <button key={font} className="positive ui button">
+            {font}
           </button>
         );
       } else {
         return (
-          <button key={f} className="ui button" onClick={this.fontChanged(f)}>
-            {f}
+          <button
+            key={font}
+            className="ui button"
+            onClick={() => this.fontChanged(font)}
+          >
+            {font}
           </button>
         );
       }
@@ -29,7 +33,6 @@ class SchoolDetail extends React.Component {
     if (!team) {
       return <div>Loading</div>;
     }
-    console.log(products);
     return (
       <div className="ui fluid grid">
         <div className="ui row centered card">
@@ -62,7 +65,7 @@ class SchoolDetail extends React.Component {
           </div>
         </div>
         <div className="ui fluid row">
-          {this.fontOptions(products.FONTS, products.selectedFont)}
+          {this.fontOptions(products.fonts, products.selectedFont)}
         </div>
       </div>
     );
