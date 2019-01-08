@@ -4,7 +4,7 @@ const fs = require("fs");
 const _ = require("lodash");
 require("../models/Team");
 
-const a1PrimeKnitUniform = require("../uniforms/a1PrimeKnit");
+const a1PrimeKnitUniform = require("../uniforms/a1Primeknit");
 
 const Team = mongoose.model("teams");
 
