@@ -27,7 +27,7 @@ $application=heat_transfer&\
 $text=PLAYERNUMBER&\
 $font=NUMBERFONT&\
 $text_color=NUMBERTEXTCOLOR&\
-$stroke_color=sld_pn_collegiate_gold_ht}&\
+$stroke_color=TEAMSTROKECOLOR}&\
 obj=a/o/sln&decal&show&res=35.78947368421053&pos=0,0&\
 src=fxg{APP18_pn1_jht_playernumber?&\
 $application=heat_transfer&\
