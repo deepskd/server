@@ -120,6 +120,9 @@ const colorMapHT = color => {
     case "scarlet":
       colorHT = "sld_pn_matte_power_red_ht"; //approx match
       break;
+    case "texas orange":
+      colorHT = "sld_pn_collegiate_orange_ht";
+      break;
     default:
       colorHT = "sld_pn_obsidian_shine_ht";
   }
@@ -194,6 +197,9 @@ const colorMapBase = color => {
       break;
     case "scarlet":
       colorBase = "sld_pn_power_red";
+      break;
+    case "texas orange":
+      colorBase = "sld_pn_collegiate_orange";
       break;
     default:
       colorBase = "sld_pn_black";

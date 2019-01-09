@@ -105,11 +105,20 @@ const teamProducts = team => {
     /BASECOLOR/,
     a1PrimeKnitUniform.colorMapBase(homePantBaseColor)
   );
-  home.pants = _.replace(
-    home.pants,
-    /LOGOCOLOR/,
-    a1PrimeKnitUniform.colorMapBase("white")
-  );
+
+  if (homePantBaseColor === "white") {
+    home.pants = _.replace(
+      home.pants,
+      /LOGOCOLOR/,
+      a1PrimeKnitUniform.colorMapBase("black")
+    );
+  } else {
+    home.pants = _.replace(
+      home.pants,
+      /LOGOCOLOR/,
+      a1PrimeKnitUniform.colorMapBase("white")
+    );
+  }
 
   let away = {};
   away.jersey = _.replace(
@@ -145,21 +154,26 @@ const teamProducts = team => {
   away.jersey = _.replace(away.jersey, /(TEAM|NUMBER)FONT/g, font);
   away.jersey = awayDecorations(away.jersey, team.colors);
 
-  let awayPantBaseColor = team.colors ? team.colors[1] : "white";
+  const awayPantBaseColor = team.colors ? team.colors[1] : "white";
   away.pants = _.replace(
     a1PrimeKnitUniform.PANTS_URL,
     /BASECOLOR/,
     a1PrimeKnitUniform.colorMapBase(awayPantBaseColor)
   );
-  away.pants = _.replace(
-    away.pants,
-    /LOGOCOLOR/,
-    a1PrimeKnitUniform.colorMapBase(
-      awayPantBaseColor === "white"
-        ? a1PrimeKnitUniform.colorMapBase("black")
-        : a1PrimeKnitUniform.colorMapBase("white")
-    )
-  );
+
+  if (awayPantBaseColor === "white") {
+    away.pants = _.replace(
+      away.pants,
+      /LOGOCOLOR/,
+      a1PrimeKnitUniform.colorMapBase("black")
+    );
+  } else {
+    away.pants = _.replace(
+      away.pants,
+      /LOGOCOLOR/,
+      a1PrimeKnitUniform.colorMapBase("white")
+    );
+  }
 
   return { home, away, fonts: a1PrimeKnitUniform.FONTS, selectedFont: font };
 };
