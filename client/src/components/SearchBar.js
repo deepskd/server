@@ -18,14 +18,18 @@ class SearchBar extends React.Component {
 
   render() {
     return (
-      <div className="search-bar ui segment">
+      <div className="ui segment">
         <form onSubmit={this.onFormSubmit} className="ui form">
-          <input
-            type="text"
-            value={this.state.term}
-            onChange={this.onInputChange}
-            placeholder="School Name, State"
-          />
+          <div class="ui icon input">
+            <input
+              style={{ width: "600px" }}
+              type="text"
+              value={this.state.term}
+              onChange={this.onInputChange}
+              placeholder="School Name, State Code(optional)"
+            />
+            <i class="search icon" />
+          </div>
         </form>
       </div>
     );

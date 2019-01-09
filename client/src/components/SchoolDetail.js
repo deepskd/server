@@ -50,7 +50,7 @@ class SchoolDetail extends React.Component {
             {team.colors}
           </div>
         </div>
-        <div className="ui fluid row images medium">
+        <div className="ui fluid centered row images medium">
           <div className="column eight wide">
             <img src={products.home.jersey} alt={"Home Football Jersey"} />
           </div>
@@ -58,7 +58,7 @@ class SchoolDetail extends React.Component {
             <img src={products.away.jersey} alt={"Away Football Jersey"} />
           </div>
         </div>
-        <div className="ui fluid row images medium">
+        <div className="ui fluid centered row images medium">
           <div className="column eight wide">
             <img src={products.home.pants} alt={"Home Football Pants"} />
           </div>
@@ -66,7 +66,7 @@ class SchoolDetail extends React.Component {
             <img src={products.away.pants} alt={"Away Football Pants"} />
           </div>
         </div>
-        <div className="ui fluid row">
+        <div className="ui fluid centered row">
           {this.fontOptions(products.fonts, products.selectedFont)}
         </div>
       </div>
