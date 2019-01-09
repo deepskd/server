@@ -3,6 +3,7 @@ import ReactGA from "react-ga";
 import SearchBar from "./SearchBar";
 import TeamList from "./TeamList";
 import SchoolDetail from "./SchoolDetail";
+import Header from "./header";
 import { BrowserRouter, Route } from "react-router-dom";
 
 const App = () => {
@@ -11,6 +12,7 @@ const App = () => {
     <div className="ui container">
       <BrowserRouter>
         <div>
+          <Header />
           <Route path="/" exact component={SearchBar} />
           <Route path="/" exact component={TeamList} />
           <Route path="/school" component={SchoolDetail} />
