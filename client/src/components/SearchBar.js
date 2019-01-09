@@ -18,17 +18,26 @@ class SearchBar extends React.Component {
 
   render() {
     return (
-      <div className="ui">
+      <div className="ui search">
         <form onSubmit={this.onFormSubmit} className="ui form">
-          <div class="ui icon input">
+          <div className="field">
+            <label>Search for US High Schools</label>
             <input
+              className="prompt"
               style={{ width: "600px" }}
               type="text"
               value={this.state.term}
               onChange={this.onInputChange}
               placeholder="School Name, State Code(optional)"
             />
-            <i class="search icon" />
+            <button
+              className="ui primary button"
+              style={{ margin: "0px 0px 0px 5px" }}
+              onClick={this.onFormSubmit}
+              type="submit"
+            >
+              Submit
+            </button>
           </div>
         </form>
       </div>
