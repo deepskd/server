@@ -177,6 +177,9 @@ const colorMapBase = color => {
     case "blue":
       colorBase = "sld_pn_light_blue";
       break;
+    case "royal blue":
+      colorBase = "sld_pn_collegiate_royal";
+      break;
     case "carolina blue":
       colorBase = "sld_pn_light_blue";
       break;
