@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import { fontChanged } from "../actions";
+import { fontChanged, imageRotated } from "../actions";
 
 class SchoolDetail extends React.Component {
   fontChanged(font) {
@@ -29,6 +29,19 @@ class SchoolDetail extends React.Component {
       }
     });
   }
+
+  imageRotateOptions(jersey, direction) {
+    return (
+      <div className="column eight wide">
+        <div class="mini ui buttons">
+          <button class="ui positive button">Front</button>
+          <div class="or" />
+          <button class="ui button">Back</button>
+        </div>
+      </div>
+    );
+  }
+
   render() {
     const { team } = this.props.teamProducts || null;
     const { products } = this.props.teamProducts || null;
@@ -58,6 +71,10 @@ class SchoolDetail extends React.Component {
             <img src={products.away.jersey} alt={"Away Football Jersey"} />
           </div>
         </div>
+        <div className="ui fluid row">
+          {this.imageRotateOptions("home", "front")}
+          {this.imageRotateOptions("away", "front")}
+        </div>
         <div className="ui fluid centered row images medium">
           <div className="column eight wide">
             <img src={products.home.pants} alt={"Home Football Pants"} />
@@ -82,5 +99,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { fontChanged }
+  { fontChanged, imageRotated }
 )(SchoolDetail);

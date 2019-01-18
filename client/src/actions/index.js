@@ -1,5 +1,10 @@
 import gts from "../apis/gts";
-import { FIND_TEAMS, SELECTED_TEAM, FONT_CHANGED } from "./types";
+import {
+  FIND_TEAMS,
+  SELECTED_TEAM,
+  FONT_CHANGED,
+  IMAGE_ROTATED
+} from "./types";
 
 export const findTeams = term => async dispatch => {
   const response = await gts.get(`/teams?q=${term}`);
@@ -17,5 +22,12 @@ export const fontChanged = font => {
   return {
     type: FONT_CHANGED,
     payload: font
+  };
+};
+
+export const imageRotated = (uniform, direction) => {
+  return {
+    type: IMAGE_ROTATED,
+    payload: { uniform, direction }
   };
 };

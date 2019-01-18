@@ -1,14 +1,14 @@
 import _ from "lodash";
-import { SELECTED_TEAM, FONT_CHANGED } from "../actions/types";
+import { SELECTED_TEAM, FONT_CHANGED, IMAGE_ROTATED } from "../actions/types";
 
 export default (state = [], action) => {
   switch (action.type) {
     case SELECTED_TEAM:
       return action.payload;
     case FONT_CHANGED:
-      console.log(state);
-      console.log(action.payload);
       return updateFont(state, action.payload);
+    case IMAGE_ROTATED:
+      return rotateImage(state, action.payload);
     default:
       return state;
   }
@@ -31,4 +31,8 @@ const updateFont = (state, font) => {
   );
   newState.products.selectedFont = font;
   return newState;
+};
+
+const rotateImage = (state, direction) => {
+  return state;
 };
