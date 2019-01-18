@@ -2,6 +2,7 @@ import "./SchoolDetail.css";
 import React from "react";
 import { connect } from "react-redux";
 
+import ImageCard from "./ImageCard";
 import { fontChanged, imageRotated } from "../actions";
 
 class SchoolDetail extends React.Component {
@@ -32,7 +33,6 @@ class SchoolDetail extends React.Component {
   }
 
   imageRotated(jersey, direction) {
-    console.log(jersey, direction);
     this.props.imageRotated(jersey, direction);
   }
 
@@ -90,24 +90,16 @@ class SchoolDetail extends React.Component {
           </div>
         </div>
         <div className="ui fluid centered row images medium">
-          <div className="column eight wide">
-            <img src={products.home.jersey} alt={"Home Football Jersey"} />
-          </div>
-          <div className="column eight wide">
-            <img src={products.away.jersey} alt={"Away Football Jersey"} />
-          </div>
+          <ImageCard src={products.home.jersey} alt={"Home Football Jersey"} />
+          <ImageCard src={products.away.jersey} alt={"Away Football Jersey"} />
         </div>
         <div className="ui fluid row">
           {this.imageRotateOptions("home", products.home.jerseyDirection)}
           {this.imageRotateOptions("away", products.away.jerseyDirection)}
         </div>
         <div className="ui fluid centered row images medium">
-          <div className="column eight wide">
-            <img src={products.home.pants} alt={"Home Football Pants"} />
-          </div>
-          <div className="column eight wide">
-            <img src={products.away.pants} alt={"Away Football Pants"} />
-          </div>
+          <ImageCard src={products.home.pants} alt={"Home Football Pants"} />
+          <ImageCard src={products.away.pants} alt={"Away Football Pants"} />
         </div>
         <div className="ui fluid centered row">
           {this.fontOptions(products.fonts, products.selectedFont)}
