@@ -49,20 +49,24 @@ class SchoolDetail extends React.Component {
 
     return (
       <div className="column eight wide">
-        <div className="mini ui buttons">
-          <button
-            className={buttonState.front}
-            onClick={() => this.imageRotated(jersey, "front")}
-          >
-            Front
-          </button>
-          <div className="or" />
-          <button
-            className={buttonState.back}
-            onClick={() => this.imageRotated(jersey, "back")}
-          >
-            Back
-          </button>
+        <div className="ui two column centered grid">
+          <div className="column">
+            <div className="mini ui buttons">
+              <button
+                className={buttonState.front}
+                onClick={() => this.imageRotated(jersey, "front")}
+              >
+                Front
+              </button>
+              <div className="or" />
+              <button
+                className={buttonState.back}
+                onClick={() => this.imageRotated(jersey, "back")}
+              >
+                Back
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     );
