@@ -30,13 +30,38 @@ class SchoolDetail extends React.Component {
     });
   }
 
+  imageRotated(jersey, direction) {
+    console.log(jersey, direction);
+    this.props.imageRotated(jersey, direction);
+  }
+
   imageRotateOptions(jersey, direction) {
+    let buttonState = {};
+    buttonState.front = "ui button";
+    buttonState.back = "ui button";
+
+    if (direction === "front") {
+      buttonState.front = "positive ui button";
+    } else if (direction === "back") {
+      buttonState.back = "positive ui button";
+    }
+
     return (
       <div className="column eight wide">
-        <div class="mini ui buttons">
-          <button class="ui positive button">Front</button>
-          <div class="or" />
-          <button class="ui button">Back</button>
+        <div className="mini ui buttons">
+          <button
+            className={buttonState.front}
+            onClick={() => this.imageRotated(jersey, "front")}
+          >
+            Front
+          </button>
+          <div className="or" />
+          <button
+            className={buttonState.back}
+            onClick={() => this.imageRotated(jersey, "back")}
+          >
+            Back
+          </button>
         </div>
       </div>
     );
@@ -72,8 +97,8 @@ class SchoolDetail extends React.Component {
           </div>
         </div>
         <div className="ui fluid row">
-          {this.imageRotateOptions("home", "front")}
-          {this.imageRotateOptions("away", "front")}
+          {this.imageRotateOptions("home", products.home.jerseyDirection)}
+          {this.imageRotateOptions("away", products.away.jerseyDirection)}
         </div>
         <div className="ui fluid centered row images medium">
           <div className="column eight wide">

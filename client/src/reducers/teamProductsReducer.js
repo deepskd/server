@@ -33,6 +33,42 @@ const updateFont = (state, font) => {
   return newState;
 };
 
-const rotateImage = (state, direction) => {
-  return state;
+const rotateImage = (state, object) => {
+  let newState = { ...state };
+
+  if (object.uniform === "home") {
+    if (object.direction === "front") {
+      newState.products.home.jerseyDirection = "front";
+      newState.products.home.jersey = _.replace(
+        newState.products.home.jersey,
+        /APP18_pn1_com_(1|7)/,
+        "APP18_pn1_com_1"
+      );
+    } else if (object.direction === "back") {
+      newState.products.home.jerseyDirection = "back";
+      newState.products.home.jersey = _.replace(
+        newState.products.home.jersey,
+        "APP18_pn1_com_1",
+        "APP18_pn1_com_7"
+      );
+    }
+  } else if (object.uniform === "away") {
+    if (object.direction === "front") {
+      newState.products.away.jerseyDirection = "front";
+      newState.products.away.jersey = _.replace(
+        newState.products.away.jersey,
+        /APP18_pn1_com_(1|7)/,
+        "APP18_pn1_com_1"
+      );
+    } else if (object.direction === "back") {
+      newState.products.away.jerseyDirection = "back";
+      newState.products.away.jersey = _.replace(
+        newState.products.away.jersey,
+        "APP18_pn1_com_1",
+        "APP18_pn1_com_7"
+      );
+    }
+  }
+
+  return newState;
 };
