@@ -106,6 +106,9 @@ const colorMapHT = color => {
     case "vegas gold":
       colorHT = "sld_pn_24_karat_ht";
       break;
+    case "old gold":
+      colorHT = "sld_pn_24_karat_ht";
+      break;
     case "blue":
       colorHT = "sld_pn_collegiate_royal_ht"; //no match available
       break;
@@ -204,6 +207,9 @@ const colorMapBase = color => {
       break;
     case "texas orange":
       colorBase = "sld_pn_collegiate_orange";
+      break;
+    case "old gold":
+      colorHT = "sld_pn_sand";
       break;
     default:
       colorBase = "sld_pn_black";
