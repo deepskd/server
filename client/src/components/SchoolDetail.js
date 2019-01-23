@@ -93,7 +93,7 @@ class SchoolDetail extends React.Component {
             {team.colors}
           </div>
         </div>
-        <div className="ui fluid centered row images medium">
+        <div className="ui cards fluid centered row">
           <ImageCard src={products.home.jersey} alt={"Home Football Jersey"} />
           <ImageCard src={products.away.jersey} alt={"Away Football Jersey"} />
         </div>
@@ -101,7 +101,7 @@ class SchoolDetail extends React.Component {
           {this.imageRotateOptions("home", products.home.jerseyDirection)}
           {this.imageRotateOptions("away", products.away.jerseyDirection)}
         </div>
-        <div className="ui fluid centered row images medium">
+        <div className="ui cards fluid centered row">
           <ImageCard src={products.home.pants} alt={"Home Football Pants"} />
           <ImageCard src={products.away.pants} alt={"Away Football Pants"} />
         </div>
