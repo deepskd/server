@@ -98,7 +98,6 @@ const teamProducts = team => {
   home.jersey = _.replace(home.jersey, /PLAYERNUMBER/g, playerNumber);
   home.jersey = _.replace(home.jersey, /(TEAM|NUMBER)FONT/g, font);
   home.jersey = homeDecorations(home.jersey, team.colors);
-  home.jerseyDirection = "front";
 
   let homePantBaseColor = team.colors ? team.colors[0] : "black";
   home.pants = _.replace(
@@ -154,7 +153,6 @@ const teamProducts = team => {
   away.jersey = _.replace(away.jersey, /PLAYERNUMBER/g, playerNumber);
   away.jersey = _.replace(away.jersey, /(TEAM|NUMBER)FONT/g, font);
   away.jersey = awayDecorations(away.jersey, team.colors);
-  away.jerseyDirection = "front";
 
   const awayPantBaseColor = team.colors ? team.colors[1] : "white";
   away.pants = _.replace(

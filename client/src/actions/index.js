@@ -5,7 +5,6 @@ import {
   FIND_TEAMS,
   SELECTED_TEAM,
   FONT_CHANGED,
-  IMAGE_ROTATED,
   FIND_NCAA_TEAMS
 } from "./types";
 
@@ -25,13 +24,6 @@ export const fontChanged = font => {
   return {
     type: FONT_CHANGED,
     payload: font
-  };
-};
-
-export const imageRotated = (uniform, direction) => {
-  return {
-    type: IMAGE_ROTATED,
-    payload: { uniform, direction }
   };
 };
 

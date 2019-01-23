@@ -3,7 +3,7 @@ import React from "react";
 import { connect } from "react-redux";
 
 import ImageCard from "./ImageCard";
-import { fontChanged, imageRotated } from "../actions";
+import { fontChanged } from "../actions";
 
 class SchoolDetail extends React.Component {
   fontChanged(font) {
@@ -32,46 +32,6 @@ class SchoolDetail extends React.Component {
     });
   }
 
-  imageRotated(jersey, direction) {
-    this.props.imageRotated(jersey, direction);
-  }
-
-  imageRotateOptions(jersey, direction) {
-    let buttonState = {};
-    buttonState.front = "ui button";
-    buttonState.back = "ui button";
-
-    if (direction === "front") {
-      buttonState.front = "positive ui button";
-    } else if (direction === "back") {
-      buttonState.back = "positive ui button";
-    }
-
-    return (
-      <div className="column eight wide">
-        <div className="ui two column centered grid">
-          <div className="column">
-            <div className="mini ui buttons">
-              <button
-                className={buttonState.front}
-                onClick={() => this.imageRotated(jersey, "front")}
-              >
-                Front
-              </button>
-              <div className="or" />
-              <button
-                className={buttonState.back}
-                onClick={() => this.imageRotated(jersey, "back")}
-              >
-                Back
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  }
-
   render() {
     const { team } = this.props.teamProducts || null;
     const { products } = this.props.teamProducts || null;
@@ -97,10 +57,6 @@ class SchoolDetail extends React.Component {
           <ImageCard src={products.home.jersey} alt={"Home Football Jersey"} />
           <ImageCard src={products.away.jersey} alt={"Away Football Jersey"} />
         </div>
-        <div className="ui fluid row">
-          {this.imageRotateOptions("home", products.home.jerseyDirection)}
-          {this.imageRotateOptions("away", products.away.jerseyDirection)}
-        </div>
         <div className="ui cards fluid centered row">
           <ImageCard src={products.home.pants} alt={"Home Football Pants"} />
           <ImageCard src={products.away.pants} alt={"Away Football Pants"} />
@@ -121,5 +77,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { fontChanged, imageRotated }
+  { fontChanged }
 )(SchoolDetail);
