@@ -18,6 +18,23 @@ class ImageCard extends React.Component {
     this.imageRef.current.addEventListener("load", this.hideLoader);
   }
 
+  // componentDidUpdate(prevProps, prevState) {
+  //   if (prevProps.src !== this.props.src) {
+  //     //Perform some operation here
+  //     this.setState({ imageURL: "" });
+  //   }
+  // }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.src !== this.props.src) {
+      this.setState({
+        imageURL: nextProps.src,
+        direction: "front",
+        loading: true
+      });
+    }
+  }
+
   hideLoader = () => {
     this.setState({ loading: false });
   };
