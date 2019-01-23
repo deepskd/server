@@ -5,6 +5,7 @@ const bodyParser = require("body-parser");
 const keys = require("./config/keys");
 
 require("./models/Team");
+require("./models/NCAA");
 
 mongoose.connect(
   keys.mongoURI,
@@ -16,6 +17,7 @@ app.use(bodyParser.json());
 
 require("./routes/teamRoutes")(app);
 require("./routes/productRoutes")(app);
+require("./routes/ncaaRoutes")(app);
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
