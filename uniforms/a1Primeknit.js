@@ -209,7 +209,7 @@ const colorMapBase = color => {
       colorBase = "sld_pn_collegiate_orange";
       break;
     case "old gold":
-      colorHT = "sld_pn_sand";
+      colorBase = "sld_pn_sand";
       break;
     default:
       colorBase = "sld_pn_black";
