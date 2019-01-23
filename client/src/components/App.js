@@ -4,6 +4,7 @@ import SearchBar from "./SearchBar";
 import TeamList from "./TeamList";
 import SchoolDetail from "./SchoolDetail";
 import Header from "./header";
+import NCAASearchBar from "./ncaa/NCAASearchBar";
 import { BrowserRouter, Route } from "react-router-dom";
 
 const App = () => {
@@ -16,6 +17,7 @@ const App = () => {
           <Route path="/" exact component={SearchBar} />
           <Route path="/" exact component={TeamList} />
           <Route path="/school" component={SchoolDetail} />
+          <Route path="/ncaa" exact component={NCAASearchBar} />
         </div>
       </BrowserRouter>
     </div>

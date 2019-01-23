@@ -1,9 +1,12 @@
 import gts from "../apis/gts";
+import ncaa from "../apis/ncaa";
+
 import {
   FIND_TEAMS,
   SELECTED_TEAM,
   FONT_CHANGED,
-  IMAGE_ROTATED
+  IMAGE_ROTATED,
+  FIND_NCAA_TEAMS
 } from "./types";
 
 export const findTeams = term => async dispatch => {
@@ -30,4 +33,9 @@ export const imageRotated = (uniform, direction) => {
     type: IMAGE_ROTATED,
     payload: { uniform, direction }
   };
+};
+
+export const findNCAATeams = term => async dispatch => {
+  const response = await ncaa.get(`/teams?q=${term}`);
+  dispatch({ type: FIND_NCAA_TEAMS, payload: response });
 };
