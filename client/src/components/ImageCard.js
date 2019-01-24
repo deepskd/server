@@ -33,16 +33,12 @@ class ImageCard extends React.Component {
   };
 
   renderLoader() {
-    let loader = "ui active inverted dimmer";
     if (!this.state.loading) {
       return <div />;
     }
     return (
-      <div className="ui segment">
-        <p />
-        <div className={loader}>
-          <div className="ui loader" />
-        </div>
+      <div className="ui placeholder">
+        <div className="square image" />
       </div>
     );
   }
@@ -57,28 +53,12 @@ class ImageCard extends React.Component {
       this.setState({ direction: "back", imageURL: imageURL });
     }
   };
-  //{this.renderLoader()}
-  /*
-<div className="ui right floated mini icon button">
-  <i
-    className="redo icon"
-    onClick={() => this.rotateImage(this.state.imageURL)}
-  />
-</div>
-<img
-  ref={this.imageRef}
-  src={this.state.imageURL}
-  alt={this.props.alt}
-/>
-*/
 
   render() {
     return (
       <div className="card fluid" style={{ width: "250px" }}>
         <div className="image">
-          <div className="ui placeholder">
-            <div className="square image" />
-          </div>
+          {this.renderLoader()}
           <div className="ui right floated mini icon button">
             <i
               className="redo icon"
