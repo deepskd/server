@@ -53,6 +53,14 @@ class SchoolDetail extends React.Component {
             {team.colors}
           </div>
         </div>
+        <div className="row centered">
+          <div className="segment">
+            Font Selector
+            <div className="ui mini buttons">
+              {this.fontOptions(products.fonts, products.selectedFont)}
+            </div>
+          </div>
+        </div>
         <div className="ui cards fluid centered row">
           <ImageCard src={products.home.jersey} alt={"Home Football Jersey"} />
           <ImageCard src={products.away.jersey} alt={"Away Football Jersey"} />
@@ -60,9 +68,6 @@ class SchoolDetail extends React.Component {
         <div className="ui cards fluid centered row">
           <ImageCard src={products.home.pants} alt={"Home Football Pants"} />
           <ImageCard src={products.away.pants} alt={"Away Football Pants"} />
-        </div>
-        <div className="ui fluid centered row">
-          {this.fontOptions(products.fonts, products.selectedFont)}
         </div>
       </div>
     );
