@@ -53,21 +53,36 @@ class SchoolDetail extends React.Component {
             {team.colors}
           </div>
         </div>
-        <div className="row centered">
-          <div className="segment">
-            Font Selector
-            <div className="ui mini buttons">
-              {this.fontOptions(products.fonts, products.selectedFont)}
+
+        <div className="left floated fourteen wide column">
+          <div className="ui grid">
+            <div className="ui two cards">
+              <ImageCard
+                src={products.home.jersey}
+                alt={"Home Football Jersey"}
+              />
+              <ImageCard
+                src={products.away.jersey}
+                alt={"Away Football Jersey"}
+              />
+            </div>
+            <div className="ui two cards">
+              <ImageCard
+                src={products.home.pants}
+                alt={"Home Football Pants"}
+              />
+              <ImageCard
+                src={products.away.pants}
+                alt={"Away Football Pants"}
+              />
             </div>
           </div>
         </div>
-        <div className="ui cards fluid centered row">
-          <ImageCard src={products.home.jersey} alt={"Home Football Jersey"} />
-          <ImageCard src={products.away.jersey} alt={"Away Football Jersey"} />
-        </div>
-        <div className="ui cards fluid centered row">
-          <ImageCard src={products.home.pants} alt={"Home Football Pants"} />
-          <ImageCard src={products.away.pants} alt={"Away Football Pants"} />
+        <div className="right floated two wide column">
+          Font Selector
+          <div className="ui vertical mini buttons">
+            {this.fontOptions(products.fonts, products.selectedFont)}
+          </div>
         </div>
       </div>
     );

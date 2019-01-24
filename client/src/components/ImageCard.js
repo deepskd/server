@@ -98,10 +98,10 @@ class ImageCard extends React.Component {
       </div>
     );
   };
-
+  // style={{ width: "250px", height: "300px" }}
   render() {
     return (
-      <div className="card">
+      <div className="card fluid">
         <div className="image">
           {this.renderLoader()}
           <img

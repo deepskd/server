@@ -37,7 +37,7 @@ $text_color=NUMBERTEXTCOLOR&\
 $stroke_color=NUMBERSTROKECOLOR}&\
 obj=a&req=object}\
 &resMode=sharp2\
-&wid=400\
+&wid=250\
 &op_usm=1.2,1,4,0`;
 
 const PANTS_URL = `https://embodee.adidas.com/api2/rewrite/adidas16/is/image/adidasAG/agm?&src=ir\
@@ -46,7 +46,7 @@ const PANTS_URL = `https://embodee.adidas.com/api2/rewrite/adidas16/is/image/adi
 obj=a/s/shg&show&\
 obj=a/o/log&src=LOGOCOLOR&show&\
 obj=a&req=object}\
-&resMode=sharp2&wid=400&op_usm=1.2,1,4,0`;
+&resMode=sharp2&wid=250&op_usm=1.2,1,4,0`;
 
 const FONTS = {
   red_zone_2015: "Red Zone",
