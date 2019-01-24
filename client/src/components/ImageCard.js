@@ -18,13 +18,6 @@ class ImageCard extends React.Component {
     this.imageRef.current.addEventListener("load", this.hideLoader);
   }
 
-  // componentDidUpdate(prevProps, prevState) {
-  //   if (prevProps.src !== this.props.src) {
-  //     //Perform some operation here
-  //     this.setState({ imageURL: "" });
-  //   }
-  // }
-
   componentWillReceiveProps(nextProps) {
     if (nextProps.src !== this.props.src) {
       this.setState({
@@ -54,65 +47,51 @@ class ImageCard extends React.Component {
     );
   }
 
-  imageRotated = (article, direction) => {
+  rotateImage = article => {
     let imageURL = article;
-    if (direction === "front") {
+    if (this.state.direction === "back") {
       imageURL = _.replace(article, /_(1|7)/, "_1");
-    } else if (direction === "back") {
+      this.setState({ direction: "front", imageURL: imageURL });
+    } else if (this.state.direction === "front") {
       imageURL = _.replace(article, "_1", "_7");
+      this.setState({ direction: "back", imageURL: imageURL });
     }
-
-    this.setState({ direction: direction, imageURL: imageURL });
   };
+  //{this.renderLoader()}
+  /*
+<div className="ui right floated mini icon button">
+  <i
+    className="redo icon"
+    onClick={() => this.rotateImage(this.state.imageURL)}
+  />
+</div>
+<img
+  ref={this.imageRef}
+  src={this.state.imageURL}
+  alt={this.props.alt}
+/>
+*/
 
-  imageRotateOptions = (article, direction) => {
-    let buttonState = {};
-    buttonState.front = "ui button";
-    buttonState.back = "ui button";
-
-    if (this.state.direction === "front") {
-      buttonState.front = "positive ui button";
-    } else if (this.state.direction === "back") {
-      buttonState.back = "positive ui button";
-    }
-
-    return (
-      <div className="ui two column centered grid">
-        <div className="column">
-          <div className="mini ui buttons">
-            <button
-              className={buttonState.front}
-              onClick={() => this.imageRotated(article, "front")}
-            >
-              Front
-            </button>
-            <div className="or" />
-            <button
-              className={buttonState.back}
-              onClick={() => this.imageRotated(article, "back")}
-            >
-              Back
-            </button>
-          </div>
-        </div>
-      </div>
-    );
-  };
-  // style={{ width: "250px", height: "300px" }}
   render() {
     return (
-      <div className="card fluid">
+      <div className="card fluid" style={{ width: "250px" }}>
         <div className="image">
-          {this.renderLoader()}
+          <div className="ui placeholder">
+            <div className="square image" />
+          </div>
+          <div className="ui right floated mini icon button">
+            <i
+              className="redo icon"
+              onClick={() => this.rotateImage(this.state.imageURL)}
+            />
+          </div>
           <img
             ref={this.imageRef}
             src={this.state.imageURL}
             alt={this.props.alt}
           />
         </div>
-        <div className="content">
-          {this.imageRotateOptions(this.state.imageURL, this.state.direction)}
-        </div>
+        <div className="content" />
       </div>
     );
   }
