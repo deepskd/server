@@ -47,10 +47,10 @@ class ImageCard extends React.Component {
     let imageURL = article;
     if (this.state.direction === "back") {
       imageURL = _.replace(article, /_(1|7)/, "_1");
-      this.setState({ direction: "front", imageURL: imageURL });
+      this.setState({ direction: "front", imageURL: imageURL, loading: true });
     } else if (this.state.direction === "front") {
       imageURL = _.replace(article, "_1", "_7");
-      this.setState({ direction: "back", imageURL: imageURL });
+      this.setState({ direction: "back", imageURL: imageURL, loading: true });
     }
   };
 
