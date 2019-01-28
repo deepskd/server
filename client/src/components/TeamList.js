@@ -14,8 +14,10 @@ class TeamList extends React.Component {
 
   render() {
     return (
-      <div className="ui relaxed divided list" style={{ width: "600px" }}>
-        {this.renderTeams()}
+      <div className="ui column centered grid">
+        <div className="ten wide column">
+          <div className="ui relaxed divided list">{this.renderTeams()}</div>
+        </div>
       </div>
     );
   }
