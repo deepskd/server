@@ -128,7 +128,7 @@ const teamProducts = team => {
   );
   let awayJerseyBaseColor = team.colors ? team.colors[0] : "black";
 
-  if (awayJerseyBaseColor === "black") {
+  if (a1PrimeKnitUniform.colorMapBase(awayJerseyBaseColor) === "sld_pn_black") {
     away.jersey = _.replace(
       away.jersey,
       "cuf&src=sld_pn_white",

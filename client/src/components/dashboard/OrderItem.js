@@ -15,23 +15,7 @@ class OrderItem extends React.Component {
         </div>
 
         <div className="ui segment">
-          Items
-          <table className="ui celled table">
-            <thead>
-              <tr>
-                <th className="four wide">Article</th>
-                <th className="twelve wide">Status</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>
-                  <img src={imgsrc} alt="article" />
-                </td>
-                <td>xx</td>
-              </tr>
-            </tbody>
-          </table>
+          <img src={imgsrc} alt="article" />
         </div>
       </div>
     );

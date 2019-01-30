@@ -124,6 +124,12 @@ const colorMapHT = color => {
     case "scarlet":
       colorHT = "sld_pn_matte_power_red_ht"; //approx match
       break;
+    case "yellow":
+      colorHT = "sld_pn_collegiate_gold_ht"; //approx match
+      break;
+    case "gray":
+      colorHT = "sld_pn_sterling_silver_ht"; //approx match
+      break;
     case "texas orange":
       colorHT = "sld_pn_collegiate_orange_ht";
       break;
@@ -178,8 +184,14 @@ const colorMapBase = color => {
     case "gold":
       colorBase = "sld_pn_collegiate_gold";
       break;
+    case "yellow":
+      colorBase = "sld_pn_collegiate_gold";
+      break;
     case "blue":
       colorBase = "sld_pn_light_blue";
+      break;
+    case "royal":
+      colorBase = "sld_pn_collegiate_royal";
       break;
     case "royal blue":
       colorBase = "sld_pn_collegiate_royal";
@@ -209,6 +221,9 @@ const colorMapBase = color => {
       colorBase = "sld_pn_collegiate_orange";
       break;
     case "old gold":
+      colorBase = "sld_pn_sand";
+      break;
+    case "vegas gold":
       colorBase = "sld_pn_sand";
       break;
     default:
