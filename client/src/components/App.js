@@ -5,6 +5,7 @@ import TeamList from "./TeamList";
 import SchoolDetail from "./SchoolDetail";
 import Header from "./header";
 import NCAASearchBar from "./ncaa/NCAASearchBar";
+import OrderList from "./dashboard/OrderList";
 import { BrowserRouter, Route } from "react-router-dom";
 
 const App = () => {
@@ -18,6 +19,7 @@ const App = () => {
           <Route path="/" exact component={TeamList} />
           <Route path="/school" component={SchoolDetail} />
           <Route path="/ncaa" exact component={NCAASearchBar} />
+          <Route path="/dashboard" exact component={OrderList} />
         </div>
       </BrowserRouter>
     </div>
