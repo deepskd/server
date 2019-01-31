@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import ImageCard from "./ImageCard";
 import { fontChanged } from "../actions";
 
-class SchoolDetail extends React.Component {
+class Football extends React.Component {
   fontChanged(font) {
     this.props.fontChanged(font);
   }
@@ -97,4 +97,4 @@ const mapStateToProps = state => {
 export default connect(
   mapStateToProps,
   { fontChanged }
-)(SchoolDetail);
+)(Football);
