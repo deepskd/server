@@ -8,72 +8,6 @@ const a1PrimeKnitUniform = require("../uniforms/a1Primeknit");
 
 const Team = mongoose.model("teams");
 
-const homeDecorations = (home, colors) => {
-  const color = {};
-  if (colors && colors.length === 2) {
-    color.text = a1PrimeKnitUniform.colorMapHT(colors[0]);
-    color.stroke = a1PrimeKnitUniform.colorMapHT(colors[1]);
-    home = _.replace(home, /(TEAM|NUMBER)TEXTCOLOR/g, color.text);
-    home = _.replace(home, /(TEAM|NUMBER)STROKECOLOR/g, color.stroke);
-  } else if (colors && colors.length === 3) {
-    color.text = a1PrimeKnitUniform.colorMapHT(colors[0]);
-    color.stroke = a1PrimeKnitUniform.colorMapHT(
-      colors[1] === "white" ? colors[2] : colors[1]
-    );
-    home = _.replace(home, /(TEAM|NUMBER)TEXTCOLOR/g, color.text);
-    home = _.replace(home, /(TEAM|NUMBER)STROKECOLOR/g, color.stroke);
-  } else if (colors && colors.length === 1) {
-    color.text = a1PrimeKnitUniform.colorMapHT(colors[0]);
-    color.stroke = a1PrimeKnitUniform.colorMapHT("black");
-    home = _.replace(home, /(TEAM|NUMBER)TEXTCOLOR/g, color.text);
-    home = _.replace(home, /(TEAM|NUMBER)STROKECOLOR/g, color.stroke);
-  } else {
-    home = _.replace(
-      home,
-      /(TEAM|NUMBER)TEXTCOLOR/g,
-      "sld_pn_obsidian_shine_ht"
-    );
-    home = _.replace(
-      home,
-      /(TEAM|NUMBER)STROKECOLOR/g,
-      "sld_pn_matte_power_red_ht"
-    );
-  }
-  return home;
-};
-
-const awayDecorations = (away, colors) => {
-  const color = {};
-  if (colors && colors.length === 2) {
-    color.text = a1PrimeKnitUniform.colorMapHT(colors[1]);
-    if (colors[1].match(/gold/)) {
-      color.stroke = a1PrimeKnitUniform.colorMapHT("white");
-    } else {
-      color.stroke = a1PrimeKnitUniform.colorMapHT(_.sample[("gold", "black")]);
-    }
-    away = _.replace(away, /(TEAM|NUMBER)TEXTCOLOR/g, color.text);
-    away = _.replace(away, /(TEAM|NUMBER)STROKECOLOR/g, color.stroke);
-  } else if (colors && colors.length === 3) {
-    color.text = a1PrimeKnitUniform.colorMapHT(colors[1]);
-    color.stroke = a1PrimeKnitUniform.colorMapHT(colors[2]);
-    away = _.replace(away, /(TEAM|NUMBER)TEXTCOLOR/g, color.text);
-    away = _.replace(away, /(TEAM|NUMBER)STROKECOLOR/g, color.stroke);
-  } else if (colors && colors.length === 1) {
-    color.text = a1PrimeKnitUniform.colorMapHT("white");
-    color.stroke = a1PrimeKnitUniform.colorMapHT("black");
-    away = _.replace(away, /(TEAM|NUMBER)TEXTCOLOR/g, color.text);
-    away = _.replace(away, /(TEAM|NUMBER)STROKECOLOR/g, color.stroke);
-  } else {
-    away = _.replace(away, /(TEAM|NUMBER)TEXTCOLOR/g, "sld_pn_white_ht");
-    away = _.replace(
-      away,
-      /(TEAM|NUMBER)STROKECOLOR/g,
-      "sld_pn_matte_power_red_ht"
-    );
-  }
-  return away;
-};
-
 const teamProducts = team => {
   const playerNumber = _.padStart(_.random(0, 99), 2, "0");
   const font = _.sample(Object.keys(a1PrimeKnitUniform.FONTS));
@@ -97,7 +31,7 @@ const teamProducts = team => {
   );
   home.jersey = _.replace(home.jersey, /PLAYERNUMBER/g, playerNumber);
   home.jersey = _.replace(home.jersey, /(TEAM|NUMBER)FONT/g, font);
-  home.jersey = homeDecorations(home.jersey, team.colors);
+  home.jersey = a1PrimeKnitUniform.homeDecorations(home.jersey, team.colors);
 
   let homePantBaseColor = team.colors ? team.colors[0] : "black";
   home.pants = _.replace(
@@ -152,7 +86,7 @@ const teamProducts = team => {
   );
   away.jersey = _.replace(away.jersey, /PLAYERNUMBER/g, playerNumber);
   away.jersey = _.replace(away.jersey, /(TEAM|NUMBER)FONT/g, font);
-  away.jersey = awayDecorations(away.jersey, team.colors);
+  away.jersey = a1PrimeKnitUniform.awayDecorations(away.jersey, team.colors);
 
   const awayPantBaseColor = team.colors ? team.colors[1] : "white";
   away.pants = _.replace(

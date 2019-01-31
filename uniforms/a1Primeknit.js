@@ -1,3 +1,5 @@
+const _ = require("lodash");
+
 const JERSEY_URL = `https://embodee.adidas.com/api2/rewrite/adidas16/is/image/adidasAG/agm?&src=ir\
 {adidasAGRender/APP18_pn1_com_1?&obj=a/f/nvr&show&\
 obj=a/m/bas&src=BASECOLOR&show&\
@@ -232,4 +234,76 @@ const colorMapBase = color => {
   return colorBase;
 };
 
-module.exports = { JERSEY_URL, PANTS_URL, FONTS, colorMapHT, colorMapBase };
+const homeDecorations = (home, colors) => {
+  const color = {};
+  if (colors && colors.length === 2) {
+    color.text = colorMapHT(colors[0]);
+    color.stroke = colorMapHT(colors[1]);
+    home = _.replace(home, /(TEAM|NUMBER)TEXTCOLOR/g, color.text);
+    home = _.replace(home, /(TEAM|NUMBER)STROKECOLOR/g, color.stroke);
+  } else if (colors && colors.length === 3) {
+    color.text = colorMapHT(colors[0]);
+    color.stroke = colorMapHT(colors[1] === "white" ? colors[2] : colors[1]);
+    home = _.replace(home, /(TEAM|NUMBER)TEXTCOLOR/g, color.text);
+    home = _.replace(home, /(TEAM|NUMBER)STROKECOLOR/g, color.stroke);
+  } else if (colors && colors.length === 1) {
+    color.text = colorMapHT(colors[0]);
+    color.stroke = colorMapHT("black");
+    home = _.replace(home, /(TEAM|NUMBER)TEXTCOLOR/g, color.text);
+    home = _.replace(home, /(TEAM|NUMBER)STROKECOLOR/g, color.stroke);
+  } else {
+    home = _.replace(
+      home,
+      /(TEAM|NUMBER)TEXTCOLOR/g,
+      "sld_pn_obsidian_shine_ht"
+    );
+    home = _.replace(
+      home,
+      /(TEAM|NUMBER)STROKECOLOR/g,
+      "sld_pn_matte_power_red_ht"
+    );
+  }
+  return home;
+};
+
+const awayDecorations = (away, colors) => {
+  const color = {};
+  if (colors && colors.length === 2) {
+    color.text = colorMapHT(colors[1]);
+    if (colors[1].match(/gold/)) {
+      color.stroke = colorMapHT("white");
+    } else {
+      color.stroke = colorMapHT(_.sample[("gold", "black")]);
+    }
+    away = _.replace(away, /(TEAM|NUMBER)TEXTCOLOR/g, color.text);
+    away = _.replace(away, /(TEAM|NUMBER)STROKECOLOR/g, color.stroke);
+  } else if (colors && colors.length === 3) {
+    color.text = colorMapHT(colors[1]);
+    color.stroke = colorMapHT(colors[2]);
+    away = _.replace(away, /(TEAM|NUMBER)TEXTCOLOR/g, color.text);
+    away = _.replace(away, /(TEAM|NUMBER)STROKECOLOR/g, color.stroke);
+  } else if (colors && colors.length === 1) {
+    color.text = colorMapHT("white");
+    color.stroke = colorMapHT("black");
+    away = _.replace(away, /(TEAM|NUMBER)TEXTCOLOR/g, color.text);
+    away = _.replace(away, /(TEAM|NUMBER)STROKECOLOR/g, color.stroke);
+  } else {
+    away = _.replace(away, /(TEAM|NUMBER)TEXTCOLOR/g, "sld_pn_white_ht");
+    away = _.replace(
+      away,
+      /(TEAM|NUMBER)STROKECOLOR/g,
+      "sld_pn_matte_power_red_ht"
+    );
+  }
+  return away;
+};
+
+module.exports = {
+  JERSEY_URL,
+  PANTS_URL,
+  FONTS,
+  colorMapHT,
+  colorMapBase,
+  homeDecorations,
+  awayDecorations
+};
