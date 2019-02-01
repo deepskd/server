@@ -5,10 +5,11 @@ const _ = require("lodash");
 require("../models/Team");
 
 const a1PrimeKnitUniform = require("../uniforms/a1Primeknit");
+const tripleUp = require("../uniforms/tripleUp");
 
 const Team = mongoose.model("teams");
 
-const teamProducts = (team, sports) => {
+const football = team => {
   const playerNumber = _.padStart(_.random(0, 99), 2, "0");
   const font = _.sample(Object.keys(a1PrimeKnitUniform.FONTS));
   const mascot = _.replace(team.mascot || team.name, "/", " ");
@@ -112,10 +113,57 @@ const teamProducts = (team, sports) => {
   return { home, away, fonts: a1PrimeKnitUniform.FONTS, selectedFont: font };
 };
 
+const basketball = team => {
+  const playerNumber = _.padStart(_.random(0, 99), 2, "0");
+  const font = _.sample(Object.keys(tripleUp.FONTS));
+  const mascot = _.replace(team.mascot || team.name, "/", " ");
+
+  let home = {};
+  home.jersey = _.replace(tripleUp.JERSEY_URL, /TEAMNAME/, _.toUpper(mascot));
+  home.jersey = _.replace(home.jersey, /BASECOLOR/, tripleUp.colorMap("white"));
+  home.jersey = _.replace(
+    home.jersey,
+    /LOGOCOLOR/,
+    tripleUp.colorMap(team.colors ? team.colors[0] : "black")
+  );
+  home.jersey = _.replace(home.jersey, /PLAYERNUMBER/g, playerNumber);
+  home.jersey = _.replace(home.jersey, /(TEAM|NUMBER)FONT/g, font);
+  home.jersey = tripleUp.homeDecorations(home.jersey, team.colors);
+
+  let away = {};
+  away.jersey = _.replace(
+    tripleUp.JERSEY_URL,
+    /TEAMNAME/,
+    _.toUpper(_.replace(team.name, "/", " "))
+  );
+  let awayJerseyBaseColor = team.colors ? team.colors[0] : "black";
+
+  away.jersey = _.replace(
+    away.jersey,
+    /BASECOLOR/,
+    tripleUp.colorMap(awayJerseyBaseColor)
+  );
+  let awayLogoColor = team.colors ? team.colors[1] : "white";
+  away.jersey = _.replace(
+    away.jersey,
+    /LOGOCOLOR/,
+    tripleUp.colorMap(awayLogoColor)
+  );
+  away.jersey = _.replace(away.jersey, /PLAYERNUMBER/g, playerNumber);
+  away.jersey = _.replace(away.jersey, /(TEAM|NUMBER)FONT/g, font);
+  away.jersey = tripleUp.awayDecorations(away.jersey, team.colors);
+
+  return { home, away, fonts: tripleUp.FONTS, selectedFont: font };
+};
+
 module.exports = app => {
   app.get("/api/products", async (req, res) => {
     res.setHeader("Access-Control-Allow-Origin", "*");
     const team = await Team.getTeam(req.query.id);
-    res.status(200).json(teamProducts(team, req.query.sports));
+    if (req.query.sports === "basketball") {
+      res.status(200).json(basketball(team));
+    } else {
+      res.status(200).json(football(team));
+    }
   });
 };
