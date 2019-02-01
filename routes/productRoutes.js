@@ -130,6 +130,23 @@ const basketball = team => {
   home.jersey = _.replace(home.jersey, /(TEAM|NUMBER)FONT/g, font);
   home.jersey = tripleUp.homeDecorations(home.jersey, team.colors);
 
+  home.pants = _.replace(
+    tripleUp.PANTS_URL,
+    /BASECOLOR/,
+    tripleUp.colorMap("white")
+  );
+
+  home.pants = _.replace(
+    home.pants,
+    /(LOGO|TEAMTEXT)COLOR/g,
+    tripleUp.colorMap(team.colors ? team.colors[0] : "black")
+  );
+  home.pants = _.replace(
+    home.pants,
+    /TEAMSTROKECOLOR/,
+    tripleUp.colorMap(team.colors ? team.colors[1] : "black")
+  );
+
   let away = {};
   away.jersey = _.replace(
     tripleUp.JERSEY_URL,
@@ -152,6 +169,23 @@ const basketball = team => {
   away.jersey = _.replace(away.jersey, /PLAYERNUMBER/g, playerNumber);
   away.jersey = _.replace(away.jersey, /(TEAM|NUMBER)FONT/g, font);
   away.jersey = tripleUp.awayDecorations(away.jersey, team.colors);
+
+  away.pants = _.replace(
+    tripleUp.PANTS_URL,
+    /BASECOLOR/,
+    tripleUp.colorMap(team.colors ? team.colors[0] : "white")
+  );
+
+  away.pants = _.replace(
+    away.pants,
+    /(LOGO|TEAMTEXT)COLOR/g,
+    tripleUp.colorMap(team.colors ? team.colors[1] : "white")
+  );
+  away.pants = _.replace(
+    away.pants,
+    /TEAMSTROKECOLOR/,
+    tripleUp.colorMap(team.colors ? team.colors[0] : "black")
+  );
 
   return { home, away, fonts: tripleUp.FONTS, selectedFont: font };
 };

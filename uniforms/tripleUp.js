@@ -31,7 +31,7 @@ src=fxg{adidasAG/APP16_bbm_jer_teamname_straight?\
 &obj=a&req=object}&resMode=sharp2&wid=250&op_usm=1.2,1,4,0`;
 
 const PANTS_URL = `https://embodee.adidas.com/api2/rewrite/adidas16/is/image/adidasAG/agm?\
-&src=ir{adidasAGRender/APP16_bbm_sho_15?\
+&src=ir{adidasAGRender/APP16_bbm_sho_1?\
 &obj=a/m/bod&src=BASECOLOR\
 &show&obj=a/m/wba&src=TEAMTEXTCOLOR\
 &show&obj=a/m/bac&src=TEAMSTROKECOLOR\
@@ -84,7 +84,6 @@ const colorMap = color => {
   colorCode = Object.entries(COLORMAP).filter(clrMap =>
     clrMap[1].includes(color)
   )[0];
-  console.log(colorCode);
   if (!colorCode) {
     colorCode = ["tru_black"];
   }
