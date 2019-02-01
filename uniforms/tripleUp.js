@@ -55,3 +55,38 @@ const FONTS = {
   times_bold: "Times Bold",
   western: "Western"
 };
+
+const COLORMAP = {
+  tru_black: ["black"],
+  tru_white: ["white"],
+  tru_collegiate_navy: ["navy", "navy blue"],
+  tru_collegiate_royal: ["royal", "royal blue"],
+  tru_light_blue: ["blue", "columbia blue"],
+  tru_maroon: ["maroon"],
+  tru_collegiate_burgundy: ["burgundy", "burgandy"],
+  tru_power_red: ["red", "cardinal", "scarlet"],
+  tru_collegiate_orange: ["orange", "texas orange"],
+  tru_collegiate_gold: ["gold"],
+  tru_yellow: ["yellow"],
+  tru_sand: ["old gold"],
+  tru_coffee: ["coffee"],
+  tru_collegiate_aqua: ["aqua"],
+  tru_green: ["green", "kelly green"],
+  tru_dark_green: ["forest green", "dark green"],
+  tru_collegiate_purple: ["purple"],
+  tru_intense_pink: ["pink"],
+  tru_onix: ["gray"],
+  tru_clear_onix: ["silver"]
+};
+
+const colorMap = color => {
+  let colorCode = "";
+  colorCode = Object.entries(COLORMAP).filter(clrMap =>
+    clrMap[1].includes(color)
+  )[0];
+  if (!colorCode) {
+    colorCode = "tru_black";
+  }
+
+  return colorCode;
+};
