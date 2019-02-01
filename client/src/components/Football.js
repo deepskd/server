@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 
 import ImageCard from "./ImageCard";
+import SchoolCard from "./SchoolCard";
 import { fontChanged } from "../actions";
 
 class Football extends React.Component {
@@ -39,19 +40,7 @@ class Football extends React.Component {
     }
     return (
       <div className="ui fluid grid">
-        <div className="ui row centered card">
-          <div className="content">
-            <div className="header">{team.name}</div>
-            <h4 className="meta">
-              {team.city},{team.state}
-            </h4>
-          </div>
-          <div className="content">
-            {team.mascot}
-            <br />
-            {team.colors}
-          </div>
-        </div>
+        <SchoolCard team={team} />
 
         <div className="left floated fourteen wide column">
           <div className="ui grid">
