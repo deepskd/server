@@ -3,8 +3,8 @@ const _ = require("lodash");
 const JERSEY_URL = `https://embodee.adidas.com/api2/rewrite/adidas16/is/image/adidasAG/agm?&src=ir\
 {adidasAGRender/APP16_bbm_jer_1?&obj=a/f/nvr&show\
 &obj=a/m/bod&src=BASECOLOR&show\
-&obj=a/m/sou&src=tru_power_red&show\
-&obj=a/s/shg&show&obj=a/o/lab&src=tru_white&show\
+&obj=a/m/sou&src=TEAMTEXTCOLOR&show\
+&obj=a/s/shg&show&obj=a/o/lab&src=TEAMSTROKECOLOR&show\
 &obj=a/o/log&src=LOGOCOLOR&show\
 &obj=a/o/tfr&decal&show\
 &res=41.29554655870446&pos=0,0&\
@@ -86,10 +86,10 @@ const colorMap = color => {
   )[0];
   console.log(colorCode);
   if (!colorCode) {
-    colorCode = "tru_black";
+    colorCode = ["tru_black"];
   }
 
-  return colorCode;
+  return colorCode[0];
 };
 
 const homeDecorations = (home, colors) => {
