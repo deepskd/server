@@ -8,7 +8,7 @@ const a1PrimeKnitUniform = require("../uniforms/a1Primeknit");
 
 const Team = mongoose.model("teams");
 
-const teamProducts = team => {
+const teamProducts = (team, sports) => {
   const playerNumber = _.padStart(_.random(0, 99), 2, "0");
   const font = _.sample(Object.keys(a1PrimeKnitUniform.FONTS));
   const mascot = _.replace(team.mascot || team.name, "/", " ");
@@ -116,6 +116,6 @@ module.exports = app => {
   app.get("/api/products", async (req, res) => {
     res.setHeader("Access-Control-Allow-Origin", "*");
     const team = await Team.getTeam(req.query.id);
-    res.status(200).json(teamProducts(team));
+    res.status(200).json(teamProducts(team, req.query.sports));
   });
 };
