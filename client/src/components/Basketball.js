@@ -54,6 +54,16 @@ class Basketball extends React.Component {
                 alt={"Away Basketball Jersey"}
               />
             </div>
+            <div className="ui two cards">
+              <ImageCard
+                src={products.home.pants}
+                alt={"Home Basketball Pants"}
+              />
+              <ImageCard
+                src={products.away.pants}
+                alt={"Away Basketball Pants"}
+              />
+            </div>
           </div>
         </div>
         <div className="right floated two wide column">
