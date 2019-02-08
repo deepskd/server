@@ -85,7 +85,7 @@ const colorMapHT = color => {
     clrMap[1].includes(color)
   )[0];
   if (!colorHT) {
-    colorHT = ["sld_pn_black"];
+    colorHT = ["sld_pn_obsidian_shine_ht"];
   }
   return colorHT[0];
 };
