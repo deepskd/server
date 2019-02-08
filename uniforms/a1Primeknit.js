@@ -60,178 +60,65 @@ const FONTS = {
   half_block_2015: "Half Block"
 };
 
+const COLORMAP_HT = {
+  sld_pn_obsidian_shine_ht: ["black"],
+  sld_pn_collegiate_orange_ht: ["orange", "texas orange"],
+  sld_pn_collegiate_purple_ht: ["purple"],
+  sld_pn_maroon_ht: ["maroon"],
+  sld_pn_collegiate_navy_ht: ["navy", "navy blue"],
+  sld_pn_dark_green_ht: ["dark green", "forest green"],
+  sld_pn_chameleon_ht: ["green", "kelly green"],
+  sld_pn_collegiate_burgundy_ht: ["burgandy"],
+  sld_pn_power_red_ht: ["power red", "red", "cardinal", "scarlet"],
+  sld_pn_onix_shine: ["grey", "gray"],
+  sld_pn_24_karat_ht: ["vegas gold", "old gold"],
+  sld_pn_white_ht: ["white"],
+  sld_pn_collegiate_gold_ht: ["gold", "yellow"],
+  sld_pn_collegiate_royal_ht: ["royal blue", "royal"],
+  sld_pn_sterling_silver_ht: ["silver"],
+  sld_pn_carbon_silver_ht: ["light"]
+};
+
 const colorMapHT = color => {
   let colorHT = "";
-  switch (color) {
-    case "black":
-      colorHT = "sld_pn_obsidian_shine_ht";
-      break;
-    case "orange":
-      colorHT = "sld_pn_collegiate_orange_ht";
-      break;
-    case "purple":
-      colorHT = "sld_pn_collegiate_purple_ht";
-      break;
-    case "maroon":
-      colorHT = "sld_pn_maroon_ht";
-      break;
-    case "navy":
-      colorHT = "sld_pn_collegiate_navy_ht";
-      break;
-    case "navy blue":
-      colorHT = "sld_pn_collegiate_navy_ht";
-      break;
-    case "dark green":
-      colorHT = "sld_pn_dark_green_ht";
-      break;
-    case "forest green":
-      colorHT = "sld_pn_dark_green_ht";
-      break;
-    case "green":
-      colorHT = "sld_pn_chameleon_ht";
-      break;
-    case "kelly green":
-      colorHT = "sld_pn_chameleon_ht";
-      break;
-    case "burgandy":
-      colorHT = "sld_pn_collegiate_burgundy_ht";
-      break;
-    case "red":
-      colorHT = "sld_pn_power_red_ht";
-      break;
-    case "white":
-      colorHT = "sld_pn_white_ht";
-      break;
-    case "gold":
-      colorHT = "sld_pn_collegiate_gold_ht";
-      break;
-    case "vegas gold":
-      colorHT = "sld_pn_24_karat_ht";
-      break;
-    case "old gold":
-      colorHT = "sld_pn_24_karat_ht";
-      break;
-    case "blue":
-      colorHT = "sld_pn_collegiate_royal_ht"; //no match available
-      break;
-    case "royal blue":
-      colorHT = "sld_pn_collegiate_royal_ht";
-      break;
-    case "silver":
-      colorHT = "sld_pn_sterling_silver_ht";
-      break;
-    case "cardinal":
-      colorHT = "sld_pn_matte_power_red_ht"; //approx match
-      break;
-    case "scarlet":
-      colorHT = "sld_pn_matte_power_red_ht"; //approx match
-      break;
-    case "yellow":
-      colorHT = "sld_pn_collegiate_gold_ht"; //approx match
-      break;
-    case "gray":
-      colorHT = "sld_pn_sterling_silver_ht"; //approx match
-      break;
-    case "texas orange":
-      colorHT = "sld_pn_collegiate_orange_ht";
-      break;
-    default:
-      colorHT = "sld_pn_obsidian_shine_ht";
+  colorHT = Object.entries(COLORMAP_HT).filter(clrMap =>
+    clrMap[1].includes(color)
+  )[0];
+  if (!colorHT) {
+    colorHT = ["sld_pn_black"];
   }
-  return colorHT;
+  return colorHT[0];
+};
+
+const COLORMAP_BASE = {
+  sld_pn_black: ["black"],
+  sld_pn_collegiate_orange: ["orange", "texas orange"],
+  sld_pn_collegiate_purple: ["purple"],
+  sld_pn_maroon: ["maroon"],
+  sld_pn_collegiate_navy: ["navy", "navy blue"],
+  sld_pn_dark_green: ["dark green", "forest green"],
+  sld_pn_green: ["green", "kelly green"],
+  sld_pn_collegiate_burgundy: ["burgandy"],
+  sld_pn_power_red: ["power red", "red", "cardinal", "scarlet"],
+  sld_pn_light_blue: ["carolina blue"],
+  sld_pn_grey: ["grey", "gray"],
+  sld_pn_sand: ["vegas gold", "old gold"],
+  sld_pn_white: ["white"],
+  sld_pn_collegiate_gold: ["gold", "yellow"],
+  sld_pn_collegiate_royal: ["royal blue", "royal"],
+  sld_pn_light_blue: ["blue", "aqua", "carolina blue"],
+  sld_pn_onix: ["silver"]
 };
 
 const colorMapBase = color => {
   let colorBase = "";
-  switch (color) {
-    case "black":
-      colorBase = "sld_pn_black";
-      break;
-    case "orange":
-      colorBase = "sld_pn_collegiate_orange";
-      break;
-    case "purple":
-      colorBase = "sld_pn_collegiate_purple";
-      break;
-    case "maroon":
-      colorBase = "sld_pn_maroon";
-      break;
-    case "navy":
-      colorBase = "sld_pn_collegiate_navy";
-      break;
-    case "navy blue":
-      colorBase = "sld_pn_collegiate_navy";
-      break;
-    case "dark green":
-      colorBase = "sld_pn_dark_green";
-      break;
-    case "forest green":
-      colorBase = "sld_pn_dark_green";
-      break;
-    case "green":
-      colorBase = "sld_pn_green";
-      break;
-    case "kelly green":
-      colorBase = "sld_pn_green";
-      break;
-    case "burgandy":
-      colorBase = "sld_pn_collegiate_burgundy";
-      break;
-    case "red":
-      colorBase = "sld_pn_power_red";
-      break;
-    case "white":
-      colorBase = "sld_pn_white";
-      break;
-    case "gold":
-      colorBase = "sld_pn_collegiate_gold";
-      break;
-    case "yellow":
-      colorBase = "sld_pn_collegiate_gold";
-      break;
-    case "blue":
-      colorBase = "sld_pn_light_blue";
-      break;
-    case "royal":
-      colorBase = "sld_pn_collegiate_royal";
-      break;
-    case "royal blue":
-      colorBase = "sld_pn_collegiate_royal";
-      break;
-    case "carolina blue":
-      colorBase = "sld_pn_light_blue";
-      break;
-    case "light blue":
-      colorBase = "sld_pn_light_blue";
-      break;
-    case "gray":
-      colorBase = "sld_pn_grey";
-      break;
-    case "gray":
-      colorBase = "sld_pn_grey";
-      break;
-    case "silver":
-      colorBase = "sld_pn_onix";
-      break;
-    case "cardinal":
-      colorBase = "sld_pn_power_red";
-      break;
-    case "scarlet":
-      colorBase = "sld_pn_power_red";
-      break;
-    case "texas orange":
-      colorBase = "sld_pn_collegiate_orange";
-      break;
-    case "old gold":
-      colorBase = "sld_pn_sand";
-      break;
-    case "vegas gold":
-      colorBase = "sld_pn_sand";
-      break;
-    default:
-      colorBase = "sld_pn_black";
+  colorBase = Object.entries(COLORMAP_BASE).filter(clrMap =>
+    clrMap[1].includes(color)
+  )[0];
+  if (!colorBase) {
+    colorBase = ["sld_pn_black"];
   }
-  return colorBase;
+  return colorBase[0];
 };
 
 const homeDecorations = (home, colors) => {
