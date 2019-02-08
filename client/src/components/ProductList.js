@@ -5,7 +5,7 @@ import ImageCard from "./ImageCard";
 import SchoolCard from "./SchoolCard";
 import { fontChanged } from "../actions";
 
-class Football extends React.Component {
+class ProductList extends React.Component {
   fontChanged(font) {
     this.props.fontChanged(font);
   }
@@ -86,4 +86,4 @@ const mapStateToProps = state => {
 export default connect(
   mapStateToProps,
   { fontChanged }
-)(Football);
+)(ProductList);

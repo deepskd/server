@@ -2,8 +2,7 @@ import React from "react";
 import ReactGA from "react-ga";
 import SearchBar from "./SearchBar";
 import TeamList from "./TeamList";
-import Football from "./Football";
-import Basketball from "./Basketball";
+import ProductList from "./ProductList";
 import Header from "./header";
 import NCAASearchBar from "./ncaa/NCAASearchBar";
 import OrderList from "./dashboard/OrderList";
@@ -18,8 +17,8 @@ const App = () => {
           <Header />
           <Route path="/" exact component={SearchBar} />
           <Route path="/" exact component={TeamList} />
-          <Route path="/football" component={Football} />
-          <Route path="/basketball" component={Basketball} />
+          <Route path="/football" component={ProductList} />
+          <Route path="/basketball" component={ProductList} />
           <Route path="/ncaa" exact component={NCAASearchBar} />
           <Route path="/dashboard" exact component={OrderList} />
         </div>
