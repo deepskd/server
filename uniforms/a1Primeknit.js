@@ -44,7 +44,7 @@ obj=a&req=object}\
 
 const PANTS_URL = `https://embodee.adidas.com/api2/rewrite/adidas16/is/image/adidasAG/agm?&src=ir\
 {adidasAGRender/APP18_pn1_pco_1?&obj=a/f/nvr&show\
-&obj=a/m/bas&src=BASECOLOR&\
+&obj=a/m/bas&src=BASECOLOR&show&\
 obj=a/s/shg&show&\
 obj=a/o/log&src=LOGOCOLOR&show&\
 obj=a&req=object}\
