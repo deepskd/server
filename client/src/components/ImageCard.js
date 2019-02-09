@@ -34,13 +34,9 @@ class ImageCard extends React.Component {
 
   renderLoader() {
     if (!this.state.loading) {
-      return <div />;
+      return "ui active masked slide reveal image";
     }
-    return (
-      <div className="ui placeholder">
-        <div className="square image" />
-      </div>
-    );
+    return "ui slide masked reveal image";
   }
 
   rotateImage = article => {
@@ -57,19 +53,23 @@ class ImageCard extends React.Component {
   render() {
     return (
       <div className="card fluid" style={{ width: "250px" }}>
-        <div className="image">
-          {this.renderLoader()}
-          <div className="ui right floated mini icon button">
-            <i
-              className="redo icon"
-              onClick={() => this.rotateImage(this.state.imageURL)}
+        <div className={this.renderLoader()} style={{ height: "300px" }}>
+          <div className="ui fluid placeholder visible content">
+            <div className="image" style={{ height: "300px" }} />
+          </div>
+          <div className="image hidden content" style={{ height: "300px" }}>
+            <div className="ui right floated mini icon button">
+              <i
+                className="redo icon"
+                onClick={() => this.rotateImage(this.state.imageURL)}
+              />
+            </div>
+            <img
+              ref={this.imageRef}
+              src={this.state.imageURL}
+              alt={this.props.alt}
             />
           </div>
-          <img
-            ref={this.imageRef}
-            src={this.state.imageURL}
-            alt={this.props.alt}
-          />
         </div>
         <div className="content" />
       </div>
