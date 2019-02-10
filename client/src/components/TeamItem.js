@@ -24,7 +24,7 @@ class TeamItem extends React.Component {
             onClick={() => this.onTeamSelect(this.props.team, "football")}
           >
             <Link to="/football">
-              <i class="football ball icon" />
+              <i className="football ball icon" />
               Football
             </Link>
           </div>
@@ -33,7 +33,7 @@ class TeamItem extends React.Component {
             onClick={() => this.onTeamSelect(this.props.team, "basketball")}
           >
             <Link to="/basketball">
-              <i class="basketball ball icon" />
+              <i className="basketball ball icon" />
               BasketBall
             </Link>
           </div>

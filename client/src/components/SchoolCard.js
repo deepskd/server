@@ -1,7 +1,6 @@
 import React from "react";
 
 const SchoolCard = props => {
-  console.log(props);
   return (
     <div className="ui row centered card">
       <div className="content">

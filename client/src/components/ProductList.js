@@ -6,29 +6,17 @@ import SchoolCard from "./SchoolCard";
 import { fontChanged } from "../actions";
 
 class ProductList extends React.Component {
-  fontChanged(font) {
-    this.props.fontChanged(font);
+  fontChanged(event) {
+    this.props.fontChanged(event.target.value);
   }
 
-  fontOptions(fonts, selectedFont) {
+  fontOptions(fonts) {
     return Object.keys(fonts).map(font => {
-      if (font === selectedFont) {
-        return (
-          <button key={font} className="positive ui button">
-            {fonts[font]}
-          </button>
-        );
-      } else {
-        return (
-          <button
-            key={font}
-            className="ui button"
-            onClick={() => this.fontChanged(font)}
-          >
-            {fonts[font]}
-          </button>
-        );
-      }
+      return (
+        <option key={font} value={font}>
+          {fonts[font]}
+        </option>
+      );
     });
   }
 
@@ -68,9 +56,13 @@ class ProductList extends React.Component {
         </div>
         <div className="right floated two wide column">
           Font Selector
-          <div className="ui vertical mini buttons">
-            {this.fontOptions(products.fonts, products.selectedFont)}
-          </div>
+          <select
+            className="ui dropdown"
+            onChange={event => this.fontChanged(event)}
+            value={products.selectedFont}
+          >
+            {this.fontOptions(products.fonts)}
+          </select>
         </div>
       </div>
     );
