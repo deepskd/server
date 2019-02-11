@@ -14,82 +14,27 @@ const football = team => {
   const font = _.sample(Object.keys(a1PrimeKnitUniform.FONTS));
   const mascot = _.replace(team.mascot || team.name, "/", " ");
 
-  let home = {};
-  home.jersey = _.replace(
-    a1PrimeKnitUniform.JERSEY_URL,
-    /TEAMNAME/,
-    _.toUpper(mascot)
-  );
-  home.jersey = _.replace(
-    home.jersey,
-    /BASECOLOR/,
-    a1PrimeKnitUniform.colorMapBase("white")
-  );
-  home.jersey = _.replace(
-    home.jersey,
-    /LOGOCOLOR/,
-    a1PrimeKnitUniform.colorMapBase("black")
-  );
-  home.jersey = _.replace(home.jersey, /PLAYERNUMBER/g, playerNumber);
-  home.jersey = _.replace(home.jersey, /(TEAM|NUMBER)FONT/g, font);
-  home.jersey = a1PrimeKnitUniform.homeDecorations(home.jersey, team.colors);
-
-  let homePantBaseColor = team.colors ? team.colors[0] : "black";
-  home.pants = _.replace(
-    a1PrimeKnitUniform.PANTS_URL,
-    /BASECOLOR/,
-    a1PrimeKnitUniform.colorMapBase(homePantBaseColor)
-  );
-
-  if (homePantBaseColor === "white") {
-    home.pants = _.replace(
-      home.pants,
-      /LOGOCOLOR/,
-      a1PrimeKnitUniform.colorMapBase("black")
-    );
-  } else {
-    home.pants = _.replace(
-      home.pants,
-      /LOGOCOLOR/,
-      a1PrimeKnitUniform.colorMapBase("white")
-    );
-  }
-
   let away = {};
   away.jersey = _.replace(
     a1PrimeKnitUniform.JERSEY_URL,
     /TEAMNAME/,
-    _.toUpper(_.replace(team.name, "/", " "))
+    _.toUpper(mascot)
   );
-  let awayJerseyBaseColor = team.colors ? team.colors[0] : "black";
-
-  if (a1PrimeKnitUniform.colorMapBase(awayJerseyBaseColor) === "sld_pn_black") {
-    away.jersey = _.replace(
-      away.jersey,
-      "cuf&src=sld_pn_white",
-      "cuf&src=sld_pn_black"
-    );
-    away.jersey = _.replace(
-      away.jersey,
-      "pip&src=sld_pn_white",
-      "pip&src=sld_pn_black"
-    );
-  }
   away.jersey = _.replace(
     away.jersey,
     /BASECOLOR/,
-    a1PrimeKnitUniform.colorMapBase(awayJerseyBaseColor)
+    a1PrimeKnitUniform.colorMapBase("white")
   );
   away.jersey = _.replace(
     away.jersey,
     /LOGOCOLOR/,
-    a1PrimeKnitUniform.colorMapBase("white")
+    a1PrimeKnitUniform.colorMapBase("black")
   );
   away.jersey = _.replace(away.jersey, /PLAYERNUMBER/g, playerNumber);
   away.jersey = _.replace(away.jersey, /(TEAM|NUMBER)FONT/g, font);
-  away.jersey = a1PrimeKnitUniform.awayDecorations(away.jersey, team.colors);
+  away.jersey = a1PrimeKnitUniform.homeDecorations(away.jersey, team.colors);
 
-  const awayPantBaseColor = team.colors ? team.colors[1] : "white";
+  let awayPantBaseColor = team.colors ? team.colors[0] : "black";
   away.pants = _.replace(
     a1PrimeKnitUniform.PANTS_URL,
     /BASECOLOR/,
@@ -104,6 +49,61 @@ const football = team => {
     );
   } else {
     away.pants = _.replace(
+      away.pants,
+      /LOGOCOLOR/,
+      a1PrimeKnitUniform.colorMapBase("white")
+    );
+  }
+
+  let home = {};
+  home.jersey = _.replace(
+    a1PrimeKnitUniform.JERSEY_URL,
+    /TEAMNAME/,
+    _.toUpper(_.replace(team.name, "/", " "))
+  );
+  let homeJerseyBaseColor = team.colors ? team.colors[0] : "black";
+
+  if (a1PrimeKnitUniform.colorMapBase(homeJerseyBaseColor) === "sld_pn_black") {
+    home.jersey = _.replace(
+      home.jersey,
+      "cuf&src=sld_pn_white",
+      "cuf&src=sld_pn_black"
+    );
+    home.jersey = _.replace(
+      home.jersey,
+      "pip&src=sld_pn_white",
+      "pip&src=sld_pn_black"
+    );
+  }
+  home.jersey = _.replace(
+    home.jersey,
+    /BASECOLOR/,
+    a1PrimeKnitUniform.colorMapBase(homeJerseyBaseColor)
+  );
+  home.jersey = _.replace(
+    home.jersey,
+    /LOGOCOLOR/,
+    a1PrimeKnitUniform.colorMapBase("white")
+  );
+  home.jersey = _.replace(home.jersey, /PLAYERNUMBER/g, playerNumber);
+  home.jersey = _.replace(home.jersey, /(TEAM|NUMBER)FONT/g, font);
+  home.jersey = a1PrimeKnitUniform.homeDecorations(home.jersey, team.colors);
+
+  const homePantBaseColor = team.colors ? team.colors[1] : "white";
+  home.pants = _.replace(
+    a1PrimeKnitUniform.PANTS_URL,
+    /BASECOLOR/,
+    a1PrimeKnitUniform.colorMapBase(homePantBaseColor)
+  );
+
+  if (homePantBaseColor === "white") {
+    home.pants = _.replace(
+      home.pants,
+      /LOGOCOLOR/,
+      a1PrimeKnitUniform.colorMapBase("black")
+    );
+  } else {
+    home.pants = _.replace(
       away.pants,
       /LOGOCOLOR/,
       a1PrimeKnitUniform.colorMapBase("white")
