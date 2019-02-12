@@ -211,7 +211,7 @@ const homeDecorations = (home, colors) => {
     home.pants = _.replace(
       home.pants,
       "PANTS_STRIPES",
-      stripesOnPants(color.text, colorMapHT(_.sample("gold", "sand", "red")))
+      stripesOnPants(color.stroke, colorMapHT(_.sample("gold", "sand", "red")))
         .url
     );
   } else if (colors && colors.length === 3) {
@@ -227,7 +227,7 @@ const homeDecorations = (home, colors) => {
     home.pants = _.replace(
       home.pants,
       "PANTS_STRIPES",
-      stripesOnPants(color.text, color.stroke).url
+      stripesOnPants(color.stroke, color.stroke).url
     );
   } else if (colors && colors.length === 1) {
     color.text = colorMapHT("white");
@@ -269,7 +269,6 @@ const stripesOnPants = (primaryColor, secondaryColor) => {
   let stripe = _.sample(PANTS_STRIPE_OPTIONS);
   stripe.url = _.replace(stripe.url, "STRIPE_PRIMARY_COLOR", primaryColor);
   stripe.url = _.replace(stripe.url, "STRIPE_SECONDARY_COLOR", secondaryColor);
-  console.log(stripe);
   return stripe;
 };
 
