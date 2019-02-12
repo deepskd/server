@@ -46,6 +46,7 @@ const PANTS_URL = `https://embodee.adidas.com/api2/rewrite/adidas16/is/image/adi
 {adidasAGRender/APP18_pn1_pco_1?&obj=a/f/nvr&show\
 &obj=a/m/bas&src=BASECOLOR&show&\
 obj=a/s/shg&show&\
+&PANTS_STRIPES&
 obj=a/o/log&src=LOGOCOLOR&show&\
 obj=a&req=object}\
 &resMode=sharp2&wid=250&op_usm=1.2,1,4,0`;
@@ -126,28 +127,66 @@ const awayDecorations = (away, colors) => {
   if (colors && colors.length === 2) {
     color.text = colorMapHT(colors[0]);
     color.stroke = colorMapHT(colors[1]);
-    away = _.replace(away, /(TEAM|NUMBER)TEXTCOLOR/g, color.text);
-    away = _.replace(away, /(TEAM|NUMBER)STROKECOLOR/g, color.stroke);
+    away.jersey = _.replace(away.jersey, /(TEAM|NUMBER)TEXTCOLOR/g, color.text);
+    away.jersey = _.replace(
+      away.jersey,
+      /(TEAM|NUMBER)STROKECOLOR/g,
+      color.stroke
+    );
+
+    away.pants = _.replace(
+      away.pants,
+      "PANTS_STRIPES",
+      stripesOnPants(color.stroke, colorMapHT(_.sample("gold", "sand", "red")))
+        .url
+    );
   } else if (colors && colors.length === 3) {
     color.text = colorMapHT(colors[0]);
     color.stroke = colorMapHT(colors[1] === "white" ? colors[2] : colors[1]);
-    away = _.replace(away, /(TEAM|NUMBER)TEXTCOLOR/g, color.text);
-    away = _.replace(away, /(TEAM|NUMBER)STROKECOLOR/g, color.stroke);
+    away.jersey = _.replace(away.jersey, /(TEAM|NUMBER)TEXTCOLOR/g, color.text);
+    away.jersey = _.replace(
+      away.jersey,
+      /(TEAM|NUMBER)STROKECOLOR/g,
+      color.stroke
+    );
+
+    away.pants = _.replace(
+      away.pants,
+      "PANTS_STRIPES",
+      stripesOnPants(color.stroke, colorMapHT(colors[2])).url
+    );
   } else if (colors && colors.length === 1) {
     color.text = colorMapHT(colors[0]);
     color.stroke = colorMapHT("black");
-    away = _.replace(away, /(TEAM|NUMBER)TEXTCOLOR/g, color.text);
-    away = _.replace(away, /(TEAM|NUMBER)STROKECOLOR/g, color.stroke);
+    away.jersey = _.replace(away.jersey, /(TEAM|NUMBER)TEXTCOLOR/g, color.text);
+    away.jersey = _.replace(
+      away.jersey,
+      /(TEAM|NUMBER)STROKECOLOR/g,
+      color.stroke
+    );
+
+    away.pants = _.replace(
+      away.pants,
+      "PANTS_STRIPES",
+      stripesOnPants(color.stroke, colorMapHT(_.sample("gold", "sand", "red")))
+        .url
+    );
   } else {
-    away = _.replace(
-      away,
+    away.jersey = _.replace(
+      away.jersey,
       /(TEAM|NUMBER)TEXTCOLOR/g,
       "sld_pn_obsidian_shine_ht"
     );
-    away = _.replace(
-      away,
+    away.jersey = _.replace(
+      away.jersey,
       /(TEAM|NUMBER)STROKECOLOR/g,
       "sld_pn_matte_power_red_ht"
+    );
+
+    away.pants = _.replace(
+      away.pants,
+      "PANTS_STRIPES",
+      stripesOnPants(colorMapHT("silver"), colorMapHT("red")).url
     );
   }
   return away;
@@ -162,28 +201,130 @@ const homeDecorations = (home, colors) => {
     } else {
       color.stroke = colorMapHT(_.sample[("gold", "black")]);
     }
-    home = _.replace(home, /(TEAM|NUMBER)TEXTCOLOR/g, color.text);
-    home = _.replace(home, /(TEAM|NUMBER)STROKECOLOR/g, color.stroke);
+    home.jersey = _.replace(home.jersey, /(TEAM|NUMBER)TEXTCOLOR/g, color.text);
+    home.jersey = _.replace(
+      home.jersey,
+      /(TEAM|NUMBER)STROKECOLOR/g,
+      color.stroke
+    );
+
+    home.pants = _.replace(
+      home.pants,
+      "PANTS_STRIPES",
+      stripesOnPants(color.text, colorMapHT(_.sample("gold", "sand", "red")))
+        .url
+    );
   } else if (colors && colors.length === 3) {
     color.text = colorMapHT(colors[1]);
     color.stroke = colorMapHT(colors[2]);
-    home = _.replace(home, /(TEAM|NUMBER)TEXTCOLOR/g, color.text);
-    home = _.replace(home, /(TEAM|NUMBER)STROKECOLOR/g, color.stroke);
+    home.jersey = _.replace(home.jersey, /(TEAM|NUMBER)TEXTCOLOR/g, color.text);
+    home.jersey = _.replace(
+      home.jersey,
+      /(TEAM|NUMBER)STROKECOLOR/g,
+      color.stroke
+    );
+
+    home.pants = _.replace(
+      home.pants,
+      "PANTS_STRIPES",
+      stripesOnPants(color.text, color.stroke).url
+    );
   } else if (colors && colors.length === 1) {
     color.text = colorMapHT("white");
     color.stroke = colorMapHT("black");
-    home = _.replace(home, /(TEAM|NUMBER)TEXTCOLOR/g, color.text);
-    home = _.replace(home, /(TEAM|NUMBER)STROKECOLOR/g, color.stroke);
+    home.jersey = _.replace(home.jersey, /(TEAM|NUMBER)TEXTCOLOR/g, color.text);
+    home.jersey = _.replace(
+      home.jersey,
+      /(TEAM|NUMBER)STROKECOLOR/g,
+      color.stroke
+    );
+
+    home.pants = _.replace(
+      home.pants,
+      "PANTS_STRIPES",
+      stripesOnPants(color.text, color.stroke).url
+    );
   } else {
-    home = _.replace(home, /(TEAM|NUMBER)TEXTCOLOR/g, "sld_pn_white_ht");
-    home = _.replace(
-      home,
+    home.jersey = _.replace(
+      home.jersey,
+      /(TEAM|NUMBER)TEXTCOLOR/g,
+      "sld_pn_white_ht"
+    );
+    home.jersey = _.replace(
+      home.jersey,
       /(TEAM|NUMBER)STROKECOLOR/g,
       "sld_pn_matte_power_red_ht"
+    );
+
+    home.pants = _.replace(
+      home.pants,
+      "PANTS_STRIPES",
+      stripesOnPants("sld_pn_white_ht", "sld_pn_matte_power_red_ht").url
     );
   }
   return home;
 };
+
+const stripesOnPants = (primaryColor, secondaryColor) => {
+  let stripe = _.sample(PANTS_STRIPE_OPTIONS);
+  stripe.url = _.replace(stripe.url, "STRIPE_PRIMARY_COLOR", primaryColor);
+  stripe.url = _.replace(stripe.url, "STRIPE_SECONDARY_COLOR", secondaryColor);
+  console.log(stripe);
+  return stripe;
+};
+
+const PANTS_STRIPE_OPTIONS = [
+  { name: "No Stripe", url: "obj=a/o/st1_s0&show&obj=a/o/st2_t0&show" },
+  {
+    name: "Solid Stripe",
+    url: "obj=a/o/st1_sd&src=STRIPE_PRIMARY_COLOR&show&obj=a/o/st2_t0&show"
+  },
+  {
+    name: "Classic Stripe",
+    url:
+      "obj=a/o/st1_s1&src=STRIPE_PRIMARY_COLOR&show&obj=a/o/st2_t1&src=STRIPE_SECONDARY_COLOR&show"
+  },
+  {
+    name: "Burner Stripe",
+    url:
+      "obj=a/o/st1_s7&src=STRIPE_PRIMARY_COLOR&show&obj=a/o/st2_t7&src=STRIPE_SECONDARY_COLOR&show"
+  },
+  {
+    name: "Claw Stripe",
+    url:
+      "obj=a/o/st1_s5&src=STRIPE_PRIMARY_COLOR&show&obj=a/o/st2_t5&src=STRIPE_SECONDARY_COLOR&show"
+  },
+  {
+    name: "Power Stripe",
+    url:
+      "obj=a/o/st1_s4&src=STRIPE_PRIMARY_COLOR&show&obj=a/o/st2_t4&src=STRIPE_SECONDARY_COLOR&show"
+  },
+  {
+    name: "Speed Stripe",
+    url:
+      "obj=a/o/st1_s6&src=STRIPE_PRIMARY_COLOR&show&obj=a/o/st2_t6&src=STRIPE_SECONDARY_COLOR&show"
+  },
+  {
+    name: "Stinger Stripe",
+    url:
+      "obj=a/o/st1_s8&src=STRIPE_PRIMARY_COLOR&show&obj=a/o/st2_t8&src=STRIPE_SECONDARY_COLOR&show"
+  },
+  {
+    name: "Three Thin Stripes",
+    url:
+      "obj=a/o/st1_s3&src=STRIPE_PRIMARY_COLOR&show&obj=a/o/st2_t3&src=STRIPE_SECONDARY_COLOR&show"
+  },
+  {
+    name: "Wing Stripe",
+    url:
+      "obj=a/o/st1_s9&src=STRIPE_PRIMARY_COLOR&show&obj=a/o/st2_t9&src=STRIPE_SECONDARY_COLOR&show"
+  },
+  {
+    name: "Two Stripe",
+    url:
+      "obj=a/o/st1_s2&src=STRIPE_PRIMARY_COLOR&show&obj=a/o/st2_t2&src=STRIPE_SECONDARY_COLOR&show"
+  }
+];
 
 module.exports = {
   JERSEY_URL,

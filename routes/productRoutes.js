@@ -47,7 +47,6 @@ const football = team => {
   );
   home.jersey = _.replace(home.jersey, /PLAYERNUMBER/g, playerNumber);
   home.jersey = _.replace(home.jersey, /(TEAM|NUMBER)FONT/g, font);
-  home.jersey = a1PrimeKnitUniform.homeDecorations(home.jersey, team.colors);
 
   const homePantBaseColor = team.colors ? team.colors[1] : "white";
   home.pants = _.replace(
@@ -70,6 +69,8 @@ const football = team => {
     );
   }
 
+  home = a1PrimeKnitUniform.homeDecorations(home, team.colors);
+
   let away = {};
   away.jersey = _.replace(
     a1PrimeKnitUniform.JERSEY_URL,
@@ -88,7 +89,6 @@ const football = team => {
   );
   away.jersey = _.replace(away.jersey, /PLAYERNUMBER/g, playerNumber);
   away.jersey = _.replace(away.jersey, /(TEAM|NUMBER)FONT/g, font);
-  away.jersey = a1PrimeKnitUniform.awayDecorations(away.jersey, team.colors);
 
   let awayPantBaseColor = team.colors ? team.colors[0] : "black";
   away.pants = _.replace(
@@ -110,6 +110,7 @@ const football = team => {
       a1PrimeKnitUniform.colorMapBase("white")
     );
   }
+  away = a1PrimeKnitUniform.awayDecorations(away, team.colors);
 
   return { home, away, fonts: a1PrimeKnitUniform.FONTS, selectedFont: font };
 };
