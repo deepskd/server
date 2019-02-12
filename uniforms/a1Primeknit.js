@@ -121,39 +121,39 @@ const colorMapBase = color => {
   return colorBase[0];
 };
 
-const homeDecorations = (home, colors) => {
+const awayDecorations = (away, colors) => {
   const color = {};
   if (colors && colors.length === 2) {
     color.text = colorMapHT(colors[0]);
     color.stroke = colorMapHT(colors[1]);
-    home = _.replace(home, /(TEAM|NUMBER)TEXTCOLOR/g, color.text);
-    home = _.replace(home, /(TEAM|NUMBER)STROKECOLOR/g, color.stroke);
+    away = _.replace(away, /(TEAM|NUMBER)TEXTCOLOR/g, color.text);
+    away = _.replace(away, /(TEAM|NUMBER)STROKECOLOR/g, color.stroke);
   } else if (colors && colors.length === 3) {
     color.text = colorMapHT(colors[0]);
     color.stroke = colorMapHT(colors[1] === "white" ? colors[2] : colors[1]);
-    home = _.replace(home, /(TEAM|NUMBER)TEXTCOLOR/g, color.text);
-    home = _.replace(home, /(TEAM|NUMBER)STROKECOLOR/g, color.stroke);
+    away = _.replace(away, /(TEAM|NUMBER)TEXTCOLOR/g, color.text);
+    away = _.replace(away, /(TEAM|NUMBER)STROKECOLOR/g, color.stroke);
   } else if (colors && colors.length === 1) {
     color.text = colorMapHT(colors[0]);
     color.stroke = colorMapHT("black");
-    home = _.replace(home, /(TEAM|NUMBER)TEXTCOLOR/g, color.text);
-    home = _.replace(home, /(TEAM|NUMBER)STROKECOLOR/g, color.stroke);
+    away = _.replace(away, /(TEAM|NUMBER)TEXTCOLOR/g, color.text);
+    away = _.replace(away, /(TEAM|NUMBER)STROKECOLOR/g, color.stroke);
   } else {
-    home = _.replace(
-      home,
+    away = _.replace(
+      away,
       /(TEAM|NUMBER)TEXTCOLOR/g,
       "sld_pn_obsidian_shine_ht"
     );
-    home = _.replace(
-      home,
+    away = _.replace(
+      away,
       /(TEAM|NUMBER)STROKECOLOR/g,
       "sld_pn_matte_power_red_ht"
     );
   }
-  return home;
+  return away;
 };
 
-const awayDecorations = (away, colors) => {
+const homeDecorations = (home, colors) => {
   const color = {};
   if (colors && colors.length === 2) {
     color.text = colorMapHT(colors[1]);
@@ -162,27 +162,27 @@ const awayDecorations = (away, colors) => {
     } else {
       color.stroke = colorMapHT(_.sample[("gold", "black")]);
     }
-    away = _.replace(away, /(TEAM|NUMBER)TEXTCOLOR/g, color.text);
-    away = _.replace(away, /(TEAM|NUMBER)STROKECOLOR/g, color.stroke);
+    home = _.replace(home, /(TEAM|NUMBER)TEXTCOLOR/g, color.text);
+    home = _.replace(home, /(TEAM|NUMBER)STROKECOLOR/g, color.stroke);
   } else if (colors && colors.length === 3) {
     color.text = colorMapHT(colors[1]);
     color.stroke = colorMapHT(colors[2]);
-    away = _.replace(away, /(TEAM|NUMBER)TEXTCOLOR/g, color.text);
-    away = _.replace(away, /(TEAM|NUMBER)STROKECOLOR/g, color.stroke);
+    home = _.replace(home, /(TEAM|NUMBER)TEXTCOLOR/g, color.text);
+    home = _.replace(home, /(TEAM|NUMBER)STROKECOLOR/g, color.stroke);
   } else if (colors && colors.length === 1) {
     color.text = colorMapHT("white");
     color.stroke = colorMapHT("black");
-    away = _.replace(away, /(TEAM|NUMBER)TEXTCOLOR/g, color.text);
-    away = _.replace(away, /(TEAM|NUMBER)STROKECOLOR/g, color.stroke);
+    home = _.replace(home, /(TEAM|NUMBER)TEXTCOLOR/g, color.text);
+    home = _.replace(home, /(TEAM|NUMBER)STROKECOLOR/g, color.stroke);
   } else {
-    away = _.replace(away, /(TEAM|NUMBER)TEXTCOLOR/g, "sld_pn_white_ht");
-    away = _.replace(
-      away,
+    home = _.replace(home, /(TEAM|NUMBER)TEXTCOLOR/g, "sld_pn_white_ht");
+    home = _.replace(
+      home,
       /(TEAM|NUMBER)STROKECOLOR/g,
       "sld_pn_matte_power_red_ht"
     );
   }
-  return away;
+  return home;
 };
 
 module.exports = {
