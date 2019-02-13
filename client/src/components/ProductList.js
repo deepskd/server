@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 
 import ImageCard from "./ImageCard";
 import SchoolCard from "./SchoolCard";
-import { fontChanged } from "../actions";
+import { fontChanged, jerseyTextChanged } from "../actions";
 
 class ProductList extends React.Component {
   constructor(props) {
@@ -25,13 +25,12 @@ class ProductList extends React.Component {
   }
 
   textUpdated(element) {
-    console.log(element);
     switch (element) {
       case "mascot":
-        console.log(this.state.mascot);
+        this.props.jerseyTextChanged({ home: this.state.mascot });
         break;
       case "teamName":
-        console.log(this.state.teamName);
+        this.props.jerseyTextChanged({ away: this.state.teamName });
         break;
       default:
         console.log("Should not get here");
@@ -134,5 +133,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { fontChanged }
+  { fontChanged, jerseyTextChanged }
 )(ProductList);

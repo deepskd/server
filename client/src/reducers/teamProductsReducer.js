@@ -1,5 +1,9 @@
 import _ from "lodash";
-import { SELECTED_TEAM, FONT_CHANGED } from "../actions/types";
+import {
+  SELECTED_TEAM,
+  FONT_CHANGED,
+  JERSEY_TEXT_CHANGED
+} from "../actions/types";
 
 export default (state = [], action) => {
   switch (action.type) {
@@ -7,6 +11,8 @@ export default (state = [], action) => {
       return action.payload;
     case FONT_CHANGED:
       return updateFont(state, action.payload);
+    case JERSEY_TEXT_CHANGED:
+      return updateJerseyText(state, action.payload);
     default:
       return state;
   }
@@ -28,5 +34,37 @@ const updateFont = (state, font) => {
     font
   );
   newState.products.selectedFont = font;
+  return newState;
+};
+
+const updateJerseyText = (state, typeAndText) => {
+  let newState = { ...state };
+  const jerseyType = Object.keys(typeAndText)[0];
+
+  switch (jerseyType) {
+    case "home":
+      const oldHomeText = newState.products.home.jersey.match(
+        /teamname?.{3}text=(([A-Z]|\s|-|\[|\])+)/
+      )[1];
+      newState.products.home.jersey = _.replace(
+        newState.products.home.jersey,
+        oldHomeText,
+        typeAndText.home
+      );
+      break;
+    case "away":
+      let oldAwayText = newState.products.away.jersey.match(
+        /teamname?.{3}text=(([A-Z]|\s|-|\[|\])+)/
+      )[1];
+      console.log(oldAwayText);
+      newState.products.away.jersey = _.replace(
+        newState.products.away.jersey,
+        oldAwayText,
+        typeAndText.away
+      );
+      break;
+    default:
+      return newState;
+  }
   return newState;
 };
