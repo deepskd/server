@@ -44,8 +44,8 @@ const updateJerseyText = (state, typeAndText) => {
   switch (jerseyType) {
     case "home":
       const oldHomeText = newState.products.home.jersey.match(
-        /teamname?.{3}text=(([A-Z]|\s|-|\[|\])+)/
-      )[1];
+        /teamnam(e|e_straight)?.{3}text=(([A-Z]|\s|-|\[|\])+)/
+      )[2];
       newState.products.home.jersey = _.replace(
         newState.products.home.jersey,
         oldHomeText,
@@ -54,8 +54,8 @@ const updateJerseyText = (state, typeAndText) => {
       break;
     case "away":
       let oldAwayText = newState.products.away.jersey.match(
-        /teamname?.{3}text=(([A-Z]|\s|-|\[|\])+)/
-      )[1];
+        /teamnam(e|e_straight)?.{3}text=(([A-Z]|\s|-|\[|\])+)/
+      )[2];
       console.log(oldAwayText);
       newState.products.away.jersey = _.replace(
         newState.products.away.jersey,

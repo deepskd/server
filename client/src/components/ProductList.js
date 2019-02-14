@@ -10,14 +10,15 @@ class ProductList extends React.Component {
     super(props);
     this.state = { mascot: "", teamName: "" };
   }
+
   onTextChange(obj) {
     const attr = Object.keys(obj)[0];
     switch (attr) {
       case "mascot":
-        this.setState({ mascot: obj["mascot"].target.value });
+        this.setState({ mascot: obj["mascot"].target.value.toUpperCase() });
         break;
       case "teamName":
-        this.setState({ teamName: obj["teamName"].target.value });
+        this.setState({ teamName: obj["teamName"].target.value.toUpperCase() });
         break;
       default:
         console.log("should not get here");
@@ -89,7 +90,7 @@ class ProductList extends React.Component {
               <div className="ui action input">
                 <input
                   type="text"
-                  placeholder={team.mascot}
+                  placeholder={team.mascot.toUpperCase()}
                   value={this.state.mascot}
                   onChange={e => this.onTextChange({ mascot: e })}
                 />
@@ -106,7 +107,7 @@ class ProductList extends React.Component {
               <div className="ui action input">
                 <input
                   type="text"
-                  placeholder={team.name}
+                  placeholder={team.name.toUpperCase()}
                   value={this.state.teamName}
                   onChange={e => this.onTextChange({ teamName: e })}
                 />
