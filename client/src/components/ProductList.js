@@ -3,12 +3,20 @@ import { connect } from "react-redux";
 
 import ImageCard from "./ImageCard";
 import SchoolCard from "./SchoolCard";
-import { fontChanged, jerseyTextChanged } from "../actions";
+import { selectTeam, fontChanged, jerseyTextChanged } from "../actions";
 
 class ProductList extends React.Component {
   constructor(props) {
     super(props);
     this.state = { mascot: "", teamName: "" };
+  }
+
+  componentDidMount() {
+    console.log(this.props.match.params);
+    const { params } = this.props.match;
+    const team = {};
+    team._id = params.id;
+    this.props.selectTeam(team, params.sports);
   }
 
   onTextChange(obj) {
@@ -134,5 +142,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { fontChanged, jerseyTextChanged }
+  { selectTeam, fontChanged, jerseyTextChanged }
 )(ProductList);

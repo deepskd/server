@@ -17,8 +17,7 @@ const App = () => {
           <Header />
           <Route path="/" exact component={SearchBar} />
           <Route path="/" exact component={TeamList} />
-          <Route path="/football" component={ProductList} />
-          <Route path="/basketball" component={ProductList} />
+          <Route path="/:sports/:id" component={ProductList} />
           <Route path="/ncaa" exact component={NCAASearchBar} />
           <Route path="/dashboard" exact component={OrderList} />
         </div>
