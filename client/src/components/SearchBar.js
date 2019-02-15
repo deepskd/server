@@ -1,4 +1,5 @@
 import React from "react";
+import ReactGA from "react-ga";
 import { connect } from "react-redux";
 
 import { findTeams } from "../actions";
@@ -12,6 +13,10 @@ class SearchBar extends React.Component {
 
   onFormSubmit = event => {
     event.preventDefault();
+    ReactGA.event({
+      category: "Find School",
+      action: this.state.term
+    });
 
     this.props.findTeams(this.state.term);
   };
