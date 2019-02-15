@@ -12,7 +12,6 @@ class ProductList extends React.Component {
   }
 
   componentDidMount() {
-    console.log(this.props.match.params);
     const { params } = this.props.match;
     const team = {};
     team._id = params.id;
