@@ -14,7 +14,7 @@ class SearchBar extends React.Component {
   onFormSubmit = event => {
     event.preventDefault();
     ReactGA.event({
-      category: "Find School",
+      category: "FindSchool",
       action: this.state.term
     });
 
