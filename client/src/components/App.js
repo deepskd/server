@@ -4,7 +4,6 @@ import SearchBar from "./SearchBar";
 import TeamList from "./TeamList";
 import ProductList from "./ProductList";
 import Header from "./header";
-import NCAASearchBar from "./ncaa/NCAASearchBar";
 import OrderList from "./dashboard/OrderList";
 import { BrowserRouter, Route } from "react-router-dom";
 
@@ -18,7 +17,6 @@ const App = () => {
           <Route path="/" exact component={SearchBar} />
           <Route path="/" exact component={TeamList} />
           <Route path="/:sports/:id" component={ProductList} />
-          <Route path="/ncaa" exact component={NCAASearchBar} />
           <Route path="/dashboard" exact component={OrderList} />
         </div>
       </BrowserRouter>
