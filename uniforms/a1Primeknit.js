@@ -298,41 +298,11 @@ const stripesOnPants = (primaryColor, secondaryColor) => {
   return stripe;
 };
 
-const PANTS_STRIPE_OPTIONS = [
-  { name: "No Stripe", url: "obj=a/o/st1_s0&show&obj=a/o/st2_t0&show" },
+const JERSEY_STRIPE_OPTIONS = [
   {
-    name: "Solid Stripe",
-    url: "obj=a/o/st1_sd&src=STRIPE_PRIMARY_COLOR&show&obj=a/o/st2_t0&show"
-  },
-  {
-    name: "Classic Stripe",
+    name: "Two Stripe",
     url:
-      "obj=a/o/st1_s1&src=STRIPE_PRIMARY_COLOR&show&obj=a/o/st2_t1&src=STRIPE_SECONDARY_COLOR&show"
-  },
-  {
-    name: "Burner Stripe",
-    url:
-      "obj=a/o/st1_s7&src=STRIPE_PRIMARY_COLOR&show&obj=a/o/st2_t7&src=STRIPE_SECONDARY_COLOR&show"
-  },
-  {
-    name: "Claw Stripe",
-    url:
-      "obj=a/o/st1_s5&src=STRIPE_PRIMARY_COLOR&show&obj=a/o/st2_t5&src=STRIPE_SECONDARY_COLOR&show"
-  },
-  {
-    name: "Power Stripe",
-    url:
-      "obj=a/o/st1_s4&src=STRIPE_PRIMARY_COLOR&show&obj=a/o/st2_t4&src=STRIPE_SECONDARY_COLOR&show"
-  },
-  {
-    name: "Speed Stripe",
-    url:
-      "obj=a/o/st1_s6&src=STRIPE_PRIMARY_COLOR&show&obj=a/o/st2_t6&src=STRIPE_SECONDARY_COLOR&show"
-  },
-  {
-    name: "Stinger Stripe",
-    url:
-      "obj=a/o/st1_s8&src=STRIPE_PRIMARY_COLOR&show&obj=a/o/st2_t8&src=STRIPE_SECONDARY_COLOR&show"
+      "obj=a/o/st1_s2&src=STRIPE_PRIMARY_COLOR&show&obj=a/o/st2_t2&src=STRIPE_SECONDARY_COLOR&show"
   },
   {
     name: "Three Thin Stripes",
@@ -340,14 +310,51 @@ const PANTS_STRIPE_OPTIONS = [
       "obj=a/o/st1_s3&src=STRIPE_PRIMARY_COLOR&show&obj=a/o/st2_t3&src=STRIPE_SECONDARY_COLOR&show"
   },
   {
-    name: "Wing Stripe",
+    name: "Burner Stripe",
     url:
-      "obj=a/o/st1_s9&src=STRIPE_PRIMARY_COLOR&show&obj=a/o/st2_t9&src=STRIPE_SECONDARY_COLOR&show"
+      "&obj=a/o/st1_s7&src=STRIPE_PRIMARY_COLOR&show&obj=a/o/st2_t7&src=STRIPE_SECONDARY_COLOR&show&"
   },
   {
-    name: "Two Stripe",
+    name: "Classic Stripe",
     url:
-      "obj=a/o/st1_s2&src=STRIPE_PRIMARY_COLOR&show&obj=a/o/st2_t2&src=STRIPE_SECONDARY_COLOR&show"
+      "obj=a/o/st1_s1&src=STRIPE_PRIMARY_COLOR&show&obj=a/o/st2_t1&src=STRIPE_SECONDARY_COLOR&show&"
+  },
+  {
+    name: "Claw Stripe",
+    url:
+      "obj=a/o/st1_s5&src=STRIPE_PRIMARY_COLOR&show&obj=a/o/st2_t5&src=STRIPE_SECONDARY_COLOR&show&"
+  },
+  {
+    name: "Power Stripe",
+    url:
+      "obj=a/o/st1_s4&src=STRIPE_PRIMARY_COLOR&show&obj=a/o/st2_t4&src=STRIPE_SECONDARY_COLOR&show&"
+  },
+  {
+    name: "Speed Stripe",
+    url:
+      "obj=a/o/st1_s6&src=STRIPE_PRIMARY_COLOR&show&obj=a/o/st2_t6&src=STRIPE_SECONDARY_COLOR&show&"
+  },
+  {
+    name: "Stinger Stripe",
+    url:
+      "obj=a/o/st1_s8&src=STRIPE_PRIMARY_COLOR&show&obj=a/o/st2_t8&src=STRIPE_SECONDARY_COLOR&show&"
+  },
+  {
+    name: "Wings Stripe",
+    url:
+      "obj=a/o/st1_s9&src=STRIPE_PRIMARY_COLOR&show&obj=a/o/st2_t9&src=STRIPE_SECONDARY_COLOR&show&"
+  },
+  {
+    name: "No Stripe",
+    url: "obj=a/o/st1_s0&show&obj=a/o/st2_t0&show"
+  }
+];
+
+const PANTS_STRIPE_OPTIONS = [
+  ...JERSEY_STRIPE_OPTIONS,
+  {
+    name: "Solid Stripe",
+    url: "obj=a/o/st1_sd&src=STRIPE_PRIMARY_COLOR&show&obj=a/o/st2_t0&show"
   }
 ];
 
