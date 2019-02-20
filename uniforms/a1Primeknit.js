@@ -18,21 +18,21 @@ $stroke_color=TEAMSTROKECOLOR&\
 $application=heat_transfer}&
 obj=a/o/cfr&decal&show&res=10.567757977621218&pos=0,0&\
 src=fxg{APP18_pn1_jht_playernumber?&\
-$application=heat_transfer&\
+$application=APPLICATION_TYPE&\
 $text=PLAYERNUMBER&\
 $font=NUMBERFONT&\
 $text_color=NUMBERTEXTCOLOR&\
 $stroke_color=NUMBERSTROKECOLOR}&\
 obj=a/o/cba&decal&show&res=8.800690250215704&pos=0,0&\
 src=fxg{APP18_pn1_jht_playernumber?&\
-$application=heat_transfer&\
+$application=APPLICATION_TYPE&\
 $text=PLAYERNUMBER&\
 $font=NUMBERFONT&\
 $text_color=NUMBERTEXTCOLOR&\
 $stroke_color=NUMBERSTROKECOLOR}&\
 obj=a/o/sln&decal&show&res=35.78947368421053&pos=0,0&\
 src=fxg{APP18_pn1_jht_playernumber?&\
-$application=heat_transfer&\
+$application=APPLICATION_TYPE&\
 $text=PLAYERNUMBER&
 $font=NUMBERFONT&
 $text_color=NUMBERTEXTCOLOR&\
@@ -106,15 +106,24 @@ const COLORMAP_SP = {
   sld_pn_neon_green_sp: ["neon green"]
 };
 
-const colorMapHT = color => {
-  let colorHT = "";
-  colorHT = Object.entries(COLORMAP_HT).filter(clrMap =>
-    clrMap[1].includes(color)
-  )[0];
-  if (!colorHT) {
-    colorHT = ["sld_pn_obsidian_shine_ht"];
+const colorMap = (color, applicationType = "heat_transfer") => {
+  let colorCode = "";
+  if (applicationType === "heat_transfer") {
+    colorCode = Object.entries(COLORMAP_HT).filter(clrMap =>
+      clrMap[1].includes(color)
+    )[0];
+    if (!color) {
+      colorCode = ["sld_pn_obsidian_shine_ht"];
+    }
+  } else if (applicationType === "screen_print") {
+    colorCode = Object.entries(COLORMAP_SP).filter(clrMap =>
+      clrMap[1].includes(color)
+    )[0];
+    if (!color) {
+      colorCode = ["sld_pn_black_sp"];
+    }
   }
-  return colorHT[0];
+  return colorCode[0];
 };
 
 const COLORMAP_BASE = {
@@ -150,9 +159,10 @@ const colorMapBase = color => {
 
 const awayDecorations = (away, colors) => {
   const color = {};
+  const applicationType = away.jersey.match(/\$application=(\w+)/)[1];
   if (colors && colors.length === 2) {
-    color.text = colorMapHT(colors[0]);
-    color.stroke = colorMapHT(colors[1]);
+    color.text = colorMap(colors[0], applicationType);
+    color.stroke = colorMap(colors[1], applicationType);
     away.jersey = _.replace(away.jersey, /(TEAM|NUMBER)TEXTCOLOR/g, color.text);
     away.jersey = _.replace(
       away.jersey,
@@ -163,12 +173,15 @@ const awayDecorations = (away, colors) => {
     away.pants = _.replace(
       away.pants,
       "PANTS_STRIPES",
-      stripesOnPants(color.stroke, colorMapHT(_.sample("gold", "sand", "red")))
+      stripesOnPants(color.stroke, colorMap(_.sample("gold", "sand", "red")))
         .url
     );
   } else if (colors && colors.length === 3) {
-    color.text = colorMapHT(colors[0]);
-    color.stroke = colorMapHT(colors[1] === "white" ? colors[2] : colors[1]);
+    color.text = colorMap(colors[0], applicationType);
+    color.stroke = colorMap(
+      colors[1] === "white" ? colors[2] : colors[1],
+      applicationType
+    );
     away.jersey = _.replace(away.jersey, /(TEAM|NUMBER)TEXTCOLOR/g, color.text);
     away.jersey = _.replace(
       away.jersey,
@@ -179,11 +192,11 @@ const awayDecorations = (away, colors) => {
     away.pants = _.replace(
       away.pants,
       "PANTS_STRIPES",
-      stripesOnPants(color.stroke, colorMapHT(colors[2])).url
+      stripesOnPants(color.stroke, colorMap(colors[2]), applicationType).url
     );
   } else if (colors && colors.length === 1) {
-    color.text = colorMapHT(colors[0]);
-    color.stroke = colorMapHT("black");
+    color.text = colorMap(colors[0], applicationType);
+    color.stroke = colorMap("black", applicationType);
     away.jersey = _.replace(away.jersey, /(TEAM|NUMBER)TEXTCOLOR/g, color.text);
     away.jersey = _.replace(
       away.jersey,
@@ -194,25 +207,30 @@ const awayDecorations = (away, colors) => {
     away.pants = _.replace(
       away.pants,
       "PANTS_STRIPES",
-      stripesOnPants(color.stroke, colorMapHT(_.sample("gold", "sand", "red")))
-        .url
+      stripesOnPants(
+        color.stroke,
+        colorMap(_.sample("gold", "sand", "red"), applicationType)
+      ).url
     );
   } else {
     away.jersey = _.replace(
       away.jersey,
       /(TEAM|NUMBER)TEXTCOLOR/g,
-      "sld_pn_obsidian_shine_ht"
+      colorMap("black", applicationType)
     );
     away.jersey = _.replace(
       away.jersey,
       /(TEAM|NUMBER)STROKECOLOR/g,
-      "sld_pn_matte_power_red_ht"
+      colorMap("red", applicationType)
     );
 
     away.pants = _.replace(
       away.pants,
       "PANTS_STRIPES",
-      stripesOnPants(colorMapHT("silver"), colorMapHT("red")).url
+      stripesOnPants(
+        colorMap("silver", applicationType),
+        colorMap("red", applicationType)
+      ).url
     );
   }
   return away;
@@ -220,12 +238,15 @@ const awayDecorations = (away, colors) => {
 
 const homeDecorations = (home, colors) => {
   const color = {};
+
+  const applicationType = home.jersey.match(/\$application=(\w+)/)[1];
+  console.log(applicationType);
   if (colors && colors.length === 2) {
-    color.text = colorMapHT(colors[1]);
+    color.text = colorMap(colors[1], applicationType);
     if (colors[1].match(/gold/)) {
-      color.stroke = colorMapHT("white");
+      color.stroke = colorMap("white", applicationType);
     } else {
-      color.stroke = colorMapHT(_.sample[("gold", "black")]);
+      color.stroke = colorMap(_.sample[("gold", "black")], applicationType);
     }
     home.jersey = _.replace(home.jersey, /(TEAM|NUMBER)TEXTCOLOR/g, color.text);
     home.jersey = _.replace(
@@ -237,12 +258,14 @@ const homeDecorations = (home, colors) => {
     home.pants = _.replace(
       home.pants,
       "PANTS_STRIPES",
-      stripesOnPants(color.stroke, colorMapHT(_.sample("gold", "sand", "red")))
-        .url
+      stripesOnPants(
+        color.stroke,
+        colorMap(_.sample("gold", "sand", "red"), applicationType)
+      ).url
     );
   } else if (colors && colors.length === 3) {
-    color.text = colorMapHT(colors[1]);
-    color.stroke = colorMapHT(colors[2]);
+    color.text = colorMap(colors[1], applicationType);
+    color.stroke = colorMap(colors[2], applicationType);
     home.jersey = _.replace(home.jersey, /(TEAM|NUMBER)TEXTCOLOR/g, color.text);
     home.jersey = _.replace(
       home.jersey,
@@ -256,8 +279,8 @@ const homeDecorations = (home, colors) => {
       stripesOnPants(color.stroke, color.stroke).url
     );
   } else if (colors && colors.length === 1) {
-    color.text = colorMapHT("white");
-    color.stroke = colorMapHT("black");
+    color.text = colorMap("white", applicationType);
+    color.stroke = colorMap("black", applicationType);
     home.jersey = _.replace(home.jersey, /(TEAM|NUMBER)TEXTCOLOR/g, color.text);
     home.jersey = _.replace(
       home.jersey,
@@ -274,18 +297,21 @@ const homeDecorations = (home, colors) => {
     home.jersey = _.replace(
       home.jersey,
       /(TEAM|NUMBER)TEXTCOLOR/g,
-      "sld_pn_white_ht"
+      colorMap("white", applicationType)
     );
     home.jersey = _.replace(
       home.jersey,
       /(TEAM|NUMBER)STROKECOLOR/g,
-      "sld_pn_matte_power_red_ht"
+      colorMap("red", applicationType)
     );
 
     home.pants = _.replace(
       home.pants,
       "PANTS_STRIPES",
-      stripesOnPants("sld_pn_white_ht", "sld_pn_matte_power_red_ht").url
+      stripesOnPants(
+        colorMap("white", applicationType),
+        colorMap("red", applicationType)
+      ).url
     );
   }
   return home;
@@ -362,7 +388,7 @@ module.exports = {
   JERSEY_URL,
   PANTS_URL,
   FONTS,
-  colorMapHT,
+  colorMap,
   colorMapBase,
   homeDecorations,
   awayDecorations
