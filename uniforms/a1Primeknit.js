@@ -29,7 +29,7 @@ $application=heat_transfer&\
 $text=PLAYERNUMBER&\
 $font=NUMBERFONT&\
 $text_color=NUMBERTEXTCOLOR&\
-$stroke_color=TEAMSTROKECOLOR}&\
+$stroke_color=NUMBERSTROKECOLOR}&\
 obj=a/o/sln&decal&show&res=35.78947368421053&pos=0,0&\
 src=fxg{APP18_pn1_jht_playernumber?&\
 $application=heat_transfer&\
@@ -78,6 +78,32 @@ const COLORMAP_HT = {
   sld_pn_collegiate_royal_ht: ["royal blue", "royal"],
   sld_pn_sterling_silver_ht: ["silver"],
   sld_pn_carbon_silver_ht: ["light"]
+};
+
+const COLORMAP_SP = {
+  sld_pn_black_sp: ["black"],
+  sld_pn_onix_sp: ["onix"],
+  sld_pn_collegiate_navy_sp: ["navy", "navy blue"],
+  sld_pn_collegiate_royal_sp: ["royal"],
+  sld_pn_light_blue_sp: ["light blue", "columbia blue"],
+  sld_pn_collegiate_purple_sp: ["purple"],
+  sld_pn_coffee_sp: ["brown", "coffee"],
+  sld_pn_maroon_sp: ["maroon"],
+  sld_pn_collegiate_burgundy_sp: ["burgundy", "burgandy"],
+  sld_pn_power_red_sp: ["red", "power red"],
+  sld_pn_collegiate_orange_sp: ["orange"],
+  sld_pn_collegiate_gold_sp: ["gold"],
+  sld_pn_dark_green_sp: ["dark green", "forest green"],
+  sld_pn_kelly_green_sp: ["kelly green"],
+  sld_pn_aqua_sp: ["aqua"],
+  sld_pn_green_sp: ["green"],
+  sld_pn_bombay_brown_sp: ["brown"],
+  sld_pn_vegas_gold_sp: ["vegas gold"],
+  sld_pn_sand_sp: ["light gold"],
+  sld_pn_stone_sp: ["stone"],
+  sld_pn_teal_sp: ["teal"],
+  sld_pn_solar_red_sp: ["solar red"],
+  sld_pn_neon_green_sp: ["neon green"]
 };
 
 const colorMapHT = color => {
