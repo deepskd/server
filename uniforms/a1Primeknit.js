@@ -112,14 +112,14 @@ const colorMap = (color, applicationType = "heat_transfer") => {
     colorCode = Object.entries(COLORMAP_HT).filter(clrMap =>
       clrMap[1].includes(color)
     )[0];
-    if (!color) {
+    if (!colorCode) {
       colorCode = ["sld_pn_obsidian_shine_ht"];
     }
   } else if (applicationType === "screen_print") {
     colorCode = Object.entries(COLORMAP_SP).filter(clrMap =>
       clrMap[1].includes(color)
     )[0];
-    if (!color) {
+    if (!colorCode) {
       colorCode = ["sld_pn_black_sp"];
     }
   }
@@ -160,6 +160,7 @@ const colorMapBase = color => {
 const awayDecorations = (away, colors) => {
   const color = {};
   const applicationType = away.jersey.match(/\$application=(\w+)/)[1];
+  console.log(applicationType);
   if (colors && colors.length === 2) {
     color.text = colorMap(colors[0], applicationType);
     color.stroke = colorMap(colors[1], applicationType);
@@ -173,8 +174,7 @@ const awayDecorations = (away, colors) => {
     away.pants = _.replace(
       away.pants,
       "PANTS_STRIPES",
-      stripesOnPants(color.stroke, colorMap(_.sample("gold", "sand", "red")))
-        .url
+      stripesOnPants(color.stroke, colorMap("gold", applicationType)).url
     );
   } else if (colors && colors.length === 3) {
     color.text = colorMap(colors[0], applicationType);
@@ -240,7 +240,6 @@ const homeDecorations = (home, colors) => {
   const color = {};
 
   const applicationType = home.jersey.match(/\$application=(\w+)/)[1];
-  console.log(applicationType);
   if (colors && colors.length === 2) {
     color.text = colorMap(colors[1], applicationType);
     if (colors[1].match(/gold/)) {
@@ -258,10 +257,7 @@ const homeDecorations = (home, colors) => {
     home.pants = _.replace(
       home.pants,
       "PANTS_STRIPES",
-      stripesOnPants(
-        color.stroke,
-        colorMap(_.sample("gold", "sand", "red"), applicationType)
-      ).url
+      stripesOnPants(color.stroke, colorMap("gold", applicationType)).url
     );
   } else if (colors && colors.length === 3) {
     color.text = colorMap(colors[1], applicationType);
@@ -388,7 +384,6 @@ module.exports = {
   JERSEY_URL,
   PANTS_URL,
   FONTS,
-  colorMap,
   colorMapBase,
   homeDecorations,
   awayDecorations

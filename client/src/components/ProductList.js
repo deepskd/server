@@ -126,6 +126,16 @@ class ProductList extends React.Component {
                 </button>
               </div>
             </div>
+            <div className="field">
+              <label>Jersey Text</label>
+              <div className="ui top attached tabular menu">
+                <div className="item">Home</div>
+                <div className="item">Away</div>
+              </div>
+              <div class="ui bottom attached tab segment">
+                <p />
+              </div>
+            </div>
           </form>
         </div>
       </div>

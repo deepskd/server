@@ -56,7 +56,6 @@ const updateJerseyText = (state, typeAndText) => {
       let oldAwayText = newState.products.away.jersey.match(
         /teamnam(e|e_straight)?.{3}text=(([A-Z]|\s|-|\[|\])+)/
       )[2];
-      console.log(oldAwayText);
       newState.products.away.jersey = _.replace(
         newState.products.away.jersey,
         oldAwayText,
