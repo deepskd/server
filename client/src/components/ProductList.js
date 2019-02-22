@@ -4,46 +4,14 @@ import { connect } from "react-redux";
 import ImageCard from "./ImageCard";
 import SchoolCard from "./SchoolCard";
 import TabbedInputMenu from "./TabbedInputMenu";
-import { selectTeam, fontChanged, jerseyTextChanged } from "../actions";
+import { selectTeam, fontChanged } from "../actions";
 
 class ProductList extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { mascot: "", teamName: "" };
-  }
-
   componentDidMount() {
     const { params } = this.props.match;
     const team = {};
     team._id = params.id;
     this.props.selectTeam(team, params.sports);
-  }
-
-  onTextChange(obj) {
-    const attr = Object.keys(obj)[0];
-    switch (attr) {
-      case "mascot":
-        this.setState({ mascot: obj["mascot"].target.value.toUpperCase() });
-        break;
-      case "teamName":
-        this.setState({ teamName: obj["teamName"].target.value.toUpperCase() });
-        break;
-      default:
-        console.log("should not get here");
-    }
-  }
-
-  textUpdated(element) {
-    switch (element) {
-      case "mascot":
-        this.props.jerseyTextChanged({ home: this.state.mascot });
-        break;
-      case "teamName":
-        this.props.jerseyTextChanged({ away: this.state.teamName });
-        break;
-      default:
-        console.log("Should not get here");
-    }
   }
 
   fontChanged(event) {
@@ -115,5 +83,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { selectTeam, fontChanged, jerseyTextChanged }
+  { selectTeam, fontChanged }
 )(ProductList);

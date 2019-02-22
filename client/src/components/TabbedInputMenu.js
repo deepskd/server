@@ -15,6 +15,17 @@ class TabbedInputMenu extends React.Component {
     };
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (
+      nextProps.mascot !== this.props.mascot ||
+      nextProps.teamName !== this.props.teamName
+    ) {
+      this.setState({
+        jerseyText: { home: nextProps.mascot, away: nextProps.teamName }
+      });
+    }
+  }
+
   handleInputChange = event => {
     const { activeTab, jerseyText } = this.state;
     const text = Object.assign({}, jerseyText);
