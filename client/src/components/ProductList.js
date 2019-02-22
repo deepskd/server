@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 
 import ImageCard from "./ImageCard";
 import SchoolCard from "./SchoolCard";
+import TabbedInputMenu from "./TabbedInputMenu";
 import { selectTeam, fontChanged, jerseyTextChanged } from "../actions";
 
 class ProductList extends React.Component {
@@ -93,48 +94,11 @@ class ProductList extends React.Component {
               </select>
             </div>
             <div className="field">
-              <label>Home Jersey Text</label>
-              <div className="ui action input">
-                <input
-                  type="text"
-                  placeholder={team.mascot.toUpperCase()}
-                  value={this.state.mascot}
-                  onChange={e => this.onTextChange({ mascot: e })}
-                />
-                <button
-                  className="ui button"
-                  onClick={event => this.textUpdated("mascot")}
-                >
-                  Update
-                </button>
-              </div>
-            </div>
-            <div className="field">
-              <label>Away Jersey Text</label>
-              <div className="ui action input">
-                <input
-                  type="text"
-                  placeholder={team.name.toUpperCase()}
-                  value={this.state.teamName}
-                  onChange={e => this.onTextChange({ teamName: e })}
-                />
-                <button
-                  className="ui button"
-                  onClick={event => this.textUpdated("teamName")}
-                >
-                  Update
-                </button>
-              </div>
-            </div>
-            <div className="field">
               <label>Jersey Text</label>
-              <div className="ui top attached tabular menu">
-                <div className="item">Home</div>
-                <div className="item">Away</div>
-              </div>
-              <div class="ui bottom attached tab segment">
-                <p />
-              </div>
+              <TabbedInputMenu
+                mascot={team.mascot.toUpperCase()}
+                teamName={team.name.toUpperCase()}
+              />
             </div>
           </form>
         </div>
