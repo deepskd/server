@@ -1,9 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Input, Menu, Segment, Button } from "semantic-ui-react";
-import { jerseyTextChanged } from "../actions";
+import { jerseyTextChanged } from "../../actions";
 
-class TabbedInputMenu extends React.Component {
+class JerseyText extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -78,4 +78,4 @@ class TabbedInputMenu extends React.Component {
 export default connect(
   null,
   { jerseyTextChanged }
-)(TabbedInputMenu);
+)(JerseyText);

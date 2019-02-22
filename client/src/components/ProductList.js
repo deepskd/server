@@ -3,7 +3,8 @@ import { connect } from "react-redux";
 
 import ImageCard from "./ImageCard";
 import SchoolCard from "./SchoolCard";
-import TabbedInputMenu from "./TabbedInputMenu";
+import EmbellishmentSwitch from "./designMenu/EmbellishmentSwitch";
+import JerseyText from "./designMenu/JerseyText";
 import { selectTeam, fontChanged } from "../actions";
 
 class ProductList extends React.Component {
@@ -31,6 +32,10 @@ class ProductList extends React.Component {
   render() {
     const { team } = this.props.teamProducts || null;
     const { products } = this.props.teamProducts || null;
+    const { params } = this.props.match;
+    const football = params.sports === "football" ? {} : { display: "none" };
+    console.log(football);
+
     if (!team) {
       return <div>Loading</div>;
     }
@@ -51,6 +56,9 @@ class ProductList extends React.Component {
         </div>
         <div className="right floated four wide column">
           <form className="ui form" onSubmit={e => e.preventDefault()}>
+            <div className="field" style={football}>
+              <EmbellishmentSwitch />
+            </div>
             <div className="field">
               <label>Font</label>
               <select
@@ -63,7 +71,7 @@ class ProductList extends React.Component {
             </div>
             <div className="field">
               <label>Jersey Text</label>
-              <TabbedInputMenu
+              <JerseyText
                 mascot={team.mascot.toUpperCase()}
                 teamName={team.name.toUpperCase()}
               />
