@@ -1,14 +1,20 @@
 import React from "react";
+import { connect } from "react-redux";
 import { Button } from "semantic-ui-react";
+import { selectTeam } from "../../actions";
 
 class EmbellishmentSwitch extends React.Component {
   state = { embellishmentMethod: "heat_transfer" };
 
-  handleHeatTransfer = () =>
+  handleHeatTransfer = () => {
     this.setState({ embellishmentMethod: "heat_transfer" });
+    this.props.selectTeam(this.props.team, "football", "heat_transfer");
+  };
 
-  handleScreenPrint = () =>
+  handleScreenPrint = () => {
     this.setState({ embellishmentMethod: "screen_print" });
+    this.props.selectTeam(this.props.team, "football", "screen_print");
+  };
 
   render() {
     const { embellishmentMethod } = this.state;
@@ -33,4 +39,7 @@ class EmbellishmentSwitch extends React.Component {
   }
 }
 
-export default EmbellishmentSwitch;
+export default connect(
+  null,
+  { selectTeam }
+)(EmbellishmentSwitch);

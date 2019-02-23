@@ -15,7 +15,7 @@ $text=TEAMNAME&\
 $font=TEAMFONT&\
 $text_color=TEAMTEXTCOLOR&\
 $stroke_color=TEAMSTROKECOLOR&\
-$application=heat_transfer}&
+$application=APPLICATION_TYPE}&
 obj=a/o/cfr&decal&show&res=10.567757977621218&pos=0,0&\
 src=fxg{APP18_pn1_jht_playernumber?&\
 $application=APPLICATION_TYPE&\
@@ -87,7 +87,7 @@ const COLORMAP_SP = {
   sld_pn_collegiate_royal_sp: ["royal"],
   sld_pn_light_blue_sp: ["light blue", "columbia blue"],
   sld_pn_collegiate_purple_sp: ["purple"],
-  sld_pn_coffee_sp: ["brown", "coffee"],
+  sld_pn_coffee_sp: ["coffee"],
   sld_pn_maroon_sp: ["maroon"],
   sld_pn_collegiate_burgundy_sp: ["burgundy", "burgandy"],
   sld_pn_power_red_sp: ["red", "power red"],

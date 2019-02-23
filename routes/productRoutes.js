@@ -14,18 +14,13 @@ const football = (team, applicationType = "heat_transfer") => {
   const font = _.sample(Object.keys(a1PrimeKnitUniform.FONTS));
   const mascot = _.replace(team.mascot || team.name, "/", " ");
 
-  a1PrimeKnitUniform.JERSEY_URL = _.replace(
-    a1PrimeKnitUniform.JERSEY_URL,
-    /APPLICATION_TYPE/g,
-    applicationType
-  );
-
   let home = {};
   home.jersey = _.replace(
     a1PrimeKnitUniform.JERSEY_URL,
     /TEAMNAME/,
     _.toUpper(mascot)
   );
+  home.jersey = _.replace(home.jersey, /APPLICATION_TYPE/g, applicationType);
 
   let homeJerseyBaseColor = team.colors ? team.colors[0] : "black";
 
@@ -83,6 +78,7 @@ const football = (team, applicationType = "heat_transfer") => {
     /TEAMNAME/,
     _.toUpper(_.replace(team.name, "/", " "))
   );
+  away.jersey = _.replace(away.jersey, /APPLICATION_TYPE/g, applicationType);
   away.jersey = _.replace(
     away.jersey,
     /BASECOLOR/,
@@ -205,7 +201,8 @@ module.exports = app => {
     if (req.query.sports === "basketball") {
       res.status(200).json(basketball(team));
     } else {
-      res.status(200).json(football(team));
+      const { embellishmentMethod } = req.query;
+      res.status(200).json(football(team, embellishmentMethod));
     }
   });
 };

@@ -57,7 +57,7 @@ class ProductList extends React.Component {
         <div className="right floated four wide column">
           <form className="ui form" onSubmit={e => e.preventDefault()}>
             <div className="field" style={football}>
-              <EmbellishmentSwitch />
+              <EmbellishmentSwitch team={team} />
             </div>
             <div className="field">
               <label>Font</label>

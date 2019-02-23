@@ -12,9 +12,20 @@ export const findTeams = term => async dispatch => {
   dispatch({ type: FIND_TEAMS, payload: response });
 };
 
-export const selectTeam = (t, sports) => async dispatch => {
+export const selectTeam = (
+  t,
+  sports,
+  embellishment = "heat_transfer"
+) => async dispatch => {
   const team = await gts.get(`/team?id=${t._id}`);
-  const products = await gts.get(`/products?id=${t._id}&sports=${sports}`);
+
+  let emblishmentMethod = "";
+  if (sports === "football") {
+    emblishmentMethod = `&embellishmentMethod=${embellishment}`;
+  }
+  const products = await gts.get(
+    `/products?id=${t._id}&sports=${sports}${emblishmentMethod}`
+  );
   const payload = { products: products.data, team: team.data };
   dispatch({ type: SELECTED_TEAM, payload });
 };
