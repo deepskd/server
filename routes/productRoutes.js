@@ -10,7 +10,7 @@ const tripleUp = require("../uniforms/tripleUp");
 const Team = mongoose.model("teams");
 
 const football = (team, applicationType = "heat_transfer") => {
-  const playerNumber = _.padStart(_.random(0, 99), 2, "0");
+  const playerNumber = _.random(0, 99);
   const font = _.sample(Object.keys(a1PrimeKnitUniform.FONTS));
   const mascot = _.replace(team.mascot || team.name, "/", " ");
 
