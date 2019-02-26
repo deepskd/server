@@ -160,7 +160,6 @@ const colorMapBase = color => {
 const awayDecorations = (away, colors) => {
   const color = {};
   const applicationType = away.jersey.match(/\$application=(\w+)/)[1];
-  console.log(applicationType);
   if (colors && colors.length === 2) {
     color.text = colorMap(colors[0], applicationType);
     color.stroke = colorMap(colors[1], applicationType);
