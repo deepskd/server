@@ -235,10 +235,10 @@ const awayDecorations = (away, colors) => {
   return away;
 };
 
-const homeDecorations = (home, colors) => {
+const homeDecorations = ({ jersey, pant }, colors) => {
   const color = {};
 
-  const applicationType = home.jersey.match(/\$application=(\w+)/)[1];
+  const applicationType = jersey.frontImage.match(/\$application=(\w+)/)[1];
   if (colors && colors.length === 2) {
     color.text = colorMap(colors[1], applicationType);
     if (colors[1].match(/gold/)) {
@@ -246,62 +246,74 @@ const homeDecorations = (home, colors) => {
     } else {
       color.stroke = colorMap(_.sample[("gold", "black")], applicationType);
     }
-    home.jersey = _.replace(home.jersey, /(TEAM|NUMBER)TEXTCOLOR/g, color.text);
-    home.jersey = _.replace(
-      home.jersey,
+    jersey.frontImage = _.replace(
+      jersey.frontImage,
+      /(TEAM|NUMBER)TEXTCOLOR/g,
+      color.text
+    );
+    jersey.frontImage = _.replace(
+      jersey.frontImage,
       /(TEAM|NUMBER)STROKECOLOR/g,
       color.stroke
     );
 
-    home.pants = _.replace(
-      home.pants,
+    pant.frontImage = _.replace(
+      pant.frontImage,
       "PANTS_STRIPES",
       stripesOnPants(color.stroke, colorMap("gold", applicationType)).url
     );
   } else if (colors && colors.length === 3) {
     color.text = colorMap(colors[1], applicationType);
     color.stroke = colorMap(colors[2], applicationType);
-    home.jersey = _.replace(home.jersey, /(TEAM|NUMBER)TEXTCOLOR/g, color.text);
-    home.jersey = _.replace(
-      home.jersey,
+    jersey.frontImage = _.replace(
+      jersey.frontImage,
+      /(TEAM|NUMBER)TEXTCOLOR/g,
+      color.text
+    );
+    jersey.frontImage = _.replace(
+      jersey.frontImage,
       /(TEAM|NUMBER)STROKECOLOR/g,
       color.stroke
     );
 
-    home.pants = _.replace(
-      home.pants,
+    pant.frontImage = _.replace(
+      pant.frontImage,
       "PANTS_STRIPES",
       stripesOnPants(color.stroke, color.stroke).url
     );
   } else if (colors && colors.length === 1) {
     color.text = colorMap("white", applicationType);
     color.stroke = colorMap("black", applicationType);
-    home.jersey = _.replace(home.jersey, /(TEAM|NUMBER)TEXTCOLOR/g, color.text);
-    home.jersey = _.replace(
-      home.jersey,
+    jersey.frontImage = _.replace(
+      jersey.frontImage,
+      /(TEAM|NUMBER)TEXTCOLOR/g,
+      color.text
+    );
+    jersey.frontImage = _.replace(
+      jersey.frontImage,
       /(TEAM|NUMBER)STROKECOLOR/g,
       color.stroke
     );
 
-    home.pants = _.replace(
-      home.pants,
+    pants.frontImage = _.replace(
+      pants.frontImage,
       "PANTS_STRIPES",
       stripesOnPants(color.text, color.stroke).url
     );
   } else {
-    home.jersey = _.replace(
-      home.jersey,
+    jersey.frontImage = _.replace(
+      jersey.frontImage,
       /(TEAM|NUMBER)TEXTCOLOR/g,
       colorMap("white", applicationType)
     );
-    home.jersey = _.replace(
-      home.jersey,
+    jersey.frontImage = _.replace(
+      jersey,
       /(TEAM|NUMBER)STROKECOLOR/g,
       colorMap("red", applicationType)
     );
 
-    home.pants = _.replace(
-      home.pants,
+    pants.frontImage = _.replace(
+      pants.frontImage,
       "PANTS_STRIPES",
       stripesOnPants(
         colorMap("white", applicationType),
@@ -309,7 +321,7 @@ const homeDecorations = (home, colors) => {
       ).url
     );
   }
-  return home;
+  return { jersey, pant };
 };
 
 const stripesOnPants = (primaryColor, secondaryColor) => {
