@@ -248,100 +248,73 @@ const awayDecorations = ({ jersey, pant }, colors) => {
 };
 
 const homeDecorations = ({ jersey, pant }, colors) => {
-  const color = {};
-
   const applicationType = jersey.frontImage.match(/\$application=(\w+)/)[1];
   if (colors && colors.length === 2) {
-    color.text = colorMap(colors[1], applicationType);
+    jersey.textColor = colors[1];
+    jersey.textColorCode = colorMap(colors[1], applicationType);
+
     if (colors[1].match(/gold/)) {
-      color.stroke = colorMap("white", applicationType);
+      jersey.strokeColor = "white";
+      jersey.strokeColorCode = colorMap(jersey.strokeColor, applicationType);
     } else {
-      color.stroke = colorMap(_.sample[("gold", "black")], applicationType);
+      jersey.strokeColor = _.sample(["gold", "black"]);
+      jersey.strokeColorCode = colorMap(jersey.strokeColor, applicationType);
     }
-    jersey.frontImage = _.replace(
-      jersey.frontImage,
-      /(TEAM|NUMBER)TEXTCOLOR/g,
-      color.text
-    );
-    jersey.frontImage = _.replace(
-      jersey.frontImage,
-      /(TEAM|NUMBER)STROKECOLOR/g,
-      color.stroke
-    );
 
-    pant.frontImage = _.replace(
-      pant.frontImage,
-      "PANTS_STRIPES",
-      stripesOnPants(color.stroke, colorMap("gold", applicationType)).url
-    );
+    pant.strokeColor1 = jersey.strokeColor;
+    pant.strokeColor2 = _.sample(["gold", "black"]);
+    pant.strokeColor1Code = jersey.strokeColorCode;
+    pant.strokeColor2Code = colorMap(pant.strokeColor2, applicationType);
   } else if (colors && colors.length === 3) {
-    color.text = colorMap(colors[1], applicationType);
-    color.stroke = colorMap(colors[2], applicationType);
-    jersey.frontImage = _.replace(
-      jersey.frontImage,
-      /(TEAM|NUMBER)TEXTCOLOR/g,
-      color.text
-    );
-    jersey.frontImage = _.replace(
-      jersey.frontImage,
-      /(TEAM|NUMBER)STROKECOLOR/g,
-      color.stroke
-    );
+    jersey.textColor = colors[1];
+    jersey.textColorCode = colorMap(colors[1], applicationType);
+    jersey.strokeColor = colors[2];
+    jersey.strokeColorCode = colorMap(colors[2], applicationType);
 
-    pant.frontImage = _.replace(
-      pant.frontImage,
-      "PANTS_STRIPES",
-      stripesOnPants(color.stroke, color.stroke).url
-    );
-  } else if (colors && colors.length === 1) {
-    color.text = colorMap("white", applicationType);
-    color.stroke = colorMap("black", applicationType);
-    jersey.frontImage = _.replace(
-      jersey.frontImage,
-      /(TEAM|NUMBER)TEXTCOLOR/g,
-      color.text
-    );
-    jersey.frontImage = _.replace(
-      jersey.frontImage,
-      /(TEAM|NUMBER)STROKECOLOR/g,
-      color.stroke
-    );
-
-    pant.frontImage = _.replace(
-      pant.frontImage,
-      "PANTS_STRIPES",
-      stripesOnPants(color.text, color.stroke).url
-    );
+    pant.strokeColor1 = colors[2];
+    pant.strokeColor2 = colors[1];
+    pant.strokeColor1Code = colorMap(pant.strokeColor1, applicationType);
+    pant.strokeColor2Code = colorMap(pant.strokeColor2, applicationType);
   } else {
-    jersey.frontImage = _.replace(
-      jersey.frontImage,
-      /(TEAM|NUMBER)TEXTCOLOR/g,
-      colorMap("white", applicationType)
-    );
-    jersey.frontImage = _.replace(
-      jersey,
-      /(TEAM|NUMBER)STROKECOLOR/g,
-      colorMap("red", applicationType)
-    );
+    // (colors && colors.length === 1) or no colors
+    jersey.textColor = "white";
+    jersey.textColorCode = colorMap("white", applicationType);
+    color.text = jersey.textColorCode;
 
-    pant.frontImage = _.replace(
-      pant.frontImage,
-      "PANTS_STRIPES",
-      stripesOnPants(
-        colorMap("white", applicationType),
-        colorMap("red", applicationType)
-      ).url
-    );
+    jersey.strokeColor = "black";
+    jersey.strokeColorCode = colorMap("black", applicationType);
+    color.stroke = jersey.strokeColorCode;
+
+    pant.strokeColor1 = "red";
+    pant.strokeColor2 = "gold";
+    pant.strokeColor1Code = colorMap(pant.strokeColor1, applicationType);
+    pant.strokeColor2Code = colorMap(pant.strokeColor2, applicationType);
   }
+
+  jersey.frontImage = _.replace(
+    jersey.frontImage,
+    /(TEAM|NUMBER)TEXTCOLOR/g,
+    jersey.textColorCode
+  );
+  jersey.frontImage = _.replace(
+    jersey.frontImage,
+    /(TEAM|NUMBER)STROKECOLOR/g,
+    jersey.strokeColorCode
+  );
+
+  pant.frontImage = _.replace(
+    pant.frontImage,
+    "PANTS_STRIPES",
+    stripesOnPants(pant.strokeColor1Code, pant.strokeColor2Code).url
+  );
+
   return { jersey, pant };
 };
 
 const stripesOnPants = (primaryColor, secondaryColor) => {
   let stripe = _.sample(PANTS_STRIPE_OPTIONS);
-
   stripe.url = _.replace(stripe.url, "STRIPE_PRIMARY_COLOR", primaryColor);
   stripe.url = _.replace(stripe.url, "STRIPE_SECONDARY_COLOR", secondaryColor);
-  console.log(stripe, primaryColor, secondaryColor);
   return stripe;
 };
 
