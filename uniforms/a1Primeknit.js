@@ -220,9 +220,7 @@ const homeDecorations = ({ jersey, pant }, colors) => {
     pant.strokeColor2 = _.sample(["gold", "black"]);
   } else if (colors && colors.length === 3) {
     jersey.textColor = colors[1];
-    jersey.textColorCode = colorMap(colors[1], applicationType);
     jersey.strokeColor = colors[2];
-    jersey.strokeColorCode = colorMap(colors[2], applicationType);
 
     pant.strokeColor1 = colors[2];
     pant.strokeColor2 = colors[1];

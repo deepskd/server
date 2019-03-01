@@ -100,7 +100,7 @@ const football = (team, applicationType = "heat_transfer") => {
 
   let away = {};
   jersey = {};
-  pants = {};
+  pant = {};
 
   jersey.articleDescription = "A1 PrimeKnit Jersey";
   jersey.price = "$185";

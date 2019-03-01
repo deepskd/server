@@ -59,19 +59,19 @@ class JerseyText extends React.Component {
         </Menu>
 
         <Segment attached="bottom">
-          <form onSubmit={e => e.preventDefault()} className="ui form">
-            <Input action fluid>
-              <input
-                type="text"
-                value={jerseyText[activeTab]}
-                onChange={e => this.handleInputChange(e)}
-              />
-              <Button
-                icon={{ name: "edit", color: "blue" }}
-                onClick={e => this.handleTextUpdate(e)}
-              />
-            </Input>
-          </form>
+          <div className="ui action input">
+            <input
+              type="text"
+              value={jerseyText[activeTab]}
+              onChange={e => this.handleInputChange(e)}
+            />
+            <button
+              className="ui icon button"
+              onClick={e => this.handleTextUpdate(e)}
+            >
+              <i className="edit icon" />
+            </button>
+          </div>
         </Segment>
       </div>
     );
