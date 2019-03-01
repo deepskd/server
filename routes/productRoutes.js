@@ -18,6 +18,11 @@ const football = (team, applicationType = "heat_transfer") => {
     jersey = {},
     pant = {};
 
+  jersey.articleDescription = "A1 PrimeKnit Jersey";
+  jersey.price = "$185";
+  pant.articleDescription = "A1 PrimeKnit Pant";
+  pant.price = "$145";
+
   jersey.frontImage = _.replace(
     a1PrimeKnitUniform.JERSEY_URL,
     /TEAMNAME/,
@@ -97,6 +102,10 @@ const football = (team, applicationType = "heat_transfer") => {
   jersey = {};
   pants = {};
 
+  jersey.articleDescription = "A1 PrimeKnit Jersey";
+  jersey.price = "$185";
+  pant.articleDescription = "A1 PrimeKnit Pant";
+  pant.price = "$145";
   jersey.frontImage = _.replace(
     a1PrimeKnitUniform.JERSEY_URL,
     /TEAMNAME/,

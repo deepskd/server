@@ -158,92 +158,49 @@ const colorMapBase = color => {
 };
 
 const awayDecorations = ({ jersey, pant }, colors) => {
-  const color = {};
   const applicationType = jersey.frontImage.match(/\$application=(\w+)/)[1];
   if (colors && colors.length === 2) {
-    color.text = colorMap(colors[0], applicationType);
-    color.stroke = colorMap(colors[1], applicationType);
-    jersey.frontImage = _.replace(
-      jersey.frontImage,
-      /(TEAM|NUMBER)TEXTCOLOR/g,
-      color.text
-    );
-    jersey.frontImage = _.replace(
-      jersey.frontImage,
-      /(TEAM|NUMBER)STROKECOLOR/g,
-      color.stroke
-    );
+    jersey.textColor = colors[0];
+    jersey.strokeColor = colors[1];
 
-    pant.frontImage = _.replace(
-      pant.frontImage,
-      "PANTS_STRIPES",
-      stripesOnPants(color.stroke, colorMap("gold", applicationType)).url
-    );
+    pant.strokeColor1 = colors[0];
+    pant.strokeColor2 = _.sample(["red", "blue", "gold"]);
   } else if (colors && colors.length === 3) {
-    color.text = colorMap(colors[0], applicationType);
-    color.stroke = colorMap(
-      colors[1] === "white" ? colors[2] : colors[1],
-      applicationType
-    );
-    jersey.frontImage = _.replace(
-      jersey.frontImage,
-      /(TEAM|NUMBER)TEXTCOLOR/g,
-      color.text
-    );
-    jersey.frontImage = _.replace(
-      jersey.frontImage,
-      /(TEAM|NUMBER)STROKECOLOR/g,
-      color.stroke
-    );
+    jersey.textColor = colors[0];
+    jersey.strokeColor = colors[1] === "white" ? colors[2] : colors[1];
 
-    pant.frontImage = _.replace(
-      pant.frontImage,
-      "PANTS_STRIPES",
-      stripesOnPants(color.stroke, colorMap(colors[2]), applicationType).url
-    );
-  } else if (colors && colors.length === 1) {
-    color.text = colorMap(colors[0], applicationType);
-    color.stroke = colorMap("black", applicationType);
-    jersey.frontImage = _.replace(
-      jersey.frontImage,
-      /(TEAM|NUMBER)TEXTCOLOR/g,
-      color.text
-    );
-    jersey.frontImage = _.replace(
-      jersey.frontImage,
-      /(TEAM|NUMBER)STROKECOLOR/g,
-      color.stroke
-    );
-
-    pant.frontImage = _.replace(
-      pant.frontImage,
-      "PANTS_STRIPES",
-      stripesOnPants(
-        color.stroke,
-        colorMap(_.sample("gold", "sand", "red"), applicationType)
-      ).url
-    );
+    pant.strokeColor1 = colors[0];
+    pant.strokeColor2 = jersey.strokeColor;
   } else {
-    jersey.frontImage = _.replace(
-      jersey.frontImage,
-      /(TEAM|NUMBER)TEXTCOLOR/g,
-      colorMap("black", applicationType)
-    );
-    jersey.frontImage = _.replace(
-      jersey.frontImage,
-      /(TEAM|NUMBER)STROKECOLOR/g,
-      colorMap("red", applicationType)
-    );
+    jersey.textColor = colors ? colors[0] : "black";
+    jersey.strokeColor = _.sample(["red", "blue", "gold"]);
 
-    pant.frontImage = _.replace(
-      pant.frontImage,
-      "PANTS_STRIPES",
-      stripesOnPants(
-        colorMap("silver", applicationType),
-        colorMap("red", applicationType)
-      ).url
-    );
+    pant.strokeColor1 = jersey.textColor;
+    pant.strokeColor2 = jersey.strokeColor;
   }
+
+  jersey.textColorCode = colorMap(jersey.textColor, applicationType);
+  jersey.strokeColorCode = colorMap(jersey.strokeColor, applicationType);
+  pant.strokeColor1Code = colorMap(pant.strokeColor1, applicationType);
+  pant.strokeColor2Code = colorMap(pant.strokeColor2, applicationType);
+
+  jersey.frontImage = _.replace(
+    jersey.frontImage,
+    /(TEAM|NUMBER)TEXTCOLOR/g,
+    jersey.textColorCode
+  );
+  jersey.frontImage = _.replace(
+    jersey.frontImage,
+    /(TEAM|NUMBER)STROKECOLOR/g,
+    jersey.strokeColorCode
+  );
+
+  pant.frontImage = _.replace(
+    pant.frontImage,
+    "PANTS_STRIPES",
+    stripesOnPants(pant.strokeColor1Code, pant.strokeColor2Code).url
+  );
+
   return { jersey, pant };
 };
 
@@ -255,16 +212,12 @@ const homeDecorations = ({ jersey, pant }, colors) => {
 
     if (colors[1].match(/gold/)) {
       jersey.strokeColor = "white";
-      jersey.strokeColorCode = colorMap(jersey.strokeColor, applicationType);
     } else {
       jersey.strokeColor = _.sample(["gold", "black"]);
-      jersey.strokeColorCode = colorMap(jersey.strokeColor, applicationType);
     }
 
     pant.strokeColor1 = jersey.strokeColor;
     pant.strokeColor2 = _.sample(["gold", "black"]);
-    pant.strokeColor1Code = jersey.strokeColorCode;
-    pant.strokeColor2Code = colorMap(pant.strokeColor2, applicationType);
   } else if (colors && colors.length === 3) {
     jersey.textColor = colors[1];
     jersey.textColorCode = colorMap(colors[1], applicationType);
@@ -273,23 +226,18 @@ const homeDecorations = ({ jersey, pant }, colors) => {
 
     pant.strokeColor1 = colors[2];
     pant.strokeColor2 = colors[1];
-    pant.strokeColor1Code = colorMap(pant.strokeColor1, applicationType);
-    pant.strokeColor2Code = colorMap(pant.strokeColor2, applicationType);
   } else {
-    // (colors && colors.length === 1) or no colors
     jersey.textColor = "white";
-    jersey.textColorCode = colorMap("white", applicationType);
-    color.text = jersey.textColorCode;
-
     jersey.strokeColor = "black";
-    jersey.strokeColorCode = colorMap("black", applicationType);
-    color.stroke = jersey.strokeColorCode;
 
     pant.strokeColor1 = "red";
     pant.strokeColor2 = "gold";
-    pant.strokeColor1Code = colorMap(pant.strokeColor1, applicationType);
-    pant.strokeColor2Code = colorMap(pant.strokeColor2, applicationType);
   }
+
+  jersey.textColorCode = colorMap(jersey.textColor, applicationType);
+  jersey.strokeColorCode = colorMap(jersey.strokeColor, applicationType);
+  pant.strokeColor1Code = colorMap(pant.strokeColor1, applicationType);
+  pant.strokeColor2Code = colorMap(pant.strokeColor2, applicationType);
 
   jersey.frontImage = _.replace(
     jersey.frontImage,
