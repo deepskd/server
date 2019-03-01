@@ -28,13 +28,42 @@ class ProductList extends React.Component {
       );
     });
   }
+  renderProducts({ home, away }) {
+    const { sports } = this.props.match.params;
+    if (sports === "basketball") {
+      return (
+        <React.Fragment>
+          <div className="ui two cards">
+            <ImageCard src={home.jersey} alt={"Home Jersey"} />
+            <ImageCard src={away.jersey} alt={"Away Jersey"} />
+          </div>
+          <div className="ui two cards">
+            <ImageCard src={home.pants} alt={"Home Pant"} />
+            <ImageCard src={away.pants} alt={"Away Pant"} />
+          </div>
+        </React.Fragment>
+      );
+    } else {
+      return (
+        <React.Fragment>
+          <div className="ui two cards">
+            <ImageCard src={home.jersey.frontImage} alt={"Home Jersey"} />
+            <ImageCard src={away.jersey.frontImage} alt={"Away Jersey"} />
+          </div>
+          <div className="ui two cards">
+            <ImageCard src={home.pant.frontImage} alt={"Home Pant"} />
+            <ImageCard src={away.pant.frontImage} alt={"Away Pant"} />
+          </div>
+        </React.Fragment>
+      );
+    }
+  }
 
   render() {
     const { team } = this.props.teamProducts || null;
     const { products } = this.props.teamProducts || null;
     const { params } = this.props.match;
     const football = params.sports === "football" ? {} : { display: "none" };
-    console.log(football);
 
     if (!team) {
       return <div>Loading</div>;
@@ -43,16 +72,7 @@ class ProductList extends React.Component {
       <div className="ui fluid grid">
         <SchoolCard team={team} />
         <div className="left floated twelve wide column">
-          <div className="ui grid">
-            <div className="ui two cards">
-              <ImageCard src={products.home.jersey} alt={"Home Jersey"} />
-              <ImageCard src={products.away.jersey} alt={"Away Jersey"} />
-            </div>
-            <div className="ui two cards">
-              <ImageCard src={products.home.pants} alt={"Home Pants"} />
-              <ImageCard src={products.away.pants} alt={"Away Pants"} />
-            </div>
-          </div>
+          <div className="ui grid">{this.renderProducts(products)}</div>
         </div>
         <div className="right floated four wide column">
           <form className="ui form" onSubmit={e => e.preventDefault()}>
