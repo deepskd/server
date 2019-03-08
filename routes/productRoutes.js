@@ -174,74 +174,100 @@ const basketball = team => {
   const font = _.sample(Object.keys(tripleUp.FONTS));
   const mascot = _.replace(team.mascot || team.name, "/", " ");
 
-  let home = {};
-  home.jersey = _.replace(tripleUp.JERSEY_URL, /TEAMNAME/, _.toUpper(mascot));
-  home.jersey = _.replace(home.jersey, /BASECOLOR/, tripleUp.colorMap("white"));
-  home.jersey = _.replace(
-    home.jersey,
+  let home = {},
+    jersey = {},
+    pant = {};
+
+  jersey.articleDescription = "TripleUp Jersey";
+  jersey.price = "$99";
+  pant.articleDescription = "TripeUp Pant";
+  pant.price = "$90";
+  jersey.frontImage = _.replace(
+    tripleUp.JERSEY_URL,
+    /TEAMNAME/,
+    _.toUpper(mascot)
+  );
+  jersey.frontImage = _.replace(
+    jersey.frontImage,
+    /BASECOLOR/,
+    tripleUp.colorMap("white")
+  );
+  jersey.frontImage = _.replace(
+    jersey.frontImage,
     /LOGOCOLOR/,
     tripleUp.colorMap(team.colors ? team.colors[0] : "black")
   );
-  home.jersey = _.replace(home.jersey, /PLAYERNUMBER/g, playerNumber);
-  home.jersey = _.replace(home.jersey, /(TEAM|NUMBER)FONT/g, font);
-  home.jersey = tripleUp.homeDecorations(home.jersey, team.colors);
+  jersey.frontImage = _.replace(
+    jersey.frontImage,
+    /PLAYERNUMBER/g,
+    playerNumber
+  );
+  jersey.frontImage = _.replace(jersey.frontImage, /(TEAM|NUMBER)FONT/g, font);
 
-  home.pants = _.replace(
+  pant.frontImage = _.replace(
     tripleUp.PANTS_URL,
     /BASECOLOR/,
     tripleUp.colorMap("white")
   );
 
-  home.pants = _.replace(
-    home.pants,
+  pant.frontImage = _.replace(
+    pant.frontImage,
     /(LOGO|TEAMTEXT)COLOR/g,
     tripleUp.colorMap(team.colors ? team.colors[0] : "black")
   );
-  home.pants = _.replace(
-    home.pants,
+  pant.frontImage = _.replace(
+    pant.frontImage,
     /TEAMSTROKECOLOR/,
     tripleUp.colorMap(team.colors ? team.colors[1] : "black")
   );
+  home = tripleUp.homeDecorations({ jersey, pant }, team.colors);
 
   let away = {};
-  away.jersey = _.replace(
+  jersey = {};
+  pant = {};
+
+  jersey.frontImage = _.replace(
     tripleUp.JERSEY_URL,
     /TEAMNAME/,
     _.toUpper(_.replace(team.name, "/", " "))
   );
   let awayJerseyBaseColor = team.colors ? team.colors[0] : "black";
 
-  away.jersey = _.replace(
-    away.jersey,
+  jersey.frontImage = _.replace(
+    jersey.frontImage,
     /BASECOLOR/,
     tripleUp.colorMap(awayJerseyBaseColor)
   );
   let awayLogoColor = team.colors ? team.colors[1] : "white";
-  away.jersey = _.replace(
-    away.jersey,
+  jersey.frontImage = _.replace(
+    jersey.frontImage,
     /LOGOCOLOR/,
     tripleUp.colorMap(awayLogoColor)
   );
-  away.jersey = _.replace(away.jersey, /PLAYERNUMBER/g, playerNumber);
-  away.jersey = _.replace(away.jersey, /(TEAM|NUMBER)FONT/g, font);
-  away.jersey = tripleUp.awayDecorations(away.jersey, team.colors);
+  jersey.frontImage = _.replace(
+    jersey.frontImage,
+    /PLAYERNUMBER/g,
+    playerNumber
+  );
+  jersey.frontImage = _.replace(jersey.frontImage, /(TEAM|NUMBER)FONT/g, font);
 
-  away.pants = _.replace(
+  pant.frontImage = _.replace(
     tripleUp.PANTS_URL,
     /BASECOLOR/,
     tripleUp.colorMap(team.colors ? team.colors[0] : "white")
   );
 
-  away.pants = _.replace(
-    away.pants,
+  pant.frontImage = _.replace(
+    pant.frontImage,
     /(LOGO|TEAMTEXT)COLOR/g,
     tripleUp.colorMap(team.colors ? team.colors[1] : "white")
   );
-  away.pants = _.replace(
-    away.pants,
+  pant.frontImage = _.replace(
+    pant.frontImage,
     /TEAMSTROKECOLOR/,
     tripleUp.colorMap(team.colors ? team.colors[0] : "black")
   );
+  away = tripleUp.awayDecorations({ jersey, pant }, team.colors);
 
   return { home, away, fonts: tripleUp.FONTS, selectedFont: font };
 };

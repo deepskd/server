@@ -91,60 +91,63 @@ const colorMap = color => {
   return colorCode[0];
 };
 
-const homeDecorations = (home, colors) => {
-  const color = {};
+const homeDecorations = ({ jersey, pant }, colors) => {
   if (colors && colors.length === 2) {
-    color.text = colorMap(colors[0]);
-    color.stroke = colorMap(colors[1]);
-    home = _.replace(home, /(TEAM|NUMBER)TEXTCOLOR/g, color.text);
-    home = _.replace(home, /(TEAM|NUMBER)STROKECOLOR/g, color.stroke);
+    jersey.textColor = colors[0];
+    jersey.strokeColor = colors[1] === "white" ? "gold" : colors[1];
   } else if (colors && colors.length === 3) {
-    color.text = colorMap(colors[0]);
-    color.stroke = colorMap(colors[1] === "white" ? colors[2] : colors[1]);
-    home = _.replace(home, /(TEAM|NUMBER)TEXTCOLOR/g, color.text);
-    home = _.replace(home, /(TEAM|NUMBER)STROKECOLOR/g, color.stroke);
-  } else if (colors && colors.length === 1) {
-    color.text = colorMap(colors[0]);
-    color.stroke = colorMap("black");
-    home = _.replace(home, /(TEAM|NUMBER)TEXTCOLOR/g, color.text);
-    home = _.replace(home, /(TEAM|NUMBER)STROKECOLOR/g, color.stroke);
+    jersey.textColor = colors[0];
+    jersey.strokeColor = colors[1] === "white" ? colors[2] : colors[1];
   } else {
-    home = _.replace(home, /(TEAM|NUMBER)TEXTCOLOR/g, "tru_black");
-    home = _.replace(home, /(TEAM|NUMBER)STROKECOLOR/g, "tru_power_red");
+    jersey.textColor = colors ? colors[0] : "red";
+    jersey.strokeColor = "black";
   }
-  return home;
+
+  jersey.textColorCode = colorMap(jersey.textColor);
+  jersey.strokeColorCode = colorMap(jersey.strokeColor);
+
+  jersey.frontImage = _.replace(
+    jersey.frontImage,
+    /(TEAM|NUMBER)TEXTCOLOR/g,
+    jersey.textColorCode
+  );
+  jersey.frontImage = _.replace(
+    jersey.frontImage,
+    /(TEAM|NUMBER)STROKECOLOR/g,
+    jersey.strokeColorCode
+  );
+  return { jersey, pant };
 };
 
-const awayDecorations = (away, colors) => {
-  const color = {};
+const awayDecorations = ({ jersey, pant }, colors) => {
   if (colors && colors.length === 2) {
-    color.text = colorMap(colors[1]);
-    if (colors[1].match(/gold/)) {
-      color.stroke = colorMap("white");
-    } else {
-      color.stroke = colorMap(_.sample[("gold", "black")]);
-    }
-    away = _.replace(away, /(TEAM|NUMBER)TEXTCOLOR/g, color.text);
-    away = _.replace(away, /(TEAM|NUMBER)STROKECOLOR/g, color.stroke);
+    jersey.textColor = colors[1];
+    jersey.strokeColor = colors[1].match(/gold/)
+      ? "white"
+      : _.sample[("gold", "black")];
   } else if (colors && colors.length === 3) {
-    color.text = colorMap(colors[1]);
-    color.stroke = colorMap(colors[2]);
-    away = _.replace(away, /(TEAM|NUMBER)TEXTCOLOR/g, color.text);
-    away = _.replace(away, /(TEAM|NUMBER)STROKECOLOR/g, color.stroke);
-  } else if (colors && colors.length === 1) {
-    color.text = colorMap("white");
-    color.stroke = colorMap("black");
-    away = _.replace(away, /(TEAM|NUMBER)TEXTCOLOR/g, color.text);
-    away = _.replace(away, /(TEAM|NUMBER)STROKECOLOR/g, color.stroke);
+    jersey.textColor = colors[1];
+    jersey.strokeColor = colors[2];
   } else {
-    away = _.replace(away, /(TEAM|NUMBER)TEXTCOLOR/g, "sld_pn_white_ht");
-    away = _.replace(
-      away,
-      /(TEAM|NUMBER)STROKECOLOR/g,
-      "sld_pn_matte_power_red_ht"
-    );
+    jersey.textColor = "white";
+    jersey.strokeColor = "black";
   }
-  return away;
+
+  jersey.textColorCode = colorMap(jersey.textColor);
+  jersey.strokeColorCode = colorMap(jersey.strokeColor);
+
+  jersey.frontImage = _.replace(
+    jersey.frontImage,
+    /(TEAM|NUMBER)TEXTCOLOR/g,
+    jersey.textColorCode
+  );
+  jersey.frontImage = _.replace(
+    jersey.frontImage,
+    /(TEAM|NUMBER)STROKECOLOR/g,
+    jersey.strokeColorCode
+  );
+
+  return { jersey, pant };
 };
 
 module.exports = {

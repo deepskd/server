@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Input, Menu, Segment, Button } from "semantic-ui-react";
+import { Menu, Segment } from "semantic-ui-react";
 import { jerseyTextChanged } from "../../actions";
 
 class JerseyText extends React.Component {
