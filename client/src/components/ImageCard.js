@@ -8,7 +8,7 @@ class ImageCard extends React.Component {
     this.state = {
       loading: true,
       direction: "front",
-      imageURL: this.props.src
+      imageURL: this.props.src.frontImage
     };
 
     this.imageRef = React.createRef();
@@ -21,7 +21,7 @@ class ImageCard extends React.Component {
   componentWillReceiveProps(nextProps) {
     if (nextProps.src !== this.props.src) {
       this.setState({
-        imageURL: nextProps.src,
+        imageURL: nextProps.src.frontImage,
         direction: "front",
         loading: true
       });
@@ -51,6 +51,11 @@ class ImageCard extends React.Component {
   };
 
   render() {
+    const { src } = this.props;
+    if (!src) {
+      return <div>Loading</div>;
+    }
+
     return (
       <div className="card fluid" style={{ width: "250px" }}>
         <div className={this.renderLoader()} style={{ height: "300px" }}>
@@ -71,7 +76,15 @@ class ImageCard extends React.Component {
             />
           </div>
         </div>
-        <div className="content" />
+        <div className="content">
+          <div className="ui sub header">{src.articleDescription}</div>
+        </div>
+        <div className="extra content">
+          <span className="left floated">{src.price}</span>
+          <span className="right floated">
+            <i className="cart icon" />
+          </span>
+        </div>
       </div>
     );
   }

@@ -22,14 +22,14 @@ const updateFont = (state, font) => {
   let newState = { ...state };
   const oldFont = new RegExp(state.products.selectedFont, "g");
 
-  newState.products.home.jersey = _.replace(
-    newState.products.home.jersey,
+  newState.products.home.jersey.frontImage = _.replace(
+    newState.products.home.jersey.frontImage,
     oldFont,
     font
   );
 
-  newState.products.away.jersey = _.replace(
-    newState.products.away.jersey,
+  newState.products.away.jersey.frontImage = _.replace(
+    newState.products.away.jersey.frontImage,
     oldFont,
     font
   );

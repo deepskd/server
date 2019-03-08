@@ -32,12 +32,12 @@ class ProductList extends React.Component {
     return (
       <React.Fragment>
         <div className="ui two cards">
-          <ImageCard src={home.jersey.frontImage} alt={"Home Jersey"} />
-          <ImageCard src={away.jersey.frontImage} alt={"Away Jersey"} />
+          <ImageCard src={home.jersey} alt={"Home Jersey"} />
+          <ImageCard src={away.jersey} alt={"Away Jersey"} />
         </div>
         <div className="ui two cards">
-          <ImageCard src={home.pant.frontImage} alt={"Home Pant"} />
-          <ImageCard src={away.pant.frontImage} alt={"Away Pant"} />
+          <ImageCard src={home.pant} alt={"Home Pant"} />
+          <ImageCard src={away.pant} alt={"Away Pant"} />
         </div>
       </React.Fragment>
     );

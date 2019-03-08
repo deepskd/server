@@ -226,6 +226,11 @@ const basketball = team => {
   jersey = {};
   pant = {};
 
+  jersey.articleDescription = "TripleUp Jersey";
+  jersey.price = "$99";
+  pant.articleDescription = "TripeUp Pant";
+  pant.price = "$90";
+
   jersey.frontImage = _.replace(
     tripleUp.JERSEY_URL,
     /TEAMNAME/,
