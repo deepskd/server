@@ -29,34 +29,18 @@ class ProductList extends React.Component {
     });
   }
   renderProducts({ home, away }) {
-    const { sports } = this.props.match.params;
-    if (sports === "basketball") {
-      return (
-        <React.Fragment>
-          <div className="ui two cards">
-            <ImageCard src={home.jersey} alt={"Home Jersey"} />
-            <ImageCard src={away.jersey} alt={"Away Jersey"} />
-          </div>
-          <div className="ui two cards">
-            <ImageCard src={home.pants} alt={"Home Pant"} />
-            <ImageCard src={away.pants} alt={"Away Pant"} />
-          </div>
-        </React.Fragment>
-      );
-    } else {
-      return (
-        <React.Fragment>
-          <div className="ui two cards">
-            <ImageCard src={home.jersey.frontImage} alt={"Home Jersey"} />
-            <ImageCard src={away.jersey.frontImage} alt={"Away Jersey"} />
-          </div>
-          <div className="ui two cards">
-            <ImageCard src={home.pant.frontImage} alt={"Home Pant"} />
-            <ImageCard src={away.pant.frontImage} alt={"Away Pant"} />
-          </div>
-        </React.Fragment>
-      );
-    }
+    return (
+      <React.Fragment>
+        <div className="ui two cards">
+          <ImageCard src={home.jersey.frontImage} alt={"Home Jersey"} />
+          <ImageCard src={away.jersey.frontImage} alt={"Away Jersey"} />
+        </div>
+        <div className="ui two cards">
+          <ImageCard src={home.pant.frontImage} alt={"Home Pant"} />
+          <ImageCard src={away.pant.frontImage} alt={"Away Pant"} />
+        </div>
+      </React.Fragment>
+    );
   }
 
   render() {

@@ -59,7 +59,7 @@ class JerseyText extends React.Component {
         </Menu>
 
         <Segment attached="bottom">
-          <div className="ui action input">
+          <div className="ui fluid action input">
             <input
               type="text"
               value={jerseyText[activeTab]}
