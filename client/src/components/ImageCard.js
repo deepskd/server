@@ -19,7 +19,8 @@ class ImageCard extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.src !== this.props.src) {
+    if (nextProps.src.frontImage !== this.props.src.frontImage) {
+      console.log("state change", nextProps.src.frontImage);
       this.setState({
         imageURL: nextProps.src.frontImage,
         direction: "front",
@@ -76,10 +77,8 @@ class ImageCard extends React.Component {
             />
           </div>
         </div>
-        <div className="content">
-          <div className="ui sub header">{src.articleDescription}</div>
-        </div>
         <div className="extra content">
+          <div className="ui sub header">{src.articleDescription}</div>
           <span className="left floated">{src.price}</span>
           <span className="right floated">
             <i className="cart icon" />

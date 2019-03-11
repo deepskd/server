@@ -29,6 +29,7 @@ class ProductList extends React.Component {
     });
   }
   renderProducts({ home, away }) {
+    console.log(home, away);
     return (
       <React.Fragment>
         <div className="ui two cards">

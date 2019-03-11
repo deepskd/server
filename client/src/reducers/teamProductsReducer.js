@@ -21,7 +21,6 @@ export default (state = [], action) => {
 const updateFont = (state, font) => {
   let newState = { ...state };
   const oldFont = new RegExp(state.products.selectedFont, "g");
-
   newState.products.home.jersey.frontImage = _.replace(
     newState.products.home.jersey.frontImage,
     oldFont,
@@ -34,6 +33,7 @@ const updateFont = (state, font) => {
     font
   );
   newState.products.selectedFont = font;
+  console.log("updated:", newState);
   return newState;
 };
 
