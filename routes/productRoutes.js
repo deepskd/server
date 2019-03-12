@@ -23,10 +23,11 @@ const football = (team, applicationType = "heat_transfer") => {
   pant.articleDescription = "A1 PrimeKnit Pant";
   pant.price = "$145";
 
+  jersey.frontText = _.toUpper(mascot);
   jersey.frontImage = _.replace(
     a1PrimeKnitUniform.JERSEY_URL,
     /TEAMNAME/,
-    _.toUpper(mascot)
+    jersey.frontText
   );
   jersey.frontImage = _.replace(
     jersey.frontImage,
@@ -106,10 +107,12 @@ const football = (team, applicationType = "heat_transfer") => {
   jersey.price = "$185";
   pant.articleDescription = "A1 PrimeKnit Pant";
   pant.price = "$145";
+
+  jersey.frontText = _.toUpper(_.replace(team.name, "/", " "));
   jersey.frontImage = _.replace(
     a1PrimeKnitUniform.JERSEY_URL,
     /TEAMNAME/,
-    _.toUpper(_.replace(team.name, "/", " "))
+    jersey.frontText
   );
   jersey.frontImage = _.replace(
     jersey.frontImage,
@@ -182,10 +185,13 @@ const basketball = team => {
   jersey.price = "$80";
   pant.articleDescription = "TripeUp Pant";
   pant.price = "$85";
+
+  jersey.frontText = _.toUpper(mascot);
+  jersey.textFont = font;
   jersey.frontImage = _.replace(
     tripleUp.JERSEY_URL,
     /TEAMNAME/,
-    _.toUpper(mascot)
+    jersey.frontText
   );
   jersey.frontImage = _.replace(
     jersey.frontImage,
@@ -231,10 +237,12 @@ const basketball = team => {
   pant.articleDescription = "TripeUp Pant";
   pant.price = "$85";
 
+  jersey.frontText = _.toUpper(_.replace(team.name, "/", " "));
+  jersey.textFont = font;
   jersey.frontImage = _.replace(
     tripleUp.JERSEY_URL,
     /TEAMNAME/,
-    _.toUpper(_.replace(team.name, "/", " "))
+    jersey.frontText
   );
   let awayJerseyBaseColor = team.colors ? team.colors[0] : "black";
 

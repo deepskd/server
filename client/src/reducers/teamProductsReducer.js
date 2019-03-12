@@ -33,7 +33,6 @@ const updateFont = (state, font) => {
     font
   );
   newState.products.selectedFont = font;
-  console.log("updated:", newState);
   return newState;
 };
 

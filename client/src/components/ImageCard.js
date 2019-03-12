@@ -6,9 +6,10 @@ class ImageCard extends React.Component {
     super(props);
 
     this.state = {
-      loading: true,
+      loading: "",
       direction: "front",
-      imageURL: this.props.src.frontImage
+      imageURL: this.props.src.frontImage,
+      text: this.props.src.jerseyText
     };
 
     this.imageRef = React.createRef();
@@ -18,36 +19,34 @@ class ImageCard extends React.Component {
     this.imageRef.current.addEventListener("load", this.hideLoader);
   }
 
+  componentDidUpdate() {
+    this.imageRef.current.addEventListener("load", this.hideLoader);
+  }
+
   componentWillReceiveProps(nextProps) {
-    if (nextProps.src.frontImage !== this.props.src.frontImage) {
-      console.log("state change", nextProps.src.frontImage);
+    if (nextProps.src.frontImage !== this.state.imageURL) {
       this.setState({
         imageURL: nextProps.src.frontImage,
         direction: "front",
-        loading: true
+        loading: ""
       });
     }
   }
 
   hideLoader = () => {
-    this.setState({ loading: false });
+    // console.log(this.state);
+    this.setState({ loading: "active" });
+    // console.log(this.state);
   };
-
-  renderLoader() {
-    if (!this.state.loading) {
-      return "ui active masked slide reveal image";
-    }
-    return "ui slide masked reveal image";
-  }
 
   rotateImage = article => {
     let imageURL = article;
     if (this.state.direction === "back") {
       imageURL = _.replace(article, /_(1|7)/, "_1");
-      this.setState({ direction: "front", imageURL: imageURL, loading: true });
+      this.setState({ direction: "front", imageURL: imageURL, loading: "" });
     } else if (this.state.direction === "front") {
       imageURL = _.replace(article, "_1", "_7");
-      this.setState({ direction: "back", imageURL: imageURL, loading: true });
+      this.setState({ direction: "back", imageURL: imageURL, loading: "" });
     }
   };
 
@@ -59,7 +58,10 @@ class ImageCard extends React.Component {
 
     return (
       <div className="card fluid" style={{ width: "250px" }}>
-        <div className={this.renderLoader()} style={{ height: "300px" }}>
+        <div
+          className={`ui ${this.state.loading} slide masked reveal image`}
+          style={{ height: "300px" }}
+        >
           <div className="ui fluid placeholder visible content">
             <div className="image" style={{ height: "300px" }} />
           </div>
