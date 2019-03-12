@@ -34,9 +34,7 @@ class ImageCard extends React.Component {
   }
 
   hideLoader = () => {
-    // console.log(this.state);
     this.setState({ loading: "active" });
-    // console.log(this.state);
   };
 
   rotateImage = article => {
