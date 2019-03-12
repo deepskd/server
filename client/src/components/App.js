@@ -25,8 +25,7 @@ const App = () => {
 };
 
 function initializeReactGA() {
-  console.log(process.env.REACT_APP_GA_CODE);
-  ReactGA.initialize("UA-131840948-1");
+  ReactGA.initialize(process.env.REACT_APP_GA_CODE);
   ReactGA.pageview("/homepage");
 }
 
