@@ -79,6 +79,29 @@ const COLORMAP = {
   tru_clear_onix: ["silver"]
 };
 
+const COLORS = {
+  tru_black: "#000000",
+  tru_white: "#ffffff",
+  tru_collegiate_navy: "#000F44",
+  tru_collegiate_royal: "#2b3c74",
+  tru_light_blue: "#7092bc",
+  tru_maroon: "#4a2d35",
+  tru_collegiate_burgundy: "#602732",
+  tru_power_red: "#891e2e",
+  tru_collegiate_orange: "#b74024",
+  tru_collegiate_gold: "#eca800",
+  tru_yellow: "#e8d000",
+  tru_sand: "#baab81",
+  tru_coffee: "#6f4e37",
+  tru_collegiate_aqua: "#03bb85",
+  tru_green: "#40735e",
+  tru_dark_green: "#324c44",
+  tru_collegiate_purple: "#38305a",
+  tru_intense_pink: "#cf388b",
+  tru_onix: "#555f66",
+  tru_clear_onix: "#a9abb0"
+};
+
 const colorMap = color => {
   let colorCode = "";
   colorCode = Object.entries(COLORMAP).filter(clrMap =>
@@ -154,6 +177,7 @@ module.exports = {
   JERSEY_URL,
   PANTS_URL,
   FONTS,
+  COLORS,
   colorMap,
   homeDecorations,
   awayDecorations

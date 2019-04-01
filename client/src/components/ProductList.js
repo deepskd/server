@@ -5,6 +5,7 @@ import ImageCard from "./ImageCard";
 import SchoolCard from "./SchoolCard";
 import EmbellishmentSwitch from "./designMenu/EmbellishmentSwitch";
 import JerseyText from "./designMenu/JerseyText";
+import ColorOptions from "./designMenu/ColorOptions";
 import { selectTeam, fontChanged } from "../actions";
 
 class ProductList extends React.Component {
@@ -79,6 +80,10 @@ class ProductList extends React.Component {
                 mascot={team.mascot.toUpperCase()}
                 teamName={team.name.toUpperCase()}
               />
+            </div>
+            <div className="field">
+              <label>Colors</label>
+              <ColorOptions products={products} />
             </div>
           </form>
         </div>

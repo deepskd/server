@@ -169,7 +169,13 @@ const football = (team, applicationType = "heat_transfer") => {
   }
   away = a1PrimeKnitUniform.awayDecorations({ jersey, pant }, team.colors);
 
-  return { home, away, fonts: a1PrimeKnitUniform.FONTS, selectedFont: font };
+  return {
+    home,
+    away,
+    fonts: a1PrimeKnitUniform.FONTS,
+    selectedFont: font,
+    colors: a1PrimeKnitUniform.COLORS
+  };
 };
 
 const basketball = team => {
@@ -193,21 +199,26 @@ const basketball = team => {
     /TEAMNAME/,
     jersey.frontText
   );
+  jersey.baseColor = "white";
+  jersey.baseColorCode = tripleUp.colorMap(jersey.baseColor);
   jersey.frontImage = _.replace(
     jersey.frontImage,
     /BASECOLOR/,
-    tripleUp.colorMap("white")
+    jersey.baseColorCode
   );
+  jersey.logoColor = team.colors ? team.colors[0] : "black";
+  jersey.logoColorCode = tripleUp.colorMap(jersey.logoColor);
   jersey.frontImage = _.replace(
     jersey.frontImage,
     /LOGOCOLOR/,
-    tripleUp.colorMap(team.colors ? team.colors[0] : "black")
+    jersey.logoColorCode
   );
   jersey.frontImage = _.replace(
     jersey.frontImage,
     /PLAYERNUMBER/g,
     playerNumber
   );
+  jersey.font = font;
   jersey.frontImage = _.replace(jersey.frontImage, /(TEAM|NUMBER)FONT/g, font);
 
   pant.frontImage = _.replace(
@@ -244,24 +255,28 @@ const basketball = team => {
     /TEAMNAME/,
     jersey.frontText
   );
-  let awayJerseyBaseColor = team.colors ? team.colors[0] : "black";
 
+  jersey.baseColor = team.colors ? team.colors[0] : "black";
+  jersey.baseColorCode = tripleUp.colorMap(jersey.baseColor);
   jersey.frontImage = _.replace(
     jersey.frontImage,
     /BASECOLOR/,
-    tripleUp.colorMap(awayJerseyBaseColor)
+    jersey.baseColorCode
   );
-  let awayLogoColor = team.colors ? team.colors[1] : "white";
+
+  jersey.logoColor = team.colors ? team.colors[1] : "white";
+  jersey.logoColorCode = tripleUp.colorMap(jersey.logoColor);
   jersey.frontImage = _.replace(
     jersey.frontImage,
     /LOGOCOLOR/,
-    tripleUp.colorMap(awayLogoColor)
+    jersey.logoColorCode
   );
   jersey.frontImage = _.replace(
     jersey.frontImage,
     /PLAYERNUMBER/g,
     playerNumber
   );
+  jersey.font = font;
   jersey.frontImage = _.replace(jersey.frontImage, /(TEAM|NUMBER)FONT/g, font);
 
   pant.frontImage = _.replace(
@@ -282,7 +297,13 @@ const basketball = team => {
   );
   away = tripleUp.awayDecorations({ jersey, pant }, team.colors);
 
-  return { home, away, fonts: tripleUp.FONTS, selectedFont: font };
+  return {
+    home,
+    away,
+    fonts: tripleUp.FONTS,
+    selectedFont: font,
+    colors: tripleUp.COLORS
+  };
 };
 
 module.exports = app => {
