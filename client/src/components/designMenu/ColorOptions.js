@@ -13,6 +13,19 @@ class ColorOptions extends React.Component {
     };
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (
+      nextProps.mascot !== this.props.mascot ||
+      nextProps.teamName !== this.props.teamName
+    ) {
+      const { home, colors } = nextProps.products;
+      this.setState({
+        textColor: colors[home.jersey.textColorCode],
+        strokeColor: colors[home.jersey.strokeColorCode]
+      });
+    }
+  }
+
   handleColorChange(obj, c) {
     const { activeTab } = this.state;
     const { home, away, colors } = this.props.products;
@@ -55,8 +68,6 @@ class ColorOptions extends React.Component {
   }
 
   renderColors(obj, colors) {
-    console.log(colors);
-    console.log(this.state);
     return Object.values(colors).map(c => {
       return (
         <Dropdown.Item

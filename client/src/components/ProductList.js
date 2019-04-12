@@ -83,7 +83,11 @@ class ProductList extends React.Component {
             </div>
             <div className="field">
               <label>Colors</label>
-              <ColorOptions products={products} />
+              <ColorOptions
+                mascot={team.mascot.toUpperCase()}
+                teamName={team.name.toUpperCase()}
+                products={products}
+              />
             </div>
           </form>
         </div>
