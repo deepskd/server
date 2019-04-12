@@ -61,7 +61,7 @@ const FONTS = {
   half_block_2015: "Half Block"
 };
 
-const COLORS = {
+const COLORS_LIST = {
   sld_pn_obsidian_shine_ht: "#000000",
   sld_pn_collegiate_orange_ht: "#b74024",
   sld_pn_collegiate_purple_ht: "#38305a",
@@ -248,6 +248,7 @@ const awayDecorations = ({ jersey, pant }, colors) => {
 
 const homeDecorations = ({ jersey, pant }, colors) => {
   const applicationType = jersey.frontImage.match(/\$application=(\w+)/)[1];
+
   if (colors && colors.length === 2) {
     jersey.textColor = colors[1];
     jersey.textColorCode = colorMap(colors[1], applicationType);
@@ -366,11 +367,28 @@ const PANTS_STRIPE_OPTIONS = [
   }
 ];
 
+const getColors = applicationType => {
+  const COLORS = {};
+  if (applicationType === "heat_transfer") {
+    let keys = Object.keys(COLORS_LIST).filter(c => c.match(/_ht$/));
+    keys.forEach(c => {
+      COLORS[c] = COLORS_LIST[c];
+    });
+  } else if (applicationType === "screen_print") {
+    let keys = Object.keys(COLORS_LIST).filter(c => c.match(/_sp$/));
+
+    keys.forEach(c => {
+      COLORS[c] = COLORS_LIST[c];
+    });
+  }
+  return COLORS;
+};
+
 module.exports = {
   JERSEY_URL,
   PANTS_URL,
   FONTS,
-  COLORS,
+  getColors,
   colorMapBase,
   homeDecorations,
   awayDecorations

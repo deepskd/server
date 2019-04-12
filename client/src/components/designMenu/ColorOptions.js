@@ -55,6 +55,8 @@ class ColorOptions extends React.Component {
   }
 
   renderColors(obj, colors) {
+    console.log(colors);
+    console.log(this.state);
     return Object.values(colors).map(c => {
       return (
         <Dropdown.Item

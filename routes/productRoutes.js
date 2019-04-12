@@ -169,12 +169,14 @@ const football = (team, applicationType = "heat_transfer") => {
   }
   away = a1PrimeKnitUniform.awayDecorations({ jersey, pant }, team.colors);
 
+  const colors = a1PrimeKnitUniform.getColors(applicationType);
+
   return {
     home,
     away,
     fonts: a1PrimeKnitUniform.FONTS,
     selectedFont: font,
-    colors: a1PrimeKnitUniform.COLORS
+    colors: colors
   };
 };
 
