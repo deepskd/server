@@ -1,15 +1,17 @@
 import React from "react";
-import { Menu, Segment, Dropdown, Grid } from "semantic-ui-react";
+import { Menu, Segment, Dropdown, Grid, Button } from "semantic-ui-react";
 import { connect } from "react-redux";
 
 class ColorOptions extends React.Component {
   constructor(props) {
     super(props);
-    const { home, colors } = this.props.products;
+    const { home, away, colors } = this.props.products;
     this.state = {
       activeTab: "home",
-      textColor: colors[home.jersey.textColorCode],
-      strokeColor: colors[home.jersey.strokeColorCode]
+      hometextColor: colors[home.jersey.textColorCode],
+      homestrokeColor: colors[home.jersey.strokeColorCode],
+      awaytextColor: colors[away.jersey.textColorCode],
+      awaystrokeColor: colors[away.jersey.strokeColorCode]
     };
   }
 
@@ -18,51 +20,45 @@ class ColorOptions extends React.Component {
       nextProps.mascot !== this.props.mascot ||
       nextProps.teamName !== this.props.teamName
     ) {
-      const { home, colors } = nextProps.products;
+      const { home, away, colors } = nextProps.products;
       this.setState({
-        textColor: colors[home.jersey.textColorCode],
-        strokeColor: colors[home.jersey.strokeColorCode]
+        hometextColor: colors[home.jersey.textColorCode],
+        homestrokeColor: colors[home.jersey.strokeColorCode],
+        awaytextColor: colors[away.jersey.textColorCode],
+        awaystrokeColor: colors[away.jersey.strokeColorCode]
       });
     }
   }
 
   handleColorChange(obj, c) {
     const { activeTab } = this.state;
-    const { home, away, colors } = this.props.products;
     if (activeTab === "home") {
-      const textColor = obj === "text" ? c : colors[home.jersey.textColorCode];
-      const strokeColor =
-        obj === "stroke" ? c : colors[home.jersey.strokeColorCode];
+      const textColor = obj === "text" ? c : this.state.hometextColor;
+      const strokeColor = obj === "stroke" ? c : this.state.homestrokeColor;
       this.setState({
         activeTab: "home",
-        textColor: textColor,
-        strokeColor: strokeColor
+        hometextColor: textColor,
+        homestrokeColor: strokeColor
       });
     } else if (activeTab === "away") {
-      const textColor = obj === "text" ? c : colors[away.jersey.textColorCode];
-      const strokeColor =
-        obj === "stroke" ? c : colors[away.jersey.strokeColorCode];
+      const textColor = obj === "text" ? c : this.state.awaytextColor;
+      const strokeColor = obj === "stroke" ? c : this.state.awaystrokeColor;
       this.setState({
         activeTab: "away",
-        textColor: textColor,
-        strokeColor: strokeColor
+        awaytextColor: textColor,
+        awaystrokeColor: strokeColor
       });
     }
   }
 
   handleTabChange(tab) {
-    const { home, away, colors } = this.props.products;
     if (tab === "home") {
       this.setState({
-        activeTab: "home",
-        textColor: colors[home.jersey.textColorCode],
-        strokeColor: colors[home.jersey.strokeColorCode]
+        activeTab: "home"
       });
     } else if (tab === "away") {
       this.setState({
-        activeTab: "away",
-        textColor: colors[away.jersey.textColorCode],
-        strokeColor: colors[away.jersey.strokeColorCode]
+        activeTab: "away"
       });
     }
   }
@@ -88,40 +84,61 @@ class ColorOptions extends React.Component {
     });
   }
 
+  getColor(option) {
+    if (option === "text") {
+      return this.state.activeTab === "home"
+        ? this.state.hometextColor
+        : this.state.awaytextColor;
+    } else if (option === "stroke") {
+      return this.state.activeTab === "home"
+        ? this.state.homestrokeColor
+        : this.state.awaystrokeColor;
+    }
+  }
+
   renderColorOptions() {
     const { colors } = this.props.products;
 
     return (
       <React.Fragment>
         <Grid>
-          <Grid.Column floated="left" width={6}>
-            <svg height="20%" width="100%">
-              <rect
-                height="100%"
-                width="100%"
-                fill={this.state.textColor}
-                style={{ stroke: "black" }}
-              />
-            </svg>
-            <Dropdown item scrolling>
-              <Dropdown.Menu>{this.renderColors("text", colors)}</Dropdown.Menu>
-            </Dropdown>
-          </Grid.Column>
-          <Grid.Column floated="right" width={6}>
-            <svg height="20%" width="100%">
-              <rect
-                height="100%"
-                width="100%"
-                fill={this.state.strokeColor}
-                style={{ stroke: "black" }}
-              />
-            </svg>
-            <Dropdown item scrolling>
-              <Dropdown.Menu>
-                {this.renderColors("stroke", colors)}
-              </Dropdown.Menu>
-            </Dropdown>
-          </Grid.Column>
+          <Grid.Row>
+            <Grid.Column floated="left" width={6}>
+              <svg height="30px" width="40px">
+                <rect
+                  height="100%"
+                  width="100%"
+                  fill={this.getColor("text")}
+                  style={{ stroke: "black" }}
+                />
+              </svg>
+              <Dropdown item scrolling>
+                <Dropdown.Menu>
+                  {this.renderColors("text", colors)}
+                </Dropdown.Menu>
+              </Dropdown>
+            </Grid.Column>
+            <Grid.Column floated="right" width={6}>
+              <svg height="30px" width="40px">
+                <rect
+                  height="100%"
+                  width="100%"
+                  fill={this.getColor("stroke")}
+                  style={{ stroke: "black" }}
+                />
+              </svg>
+              <Dropdown item scrolling>
+                <Dropdown.Menu>
+                  {this.renderColors("stroke", colors)}
+                </Dropdown.Menu>
+              </Dropdown>
+            </Grid.Column>
+          </Grid.Row>
+          <Grid.Row centered>
+            <Button size="mini" color="blue">
+              Update Colors
+            </Button>
+          </Grid.Row>
         </Grid>
       </React.Fragment>
     );
