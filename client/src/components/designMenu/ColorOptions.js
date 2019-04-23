@@ -1,5 +1,5 @@
 import React from "react";
-import { Menu, Segment, Dropdown } from "semantic-ui-react";
+import { Menu, Segment, Dropdown, Grid } from "semantic-ui-react";
 import { connect } from "react-redux";
 
 class ColorOptions extends React.Component {
@@ -75,7 +75,13 @@ class ColorOptions extends React.Component {
           onClick={e => this.handleColorChange(obj, c)}
         >
           <svg height="20" width="20">
-            <circle cx="10" cy="10" r="10" fill={c} />
+            <circle
+              cx="10"
+              cy="10"
+              r="10"
+              fill={c}
+              style={{ stroke: "black" }}
+            />
           </svg>
         </Dropdown.Item>
       );
@@ -87,20 +93,36 @@ class ColorOptions extends React.Component {
 
     return (
       <React.Fragment>
-        <svg height="40" width="110">
-          <rect height="30" width="100" fill={this.state.textColor} />
-        </svg>
-        <Dropdown item scrolling>
-          <Dropdown.Menu>{this.renderColors("text", colors)}</Dropdown.Menu>
-        </Dropdown>
-        <br />
-        <svg height="40" width="110">
-          <rect height="30" width="100" fill={this.state.strokeColor} />
-        </svg>
-        <Dropdown item scrolling>
-          <Dropdown.Menu>{this.renderColors("stroke", colors)}</Dropdown.Menu>
-        </Dropdown>
-        <br />
+        <Grid>
+          <Grid.Column floated="left" width={6}>
+            <svg height="20%" width="100%">
+              <rect
+                height="100%"
+                width="100%"
+                fill={this.state.textColor}
+                style={{ stroke: "black" }}
+              />
+            </svg>
+            <Dropdown item scrolling>
+              <Dropdown.Menu>{this.renderColors("text", colors)}</Dropdown.Menu>
+            </Dropdown>
+          </Grid.Column>
+          <Grid.Column floated="right" width={6}>
+            <svg height="20%" width="100%">
+              <rect
+                height="100%"
+                width="100%"
+                fill={this.state.strokeColor}
+                style={{ stroke: "black" }}
+              />
+            </svg>
+            <Dropdown item scrolling>
+              <Dropdown.Menu>
+                {this.renderColors("stroke", colors)}
+              </Dropdown.Menu>
+            </Dropdown>
+          </Grid.Column>
+        </Grid>
       </React.Fragment>
     );
   }
