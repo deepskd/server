@@ -24,6 +24,7 @@ const football = (team, applicationType = "heat_transfer") => {
   pant.price = "$145";
 
   jersey.frontText = _.toUpper(mascot);
+  jersey.baseImageURL = a1PrimeKnitUniform.JERSEY_URL;
   jersey.frontImage = _.replace(
     a1PrimeKnitUniform.JERSEY_URL,
     /TEAMNAME/,
@@ -74,6 +75,7 @@ const football = (team, applicationType = "heat_transfer") => {
   const homePantBaseColor = team.colors ? team.colors[1] : "black";
   pant.baseColor = homePantBaseColor;
   pant.baseColorCode = a1PrimeKnitUniform.colorMapBase(homePantBaseColor);
+  pant.baseImageURL = a1PrimeKnitUniform.PANTS_URL;
   pant.frontImage = _.replace(
     a1PrimeKnitUniform.PANTS_URL,
     /BASECOLOR/,
@@ -109,6 +111,7 @@ const football = (team, applicationType = "heat_transfer") => {
   pant.price = "$145";
 
   jersey.frontText = _.toUpper(_.replace(team.name, "/", " "));
+  jersey.baseImageURL = a1PrimeKnitUniform.JERSEY_URL;
   jersey.frontImage = _.replace(
     a1PrimeKnitUniform.JERSEY_URL,
     /TEAMNAME/,
@@ -144,6 +147,7 @@ const football = (team, applicationType = "heat_transfer") => {
   let awayPantBaseColor = team.colors ? team.colors[0] : "black";
   pant.baseColor = awayPantBaseColor;
   pant.baseColorCode = a1PrimeKnitUniform.colorMapBase(awayPantBaseColor);
+  pant.baseImageURL = a1PrimeKnitUniform.PANTS_URL;
   pant.frontImage = _.replace(
     a1PrimeKnitUniform.PANTS_URL,
     /BASECOLOR/,
@@ -196,6 +200,7 @@ const basketball = team => {
 
   jersey.frontText = _.toUpper(mascot);
   jersey.textFont = font;
+  jersey.baseImageURL = tripleUp.JERSEY_URL;
   jersey.frontImage = _.replace(
     tripleUp.JERSEY_URL,
     /TEAMNAME/,
@@ -223,6 +228,7 @@ const basketball = team => {
   jersey.font = font;
   jersey.frontImage = _.replace(jersey.frontImage, /(TEAM|NUMBER)FONT/g, font);
 
+  pant.baseImageURL = tripleUp.PANTS_URL;
   pant.frontImage = _.replace(
     tripleUp.PANTS_URL,
     /BASECOLOR/,
@@ -252,6 +258,7 @@ const basketball = team => {
 
   jersey.frontText = _.toUpper(_.replace(team.name, "/", " "));
   jersey.textFont = font;
+  jersey.baseImageURL = tripleUp.JERSEY_URL;
   jersey.frontImage = _.replace(
     tripleUp.JERSEY_URL,
     /TEAMNAME/,
@@ -280,7 +287,7 @@ const basketball = team => {
   );
   jersey.font = font;
   jersey.frontImage = _.replace(jersey.frontImage, /(TEAM|NUMBER)FONT/g, font);
-
+  pant.baseImageURL = tripleUp.PANTS_URL;
   pant.frontImage = _.replace(
     tripleUp.PANTS_URL,
     /BASECOLOR/,
