@@ -2,7 +2,8 @@ import _ from "lodash";
 import {
   SELECTED_TEAM,
   FONT_CHANGED,
-  JERSEY_TEXT_CHANGED
+  JERSEY_TEXT_CHANGED,
+  JERSEY_TEXTCOLOR_CHANGED
 } from "../actions/types";
 
 export default (state = [], action) => {
@@ -13,6 +14,8 @@ export default (state = [], action) => {
       return updateFont(state, action.payload);
     case JERSEY_TEXT_CHANGED:
       return updateJerseyText(state, action.payload);
+    case JERSEY_TEXTCOLOR_CHANGED:
+      return updateJerseyTextColors(state, action.payload);
     default:
       return state;
   }
@@ -51,6 +54,36 @@ const updateJerseyText = (state, typeAndText) => {
     case "away":
       jersey = state.products.away.jersey;
       jersey.frontText = typeAndText.away;
+      jersey = updateJersey(jersey, state.products.selectedFont);
+      newState.products.away.jersey = jersey;
+      break;
+    default:
+      return newState;
+  }
+  return newState;
+};
+
+const updateJerseyTextColors = (state, typeAndColors) => {
+  let newState = { ...state };
+  const jerseyType = Object.keys(typeAndColors)[0];
+
+  let jersey = {};
+  switch (jerseyType) {
+    case "home":
+      jersey = state.products.home.jersey;
+      jersey.textColor = typeAndColors.home.text[1];
+      jersey.textColorCode = typeAndColors.home.text[0];
+      jersey.strokeColor = typeAndColors.home.stroke[1];
+      jersey.strokeColorCode = typeAndColors.home.stroke[0];
+      jersey = updateJersey(jersey, state.products.selectedFont);
+      newState.products.home.jersey = jersey;
+      break;
+    case "away":
+      jersey = state.products.away.jersey;
+      jersey.textColor = typeAndColors.away.text[1];
+      jersey.textColorCode = typeAndColors.away.text[0];
+      jersey.strokeColor = typeAndColors.away.stroke[1];
+      jersey.strokeColorCode = typeAndColors.away.stroke[0];
       jersey = updateJersey(jersey, state.products.selectedFont);
       newState.products.away.jersey = jersey;
       break;

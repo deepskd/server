@@ -4,7 +4,8 @@ import {
   FIND_TEAMS,
   SELECTED_TEAM,
   FONT_CHANGED,
-  JERSEY_TEXT_CHANGED
+  JERSEY_TEXT_CHANGED,
+  JERSEY_TEXTCOLOR_CHANGED
 } from "./types";
 
 export const findTeams = term => async dispatch => {
@@ -41,5 +42,12 @@ export const jerseyTextChanged = typeAndText => {
   return {
     type: JERSEY_TEXT_CHANGED,
     payload: typeAndText
+  };
+};
+
+export const jerseyTextColorChnaged = typeAndColors => {
+  return {
+    type: JERSEY_TEXTCOLOR_CHANGED,
+    payload: typeAndColors
   };
 };

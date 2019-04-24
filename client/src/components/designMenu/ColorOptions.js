@@ -1,6 +1,7 @@
 import React from "react";
 import { Menu, Segment, Dropdown, Grid, Button } from "semantic-ui-react";
 import { connect } from "react-redux";
+import { jerseyTextColorChnaged } from "../../actions";
 
 class ColorOptions extends React.Component {
   constructor(props) {
@@ -96,6 +97,36 @@ class ColorOptions extends React.Component {
     }
   }
 
+  getColorCode = color => {
+    const { colors } = this.props.products;
+
+    return Object.entries(colors).filter(colorMap => {
+      return colorMap[1].includes(color);
+    })[0];
+  };
+
+  handleColorUpdate = () => {
+    const {
+      activeTab,
+      hometextColor,
+      awaytextColor,
+      homestrokeColor,
+      awaystrokeColor
+    } = this.state;
+
+    const color = {};
+    if (activeTab === "home") {
+      color["text"] = this.getColorCode(hometextColor);
+      color["stroke"] = this.getColorCode(homestrokeColor);
+    } else {
+      color["text"] = this.getColorCode(awaytextColor);
+      color["stroke"] = this.getColorCode(awaystrokeColor);
+    }
+    const result = {};
+    result[activeTab] = color;
+    this.props.jerseyTextColorChnaged(result);
+  };
+
   renderColorOptions() {
     const { colors } = this.props.products;
 
@@ -135,8 +166,8 @@ class ColorOptions extends React.Component {
             </Grid.Column>
           </Grid.Row>
           <Grid.Row centered>
-            <Button size="mini" color="blue">
-              Update Colors
+            <Button size="mini" color="blue" onClick={this.handleColorUpdate}>
+              Update
             </Button>
           </Grid.Row>
         </Grid>
@@ -167,4 +198,7 @@ class ColorOptions extends React.Component {
   }
 }
 
-export default connect()(ColorOptions);
+export default connect(
+  null,
+  { jerseyTextColorChnaged }
+)(ColorOptions);
