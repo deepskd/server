@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
+const _ = require("lodash");
 
 const teamSchema = new Schema({
   name: String,
@@ -17,7 +18,7 @@ teamSchema.statics.findByNameState = function(q, cb) {
   if (!input) {
     return;
   }
-  const schoolName = input[0].trim().replace(/([^\w\s+*:;,.()/\\]+)/gi, "");
+  const schoolName = _.escapeRegExp(input[0]);
   const state = input[1]
     ? input[1]
         .trim()
