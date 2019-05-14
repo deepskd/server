@@ -68,7 +68,7 @@ const COLORMAP = {
   tru_collegiate_orange: ["orange", "texas orange"],
   tru_collegiate_gold: ["gold"],
   tru_yellow: ["yellow"],
-  tru_sand: ["old gold"],
+  tru_sand: ["old gold", "vegas gold"],
   tru_coffee: ["coffee"],
   tru_collegiate_aqua: ["aqua"],
   tru_green: ["green", "kelly green"],
