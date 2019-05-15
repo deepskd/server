@@ -2,6 +2,7 @@ import React from "react";
 import OrderItem from "./OrderItem";
 import { ORDERS } from "./orders";
 import { Menu, Segment } from "semantic-ui-react";
+import ReactGA from "react-ga";
 
 class OrderList extends React.Component {
   constructor(props) {
@@ -22,6 +23,9 @@ class OrderList extends React.Component {
       }
     );
   };
+  componentDidMount() {
+    ReactGA.pageview("/dashboard");
+  }
   render() {
     const { activeTab } = this.state;
     return (
