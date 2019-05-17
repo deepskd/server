@@ -14,7 +14,6 @@ class ImageStats extends React.Component {
   }
 
   handleClick(retailerId) {
-    console.log(retailerId);
     this.props.getRetailerImages(retailerId);
   }
 
