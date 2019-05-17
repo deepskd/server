@@ -8,4 +8,9 @@ module.exports = app => {
     const images = await Image.findByRetailerId(req.query.retailerId);
     res.status(200).send(images);
   });
+
+  app.get("/api/retailerImageCount", async (req, res) => {
+    const imageStats = await Image.retailerImageCount();
+    res.status(200).send(imageStats);
+  });
 };
