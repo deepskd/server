@@ -16,6 +16,7 @@ app.use(bodyParser.json());
 
 require("./routes/teamRoutes")(app);
 require("./routes/productRoutes")(app);
+require("./routes/imageRoutes")(app);
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
