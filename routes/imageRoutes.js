@@ -13,4 +13,14 @@ module.exports = app => {
     const imageStats = await Image.retailerImageCount();
     res.status(200).send(imageStats);
   });
+
+  app.patch("/api/images", async (req, res) => {
+    console.log(req.body);
+    const updates = await Image.assignTeamToImages(
+      req.body.selectedImageIds,
+      req.body.teamId
+    );
+    console.log(updates);
+    res.status(200).send({ message: "Data uploaded" });
+  });
 };

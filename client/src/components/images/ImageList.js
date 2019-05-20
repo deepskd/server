@@ -1,8 +1,16 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Card, Image, Checkbox, Segment, List } from "semantic-ui-react";
+import {
+  Card,
+  Image,
+  Checkbox,
+  Segment,
+  List,
+  Button
+} from "semantic-ui-react";
 
 import { findTeams } from "../../actions";
+import { assignImagesToTeam } from "../../actions/actionsImage";
 
 class ImageList extends React.Component {
   state = { selectedImages: [], term: "" };
@@ -27,6 +35,16 @@ class ImageList extends React.Component {
   onFormSubmit = event => {
     event.preventDefault();
     this.props.findTeams(this.state.term);
+  };
+
+  assignImagestoTeam = teamId => {
+    const updateImages = {};
+    const { selectedImages } = this.state;
+
+    updateImages.selectedImageIds = selectedImages;
+    updateImages.teamId = teamId;
+
+    this.props.assignImagesToTeam(updateImages);
   };
 
   renderImages = images => {
@@ -57,7 +75,14 @@ class ImageList extends React.Component {
     return this.props.teams.map(team => {
       return (
         <List.Item key={team._id}>
-          <List.Content floated="right">Assign</List.Content>
+          <List.Content floated="right">
+            <Button
+              size="tiny"
+              onClick={() => this.assignImagestoTeam(team._id)}
+            >
+              Assign
+            </Button>
+          </List.Content>
           <List.Content>
             <List.Header>{team.name}</List.Header>
             <List.Description>
@@ -114,5 +139,5 @@ const mapStateToProps = state => {
 };
 export default connect(
   mapStateToProps,
-  { findTeams }
+  { findTeams, assignImagesToTeam }
 )(ImageList);

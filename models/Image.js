@@ -4,6 +4,7 @@ const { Schema } = mongoose;
 const imageSchema = new Schema({
   retailerId: Number,
   previewImageURL: String,
+  teamId: Schema.Types.ObjectId,
   meta: {
     orderDate: Date,
     orderId: Number,
@@ -30,6 +31,14 @@ imageSchema.statics.retailerImageCount = function(cb) {
     { $group: { _id: "$retailerId", count: { $sum: 1 } } },
     { $sort: { count: -1 } }
   ]);
+};
+
+imageSchema.statics.assignTeamToImages = function(imageIds, teamId, cb) {
+  return this.updateMany(
+    { _id: { $in: imageIds } },
+    { $set: { teamId: teamId } },
+    cb
+  );
 };
 
 mongoose.model("images", imageSchema);
