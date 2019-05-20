@@ -1,11 +1,23 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Image } from "semantic-ui-react";
+import { Card, Image, Checkbox } from "semantic-ui-react";
 
 class ImageList extends React.Component {
   renderImages = images => {
     return images.map((image, index) => {
-      return <Image key={index} src={image.previewImageURL} />;
+      return (
+        <Card key={index}>
+          <Image wrapped ui={false}>
+            <div className="ui right floated">
+              <Checkbox floated />
+            </div>
+            <img src={image.previewImageURL} alt={"home"} />
+          </Image>
+          <Card.Content>
+            <Card.Meta>{image.meta.orderName}</Card.Meta>
+          </Card.Content>
+        </Card>
+      );
     });
   };
   render() {
@@ -16,7 +28,7 @@ class ImageList extends React.Component {
 
     return (
       <React.Fragment>
-        <Image.Group size="small">{this.renderImages(images)}</Image.Group>
+        <Card.Group itemsPerRow={4}>{this.renderImages(images)}</Card.Group>
       </React.Fragment>
     );
   }
