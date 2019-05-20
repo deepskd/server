@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Card, Image, Checkbox, Segment } from "semantic-ui-react";
+import { Card, Image, Checkbox, Segment, List } from "semantic-ui-react";
 
 import { findTeams } from "../../actions";
 
@@ -49,6 +49,27 @@ class ImageList extends React.Component {
       );
     });
   };
+
+  renderTeams = () => {
+    if (!this.props.teams) {
+      return null;
+    }
+    return this.props.teams.map(team => {
+      return (
+        <List.Item key={team._id}>
+          <List.Content floated="right">Assign</List.Content>
+          <List.Content>
+            <List.Header>{team.name}</List.Header>
+            <List.Description>
+              {team.city},{team.state}
+            </List.Description>
+            {team.mascot}
+          </List.Content>
+        </List.Item>
+      );
+    });
+  };
+
   render() {
     const { images } = this.props;
     if (images.length === 0) {
@@ -79,6 +100,9 @@ class ImageList extends React.Component {
               </div>
             </form>
           </div>
+          <List divided relaxed>
+            {this.renderTeams()}
+          </List>
         </Segment>
       </React.Fragment>
     );
