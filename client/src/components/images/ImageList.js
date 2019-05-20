@@ -3,13 +3,36 @@ import { connect } from "react-redux";
 import { Card, Image, Checkbox } from "semantic-ui-react";
 
 class ImageList extends React.Component {
+  state = { selectedImages: [] };
+
+  onImageSelect = id => {
+    const { selectedImages } = this.state;
+    if (selectedImages.includes(id)) {
+      selectedImages.pop(id);
+      this.setState({ selectedImages });
+    } else {
+      selectedImages.push(id);
+      this.setState({ selectedImages });
+    }
+  };
+
+  isSelected = id => {
+    const { selectedImages } = this.state;
+    console.log(selectedImages, selectedImages.includes(id));
+    return selectedImages.includes(id);
+  };
+
   renderImages = images => {
     return images.map((image, index) => {
       return (
         <Card key={index}>
           <Image wrapped ui={false}>
             <div className="ui right floated">
-              <Checkbox floated />
+              <Checkbox
+                floated
+                onClick={() => this.onImageSelect(image._id)}
+                checked={this.isSelected(image._id)}
+              />
             </div>
             <img src={image.previewImageURL} alt={"home"} />
           </Image>
