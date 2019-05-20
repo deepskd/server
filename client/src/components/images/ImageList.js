@@ -1,9 +1,11 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Card, Image, Checkbox } from "semantic-ui-react";
+import { Card, Image, Checkbox, Segment } from "semantic-ui-react";
+
+import { findTeams } from "../../actions";
 
 class ImageList extends React.Component {
-  state = { selectedImages: [] };
+  state = { selectedImages: [], term: "" };
 
   onImageSelect = id => {
     const { selectedImages } = this.state;
@@ -16,10 +18,15 @@ class ImageList extends React.Component {
     }
   };
 
-  isSelected = id => {
-    const { selectedImages } = this.state;
-    console.log(selectedImages, selectedImages.includes(id));
-    return selectedImages.includes(id);
+  isSelected = id => this.state.selectedImages.includes(id);
+
+  onInputChange = event => {
+    this.setState({ term: event.target.value });
+  };
+
+  onFormSubmit = event => {
+    event.preventDefault();
+    this.props.findTeams(this.state.term);
   };
 
   renderImages = images => {
@@ -29,7 +36,6 @@ class ImageList extends React.Component {
           <Image wrapped ui={false}>
             <div className="ui right floated">
               <Checkbox
-                floated
                 onClick={() => this.onImageSelect(image._id)}
                 checked={this.isSelected(image._id)}
               />
@@ -51,16 +57,38 @@ class ImageList extends React.Component {
 
     return (
       <React.Fragment>
-        <Card.Group itemsPerRow={4}>{this.renderImages(images)}</Card.Group>
+        <Card.Group itemsPerRow={6}>{this.renderImages(images)}</Card.Group>
+        <Segment>
+          <div className="ui search">
+            <form onSubmit={this.onFormSubmit} className="ui form">
+              <div className="ui fluid action input">
+                <input
+                  type="text"
+                  value={this.state.term}
+                  onChange={this.onInputChange}
+                  placeholder="School, State Code(optional)"
+                />
+                <button
+                  className="ui primary icon button"
+                  onClick={this.onFormSubmit}
+                  type="submit"
+                >
+                  <i className="search icon" />
+                  Search
+                </button>
+              </div>
+            </form>
+          </div>
+        </Segment>
       </React.Fragment>
     );
   }
 }
 
 const mapStateToProps = state => {
-  return { images: state.images };
+  return { images: state.images, teams: state.teams };
 };
 export default connect(
   mapStateToProps,
-  null
+  { findTeams }
 )(ImageList);
