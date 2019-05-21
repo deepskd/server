@@ -50,7 +50,7 @@ class ImageList extends React.Component {
   renderImages = images => {
     return images.map((image, index) => {
       return (
-        <Card key={index}>
+        <Card key={index} color={image.teamId ? "green" : "red"}>
           <Image wrapped ui={false}>
             <div className="ui right floated">
               <Checkbox
