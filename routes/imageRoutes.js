@@ -20,7 +20,6 @@ module.exports = app => {
       req.body.selectedImageIds,
       req.body.teamId
     );
-    console.log(updates);
-    res.status(200).send({ message: "Data uploaded" });
+    res.status(200).send({ message: "Records Updated", meta: updates });
   });
 };

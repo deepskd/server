@@ -18,5 +18,6 @@ export const getRetailerImages = retailerId => async dispatch => {
 
 export const assignImagesToTeam = data => async dispatch => {
   const response = await gts.patch(`/images`, data);
+  console.log(response);
   dispatch({ type: ASSIGN_IMAGES_TO_TEAM, payload: response });
 };
