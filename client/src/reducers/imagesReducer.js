@@ -5,7 +5,7 @@ export default (state = [], action) => {
     case RETAILER_IMAGES:
       return action.payload.data;
     case ASSIGN_IMAGES_TO_TEAM:
-      return state;
+      return action.payload.data;
     default:
       return state;
   }
