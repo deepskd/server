@@ -23,7 +23,10 @@ const imageSchema = new Schema({
 });
 
 imageSchema.statics.findByRetailerId = function(retailerId, cb) {
-  return this.find({ retailerId: retailerId }, cb).limit(50);
+  return this.find(
+    { retailerId: retailerId, teamId: { $exists: false } },
+    cb
+  ).limit(50);
 };
 
 imageSchema.statics.retailerImageCount = function(cb) {
