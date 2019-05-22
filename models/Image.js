@@ -31,6 +31,7 @@ imageSchema.statics.findByRetailerId = function(retailerId, cb) {
 
 imageSchema.statics.retailerImageCount = function(cb) {
   return this.aggregate([
+    { $match: { teamId: { $exists: false } } },
     { $group: { _id: "$retailerId", count: { $sum: 1 } } },
     { $sort: { count: -1 } }
   ]);
