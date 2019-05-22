@@ -45,6 +45,7 @@ class ImageList extends React.Component {
     updateImages.teamId = teamId;
 
     this.props.assignImagesToTeam(updateImages);
+    this.setState({ selectedImages: [], term: "" });
   };
 
   renderImages = images => {
