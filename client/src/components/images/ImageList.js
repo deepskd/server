@@ -78,10 +78,13 @@ class ImageList extends React.Component {
       return null;
     }
     return this.props.teams.map(team => {
+      const disabledAssign =
+        this.state.selectedImages.length === 0 ? true : false;
       return (
         <List.Item key={team._id}>
           <List.Content floated="right">
             <Button
+              disabled={disabledAssign}
               size="tiny"
               onClick={() => this.assignImagestoTeam(team._id)}
             >
