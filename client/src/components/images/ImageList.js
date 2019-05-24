@@ -63,8 +63,11 @@ class ImageList extends React.Component {
             <img src={image.previewImageURL} alt={"home"} />
           </Image>
           <Card.Content>
-            <Card.Meta>{image.meta.orderName}</Card.Meta>
+            <Card.Meta>
+              {image.meta.orderName}-{image.meta.crestName}
+            </Card.Meta>
           </Card.Content>
+          <Card.Content extra>{image.meta.orderNo}</Card.Content>
         </Card>
       );
     });
