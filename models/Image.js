@@ -45,4 +45,30 @@ imageSchema.statics.assignTeamToImages = function(imageIds, teamId, cb) {
   );
 };
 
+imageSchema.statics.teamImageCount = function(cb) {
+  return this.aggregate([
+    { $match: { teamId: { $exists: true } } },
+    { $group: { _id: "$teamId", count: { $sum: 1 } } },
+    { $sort: { count: -1 } },
+    {
+      $lookup: {
+        from: "teams",
+        localField: "_id",
+        foreignField: "_id",
+        as: "team"
+      }
+    },
+    {
+      $replaceRoot: {
+        newRoot: { $mergeObjects: [{ $arrayElemAt: ["$team", 0] }, "$$ROOT"] }
+      }
+    },
+    { $project: { fromItems: 0 } }
+  ]);
+};
+
+imageSchema.statics.findByTeamId = function(teamId, cb) {
+  return this.find({ teamId: teamId }, cb).limit(50);
+};
+
 mongoose.model("images", imageSchema);
