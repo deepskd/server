@@ -5,7 +5,12 @@ const Image = mongoose.model("images");
 
 module.exports = app => {
   app.get("/api/images", async (req, res) => {
-    const images = await Image.findByRetailerId(req.query.retailerId);
+    const images = [];
+    if (req.query.retailerId) {
+      images = await Image.findByRetailerId(req.query.retailerId);
+    } else if (req.query.teamId) {
+      images = await Image.findByRetailerId(req.query.retailerId);
+    }
     res.status(200).send(images);
   });
 
@@ -14,8 +19,12 @@ module.exports = app => {
     res.status(200).send(imageStats);
   });
 
+  app.get("/api/teamImageCount", async (req, res) => {
+    const imageStats = await Image.teamImageCount();
+    res.status(200).send(imageStats);
+  });
+
   app.patch("/api/images", async (req, res) => {
-    console.log(req.body);
     const updates = await Image.assignTeamToImages(
       req.body.selectedImageIds,
       req.body.teamId
