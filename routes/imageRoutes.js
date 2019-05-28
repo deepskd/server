@@ -5,7 +5,7 @@ const Image = mongoose.model("images");
 
 module.exports = app => {
   app.get("/api/images", async (req, res) => {
-    const images = [];
+    let images = [];
     if (req.query.retailerId) {
       images = await Image.findByRetailerId(req.query.retailerId);
     } else if (req.query.teamId) {

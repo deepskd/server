@@ -6,6 +6,7 @@ import ProductList from "./ProductList";
 import Header from "./header";
 import OrderList from "./dashboard/OrderList";
 import ImageStats from "./images/ImageStats";
+import TeamImageStats from "./images/TeamImageStats";
 
 import { BrowserRouter, Route } from "react-router-dom";
 
@@ -20,7 +21,8 @@ const App = () => {
           <Route path="/" exact component={TeamList} />
           <Route path="/:sports/:id" component={ProductList} />
           <Route path="/dashboard" exact component={OrderList} />
-          <Route path="/images" exact component={ImageStats} />
+          <Route path="/retailerImages" exact component={ImageStats} />
+          <Route path="/teamImages" exact component={TeamImageStats} />
         </div>
       </BrowserRouter>
     </div>
