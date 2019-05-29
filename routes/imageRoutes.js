@@ -9,7 +9,7 @@ module.exports = app => {
     if (req.query.retailerId) {
       images = await Image.findByRetailerId(req.query.retailerId);
     } else if (req.query.teamId) {
-      images = await Image.findByRetailerId(req.query.retailerId);
+      images = await Image.findByTeamId(req.query.teamId);
     }
     res.status(200).send(images);
   });

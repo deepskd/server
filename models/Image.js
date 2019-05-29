@@ -68,7 +68,7 @@ imageSchema.statics.teamImageCount = function(cb) {
 };
 
 imageSchema.statics.findByTeamId = function(teamId, cb) {
-  return this.find({ teamId: teamId }, cb).limit(50);
+  return this.find({ teamId: teamId }, cb);
 };
 
 mongoose.model("images", imageSchema);

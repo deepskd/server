@@ -38,8 +38,8 @@ class TeamImageStats extends React.Component {
     return (
       <Grid columns={2}>
         <Grid.Row>
-          <Grid.Column width={8}>
-            <Table celled selectable>
+          <Grid.Column width={6}>
+            <Table compact size="small" celled selectable>
               <Table.Header>
                 <Table.Row>
                   <Table.HeaderCell>Team</Table.HeaderCell>
@@ -49,7 +49,7 @@ class TeamImageStats extends React.Component {
               <Table.Body>{this.renderTeamImageStats()}</Table.Body>
             </Table>
           </Grid.Column>
-          <Grid.Column width={8}>
+          <Grid.Column width={10}>
             <TeamImageList />
           </Grid.Column>
         </Grid.Row>

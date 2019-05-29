@@ -29,7 +29,7 @@ class ImageList extends React.Component {
 
     return (
       <React.Fragment>
-        <Card.Group itemsPerRow={6}>{this.renderImages(images)}</Card.Group>
+        <Card.Group itemsPerRow={4}>{this.renderImages(images)}</Card.Group>
       </React.Fragment>
     );
   }
