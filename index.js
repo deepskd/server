@@ -1,9 +1,11 @@
 require("newrelic");
-require("./services/passport");
-require("./services/mongo");
+
 const express = require("express");
 const bodyParser = require("body-parser");
 
+require("./services/mongo");
+require("./models/User");
+require("./services/passport");
 require("./models/Team");
 
 const app = express();
