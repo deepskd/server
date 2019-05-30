@@ -3,7 +3,7 @@ import ReactGA from "react-ga";
 import SearchBar from "./SearchBar";
 import TeamList from "./TeamList";
 import ProductList from "./ProductList";
-import Header from "./header";
+import Header from "./Header";
 import OrderList from "./dashboard/OrderList";
 import ImageStats from "./images/ImageStats";
 import TeamImageStats from "./images/TeamImageStats";
