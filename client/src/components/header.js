@@ -11,7 +11,7 @@ class Header extends Component {
         return <div />;
       case false:
         return (
-          <Button basic size="small" color="red">
+          <Button as="a" href="/auth/google" basic size="small" color="red">
             <Grid columns={2}>
               <Grid.Column floated="left" width={4}>
                 <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg">
