@@ -1,26 +1,16 @@
-import React from "react";
+import React, { Component } from "react";
+import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { Menu, Image, Button, Grid } from "semantic-ui-react";
 import { Header as SemanticHeader } from "semantic-ui-react";
 
-const Header = () => {
-  return (
-    <Menu secondary pointing fluid>
-      <Menu.Item as={Link} to="/">
-        <Grid columns={2}>
-          <Grid.Column width={6}>
-            <Image
-              size="tiny"
-              src="https://upload.wikimedia.org/wikipedia/commons/2/20/Adidas_Logo.svg"
-            />
-          </Grid.Column>
-          <Grid.Column verticalAlign="middle" textAlign="left" width={10}>
-            <SemanticHeader as="h4">TEAMS</SemanticHeader>
-          </Grid.Column>
-        </Grid>
-      </Menu.Item>
-      <Menu.Menu position="right">
-        <Menu.Item>
+class Header extends Component {
+  renderContent() {
+    switch (this.props.auth) {
+      case null:
+        return <div />;
+      case false:
+        return (
           <Button basic size="small" color="red">
             <Grid columns={2}>
               <Grid.Column floated="left" width={4}>
@@ -50,10 +40,37 @@ const Header = () => {
               </Grid.Column>
             </Grid>
           </Button>
+        );
+      default:
+        return <a href="/api/logout">Logout</a>;
+    }
+  }
+  render() {
+    return (
+      <Menu secondary pointing fluid>
+        <Menu.Item as={Link} to="/">
+          <Grid columns={2}>
+            <Grid.Column width={6}>
+              <Image
+                size="tiny"
+                src="https://upload.wikimedia.org/wikipedia/commons/2/20/Adidas_Logo.svg"
+              />
+            </Grid.Column>
+            <Grid.Column verticalAlign="middle" textAlign="left" width={10}>
+              <SemanticHeader as="h4">TEAMS</SemanticHeader>
+            </Grid.Column>
+          </Grid>
         </Menu.Item>
-      </Menu.Menu>
-    </Menu>
-  );
+        <Menu.Menu position="right">
+          <Menu.Item>{this.renderContent()}</Menu.Item>
+        </Menu.Menu>
+      </Menu>
+    );
+  }
+}
+
+const mapStateToProps = ({ auth }) => {
+  return { auth };
 };
 
-export default Header;
+export default connect(mapStateToProps)(Header);
