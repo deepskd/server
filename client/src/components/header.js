@@ -25,7 +25,7 @@ const Header = () => {
             <Grid columns={2}>
               <Grid.Column floated="left" width={4}>
                 <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg">
-                  <g fill="none" fill-rule="evenodd">
+                  <g fill="none" fillRule="evenodd">
                     <path
                       d="M20.64 12.2c0-.63-.06-1.25-.16-1.84H12v3.49h4.84a4.14 4.14 0 0 1-1.8 2.71v2.26h2.92a8.78 8.78 0 0 0 2.68-6.62z"
                       fill="#4285F4"
