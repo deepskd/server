@@ -1,22 +1,31 @@
 require("newrelic");
+
 const express = require("express");
-const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
+const cookieSession = require("cookie-session");
+const passport = require("passport");
 const keys = require("./config/keys");
 
+require("./services/mongo");
+require("./models/User");
+require("./services/passport");
 require("./models/Team");
-
-mongoose.connect(
-  keys.mongoURI,
-  { useNewUrlParser: true }
-);
 
 const app = express();
 app.use(bodyParser.json());
+app.use(
+  cookieSession({
+    maxAge: 30 * 24 * 60 * 60 * 1000,
+    keys: [keys.cookieKey]
+  })
+);
+app.use(passport.initialize());
+app.use(passport.session());
 
 require("./routes/teamRoutes")(app);
 require("./routes/productRoutes")(app);
 require("./routes/imageRoutes")(app);
+require("./routes/authRoutes")(app);
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
