@@ -6,7 +6,7 @@ import { fetchUser } from "../actions/actionsAuth";
 import SearchBar from "./SearchBar";
 import TeamList from "./TeamList";
 import ProductList from "./ProductList";
-import Header from "./Header";
+import TeamHeader from "./TeamHeader";
 import OrderList from "./dashboard/OrderList";
 import ImageStats from "./images/ImageStats";
 import TeamImageStats from "./images/TeamImageStats";
@@ -31,7 +31,7 @@ class App extends React.Component {
       <div className="ui container">
         <BrowserRouter>
           <div>
-            <Header />
+            <TeamHeader />
             <Route path="/" exact component={SearchBar} />
             <Route path="/" exact component={TeamList} />
             <Route path="/:sports/:id" component={ProductList} />

@@ -1,10 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { Menu, Image, Button, Grid } from "semantic-ui-react";
-import { Header as SemanticHeader } from "semantic-ui-react";
+import { Menu, Image, Button, Grid, Header } from "semantic-ui-react";
 
-class Header extends Component {
+class TeamHeader extends Component {
   renderContent() {
     switch (this.props.auth) {
       case null:
@@ -57,7 +56,7 @@ class Header extends Component {
               />
             </Grid.Column>
             <Grid.Column verticalAlign="middle" textAlign="left" width={10}>
-              <SemanticHeader as="h4">TEAMS</SemanticHeader>
+              <Header as="h4">TEAMS</Header>
             </Grid.Column>
           </Grid>
         </Menu.Item>
@@ -73,4 +72,4 @@ const mapStateToProps = ({ auth }) => {
   return { auth };
 };
 
-export default connect(mapStateToProps)(Header);
+export default connect(mapStateToProps)(TeamHeader);
