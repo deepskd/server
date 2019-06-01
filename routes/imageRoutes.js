@@ -1,5 +1,6 @@
 require("../models/Image");
 const mongoose = require("mongoose");
+const requireLogin = require("../middlewares/requireLogin");
 
 const Image = mongoose.model("images");
 
@@ -14,17 +15,17 @@ module.exports = app => {
     res.status(200).send(images);
   });
 
-  app.get("/api/retailerImageCount", async (req, res) => {
+  app.get("/api/retailerImageCount", requireLogin, async (req, res) => {
     const imageStats = await Image.retailerImageCount();
     res.status(200).send(imageStats);
   });
 
-  app.get("/api/teamImageCount", async (req, res) => {
+  app.get("/api/teamImageCount", requireLogin, async (req, res) => {
     const imageStats = await Image.teamImageCount();
     res.status(200).send(imageStats);
   });
 
-  app.patch("/api/images", async (req, res) => {
+  app.patch("/api/images", requireLogin, async (req, res) => {
     const updates = await Image.assignTeamToImages(
       req.body.selectedImageIds,
       req.body.teamId
