@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-
 import { Form, Input } from "semantic-ui-react";
-
 import { findOrder } from "../../actions/actionsOrders";
+import OrderList from "./OrderList";
 
 class Order extends Component {
   state = { term: "" };
@@ -27,6 +26,7 @@ class Order extends Component {
             onChange={this.onInputChange}
           />
         </Form>
+        <OrderList />
       </React.Fragment>
     );
   }
