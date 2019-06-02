@@ -10,6 +10,7 @@ import TeamHeader from "./TeamHeader";
 import OrderList from "./dashboard/OrderList";
 import ImageStats from "./images/ImageStats";
 import TeamImageStats from "./images/TeamImageStats";
+import Order from "./orders/Order";
 
 import { BrowserRouter, Route } from "react-router-dom";
 
@@ -38,6 +39,7 @@ class App extends React.Component {
             <Route path="/dashboard" exact component={OrderList} />
             <Route path="/retailerImages" exact component={ImageStats} />
             <Route path="/teamImages" exact component={TeamImageStats} />
+            <Route path="/orders" exact component={Order} />
           </div>
         </BrowserRouter>
       </div>

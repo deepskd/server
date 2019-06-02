@@ -13,3 +13,5 @@ export const TEAM_IMAGE_STATS = "TEAM_IMAGE_STATS";
 export const TEAM_IMAGES = "TEAM_IMAGES";
 
 export const FETCH_USER = "FETCH_USER";
+
+export const FIND_ORDERS = "FIND_ORDERS";
