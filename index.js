@@ -26,6 +26,7 @@ require("./routes/teamRoutes")(app);
 require("./routes/productRoutes")(app);
 require("./routes/imageRoutes")(app);
 require("./routes/authRoutes")(app);
+require("./routes/orderRoutes")(app);
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
