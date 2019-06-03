@@ -8,7 +8,9 @@ class OrderList extends Component {
     return orders.map(order => {
       return (
         <Card key={order.id}>
-          <Image src={order.productPreviewURL} />
+          <Image
+            src={order.productPreviewURL.replace("$configLarge$", "wid=200")}
+          />
         </Card>
       );
     });
