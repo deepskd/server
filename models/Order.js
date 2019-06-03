@@ -16,7 +16,10 @@ const orderSchema = new Schema({
 
 orderSchema.statics.findByOrderName = function(orderName, cb) {
   const qOrderName = new RegExp(_.escapeRegExp(orderName), "i");
-  return this.find({ orderName: qOrderName });
+  return this.find({
+    orderName: qOrderName,
+    productPreviewURL: { $exists: true }
+  });
 };
 
 mongoose.model("orders", orderSchema);
