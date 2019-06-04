@@ -9,7 +9,7 @@ class OrderList extends Component {
       return (
         <Card key={order.id}>
           <Image
-            src={order.productPreviewURL.replace("$configLarge$", "wid=200")}
+            src={order.productPreviewURL.replace("$configLarge$", "wid=201")}
           />
         </Card>
       );
