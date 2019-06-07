@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
 
-import { Card, Image } from "semantic-ui-react";
+import { Card, Image } from 'semantic-ui-react'
 
 class OrderList extends Component {
   renderOrders = orders => {
@@ -9,23 +9,23 @@ class OrderList extends Component {
       return (
         <Card key={order.id}>
           <Image
-            src={order.productPreviewURL.replace("$configLarge$", "wid=201")}
+            src={order.productPreviewURL.replace('$configLarge$', 'wid=201')}
           />
         </Card>
-      );
-    });
-  };
+      )
+    })
+  }
   render() {
-    const { orders } = this.props;
+    const { orders } = this.props
     if (orders.length === 0) {
-      return <div />;
+      return <div />
     }
-    return <Card.Group itemsPerRow={4}>{this.renderOrders(orders)}</Card.Group>;
+    return <Card.Group itemsPerRow={4}>{this.renderOrders(orders)}</Card.Group>
   }
 }
 
 const mapStateToProps = ({ orders }) => {
-  return { orders };
-};
+  return { orders }
+}
 
-export default connect(mapStateToProps)(OrderList);
+export default connect(mapStateToProps)(OrderList)

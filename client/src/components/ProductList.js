@@ -1,23 +1,23 @@
-import React from "react";
-import { connect } from "react-redux";
+import React from 'react'
+import { connect } from 'react-redux'
 
-import ImageCard from "./ImageCard";
-import SchoolCard from "./SchoolCard";
-import EmbellishmentSwitch from "./designMenu/EmbellishmentSwitch";
-import JerseyText from "./designMenu/JerseyText";
-import ColorOptions from "./designMenu/ColorOptions";
-import { selectTeam, fontChanged } from "../actions";
+import ImageCard from './ImageCard'
+import SchoolCard from './SchoolCard'
+import EmbellishmentSwitch from './designMenu/EmbellishmentSwitch'
+import JerseyText from './designMenu/JerseyText'
+import ColorOptions from './designMenu/ColorOptions'
+import { selectTeam, fontChanged } from '../actions'
 
 class ProductList extends React.Component {
   componentDidMount() {
-    const { params } = this.props.match;
-    const team = {};
-    team._id = params.id;
-    this.props.selectTeam(team, params.sports);
+    const { params } = this.props.match
+    const team = {}
+    team._id = params.id
+    this.props.selectTeam(team, params.sports)
   }
 
   fontChanged(event) {
-    this.props.fontChanged(event.target.value);
+    this.props.fontChanged(event.target.value)
   }
 
   fontOptions(fonts) {
@@ -26,32 +26,32 @@ class ProductList extends React.Component {
         <option key={font} value={font}>
           {fonts[font]}
         </option>
-      );
-    });
+      )
+    })
   }
   renderProducts({ home, away }) {
     return (
       <React.Fragment>
         <div className="ui two cards">
-          <ImageCard src={home.jersey} alt={"Home Jersey"} />
-          <ImageCard src={away.jersey} alt={"Away Jersey"} />
+          <ImageCard src={home.jersey} alt={'Home Jersey'} />
+          <ImageCard src={away.jersey} alt={'Away Jersey'} />
         </div>
         <div className="ui two cards">
-          <ImageCard src={home.pant} alt={"Home Pant"} />
-          <ImageCard src={away.pant} alt={"Away Pant"} />
+          <ImageCard src={home.pant} alt={'Home Pant'} />
+          <ImageCard src={away.pant} alt={'Away Pant'} />
         </div>
       </React.Fragment>
-    );
+    )
   }
 
   render() {
-    const { team } = this.props.teamProducts || null;
-    const { products } = this.props.teamProducts || null;
-    const { params } = this.props.match;
-    const football = params.sports === "football" ? {} : { display: "none" };
+    const { team } = this.props.teamProducts || null
+    const { products } = this.props.teamProducts || null
+    const { params } = this.props.match
+    const football = params.sports === 'football' ? {} : { display: 'none' }
 
     if (!team) {
-      return <div>Loading</div>;
+      return <div>Loading</div>
     }
     return (
       <div className="ui fluid grid">
@@ -92,17 +92,17 @@ class ProductList extends React.Component {
           </form>
         </div>
       </div>
-    );
+    )
   }
 }
 
 const mapStateToProps = state => {
   return {
-    teamProducts: state.teamProducts
-  };
-};
+    teamProducts: state.teamProducts,
+  }
+}
 
 export default connect(
   mapStateToProps,
   { selectTeam, fontChanged }
-)(ProductList);
+)(ProductList)

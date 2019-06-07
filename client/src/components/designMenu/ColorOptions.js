@@ -1,19 +1,19 @@
-import React from "react";
-import { Menu, Segment, Dropdown, Grid, Button } from "semantic-ui-react";
-import { connect } from "react-redux";
-import { jerseyTextColorChnaged } from "../../actions";
+import React from 'react'
+import { Menu, Segment, Dropdown, Grid, Button } from 'semantic-ui-react'
+import { connect } from 'react-redux'
+import { jerseyTextColorChnaged } from '../../actions'
 
 class ColorOptions extends React.Component {
   constructor(props) {
-    super(props);
-    const { home, away, colors } = this.props.products;
+    super(props)
+    const { home, away, colors } = this.props.products
     this.state = {
-      activeTab: "home",
+      activeTab: 'home',
       hometextColor: colors[home.jersey.textColorCode],
       homestrokeColor: colors[home.jersey.strokeColorCode],
       awaytextColor: colors[away.jersey.textColorCode],
-      awaystrokeColor: colors[away.jersey.strokeColorCode]
-    };
+      awaystrokeColor: colors[away.jersey.strokeColorCode],
+    }
   }
 
   componentWillReceiveProps(nextProps) {
@@ -21,46 +21,46 @@ class ColorOptions extends React.Component {
       nextProps.mascot !== this.props.mascot ||
       nextProps.teamName !== this.props.teamName
     ) {
-      const { home, away, colors } = nextProps.products;
+      const { home, away, colors } = nextProps.products
       this.setState({
         hometextColor: colors[home.jersey.textColorCode],
         homestrokeColor: colors[home.jersey.strokeColorCode],
         awaytextColor: colors[away.jersey.textColorCode],
-        awaystrokeColor: colors[away.jersey.strokeColorCode]
-      });
+        awaystrokeColor: colors[away.jersey.strokeColorCode],
+      })
     }
   }
 
   handleColorChange(obj, c) {
-    const { activeTab } = this.state;
-    if (activeTab === "home") {
-      const textColor = obj === "text" ? c : this.state.hometextColor;
-      const strokeColor = obj === "stroke" ? c : this.state.homestrokeColor;
+    const { activeTab } = this.state
+    if (activeTab === 'home') {
+      const textColor = obj === 'text' ? c : this.state.hometextColor
+      const strokeColor = obj === 'stroke' ? c : this.state.homestrokeColor
       this.setState({
-        activeTab: "home",
+        activeTab: 'home',
         hometextColor: textColor,
-        homestrokeColor: strokeColor
-      });
-    } else if (activeTab === "away") {
-      const textColor = obj === "text" ? c : this.state.awaytextColor;
-      const strokeColor = obj === "stroke" ? c : this.state.awaystrokeColor;
+        homestrokeColor: strokeColor,
+      })
+    } else if (activeTab === 'away') {
+      const textColor = obj === 'text' ? c : this.state.awaytextColor
+      const strokeColor = obj === 'stroke' ? c : this.state.awaystrokeColor
       this.setState({
-        activeTab: "away",
+        activeTab: 'away',
         awaytextColor: textColor,
-        awaystrokeColor: strokeColor
-      });
+        awaystrokeColor: strokeColor,
+      })
     }
   }
 
   handleTabChange(tab) {
-    if (tab === "home") {
+    if (tab === 'home') {
       this.setState({
-        activeTab: "home"
-      });
-    } else if (tab === "away") {
+        activeTab: 'home',
+      })
+    } else if (tab === 'away') {
       this.setState({
-        activeTab: "away"
-      });
+        activeTab: 'away',
+      })
     }
   }
 
@@ -77,33 +77,33 @@ class ColorOptions extends React.Component {
               cy="10"
               r="10"
               fill={c}
-              style={{ stroke: "black" }}
+              style={{ stroke: 'black' }}
             />
           </svg>
         </Dropdown.Item>
-      );
-    });
+      )
+    })
   }
 
   getColor(option) {
-    if (option === "text") {
-      return this.state.activeTab === "home"
+    if (option === 'text') {
+      return this.state.activeTab === 'home'
         ? this.state.hometextColor
-        : this.state.awaytextColor;
-    } else if (option === "stroke") {
-      return this.state.activeTab === "home"
+        : this.state.awaytextColor
+    } else if (option === 'stroke') {
+      return this.state.activeTab === 'home'
         ? this.state.homestrokeColor
-        : this.state.awaystrokeColor;
+        : this.state.awaystrokeColor
     }
   }
 
   getColorCode = color => {
-    const { colors } = this.props.products;
+    const { colors } = this.props.products
 
     return Object.entries(colors).filter(colorMap => {
-      return colorMap[1].includes(color);
-    })[0];
-  };
+      return colorMap[1].includes(color)
+    })[0]
+  }
 
   handleColorUpdate = () => {
     const {
@@ -111,24 +111,24 @@ class ColorOptions extends React.Component {
       hometextColor,
       awaytextColor,
       homestrokeColor,
-      awaystrokeColor
-    } = this.state;
+      awaystrokeColor,
+    } = this.state
 
-    const color = {};
-    if (activeTab === "home") {
-      color["text"] = this.getColorCode(hometextColor);
-      color["stroke"] = this.getColorCode(homestrokeColor);
+    const color = {}
+    if (activeTab === 'home') {
+      color['text'] = this.getColorCode(hometextColor)
+      color['stroke'] = this.getColorCode(homestrokeColor)
     } else {
-      color["text"] = this.getColorCode(awaytextColor);
-      color["stroke"] = this.getColorCode(awaystrokeColor);
+      color['text'] = this.getColorCode(awaytextColor)
+      color['stroke'] = this.getColorCode(awaystrokeColor)
     }
-    const result = {};
-    result[activeTab] = color;
-    this.props.jerseyTextColorChnaged(result);
-  };
+    const result = {}
+    result[activeTab] = color
+    this.props.jerseyTextColorChnaged(result)
+  }
 
   renderColorOptions() {
-    const { colors } = this.props.products;
+    const { colors } = this.props.products
 
     return (
       <React.Fragment>
@@ -139,13 +139,13 @@ class ColorOptions extends React.Component {
                 <rect
                   height="100%"
                   width="100%"
-                  fill={this.getColor("text")}
-                  style={{ stroke: "black" }}
+                  fill={this.getColor('text')}
+                  style={{ stroke: 'black' }}
                 />
               </svg>
               <Dropdown item scrolling>
                 <Dropdown.Menu>
-                  {this.renderColors("text", colors)}
+                  {this.renderColors('text', colors)}
                 </Dropdown.Menu>
               </Dropdown>
             </Grid.Column>
@@ -154,13 +154,13 @@ class ColorOptions extends React.Component {
                 <rect
                   height="100%"
                   width="100%"
-                  fill={this.getColor("stroke")}
-                  style={{ stroke: "black" }}
+                  fill={this.getColor('stroke')}
+                  style={{ stroke: 'black' }}
                 />
               </svg>
               <Dropdown item scrolling>
                 <Dropdown.Menu>
-                  {this.renderColors("stroke", colors)}
+                  {this.renderColors('stroke', colors)}
                 </Dropdown.Menu>
               </Dropdown>
             </Grid.Column>
@@ -172,33 +172,33 @@ class ColorOptions extends React.Component {
           </Grid.Row>
         </Grid>
       </React.Fragment>
-    );
+    )
   }
 
   render() {
-    const { activeTab } = this.state;
+    const { activeTab } = this.state
 
     return (
       <div>
         <Menu attached="top" tabular size="mini">
           <Menu.Item
             name="home"
-            active={activeTab === "home"}
-            onClick={() => this.handleTabChange("home")}
+            active={activeTab === 'home'}
+            onClick={() => this.handleTabChange('home')}
           />
           <Menu.Item
             name="away"
-            active={activeTab === "away"}
-            onClick={() => this.handleTabChange("away")}
+            active={activeTab === 'away'}
+            onClick={() => this.handleTabChange('away')}
           />
         </Menu>
         <Segment attached="bottom">{this.renderColorOptions()}</Segment>
       </div>
-    );
+    )
   }
 }
 
 export default connect(
   null,
   { jerseyTextColorChnaged }
-)(ColorOptions);
+)(ColorOptions)

@@ -1,13 +1,13 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { Link } from "react-router-dom";
-import { Menu, Image, Button, Grid, Header } from "semantic-ui-react";
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
+import { Menu, Image, Button, Grid, Header } from 'semantic-ui-react'
 
 class TeamHeader extends Component {
   renderContent() {
     switch (this.props.auth) {
       case null:
-        return <div />;
+        return <div />
       case false:
         return (
           <Button as="a" href="/auth/google" basic size="small" color="red">
@@ -39,9 +39,9 @@ class TeamHeader extends Component {
               </Grid.Column>
             </Grid>
           </Button>
-        );
+        )
       default:
-        return <a href="/api/logout">Logout</a>;
+        return <a href="/api/logout">Logout</a>
     }
   }
   render() {
@@ -64,12 +64,12 @@ class TeamHeader extends Component {
           <Menu.Item>{this.renderContent()}</Menu.Item>
         </Menu.Menu>
       </Menu>
-    );
+    )
   }
 }
 
 const mapStateToProps = ({ auth }) => {
-  return { auth };
-};
+  return { auth }
+}
 
-export default connect(mapStateToProps)(TeamHeader);
+export default connect(mapStateToProps)(TeamHeader)

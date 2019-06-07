@@ -1,31 +1,31 @@
-import React from "react";
-import ReactGA from "react-ga";
-import { connect } from "react-redux";
-import { fetchUser } from "../actions/actionsAuth";
+import React from 'react'
+import ReactGA from 'react-ga'
+import { connect } from 'react-redux'
+import { fetchUser } from '../actions/actionsAuth'
 
-import SearchBar from "./SearchBar";
-import TeamList from "./TeamList";
-import ProductList from "./ProductList";
-import TeamHeader from "./TeamHeader";
-import OrderList from "./dashboard/OrderList";
-import ImageStats from "./images/ImageStats";
-import TeamImageStats from "./images/TeamImageStats";
-import Order from "./orders/Order";
+import SearchBar from './SearchBar'
+import TeamList from './TeamList'
+import ProductList from './ProductList'
+import TeamHeader from './TeamHeader'
+import OrderList from './dashboard/OrderList'
+import ImageStats from './images/ImageStats'
+import TeamImageStats from './images/TeamImageStats'
+import Order from './orders/Order'
 
-import { BrowserRouter, Route } from "react-router-dom";
+import { BrowserRouter, Route } from 'react-router-dom'
 
 class App extends React.Component {
   constructor(props) {
-    super(props);
-    this.initializeReactGA();
+    super(props)
+    this.initializeReactGA()
   }
   initializeReactGA = () => {
-    ReactGA.initialize(process.env.REACT_APP_GA_CODE);
-    ReactGA.pageview("/homepage");
-  };
+    ReactGA.initialize(process.env.REACT_APP_GA_CODE)
+    ReactGA.pageview('/homepage')
+  }
 
   componentDidMount() {
-    this.props.fetchUser();
+    this.props.fetchUser()
   }
   render() {
     return (
@@ -43,11 +43,11 @@ class App extends React.Component {
           </div>
         </BrowserRouter>
       </div>
-    );
+    )
   }
 }
 
 export default connect(
   null,
   { fetchUser }
-)(App);
+)(App)

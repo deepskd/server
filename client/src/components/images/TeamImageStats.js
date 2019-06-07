@@ -1,21 +1,21 @@
-import React from "react";
-import { connect } from "react-redux";
-import { getTeamImageStats, getTeamImages } from "../../actions/actionsImage";
-import { Grid, Table } from "semantic-ui-react";
+import React from 'react'
+import { connect } from 'react-redux'
+import { getTeamImageStats, getTeamImages } from '../../actions/actionsImage'
+import { Grid, Table } from 'semantic-ui-react'
 
-import TeamImageList from "./TeamImageList";
+import TeamImageList from './TeamImageList'
 
 class TeamImageStats extends React.Component {
   componentDidMount() {
-    this.props.getTeamImageStats();
+    this.props.getTeamImageStats()
   }
 
   handleClick(teamId) {
-    this.props.getTeamImages(teamId);
+    this.props.getTeamImages(teamId)
   }
 
   renderTeamImageStats = () => {
-    const { imageStats } = this.props;
+    const { imageStats } = this.props
     return imageStats.map(stat => {
       return (
         <Table.Row key={stat._id} onClick={() => this.handleClick(stat._id)}>
@@ -26,14 +26,14 @@ class TeamImageStats extends React.Component {
           </Table.Cell>
           <Table.Cell>{stat.count}</Table.Cell>
         </Table.Row>
-      );
-    });
-  };
+      )
+    })
+  }
 
   render() {
-    const { imageStats } = this.props;
+    const { imageStats } = this.props
     if (imageStats.length === 0) {
-      return <React.Fragment />;
+      return <React.Fragment />
     }
     return (
       <Grid columns={2}>
@@ -54,17 +54,17 @@ class TeamImageStats extends React.Component {
           </Grid.Column>
         </Grid.Row>
       </Grid>
-    );
+    )
   }
 }
 
 const mapStateToProps = state => {
   return {
-    imageStats: state.imageStats
-  };
-};
+    imageStats: state.imageStats,
+  }
+}
 
 export default connect(
   mapStateToProps,
   { getTeamImages, getTeamImageStats }
-)(TeamImageStats);
+)(TeamImageStats)

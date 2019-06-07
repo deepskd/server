@@ -136,6 +136,6 @@ const data = `[
       }
     ]
   }
-]`;
+]`
 
-export const ORDERS = JSON.parse(data);
+export const ORDERS = JSON.parse(data)
