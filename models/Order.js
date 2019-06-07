@@ -11,7 +11,8 @@ const orderSchema = new Schema({
   orderLineId: Number,
   articleNo: String,
   ibFactory: String,
-  productPreviewURL: String
+  productPreviewURL: String,
+  teamId: { type: Schema.Types.ObjectId, ref: "Team" }
 });
 
 orderSchema.statics.findByOrderName = function(orderName, cb) {
@@ -20,6 +21,14 @@ orderSchema.statics.findByOrderName = function(orderName, cb) {
     orderName: qOrderName,
     productPreviewURL: { $exists: true }
   });
+};
+
+orderSchema.statics.assignTeamToOrders = function(orderIds, teamId, cb) {
+  return this.updateMany(
+    { _id: { $in: orderIds } },
+    { $set: { teamId: teamId } },
+    cb
+  );
 };
 
 mongoose.model("orders", orderSchema);
