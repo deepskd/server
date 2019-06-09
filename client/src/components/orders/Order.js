@@ -1,20 +1,19 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Form, Input } from 'semantic-ui-react'
+import { Form, Button, Divider } from 'semantic-ui-react'
 import { findOrder } from '../../actions/actionsOrders'
 import OrderList from './OrderList'
 
 class Order extends Component {
-  state = { term: '', retailerId: '' }
+  state = { orderName: '', retailerId: '', article: '' }
 
   onFormSubmit = event => {
     event.preventDefault()
-    const { term, retailerId } = this.state
-    this.props.findOrder({ term, retailerId })
+    const { orderName, retailerId, article } = this.state
+    this.props.findOrder({ orderName, retailerId, article })
   }
 
   onInputChange = (event, obj) => {
-    console.log(obj)
     this.setState({ [obj.name]: event.target.value })
   }
   render() {
@@ -23,10 +22,9 @@ class Order extends Component {
         <Form onSubmit={this.onFormSubmit}>
           <Form.Group widths="equal">
             <Form.Input
-              action="Search"
-              name="term"
+              name="orderName"
               placeholder="Order Name"
-              value={this.state.term}
+              value={this.state.orderName}
               onChange={this.onInputChange}
             />
             <Form.Input
@@ -34,9 +32,16 @@ class Order extends Component {
               value={this.state.retailerId}
               onChange={this.onInputChange}
             />
+            <Form.Input
+              name="article"
+              value={this.state.article}
+              onChange={this.onInputChange}
+            />
           </Form.Group>
+          <Button type="submit">Find Orders</Button>
         </Form>
         <OrderList />
+        <Divider />
       </React.Fragment>
     )
   }

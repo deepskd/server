@@ -1,8 +1,14 @@
 import gts from '../apis/gts'
 import { FIND_ORDERS } from './types'
 
-export const findOrder = orderName => async dispatch => {
-  const res = await gts.get(`/orders?orderName=${orderName}`)
+export const findOrder = ({
+  orderName,
+  retailerId,
+  article,
+}) => async dispatch => {
+  const query = `orderName=${orderName}&retailerId=${retailerId}&article=${article}`
+
+  const res = await gts.get(`/orders?${query}`)
   dispatch({ type: FIND_ORDERS, payload: res.data })
 }
 

@@ -6,7 +6,7 @@ const Order = mongoose.model('orders')
 
 module.exports = app => {
   app.get('/api/orders', requireLogin, async (req, res) => {
-    const orders = await Order.findByOrderName(req.query.orderName)
+    const orders = await Order.findOrders(req.query)
 
     res.status(200).send(orders)
   })
