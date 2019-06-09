@@ -1,12 +1,12 @@
-import React from "react";
-import { connect } from "react-redux";
-import { Link } from "react-router-dom";
+import React from 'react'
+import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 
-import { selectTeam } from "../actions";
+import { selectTeam } from '../actions'
 
 class TeamItem extends React.Component {
   onTeamSelect(team, sports) {
-    this.props.selectTeam(team, sports);
+    this.props.selectTeam(team, sports)
   }
   render() {
     return (
@@ -21,7 +21,7 @@ class TeamItem extends React.Component {
         <div className="ui horizontal list">
           <div
             className="item"
-            onClick={() => this.onTeamSelect(this.props.team, "football")}
+            onClick={() => this.onTeamSelect(this.props.team, 'football')}
           >
             <Link to={`/football/${this.props.team._id}`}>
               <i className="football ball icon" />
@@ -30,7 +30,7 @@ class TeamItem extends React.Component {
           </div>
           <div
             className="item"
-            onClick={() => this.onTeamSelect(this.props.team, "basketball")}
+            onClick={() => this.onTeamSelect(this.props.team, 'basketball')}
           >
             <Link to={`/basketball/${this.props.team._id}`}>
               <i className="basketball ball icon" />
@@ -39,11 +39,11 @@ class TeamItem extends React.Component {
           </div>
         </div>
       </div>
-    );
+    )
   }
 }
 
 export default connect(
   null,
   { selectTeam }
-)(TeamItem);
+)(TeamItem)

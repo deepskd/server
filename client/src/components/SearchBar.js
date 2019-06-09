@@ -1,25 +1,25 @@
-import React from "react";
-import ReactGA from "react-ga";
-import { connect } from "react-redux";
+import React from 'react'
+import ReactGA from 'react-ga'
+import { connect } from 'react-redux'
 
-import { findTeams } from "../actions";
+import { findTeams } from '../actions'
 
 class SearchBar extends React.Component {
-  state = { term: "" };
+  state = { term: '' }
 
   onInputChange = event => {
-    this.setState({ term: event.target.value });
-  };
+    this.setState({ term: event.target.value })
+  }
 
   onFormSubmit = event => {
-    event.preventDefault();
+    event.preventDefault()
     ReactGA.event({
-      category: "FindSchool",
-      action: this.state.term
-    });
+      category: 'FindSchool',
+      action: this.state.term,
+    })
 
-    this.props.findTeams(this.state.term);
-  };
+    this.props.findTeams(this.state.term)
+  }
 
   render() {
     return (
@@ -47,11 +47,11 @@ class SearchBar extends React.Component {
           </div>
         </div>
       </div>
-    );
+    )
   }
 }
 
 export default connect(
   null,
   { findTeams }
-)(SearchBar);
+)(SearchBar)

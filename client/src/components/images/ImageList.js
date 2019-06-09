@@ -1,58 +1,51 @@
-import React from "react";
-import { connect } from "react-redux";
-import {
-  Card,
-  Image,
-  Checkbox,
-  Segment,
-  List,
-  Button
-} from "semantic-ui-react";
+import React from 'react'
+import { connect } from 'react-redux'
+import { Card, Image, Checkbox, Segment, List, Button } from 'semantic-ui-react'
 
-import { findTeams } from "../../actions";
-import { assignImagesToTeam } from "../../actions/actionsImage";
+import { findTeams } from '../../actions'
+import { assignImagesToTeam } from '../../actions/actionsImage'
 
 class ImageList extends React.Component {
-  state = { selectedImages: [], term: "" };
+  state = { selectedImages: [], term: '' }
 
   onImageSelect = id => {
-    const { selectedImages } = this.state;
+    const { selectedImages } = this.state
     if (selectedImages.includes(id)) {
-      selectedImages.pop(id);
-      this.setState({ selectedImages });
+      selectedImages.pop(id)
+      this.setState({ selectedImages })
     } else {
-      selectedImages.push(id);
-      this.setState({ selectedImages });
+      selectedImages.push(id)
+      this.setState({ selectedImages })
     }
-  };
+  }
 
-  isSelected = id => this.state.selectedImages.includes(id);
+  isSelected = id => this.state.selectedImages.includes(id)
 
   onInputChange = event => {
-    this.setState({ term: event.target.value });
-  };
+    this.setState({ term: event.target.value })
+  }
 
   onFormSubmit = event => {
-    event.preventDefault();
-    this.props.findTeams(this.state.term);
-  };
+    event.preventDefault()
+    this.props.findTeams(this.state.term)
+  }
 
   assignImagestoTeam = teamId => {
-    const updateImages = {};
-    const { selectedImages } = this.state;
-    const { images } = this.props;
+    const updateImages = {}
+    const { selectedImages } = this.state
+    const { images } = this.props
 
-    updateImages.selectedImageIds = selectedImages;
-    updateImages.teamId = teamId;
+    updateImages.selectedImageIds = selectedImages
+    updateImages.teamId = teamId
 
-    this.props.assignImagesToTeam(updateImages, images[0].retailerId);
-    this.setState({ selectedImages: [], term: "" });
-  };
+    this.props.assignImagesToTeam(updateImages, images[0].retailerId)
+    this.setState({ selectedImages: [], term: '' })
+  }
 
   renderImages = images => {
     return images.map((image, index) => {
       return (
-        <Card key={index} color={image.teamId ? "green" : "red"}>
+        <Card key={index} color={image.teamId ? 'green' : 'red'}>
           <Image wrapped ui={false}>
             <div className="ui right floated">
               <Checkbox
@@ -60,7 +53,7 @@ class ImageList extends React.Component {
                 checked={this.isSelected(image._id)}
               />
             </div>
-            <img src={image.previewImageURL} alt={"home"} />
+            <img src={image.previewImageURL} alt={'home'} />
           </Image>
           <Card.Content>
             <Card.Meta>
@@ -69,17 +62,17 @@ class ImageList extends React.Component {
           </Card.Content>
           <Card.Content extra>{image.meta.orderNo}</Card.Content>
         </Card>
-      );
-    });
-  };
+      )
+    })
+  }
 
   renderTeams = () => {
     if (!this.props.teams) {
-      return null;
+      return null
     }
     return this.props.teams.map(team => {
       const disabledAssign =
-        this.state.selectedImages.length === 0 ? true : false;
+        this.state.selectedImages.length === 0 ? true : false
       return (
         <List.Item key={team._id}>
           <List.Content floated="right">
@@ -99,14 +92,14 @@ class ImageList extends React.Component {
             {team.mascot}
           </List.Content>
         </List.Item>
-      );
-    });
-  };
+      )
+    })
+  }
 
   render() {
-    const { images } = this.props;
+    const { images } = this.props
     if (images.length === 0) {
-      return <React.Fragment />;
+      return <React.Fragment />
     }
 
     return (
@@ -138,14 +131,14 @@ class ImageList extends React.Component {
           </List>
         </Segment>
       </React.Fragment>
-    );
+    )
   }
 }
 
 const mapStateToProps = state => {
-  return { images: state.images, teams: state.teams };
-};
+  return { images: state.images, teams: state.teams }
+}
 export default connect(
   mapStateToProps,
   { findTeams, assignImagesToTeam }
-)(ImageList);
+)(ImageList)

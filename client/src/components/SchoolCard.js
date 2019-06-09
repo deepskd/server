@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react'
 
 const SchoolCard = props => {
   return (
@@ -15,7 +15,7 @@ const SchoolCard = props => {
         {props.team.colors}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default SchoolCard;
+export default SchoolCard

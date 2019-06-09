@@ -1,15 +1,15 @@
-import React from "react";
-import { Grid, Label, Segment, Item, Icon } from "semantic-ui-react";
+import React from 'react'
+import { Grid, Label, Segment, Item, Icon } from 'semantic-ui-react'
 
 class OrderItem extends React.Component {
   renderArticleStatus = article => {
-    if (article.status === "In Production") {
+    if (article.status === 'In Production') {
       return (
         <React.Fragment>
           Expected Delivery {article.expectedDeliveryDate}
         </React.Fragment>
-      );
-    } else if (article.status === "Delivered") {
+      )
+    } else if (article.status === 'Delivered') {
       return (
         <React.Fragment>
           Delivered on 01-Jan-2019
@@ -18,9 +18,9 @@ class OrderItem extends React.Component {
             {article.trackingNo}
           </Label>
         </React.Fragment>
-      );
+      )
     }
-  };
+  }
   renderArticles = articles => {
     return articles.map(article => {
       return (
@@ -36,11 +36,11 @@ class OrderItem extends React.Component {
             </Item.Content>
           </Item>
         </Item.Group>
-      );
-    });
-  };
+      )
+    })
+  }
   render() {
-    const { order } = this.props;
+    const { order } = this.props
     return (
       <React.Fragment>
         <Label attached="top left" color="blue">
@@ -64,8 +64,8 @@ class OrderItem extends React.Component {
           </Grid>
         </Segment>
       </React.Fragment>
-    );
+    )
   }
 }
 
-export default OrderItem;
+export default OrderItem
