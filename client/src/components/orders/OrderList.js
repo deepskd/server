@@ -4,6 +4,8 @@ import { connect } from 'react-redux'
 import { Card, Image } from 'semantic-ui-react'
 
 class OrderList extends Component {
+  state = { selectedOrders: [], term: '' }
+
   renderOrders = orders => {
     return orders.map(order => {
       return (

@@ -5,26 +5,36 @@ import { findOrder } from '../../actions/actionsOrders'
 import OrderList from './OrderList'
 
 class Order extends Component {
-  state = { term: '' }
+  state = { term: '', retailerId: '' }
 
   onFormSubmit = event => {
     event.preventDefault()
-    this.props.findOrder(this.state.term)
+    const { term, retailerId } = this.state
+    this.props.findOrder({ term, retailerId })
   }
 
-  onInputChange = event => {
-    this.setState({ term: event.target.value })
+  onInputChange = (event, obj) => {
+    console.log(obj)
+    this.setState({ [obj.name]: event.target.value })
   }
   render() {
     return (
       <React.Fragment>
         <Form onSubmit={this.onFormSubmit}>
-          <Input
-            action="Search"
-            placeholder="Search"
-            value={this.state.term}
-            onChange={this.onInputChange}
-          />
+          <Form.Group widths="equal">
+            <Form.Input
+              action="Search"
+              name="term"
+              placeholder="Order Name"
+              value={this.state.term}
+              onChange={this.onInputChange}
+            />
+            <Form.Input
+              name="retailerId"
+              value={this.state.retailerId}
+              onChange={this.onInputChange}
+            />
+          </Form.Group>
         </Form>
         <OrderList />
       </React.Fragment>
