@@ -129,16 +129,10 @@ const homeDecorations = ({ jersey, pant }, colors) => {
   jersey.textColorCode = colorMap(jersey.textColor)
   jersey.strokeColorCode = colorMap(jersey.strokeColor)
 
-  jersey.frontImage = _.replace(
-    jersey.frontImage,
-    /(TEAM|NUMBER)TEXTCOLOR/g,
-    jersey.textColorCode
-  )
-  jersey.frontImage = _.replace(
-    jersey.frontImage,
-    /(TEAM|NUMBER)STROKECOLOR/g,
-    jersey.strokeColorCode
-  )
+  jersey.frontImage = _.chain(jersey.frontImage)
+    .replace(/(TEAM|NUMBER)TEXTCOLOR/g, jersey.textColorCode)
+    .replace(/(TEAM|NUMBER)STROKECOLOR/g, jersey.strokeColorCode)
+    .value()
   return { jersey, pant }
 }
 
@@ -159,17 +153,10 @@ const awayDecorations = ({ jersey, pant }, colors) => {
   jersey.textColorCode = colorMap(jersey.textColor)
   jersey.strokeColorCode = colorMap(jersey.strokeColor)
 
-  jersey.frontImage = _.replace(
-    jersey.frontImage,
-    /(TEAM|NUMBER)TEXTCOLOR/g,
-    jersey.textColorCode
-  )
-  jersey.frontImage = _.replace(
-    jersey.frontImage,
-    /(TEAM|NUMBER)STROKECOLOR/g,
-    jersey.strokeColorCode
-  )
-
+  jersey.frontImage = _.chain(jersey.frontImage)
+    .replace(/(TEAM|NUMBER)TEXTCOLOR/g, jersey.textColorCode)
+    .replace(/(TEAM|NUMBER)STROKECOLOR/g, jersey.strokeColorCode)
+    .value()
   return { jersey, pant }
 }
 
