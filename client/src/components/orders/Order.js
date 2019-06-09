@@ -29,11 +29,13 @@ class Order extends Component {
             />
             <Form.Input
               name="retailerId"
+              placeholder="Retailer Id"
               value={this.state.retailerId}
               onChange={this.onInputChange}
             />
             <Form.Input
               name="article"
+              placeholder="Article No"
               value={this.state.article}
               onChange={this.onInputChange}
             />
