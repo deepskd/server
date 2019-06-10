@@ -226,16 +226,10 @@ const awayDecorations = ({ jersey, pant }, colors) => {
   pant.strokeColor1Code = colorMap(pant.strokeColor1, applicationType)
   pant.strokeColor2Code = colorMap(pant.strokeColor2, applicationType)
 
-  jersey.frontImage = _.replace(
-    jersey.frontImage,
-    /(TEAM|NUMBER)TEXTCOLOR/g,
-    jersey.textColorCode
-  )
-  jersey.frontImage = _.replace(
-    jersey.frontImage,
-    /(TEAM|NUMBER)STROKECOLOR/g,
-    jersey.strokeColorCode
-  )
+  jersey.frontImage = _.chain(jersey.frontImage)
+    .replace(/(TEAM|NUMBER)TEXTCOLOR/g, jersey.textColorCode)
+    .replace(/(TEAM|NUMBER)STROKECOLOR/g, jersey.strokeColorCode)
+    .value()
 
   pant.frontImage = _.replace(
     pant.frontImage,
@@ -280,16 +274,10 @@ const homeDecorations = ({ jersey, pant }, colors) => {
   pant.strokeColor1Code = colorMap(pant.strokeColor1, applicationType)
   pant.strokeColor2Code = colorMap(pant.strokeColor2, applicationType)
 
-  jersey.frontImage = _.replace(
-    jersey.frontImage,
-    /(TEAM|NUMBER)TEXTCOLOR/g,
-    jersey.textColorCode
-  )
-  jersey.frontImage = _.replace(
-    jersey.frontImage,
-    /(TEAM|NUMBER)STROKECOLOR/g,
-    jersey.strokeColorCode
-  )
+  jersey.frontImage = _.chain(jersey.frontImage)
+    .replace(/(TEAM|NUMBER)TEXTCOLOR/g, jersey.textColorCode)
+    .replace(/(TEAM|NUMBER)STROKECOLOR/g, jersey.strokeColorCode)
+    .value()
 
   pant.frontImage = _.replace(
     pant.frontImage,
@@ -302,8 +290,11 @@ const homeDecorations = ({ jersey, pant }, colors) => {
 
 const stripesOnPants = (primaryColor, secondaryColor) => {
   let stripe = _.sample(PANTS_STRIPE_OPTIONS)
-  stripe.url = _.replace(stripe.url, 'STRIPE_PRIMARY_COLOR', primaryColor)
-  stripe.url = _.replace(stripe.url, 'STRIPE_SECONDARY_COLOR', secondaryColor)
+
+  stripe.url = _.chain(stripe.url)
+    .replace('STRIPE_PRIMARY_COLOR', primaryColor)
+    .replace('STRIPE_SECONDARY_COLOR', secondaryColor)
+
   return stripe
 }
 
