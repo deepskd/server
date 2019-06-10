@@ -7,7 +7,7 @@ import SearchBar from './SearchBar'
 import TeamList from './TeamList'
 import ProductList from './ProductList'
 import TeamHeader from './TeamHeader'
-import OrderList from './dashboard/OrderList'
+// import OrderList from './dashboard/OrderList'
 import ImageStats from './images/ImageStats'
 import TeamImageStats from './images/TeamImageStats'
 import Order from './orders/Order'
@@ -36,7 +36,6 @@ class App extends React.Component {
             <Route path="/" exact component={SearchBar} />
             <Route path="/" exact component={TeamList} />
             <Route path="/:sports/:id" component={ProductList} />
-            <Route path="/dashboard" exact component={OrderList} />
             <Route path="/retailerImages" exact component={ImageStats} />
             <Route path="/teamImages" exact component={TeamImageStats} />
             <Route path="/orders" exact component={Order} />
