@@ -29,16 +29,37 @@ class ProductList extends React.Component {
       )
     })
   }
+
+  onCardSelect = (article, selected) => {
+    console.log('in Product List', article, ' ', selected)
+  }
+
   renderProducts({ home, away }) {
     return (
       <React.Fragment>
         <div className="ui two cards">
-          <ImageCard src={home.jersey} alt={'Home Jersey'} />
-          <ImageCard src={away.jersey} alt={'Away Jersey'} />
+          <ImageCard
+            src={home.jersey}
+            alt={'Home Jersey'}
+            onSelect={selected => this.onCardSelect('home_jersey', selected)}
+          />
+          <ImageCard
+            src={away.jersey}
+            alt={'Away Jersey'}
+            onSelect={selected => this.onCardSelect('away_jersey', selected)}
+          />
         </div>
         <div className="ui two cards">
-          <ImageCard src={home.pant} alt={'Home Pant'} />
-          <ImageCard src={away.pant} alt={'Away Pant'} />
+          <ImageCard
+            src={home.pant}
+            alt={'Home Pant'}
+            onSelect={selected => this.onCardSelect('home_pant', selected)}
+          />
+          <ImageCard
+            src={away.pant}
+            alt={'Away Pant'}
+            onSelect={selected => this.onCardSelect('away_pant', selected)}
+          />
         </div>
       </React.Fragment>
     )
