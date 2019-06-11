@@ -8,7 +8,7 @@ import JerseyText from './designMenu/JerseyText'
 import ColorOptions from './designMenu/ColorOptions'
 import { selectTeam, fontChanged } from '../actions'
 
-import { Grid } from 'semantic-ui-react'
+import { Grid, Button } from 'semantic-ui-react'
 
 class ProductList extends React.Component {
   componentDidMount() {
@@ -77,7 +77,7 @@ class ProductList extends React.Component {
       return <div>Loading</div>
     }
     return (
-      <div className="ui fluid grid">
+      <Grid>
         <SchoolCard team={team} />
         <Grid.Row>
           <div className="left floated twelve wide column">
@@ -116,7 +116,12 @@ class ProductList extends React.Component {
             </form>
           </div>
         </Grid.Row>
-      </div>
+        <Grid.Row>
+          <Grid.Column floated="right">
+            <Button primary>Add to Cart</Button>
+          </Grid.Column>
+        </Grid.Row>
+      </Grid>
     )
   }
 }
