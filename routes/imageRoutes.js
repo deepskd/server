@@ -16,7 +16,10 @@ module.exports = app => {
   })
 
   app.get('/api/retailerImageCount', requireLogin, async (req, res) => {
-    const imageStats = await Image.retailerImageCount()
+    const imageStats = await Image.retailerImageCount(
+      req.query.country,
+      req.query.sort
+    )
     res.status(200).send(imageStats)
   })
 

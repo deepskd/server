@@ -10,7 +10,7 @@ import ImageList from './ImageList'
 
 class ImageStats extends React.Component {
   componentDidMount() {
-    this.props.getRetailerImageStats()
+    this.props.getRetailerImageStats(this.props.location.search)
   }
 
   handleClick(retailerId) {
