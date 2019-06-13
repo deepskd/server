@@ -26,14 +26,23 @@ imageSchema.statics.findByRetailerId = function(retailerId, cb) {
   return this.find(
     { retailerId: retailerId, teamId: { $exists: false } },
     cb
-  ).limit(50)
+  ).limit(100)
 }
 
-imageSchema.statics.retailerImageCount = function(cb) {
+imageSchema.statics.retailerImageCount = function(
+  country = 'US',
+  sort = 1,
+  cb
+) {
   return this.aggregate([
-    { $match: { teamId: { $exists: false } } },
+    {
+      $match: {
+        teamId: { $exists: false },
+        'meta.orderNo': new RegExp(`^MIAD2${country}`, 'i'),
+      },
+    },
     { $group: { _id: '$retailerId', count: { $sum: 1 } } },
-    { $sort: { count: 1 } },
+    { $sort: { count: Number.parseInt(sort) } },
   ])
 }
 

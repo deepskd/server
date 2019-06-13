@@ -8,8 +8,8 @@ import {
   TEAM_IMAGES,
 } from './types'
 
-export const getRetailerImageStats = () => async dispatch => {
-  const response = await gts.get('/retailerImageCount')
+export const getRetailerImageStats = queryString => async dispatch => {
+  const response = await gts.get(`/retailerImageCount${queryString}`)
   dispatch({ type: RETAILER_IMAGE_STATS, payload: response })
 }
 
