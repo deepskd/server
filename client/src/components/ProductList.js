@@ -99,7 +99,6 @@ class ProductList extends React.Component {
                 </select>
               </Form.Field>
               <Form.Field>
-                <label>Jersey Text</label>
                 <JerseyText
                   mascot={team.mascot.toUpperCase()}
                   teamName={team.name.toUpperCase()}

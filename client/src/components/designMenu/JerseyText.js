@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Menu, Segment } from 'semantic-ui-react'
+import { Menu, Segment, Form } from 'semantic-ui-react'
 import { jerseyTextChanged } from '../../actions'
 
 class JerseyText extends React.Component {
@@ -59,19 +59,15 @@ class JerseyText extends React.Component {
         </Menu>
 
         <Segment attached="bottom">
-          <div className="ui fluid action input">
-            <input
-              type="text"
-              value={jerseyText[activeTab]}
-              onChange={e => this.handleInputChange(e)}
-            />
-            <button
-              className="ui icon button"
-              onClick={e => this.handleTextUpdate(e)}
-            >
-              <i className="edit icon" />
-            </button>
-          </div>
+          <Form.Input
+            fluid
+            label="Team Name"
+            value={jerseyText[activeTab]}
+            onKeyPress={e => {
+              e.key === 'Enter' && e.preventDefault()
+            }}
+            onChange={e => this.handleInputChange(e)}
+          />
         </Segment>
       </div>
     )
@@ -82,3 +78,17 @@ export default connect(
   null,
   { jerseyTextChanged }
 )(JerseyText)
+
+// <div className="ui fluid action input">
+//   <input
+//     type="text"
+//     value={jerseyText[activeTab]}
+//     onChange={e => this.handleInputChange(e)}
+//   />
+//   <button
+//     className="ui icon button"
+//     onClick={e => this.handleTextUpdate(e)}
+//   >
+//     <i className="edit icon" />
+//   </button>
+// </div>
