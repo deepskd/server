@@ -34,8 +34,8 @@ class TeamHeader extends Component {
                   </g>
                 </svg>
               </Grid.Column>
-              <Grid.Column floated="right" width={12} verticalAlign="middle">
-                <p>Log in with Google</p>
+              <Grid.Column floated="right" width={10} verticalAlign="middle">
+                <p>Log in</p>
               </Grid.Column>
             </Grid>
           </Button>
