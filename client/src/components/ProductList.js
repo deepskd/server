@@ -80,10 +80,10 @@ class ProductList extends React.Component {
       <Grid>
         <SchoolCard team={team} />
         <Grid.Row>
-          <div className="left floated twelve wide column">
-            <div className="ui grid">{this.renderProducts(products)}</div>
-          </div>
-          <div className="right floated four wide column">
+          <Grid.Column width={12} floated="left">
+            <Grid>{this.renderProducts(products)}</Grid>
+          </Grid.Column>
+          <Grid.Column width={4} floated="right">
             <form className="ui form" onSubmit={e => e.preventDefault()}>
               <div className="field" style={football}>
                 <EmbellishmentSwitch team={team} />
@@ -114,7 +114,7 @@ class ProductList extends React.Component {
                 />
               </div>
             </form>
-          </div>
+          </Grid.Column>
         </Grid.Row>
         <Grid.Row>
           <Grid.Column floated="right">

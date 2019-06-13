@@ -91,11 +91,10 @@ class ImageCard extends React.Component {
           </div>
         </div>
         <div className="extra content">
-          <div className="ui sub header">{src.articleDescription}</div>
-          <span className="left floated">{src.price}</span>
-          <span className="right floated">
-            <i className="cart icon" />
-          </span>
+          <div className="ui sub header">
+            {src.articleDescription}
+            <span className=" right floated">{src.price}</span>
+          </div>
         </div>
       </div>
     )
