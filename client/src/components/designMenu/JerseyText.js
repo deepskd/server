@@ -33,7 +33,7 @@ class JerseyText extends React.Component {
     this.setState({ jerseyText: text })
   }
 
-  handleTextUpdate = event => {
+  handleTextUpdate = () => {
     const { activeTab, jerseyText } = this.state
     const updateText = {}
     updateText[activeTab] = jerseyText[activeTab]
@@ -60,11 +60,15 @@ class JerseyText extends React.Component {
 
         <Segment attached="bottom">
           <Form.Input
+            action={{ icon: 'edit', onClick: this.handleTextUpdate }}
             fluid
             label="Team Name"
             value={jerseyText[activeTab]}
             onKeyPress={e => {
-              e.key === 'Enter' && e.preventDefault()
+              if (e.key === 'Enter') {
+                e.preventDefault()
+                this.handleTextUpdate()
+              }
             }}
             onChange={e => this.handleInputChange(e)}
           />
@@ -78,17 +82,3 @@ export default connect(
   null,
   { jerseyTextChanged }
 )(JerseyText)
-
-// <div className="ui fluid action input">
-//   <input
-//     type="text"
-//     value={jerseyText[activeTab]}
-//     onChange={e => this.handleInputChange(e)}
-//   />
-//   <button
-//     className="ui icon button"
-//     onClick={e => this.handleTextUpdate(e)}
-//   >
-//     <i className="edit icon" />
-//   </button>
-// </div>
