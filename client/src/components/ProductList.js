@@ -8,7 +8,7 @@ import JerseyText from './designMenu/JerseyText'
 import ColorOptions from './designMenu/ColorOptions'
 import { selectTeam, fontChanged } from '../actions'
 
-import { Grid, Button } from 'semantic-ui-react'
+import { Grid, Button, Form } from 'semantic-ui-react'
 
 class ProductList extends React.Component {
   componentDidMount() {
@@ -84,11 +84,11 @@ class ProductList extends React.Component {
             <Grid>{this.renderProducts(products)}</Grid>
           </Grid.Column>
           <Grid.Column width={4} floated="right">
-            <form className="ui form" onSubmit={e => e.preventDefault()}>
-              <div className="field" style={football}>
+            <Form onSubmit={e => e.preventDefault()}>
+              <Form.Field style={football}>
                 <EmbellishmentSwitch team={team} />
-              </div>
-              <div className="field">
+              </Form.Field>
+              <Form.Field>
                 <label>Font</label>
                 <select
                   className="ui dropdown"
@@ -97,23 +97,23 @@ class ProductList extends React.Component {
                 >
                   {this.fontOptions(products.fonts)}
                 </select>
-              </div>
-              <div className="field">
+              </Form.Field>
+              <Form.Field>
                 <label>Jersey Text</label>
                 <JerseyText
                   mascot={team.mascot.toUpperCase()}
                   teamName={team.name.toUpperCase()}
                 />
-              </div>
-              <div className="field">
+              </Form.Field>
+              <Form.Field>
                 <label>Colors</label>
                 <ColorOptions
                   mascot={team.mascot.toUpperCase()}
                   teamName={team.name.toUpperCase()}
                   products={products}
                 />
-              </div>
-            </form>
+              </Form.Field>
+            </Form>
           </Grid.Column>
         </Grid.Row>
         <Grid.Row>
