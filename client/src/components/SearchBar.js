@@ -2,6 +2,8 @@ import React from 'react'
 import ReactGA from 'react-ga'
 import { connect } from 'react-redux'
 
+import { Grid, Form } from 'semantic-ui-react'
+
 import { findTeams } from '../actions'
 
 class SearchBar extends React.Component {
@@ -23,30 +25,22 @@ class SearchBar extends React.Component {
 
   render() {
     return (
-      <div className="ui column centered grid">
-        <div className="twelve wide column">
-          <div className="ui search">
-            <form onSubmit={this.onFormSubmit} className="ui form">
-              <div className="ui fluid action input">
-                <input
-                  type="text"
-                  value={this.state.term}
-                  onChange={this.onInputChange}
-                  placeholder="School, State Code(optional)"
-                />
-                <button
-                  className="ui primary icon button"
-                  onClick={this.onFormSubmit}
-                  type="submit"
-                >
-                  <i className="search icon" />
-                  Search
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
+      <Grid centered>
+        <Grid.Column largeScreen={12} mobile={14}>
+          <Form onSubmit={this.onFormSubmit}>
+            <Form.Input
+              action={{
+                icon: 'search',
+                color: 'blue',
+                onClick: this.onFormSubmit,
+              }}
+              value={this.state.term}
+              onChange={this.onInputChange}
+              placeholder={'School Name'}
+            />
+          </Form>
+        </Grid.Column>
+      </Grid>
     )
   }
 }

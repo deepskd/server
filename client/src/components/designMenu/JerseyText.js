@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Menu, Segment } from 'semantic-ui-react'
+import { Menu, Segment, Form } from 'semantic-ui-react'
 import { jerseyTextChanged } from '../../actions'
 
 class JerseyText extends React.Component {
@@ -33,7 +33,7 @@ class JerseyText extends React.Component {
     this.setState({ jerseyText: text })
   }
 
-  handleTextUpdate = event => {
+  handleTextUpdate = () => {
     const { activeTab, jerseyText } = this.state
     const updateText = {}
     updateText[activeTab] = jerseyText[activeTab]
@@ -59,19 +59,19 @@ class JerseyText extends React.Component {
         </Menu>
 
         <Segment attached="bottom">
-          <div className="ui fluid action input">
-            <input
-              type="text"
-              value={jerseyText[activeTab]}
-              onChange={e => this.handleInputChange(e)}
-            />
-            <button
-              className="ui icon button"
-              onClick={e => this.handleTextUpdate(e)}
-            >
-              <i className="edit icon" />
-            </button>
-          </div>
+          <Form.Input
+            action={{ icon: 'edit', onClick: this.handleTextUpdate }}
+            fluid
+            label="Team Name"
+            value={jerseyText[activeTab]}
+            onKeyPress={e => {
+              if (e.key === 'Enter') {
+                e.preventDefault()
+                this.handleTextUpdate()
+              }
+            }}
+            onChange={e => this.handleInputChange(e)}
+          />
         </Segment>
       </div>
     )

@@ -8,6 +8,8 @@ import JerseyText from './designMenu/JerseyText'
 import ColorOptions from './designMenu/ColorOptions'
 import { selectTeam, fontChanged } from '../actions'
 
+import { Grid, Button, Form } from 'semantic-ui-react'
+
 class ProductList extends React.Component {
   componentDidMount() {
     const { params } = this.props.match
@@ -29,16 +31,37 @@ class ProductList extends React.Component {
       )
     })
   }
+
+  onCardSelect = (article, selected) => {
+    console.log('in Product List', article, ' ', selected)
+  }
+
   renderProducts({ home, away }) {
     return (
       <React.Fragment>
         <div className="ui two cards">
-          <ImageCard src={home.jersey} alt={'Home Jersey'} />
-          <ImageCard src={away.jersey} alt={'Away Jersey'} />
+          <ImageCard
+            src={home.jersey}
+            alt={'Home Jersey'}
+            onSelect={selected => this.onCardSelect('home_jersey', selected)}
+          />
+          <ImageCard
+            src={away.jersey}
+            alt={'Away Jersey'}
+            onSelect={selected => this.onCardSelect('away_jersey', selected)}
+          />
         </div>
         <div className="ui two cards">
-          <ImageCard src={home.pant} alt={'Home Pant'} />
-          <ImageCard src={away.pant} alt={'Away Pant'} />
+          <ImageCard
+            src={home.pant}
+            alt={'Home Pant'}
+            onSelect={selected => this.onCardSelect('home_pant', selected)}
+          />
+          <ImageCard
+            src={away.pant}
+            alt={'Away Pant'}
+            onSelect={selected => this.onCardSelect('away_pant', selected)}
+          />
         </div>
       </React.Fragment>
     )
@@ -54,44 +77,50 @@ class ProductList extends React.Component {
       return <div>Loading</div>
     }
     return (
-      <div className="ui fluid grid">
+      <Grid>
         <SchoolCard team={team} />
-        <div className="left floated twelve wide column">
-          <div className="ui grid">{this.renderProducts(products)}</div>
-        </div>
-        <div className="right floated four wide column">
-          <form className="ui form" onSubmit={e => e.preventDefault()}>
-            <div className="field" style={football}>
-              <EmbellishmentSwitch team={team} />
-            </div>
-            <div className="field">
-              <label>Font</label>
-              <select
-                className="ui dropdown"
-                onChange={event => this.fontChanged(event)}
-                value={products.selectedFont}
-              >
-                {this.fontOptions(products.fonts)}
-              </select>
-            </div>
-            <div className="field">
-              <label>Jersey Text</label>
-              <JerseyText
-                mascot={team.mascot.toUpperCase()}
-                teamName={team.name.toUpperCase()}
-              />
-            </div>
-            <div className="field">
-              <label>Colors</label>
-              <ColorOptions
-                mascot={team.mascot.toUpperCase()}
-                teamName={team.name.toUpperCase()}
-                products={products}
-              />
-            </div>
-          </form>
-        </div>
-      </div>
+        <Grid.Row>
+          <Grid.Column width={12} floated="left">
+            <Grid>{this.renderProducts(products)}</Grid>
+          </Grid.Column>
+          <Grid.Column width={4} floated="right">
+            <Form onSubmit={e => e.preventDefault()}>
+              <Form.Field style={football}>
+                <EmbellishmentSwitch team={team} />
+              </Form.Field>
+              <Form.Field>
+                <label>Font</label>
+                <select
+                  className="ui dropdown"
+                  onChange={event => this.fontChanged(event)}
+                  value={products.selectedFont}
+                >
+                  {this.fontOptions(products.fonts)}
+                </select>
+              </Form.Field>
+              <Form.Field>
+                <JerseyText
+                  mascot={team.mascot.toUpperCase()}
+                  teamName={team.name.toUpperCase()}
+                />
+              </Form.Field>
+              <Form.Field>
+                <label>Colors</label>
+                <ColorOptions
+                  mascot={team.mascot.toUpperCase()}
+                  teamName={team.name.toUpperCase()}
+                  products={products}
+                />
+              </Form.Field>
+            </Form>
+          </Grid.Column>
+        </Grid.Row>
+        <Grid.Row>
+          <Grid.Column floated="right">
+            <Button primary>Add to Cart</Button>
+          </Grid.Column>
+        </Grid.Row>
+      </Grid>
     )
   }
 }

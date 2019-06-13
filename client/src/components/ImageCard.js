@@ -1,5 +1,6 @@
 import React from 'react'
 import _ from 'lodash'
+import { Checkbox } from 'semantic-ui-react'
 
 class ImageCard extends React.Component {
   constructor(props) {
@@ -7,6 +8,7 @@ class ImageCard extends React.Component {
 
     this.state = {
       loading: '',
+      checked: false,
       direction: 'front',
       imageURL: this.props.src.frontImage,
       text: this.props.src.jerseyText,
@@ -48,6 +50,12 @@ class ImageCard extends React.Component {
     }
   }
 
+  addToCart = event => {
+    const { checked } = this.state
+    this.setState({ checked: !checked })
+    this.props.onSelect(!checked)
+  }
+
   render() {
     const { src } = this.props
     if (!src) {
@@ -64,6 +72,11 @@ class ImageCard extends React.Component {
             <div className="image" style={{ height: '300px' }} />
           </div>
           <div className="image hidden content" style={{ height: '300px' }}>
+            <Checkbox
+              name="add"
+              onChange={this.addToCart}
+              checked={this.state.checked}
+            />
             <div className="ui right floated mini icon button">
               <i
                 className="redo icon"
@@ -78,11 +91,10 @@ class ImageCard extends React.Component {
           </div>
         </div>
         <div className="extra content">
-          <div className="ui sub header">{src.articleDescription}</div>
-          <span className="left floated">{src.price}</span>
-          <span className="right floated">
-            <i className="cart icon" />
-          </span>
+          <div className="ui sub header">
+            {src.articleDescription}
+            <span className=" right floated">{src.price}</span>
+          </div>
         </div>
       </div>
     )
