@@ -8,7 +8,8 @@ const options = [
   { key: 100141, text: 'Athletic Supply', value: 100141 },
   { key: 100535, text: 'MB2', value: 100535 },
   { key: 100226, text: 'Athletics Unlimited', value: 100226 },
-  { key: 100132, text: 'Bumblebee', value: 100132 }
+  { key: 100132, text: 'Bumblebee', value: 100132 },
+  { key: 100142, text: 'Cardinal Sports', value: 100142}
 ]
 
 class Order extends Component {
