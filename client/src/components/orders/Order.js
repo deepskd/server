@@ -4,6 +4,13 @@ import { Form, Button, Divider } from 'semantic-ui-react'
 import { findOrder } from '../../actions/actionsOrders'
 import OrderList from './OrderList'
 
+const options = [
+  { key: 100141, text: 'Athletic Supply', value: 100141 },
+  { key: 100535, text: 'MB2', value: 100535 },
+  { key: 100226, text: 'Athletics Unlimited', value: 100226 },
+  { key: 100132, text: 'Bumblebee', value: 100132 }
+]
+
 class Order extends Component {
   state = { orderName: '', retailerId: '', article: '' }
 
@@ -13,37 +20,45 @@ class Order extends Component {
     this.props.findOrder({ orderName, retailerId, article })
   }
 
-  onInputChange = (event, obj) => {
-    this.setState({ [obj.name]: event.target.value })
+  onInputChange = (event, {name, value}) => {
+    this.setState({ [name]: value })
   }
+
+ 
   render() {
     return (
       <React.Fragment>
         <Form onSubmit={this.onFormSubmit}>
           <Form.Group widths="equal">
-            <Form.Input
-              name="orderName"
-              placeholder="Order Name"
-              value={this.state.orderName}
-              onChange={this.onInputChange}
-            />
-            <Form.Input
+            <Form.Dropdown
               name="retailerId"
-              placeholder="Retailer Id"
+              placeholder="Retailer"
+              label="Retailer"
               value={this.state.retailerId}
               onChange={this.onInputChange}
+              options={options}
+              clearable
+              selection
             />
             <Form.Input
               name="article"
+              label="Article No"
               placeholder="Article No"
               value={this.state.article}
               onChange={this.onInputChange}
             />
+            <Form.Input
+              name="orderName"
+              label="Order Name"
+              placeholder="Order Name"
+              value={this.state.orderName}
+              onChange={this.onInputChange}
+            />
           </Form.Group>
-          <Button type="submit">Find Orders</Button>
+          <Button primary type="submit">Find Orders</Button>
         </Form>
-        <OrderList />
         <Divider />
+        <OrderList />
       </React.Fragment>
     )
   }
