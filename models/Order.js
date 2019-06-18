@@ -29,7 +29,7 @@ orderSchema.statics.findOrders = function(
     retailerId: qRetailerId,
     articleNo: qArticleNo,
     productPreviewURL: { $exists: true },
-  }).limit(100)
+  },'id productPreviewURL articleNo orderName').limit(100)
 }
 
 orderSchema.statics.assignTeamToOrders = function(orderIds, teamId, cb) {
