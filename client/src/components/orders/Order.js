@@ -9,7 +9,9 @@ const options = [
   { key: 100535, text: 'MB2', value: 100535 },
   { key: 100226, text: 'Athletics Unlimited', value: 100226 },
   { key: 100132, text: 'Bumblebee', value: 100132 },
-  { key: 100142, text: 'Cardinal Sports', value: 100142}
+  { key: 100142, text: 'Cardinal Sports', value: 100142},
+  { key: 200838, text: 'Barcelona Sporting Goods', value: 200838},
+  { key: 100820, text: 'Athletic Shop', value: 100820}
 ]
 
 class Order extends Component {

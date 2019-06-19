@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import { Card, Image } from 'semantic-ui-react'
+import { Card, Image, Button } from 'semantic-ui-react'
 
 class OrderList extends Component {
   state = { selectedOrders: [], term: '' }
@@ -9,7 +9,7 @@ class OrderList extends Component {
   renderOrders = orders => {
     return orders.map(order => {
       return (
-        <Card key={order.id}>
+        <Card key={order._id}>
           <Image
             src={order.productPreviewURL.replace('$configLarge$', 'wid=201')}
           />
