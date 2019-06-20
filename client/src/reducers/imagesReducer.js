@@ -4,7 +4,7 @@ import {
   ASSIGN_IMAGES_TO_TEAM,
 } from '../actions/types'
 
-export default (state = [], action) => {
+export default (state = {}, action) => {
   switch (action.type) {
     case RETAILER_IMAGES:
       return action.payload.data

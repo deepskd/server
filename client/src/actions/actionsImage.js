@@ -13,8 +13,12 @@ export const getRetailerImageStats = queryString => async dispatch => {
   dispatch({ type: RETAILER_IMAGE_STATS, payload: response })
 }
 
-export const getRetailerImages = retailerId => async dispatch => {
-  const response = await gts.get(`/images?retailerId=${retailerId}`)
+export const getRetailerImages = (retailerId,activePage) => async dispatch => {
+  let queryString = `retailerId=${retailerId}`
+  if(activePage){
+    queryString += `&activePage=${activePage}`
+  }
+  const response = await gts.get(`/images?${queryString}`)
   dispatch({ type: RETAILER_IMAGES, payload: response })
 }
 

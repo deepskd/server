@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import _ from 'lodash'
 import { Card, Image, Checkbox, Segment, List, Button, Grid, Pagination } from 'semantic-ui-react'
 
 import { findTeams } from '../../actions'
@@ -43,8 +44,9 @@ class ImageList extends React.Component {
   }
 
   handlePaginationChange = (e, { activePage }) => {
+    const retailerId = this.props.images.data[0].retailerId 
     this.setState({ activePage })
-    // this.props.getRetailerImages()
+    this.props.getRetailerImages(retailerId, activePage)
   }
 
   renderImages = images => {
@@ -103,11 +105,11 @@ class ImageList extends React.Component {
 
   render() {
     const { images } = this.props
-    if (images.length === 0) {
+    if (_.isEmpty(images)) {
       return <React.Fragment />
     }
 
-    const totalPages = 1
+    const totalPages = images.count ? (Number.parseInt(images.count / 24)) + 1 :1
 
     return (
       <React.Fragment>
@@ -124,7 +126,7 @@ class ImageList extends React.Component {
 
           </Grid.Column>
           <Grid.Column>
-            <Card.Group itemsPerRow={6}>{this.renderImages(images)}</Card.Group>
+            <Card.Group itemsPerRow={6}>{this.renderImages(images.data)}</Card.Group>
             <Segment>
               <div className="ui search">
                 <form onSubmit={this.onFormSubmit} className="ui form">
