@@ -14,6 +14,8 @@ import Order from './orders/Order'
 
 import { BrowserRouter, Route } from 'react-router-dom'
 
+import { Container } from 'semantic-ui-react'
+
 class App extends React.Component {
   constructor(props) {
     super(props)
@@ -29,9 +31,9 @@ class App extends React.Component {
   }
   render() {
     return (
-      <div className="ui container">
+      <Container>
         <BrowserRouter>
-          <div>
+          <React.Fragment>
             <TeamHeader />
             <Route path="/" exact component={SearchBar} />
             <Route path="/" exact component={TeamList} />
@@ -39,9 +41,9 @@ class App extends React.Component {
             <Route path="/retailerImages" exact component={ImageStats} />
             <Route path="/teamImages" exact component={TeamImageStats} />
             <Route path="/orders" exact component={Order} />
-          </div>
+          </React.Fragment>
         </BrowserRouter>
-      </div>
+      </Container>
     )
   }
 }
