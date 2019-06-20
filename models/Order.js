@@ -15,8 +15,8 @@ const orderSchema = new Schema({
   teamId: { type: Schema.Types.ObjectId, ref: 'Team' },
 })
 
-orderSchema.statics.findOrders = function(
-  { orderName, retailerId, article },
+orderSchema.statics.findOrders = async function(
+  { orderName, retailerId, article, activePage },
   cb
 ) {
   const qOrderName = new RegExp(_.escapeRegExp(orderName), 'i')
@@ -24,12 +24,26 @@ orderSchema.statics.findOrders = function(
   const qArticleNo = article
     ? new RegExp(_.escapeRegExp(article))
     : new RegExp(/.+/)
-  return this.find({
+
+  const count = await this.find({
+    orderName: qOrderName,
+    retailerId: qRetailerId,
+    articleNo: qArticleNo,
+    productPreviewURL: { $exists: true },}).countDocuments();
+
+  let skipCount = activePage ? (activePage - 1) * 32 : 0
+   
+  const data = await this.find({
     orderName: qOrderName,
     retailerId: qRetailerId,
     articleNo: qArticleNo,
     productPreviewURL: { $exists: true },
-  },'id productPreviewURL articleNo orderName').limit(100)
+  }, 'id productPreviewURL articleNo orderName').skip(skipCount).limit(32)
+
+  return {
+      count,
+      data
+    }
 }
 
 orderSchema.statics.assignTeamToOrders = function(orderIds, teamId, cb) {

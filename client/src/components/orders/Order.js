@@ -61,7 +61,7 @@ class Order extends Component {
           <Button primary type="submit">Find Orders</Button>
         </Form>
         <Divider />
-        <OrderList />
+        <OrderList formData={this.state}/>
       </React.Fragment>
     )
   }
