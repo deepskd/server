@@ -22,11 +22,21 @@ const imageSchema = new Schema({
   },
 })
 
-imageSchema.statics.findByRetailerId = function(retailerId, cb) {
-  return this.find(
+imageSchema.statics.findByRetailerId = async function(retailerId, activePage, cb) {
+  const count = await this.find({
+    retailerId: retailerId, teamId: { $exists: false } 
+  }).countDocuments();
+
+  let skipCount = activePage ? (activePage - 1) * 24 : 0
+
+  const data = await this.find(
     { retailerId: retailerId, teamId: { $exists: false } },
-    cb
-  ).limit(100)
+  ).skip(skipCount).limit(24)
+
+  return {
+    count,
+    data
+  }
 }
 
 imageSchema.statics.retailerImageCount = function(
