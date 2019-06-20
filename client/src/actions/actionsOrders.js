@@ -5,8 +5,13 @@ export const findOrder = ({
   orderName,
   retailerId,
   article,
+  activePage
 }) => async dispatch => {
-  const query = `orderName=${orderName}&retailerId=${retailerId}&article=${article}`
+  let query = `orderName=${orderName}&retailerId=${retailerId}&article=${article}`
+
+  if(activePage){
+    query += `&activePage=${activePage}`
+  }
 
   const res = await gts.get(`/orders?${query}`)
   dispatch({ type: FIND_ORDERS, payload: res.data })

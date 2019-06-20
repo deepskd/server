@@ -5,13 +5,15 @@ import { findOrder } from '../../actions/actionsOrders'
 import OrderList from './OrderList'
 
 const options = [
+  { key: 100820, text: 'Athletic Shop', value: 100820 },
   { key: 100141, text: 'Athletic Supply', value: 100141 },
-  { key: 100535, text: 'MB2', value: 100535 },
   { key: 100226, text: 'Athletics Unlimited', value: 100226 },
+  { key: 200838, text: 'Barcelona Sporting Goods', value: 200838 },
   { key: 100132, text: 'Bumblebee', value: 100132 },
-  { key: 100142, text: 'Cardinal Sports', value: 100142},
-  { key: 200838, text: 'Barcelona Sporting Goods', value: 200838},
-  { key: 100820, text: 'Athletic Shop', value: 100820}
+  { key: 100142, text: 'Cardinal Sports', value: 100142 },
+  { key: 100535, text: 'MB2', value: 100535 },
+  { key: 100476, text: 'Universal 1', value: 100476},
+  { key: 100477, text: 'Universal 2', value: 100477 }
 ]
 
 class Order extends Component {
@@ -61,7 +63,7 @@ class Order extends Component {
           <Button primary type="submit">Find Orders</Button>
         </Form>
         <Divider />
-        <OrderList />
+        <OrderList formData={this.state}/>
       </React.Fragment>
     )
   }
