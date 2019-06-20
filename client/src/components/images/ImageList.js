@@ -1,12 +1,13 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Card, Image, Checkbox, Segment, List, Button } from 'semantic-ui-react'
+import _ from 'lodash'
+import { Card, Image, Checkbox, Segment, List, Button, Grid, Pagination } from 'semantic-ui-react'
 
 import { findTeams } from '../../actions'
-import { assignImagesToTeam } from '../../actions/actionsImage'
+import { assignImagesToTeam, getRetailerImages } from '../../actions/actionsImage'
 
 class ImageList extends React.Component {
-  state = { selectedImages: [], term: '' }
+  state = { selectedImages: [], term: '', activePage: 1 }
 
   onImageSelect = id => {
     const { selectedImages } = this.state
@@ -40,6 +41,12 @@ class ImageList extends React.Component {
 
     this.props.assignImagesToTeam(updateImages, images[0].retailerId)
     this.setState({ selectedImages: [], term: '' })
+  }
+
+  handlePaginationChange = (e, { activePage }) => {
+    const retailerId = this.props.images.data[0].retailerId 
+    this.setState({ activePage })
+    this.props.getRetailerImages(retailerId, activePage)
   }
 
   renderImages = images => {
@@ -98,38 +105,56 @@ class ImageList extends React.Component {
 
   render() {
     const { images } = this.props
-    if (images.length === 0) {
+    if (_.isEmpty(images)) {
       return <React.Fragment />
     }
 
+    const totalPages = images.count ? (Number.parseInt(images.count / 24)) + 1 :1
+
     return (
       <React.Fragment>
-        <Card.Group itemsPerRow={6}>{this.renderImages(images)}</Card.Group>
-        <Segment>
-          <div className="ui search">
-            <form onSubmit={this.onFormSubmit} className="ui form">
-              <div className="ui fluid action input">
-                <input
-                  type="text"
-                  value={this.state.term}
-                  onChange={this.onInputChange}
-                  placeholder="School, State Code(optional)"
-                />
-                <button
-                  className="ui primary icon button"
-                  onClick={this.onFormSubmit}
-                  type="submit"
-                >
-                  <i className="search icon" />
-                  Search
+        <Grid columns={1}>
+          <Grid.Column floated="left">
+            <Pagination
+              size="mini"
+              activePage={this.state.activePage}
+              onPageChange={this.handlePaginationChange}
+              totalPages={totalPages}
+              prevItem={null}
+              lastItem={null}
+            />
+
+          </Grid.Column>
+          <Grid.Column>
+            <Card.Group itemsPerRow={6}>{this.renderImages(images.data)}</Card.Group>
+            <Segment>
+              <div className="ui search">
+                <form onSubmit={this.onFormSubmit} className="ui form">
+                  <div className="ui fluid action input">
+                    <input
+                      type="text"
+                      value={this.state.term}
+                      onChange={this.onInputChange}
+                      placeholder="School, State Code(optional)"
+                    />
+                    <button
+                      className="ui primary icon button"
+                      onClick={this.onFormSubmit}
+                      type="submit"
+                    >
+                      <i className="search icon" />
+                      Search
                 </button>
+                  </div>
+                </form>
               </div>
-            </form>
-          </div>
-          <List divided relaxed>
-            {this.renderTeams()}
-          </List>
-        </Segment>
+              <List divided relaxed>
+                {this.renderTeams()}
+              </List>
+            </Segment>
+          </Grid.Column>
+        </Grid>
+       
       </React.Fragment>
     )
   }
@@ -140,5 +165,5 @@ const mapStateToProps = state => {
 }
 export default connect(
   mapStateToProps,
-  { findTeams, assignImagesToTeam }
+  { findTeams, assignImagesToTeam, getRetailerImages }
 )(ImageList)

@@ -8,7 +8,7 @@ module.exports = app => {
   app.get('/api/images', async (req, res) => {
     let images = []
     if (req.query.retailerId) {
-      images = await Image.findByRetailerId(req.query.retailerId)
+      images = await Image.findByRetailerId(req.query.retailerId, req.query.activePage)
     } else if (req.query.teamId) {
       images = await Image.findByTeamId(req.query.teamId)
     }
