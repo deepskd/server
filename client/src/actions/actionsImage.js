@@ -32,9 +32,13 @@ export const getTeamImages = teamId => async dispatch => {
   dispatch({ type: TEAM_IMAGES, payload: response })
 }
 
-export const assignImagesToTeam = (data, retailerId) => async dispatch => {
+export const assignImagesToTeam = (data, retailerId, activePage) => async dispatch => {
   const updateResponse = await gts.patch(`/images`, data)
   console.log(`${updateResponse} records updated`)
-  const response = await gts.get(`/images?retailerId=${retailerId}`)
+  let queryString = `retailerId=${retailerId}`
+  if (activePage) {
+    queryString += `&activePage=${activePage}`
+  }
+  const response = await gts.get(`/images?${queryString}`)
   dispatch({ type: ASSIGN_IMAGES_TO_TEAM, payload: response })
 }
