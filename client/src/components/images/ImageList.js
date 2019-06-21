@@ -33,20 +33,20 @@ class ImageList extends React.Component {
 
   assignImagestoTeam = teamId => {
     const updateImages = {}
-    const { selectedImages } = this.state
+    const { selectedImages, activePage } = this.state
     const { images } = this.props
 
     updateImages.selectedImageIds = selectedImages
     updateImages.teamId = teamId
 
-    this.props.assignImagesToTeam(updateImages, images[0].retailerId)
-    this.setState({ selectedImages: [], term: '' })
+    this.props.assignImagesToTeam(updateImages, images.data[0].retailerId, activePage)
+    this.setState({ selectedImages: [], term: '', activePage })
   }
 
   handlePaginationChange = (e, { activePage }) => {
-    const retailerId = this.props.images.data[0].retailerId 
-    this.setState({ activePage })
-    this.props.getRetailerImages(retailerId, activePage)
+      const retailerId = this.props.images.data[0].retailerId 
+      this.setState({ activePage })
+      this.props.getRetailerImages(retailerId, activePage) 
   }
 
   renderImages = images => {
