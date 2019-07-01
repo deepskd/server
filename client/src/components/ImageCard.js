@@ -1,3 +1,4 @@
+import '../css/productImage.css'
 import React, { Component } from 'react'
 import {
   Image,
@@ -7,7 +8,9 @@ import {
   Reveal,
   Checkbox,
   Header,
+  Modal,
 } from 'semantic-ui-react'
+import _ from 'lodash'
 
 class ImageCard extends Component {
   constructor(props) {
@@ -18,6 +21,7 @@ class ImageCard extends Component {
       checked: false,
       imageURL: this.props.src.frontImage,
       text: this.props.src.jerseyText,
+      modalOpen: false,
     }
 
     this.imageRef = React.createRef()
@@ -50,16 +54,52 @@ class ImageCard extends Component {
     this.props.onSelect(!checked)
   }
 
+  handleOpen = () => this.setState({ modalOpen: true })
+
+  handleClose = () => this.setState({ modalOpen: false })
+
+  renderImageViews = imageURL => {
+    const img1 = _.chain(imageURL).replace(/&wid=201$/, '')
+    const img4 = _.chain(img1).replace(/_\d/, '_4')
+    const img8 = _.chain(img1).replace(/_\d/, '_8')
+    const img13 = _.chain(img1).replace(/_\d/, '_13')
+
+    return (
+      <Modal
+        trigger={
+          <Ref innerRef={this.imageRef}>
+            <Image
+              className="productImage"
+              src={imageURL}
+              onClick={this.handleOpen}
+            />
+          </Ref>
+        }
+        open={this.state.modalOpen}
+        onClose={this.handleClose}
+        size="large"
+        closeIcon
+      >
+        <Modal.Content image>
+          <Image wrapped size="large" src={img1} />
+          <Image wrapped size="large" src={img4} />
+          <Image wrapped size="large" src={img8} />
+          <Image wrapped size="large" src={img13} />
+        </Modal.Content>
+      </Modal>
+    )
+  }
+
   render() {
     const { src } = this.props
     if (!src) {
       return `Loading`
     }
 
-    const { loaded, imageURL } = this.state
+    const { loaded, imageURL, checked } = this.state
 
     return (
-      <Card fluid style={{ width: '250px' }}>
+      <Card fluid style={{ width: '250px' }} color={checked ? 'green' : ''}>
         <Reveal
           active={loaded}
           className={`slide masked image`}
@@ -76,9 +116,7 @@ class ImageCard extends Component {
               onChange={this.addToCart}
               checked={this.state.checked}
             />
-            <Ref innerRef={this.imageRef}>
-              <Image src={imageURL} />
-            </Ref>
+            {this.renderImageViews(imageURL)}
           </Reveal.Content>
         </Reveal>
         <Card.Content extra>
