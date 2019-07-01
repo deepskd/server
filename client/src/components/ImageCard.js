@@ -14,7 +14,7 @@ class ImageCard extends Component {
     super(props)
 
     this.state = {
-      loading: false,
+      loaded: false,
       checked: false,
       imageURL: this.props.src.frontImage,
       text: this.props.src.jerseyText,
@@ -35,13 +35,13 @@ class ImageCard extends Component {
     if (nextProps.src.frontImage !== this.state.imageURL) {
       this.setState({
         imageURL: nextProps.src.frontImage,
-        loading: false,
+        loaded: false,
       })
     }
   }
 
   hideLoader = () => {
-    this.setState({ loading: true })
+    this.setState({ loaded: true })
   }
 
   addToCart = () => {
@@ -53,15 +53,15 @@ class ImageCard extends Component {
   render() {
     const { src } = this.props
     if (!src) {
-      return <div>Loading</div>
+      return <div>loaded</div>
     }
 
-    const { loading, imageURL } = this.state
-    console.log('loading:', loading)
+    const { loaded, imageURL } = this.state
+
     return (
       <Card fluid style={{ width: '250px' }}>
         <Reveal
-          active={this.state.loading}
+          active={loaded}
           className={`slide masked image`}
           style={{ height: '300px' }}
         >
