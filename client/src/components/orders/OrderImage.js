@@ -1,3 +1,4 @@
+import './OrderImage.css'
 import React, { Component } from 'react'
 import { Modal, Image } from 'semantic-ui-react'
 import _ from 'lodash'
@@ -14,14 +15,21 @@ class OrderImage extends Component {
     const img1 = _.chain(frontImage).replace(/&wid=201$/, '')
     const img4 = _.chain(img1).replace(/_\d/, '_4')
     const img8 = _.chain(img1).replace(/_\d/, '_8')
-    const img12 = _.chain(img1).replace(/_\d/, '_12')
+    const img12 = _.chain(img1).replace(/_\d/, '_13')
 
     return (
       <Modal
-        trigger={<Image src={frontImage} onClick={this.handleOpen} />}
+        trigger={
+          <Image
+            className="orderImage"
+            src={frontImage}
+            onClick={this.handleOpen}
+          />
+        }
         open={this.state.modalOpen}
         onClose={this.handleClose}
         size="large"
+        closeIcon
       >
         <Modal.Content image>
           <Image wrapped size="large" src={img1} />
