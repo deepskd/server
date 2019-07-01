@@ -10,6 +10,7 @@ require('./services/mongo')
 require('./models/User')
 require('./services/passport')
 require('./models/Team')
+require('./models/OrderStat')
 
 const app = express()
 app.use(bodyParser.json())
@@ -27,6 +28,7 @@ require('./routes/productRoutes')(app)
 require('./routes/imageRoutes')(app)
 require('./routes/authRoutes')(app)
 require('./routes/orderRoutes')(app)
+require('./routes/OrderStatRoutes')(app)
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'))

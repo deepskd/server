@@ -5,6 +5,7 @@ import imageStatsReducer from './imageStatsReducer'
 import imagesReducer from './imagesReducer'
 import authReducer from './authReducer'
 import ordersReducer from './ordersReducer'
+import orderStatsReducer from './orderStatsReducer'
 
 export default combineReducers({
   teams: teamsReducer,
@@ -13,4 +14,5 @@ export default combineReducers({
   images: imagesReducer,
   auth: authReducer,
   orders: ordersReducer,
+  orderStats: orderStatsReducer,
 })
