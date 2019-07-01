@@ -1,15 +1,21 @@
-import React from 'react'
-import _ from 'lodash'
-import { Checkbox } from 'semantic-ui-react'
+import React, { Component } from 'react'
+import {
+  Image,
+  Placeholder,
+  Card,
+  Ref,
+  Reveal,
+  Checkbox,
+  Header,
+} from 'semantic-ui-react'
 
-class ImageCard extends React.Component {
+class ImageCard extends Component {
   constructor(props) {
     super(props)
 
     this.state = {
-      loading: '',
+      loading: false,
       checked: false,
-      direction: 'front',
       imageURL: this.props.src.frontImage,
       text: this.props.src.jerseyText,
     }
@@ -29,28 +35,16 @@ class ImageCard extends React.Component {
     if (nextProps.src.frontImage !== this.state.imageURL) {
       this.setState({
         imageURL: nextProps.src.frontImage,
-        direction: 'front',
-        loading: '',
+        loading: false,
       })
     }
   }
 
   hideLoader = () => {
-    this.setState({ loading: 'active' })
+    this.setState({ loading: true })
   }
 
-  rotateImage = article => {
-    let imageURL = article
-    if (this.state.direction === 'back') {
-      imageURL = _.replace(article, /_(1|7)/, '_1')
-      this.setState({ direction: 'front', imageURL: imageURL, loading: '' })
-    } else if (this.state.direction === 'front') {
-      imageURL = _.replace(article, '_1', '_7')
-      this.setState({ direction: 'back', imageURL: imageURL, loading: '' })
-    }
-  }
-
-  addToCart = event => {
+  addToCart = () => {
     const { checked } = this.state
     this.setState({ checked: !checked })
     this.props.onSelect(!checked)
@@ -62,41 +56,38 @@ class ImageCard extends React.Component {
       return <div>Loading</div>
     }
 
+    const { loading, imageURL } = this.state
+    console.log('loading:', loading)
     return (
-      <div className="card fluid" style={{ width: '250px' }}>
-        <div
-          className={`ui ${this.state.loading} slide masked reveal image`}
+      <Card fluid style={{ width: '250px' }}>
+        <Reveal
+          active={this.state.loading}
+          className={`slide masked image`}
           style={{ height: '300px' }}
         >
-          <div className="ui fluid placeholder visible content">
-            <div className="image" style={{ height: '300px' }} />
-          </div>
-          <div className="image hidden content" style={{ height: '300px' }}>
+          <Reveal.Content visible>
+            <Placeholder fluid>
+              <Placeholder.Image style={{ height: '300px' }} />
+            </Placeholder>
+          </Reveal.Content>
+          <Reveal.Content hidden style={{ height: '300px' }}>
             <Checkbox
               name="add"
               onChange={this.addToCart}
               checked={this.state.checked}
             />
-            <div className="ui right floated mini icon button">
-              <i
-                className="redo icon"
-                onClick={() => this.rotateImage(this.state.imageURL)}
-              />
-            </div>
-            <img
-              ref={this.imageRef}
-              src={this.state.imageURL}
-              alt={this.props.alt}
-            />
-          </div>
-        </div>
-        <div className="extra content">
-          <div className="ui sub header">
+            <Ref innerRef={this.imageRef}>
+              <Image src={imageURL} />
+            </Ref>
+          </Reveal.Content>
+        </Reveal>
+        <Card.Content extra>
+          <Header sub>
             {src.articleDescription}
-            <span className=" right floated">{src.price}</span>
-          </div>
-        </div>
-      </div>
+            <span className="right floated">{src.price}</span>
+          </Header>
+        </Card.Content>
+      </Card>
     )
   }
 }
