@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { Item, List, Icon } from 'semantic-ui-react'
 
 import { selectTeam } from '../actions'
 
@@ -9,36 +10,36 @@ class TeamItem extends React.Component {
     this.props.selectTeam(team, sports)
   }
   render() {
+    const { team } = this.props
+
     return (
-      <div className="item">
-        <div className="header">
-          <h4>{this.props.team.name}</h4>
-        </div>
-        <div className="right floated content">{this.props.team.mascot}</div>
-        <div className="contents">
-          {this.props.team.city},{this.props.team.state}
-        </div>
-        <div className="ui horizontal list">
-          <div
-            className="item"
-            onClick={() => this.onTeamSelect(this.props.team, 'football')}
+      <Item>
+        <Item.Header as="h4">{team.name}</Item.Header>
+        <Item.Content verticalAlign="top">
+          <div className="right floated">{team.mascot}</div>
+        </Item.Content>
+        <Item.Content>
+          {team.city},{team.state}
+        </Item.Content>
+        <List horizontal>
+          <List.Item
+            as={Link}
+            to={`/football/${this.props.team._id}`}
+            onClick={() => this.onTeamSelect(team, 'football')}
           >
-            <Link to={`/football/${this.props.team._id}`}>
-              <i className="football ball icon" />
-              Football
-            </Link>
-          </div>
-          <div
-            className="item"
-            onClick={() => this.onTeamSelect(this.props.team, 'basketball')}
+            <Icon name="football ball" />
+            Football
+          </List.Item>
+          <List.Item
+            as={Link}
+            to={`/basketball/${this.props.team._id}`}
+            onClick={() => this.onTeamSelect(team, 'basketball')}
           >
-            <Link to={`/basketball/${this.props.team._id}`}>
-              <i className="basketball ball icon" />
-              BasketBall
-            </Link>
-          </div>
-        </div>
-      </div>
+            <Icon name="basketball ball" />
+            Basketball
+          </List.Item>
+        </List>
+      </Item>
     )
   }
 }

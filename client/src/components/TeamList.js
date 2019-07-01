@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import TeamItem from './TeamItem'
+import { Grid, List } from 'semantic-ui-react'
 
 class TeamList extends React.Component {
   renderTeams() {
@@ -14,11 +15,13 @@ class TeamList extends React.Component {
 
   render() {
     return (
-      <div className="ui column centered grid">
-        <div className="ten wide column">
-          <div className="ui relaxed divided list">{this.renderTeams()}</div>
-        </div>
-      </div>
+      <Grid columns={1} centered>
+        <Grid.Column width={10}>
+          <List divided relaxed>
+            {this.renderTeams()}
+          </List>
+        </Grid.Column>
+      </Grid>
     )
   }
 }
