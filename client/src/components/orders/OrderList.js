@@ -3,7 +3,8 @@ import { connect } from 'react-redux'
 import _ from 'lodash'
 import { findOrder } from '../../actions/actionsOrders'
 
-import { Card, Image, Grid, Pagination } from 'semantic-ui-react'
+import OrderImage from './OrderImage'
+import { Card, Grid, Pagination } from 'semantic-ui-react'
 
 class OrderList extends Component {
   state = { selectedOrders: [], term: '', activePage:1 }
@@ -12,7 +13,7 @@ class OrderList extends Component {
     return data.map(order => {
       return (
         <Card key={order._id}>
-          <Image
+          <OrderImage
             src={order.productPreviewURL.replace('$configLarge$', 'wid=201')}
           />
         </Card>
