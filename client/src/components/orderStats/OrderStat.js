@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { getOrderStats } from '../actions'
+import { getOrderStats } from '../../actions/actionsOrderStats'
 
-import { Grid } from 'semantic-ui-react'
+import { Grid, Header } from 'semantic-ui-react'
 
 import CountrySelector from './CountrySelector'
 import BarGraph from './BarGraph'

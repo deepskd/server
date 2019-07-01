@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { getOrderStats } from '../../actions'
+import { getOrderStats } from '../../actions/actionsOrderStats'
 import _ from 'lodash'
 
 import { Grid, Pagination } from 'semantic-ui-react'

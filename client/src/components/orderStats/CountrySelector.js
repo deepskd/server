@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { getOrderStats } from '../../actions'
+import { getOrderStats } from '../../actions/actionsOrderStats'
 
 import { Grid, Dropdown, GridColumn } from 'semantic-ui-react'
 import Filters from './Filters'
