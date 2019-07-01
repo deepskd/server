@@ -27,7 +27,7 @@ class TeamItem extends React.Component {
             to={`/football/${this.props.team._id}`}
             onClick={() => this.onTeamSelect(team, 'football')}
           >
-            <Icon name="football ball" />
+            <Icon name="football ball" color="blue" />
             Football
           </List.Item>
           <List.Item
@@ -35,7 +35,7 @@ class TeamItem extends React.Component {
             to={`/basketball/${this.props.team._id}`}
             onClick={() => this.onTeamSelect(team, 'basketball')}
           >
-            <Icon name="basketball ball" />
+            <Icon name="basketball ball" color="blue" />
             Basketball
           </List.Item>
         </List>
