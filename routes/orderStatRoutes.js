@@ -1,3 +1,4 @@
+require('../models/OrderStat')
 const mongoose = require('mongoose')
 const OrderStat = mongoose.model('orderstats')
 const requireLogin = require('../middlewares/requireLogin')
