@@ -10,7 +10,7 @@ require('./services/mongo')
 require('./models/User')
 require('./services/passport')
 require('./models/Team')
-require('./models/OrderStat')
+// require('./models/OrderStat')
 
 const app = express()
 app.use(bodyParser.json())
