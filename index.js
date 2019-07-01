@@ -28,7 +28,7 @@ require('./routes/productRoutes')(app)
 require('./routes/imageRoutes')(app)
 require('./routes/authRoutes')(app)
 require('./routes/orderRoutes')(app)
-require('./routes/OrderStat')(app)
+require('./routes/OrderStatRoutes')(app)
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'))
