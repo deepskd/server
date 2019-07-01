@@ -53,7 +53,7 @@ class ImageCard extends Component {
   render() {
     const { src } = this.props
     if (!src) {
-      return <div>loaded</div>
+      return `Loading`
     }
 
     const { loaded, imageURL } = this.state
