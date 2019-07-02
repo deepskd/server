@@ -7,8 +7,8 @@ obj=a/s/shg&show&\
 obj=a/o/st1_s0&show&\
 obj=a/o/st2_t0&show&\
 obj=a/o/log&src=LOGOCOLOR&show&\
-obj=a/o/cuf&src=sld_pn_white&show&\
-obj=a/o/pip&src=sld_pn_white&show&\
+obj=a/o/cuf&src=CUFFCOLOR&show&\
+obj=a/o/pip&src=PIPECOLOR&show&\
 obj=a/o/ufr&decal&show&res=10.053222945002956&pos=0,0&\
 src=fxg{APP18_pn1_jht_teamname?&\
 $text=TEAMNAME&\
@@ -59,6 +59,196 @@ const FONTS = {
   roadrunner: 'Road Runner',
   louisville: 'Louisville',
   half_block_2015: 'Half Block',
+}
+
+const BASEOPTIONS = {
+  jersey: {
+    sld_pn_green: {
+      hex: '#4c9900',
+      logo: 'sld_pn_white',
+      cuff: 'sld_pn_white',
+      pip: 'sld_pn_white',
+    },
+    sld_pn_light_blue: {
+      hex: '#66b2ff',
+      logo: 'sld_pn_white',
+      cuff: 'sld_pn_white',
+      pip: 'sld_pn_white',
+    },
+    sld_pn_sand: {
+      hex: '#c2b280',
+      logo: 'sld_pn_white',
+      cuff: 'sld_pn_white',
+      pip: 'sld_pn_white',
+    },
+    sld_pn_dark_green: {
+      hex: '#324c44',
+      logo: 'sld_pn_white',
+      cuff: 'sld_pn_white',
+      pip: 'sld_pn_white',
+    },
+    sld_pn_black: {
+      hex: '#000000',
+      logo: 'sld_pn_white',
+      cuff: 'sld_pn_black',
+      pip: 'sld_pn_black',
+    },
+    sld_pn_collegiate_burgundy: {
+      hex: '#602732',
+      logo: 'sld_pn_white',
+      cuff: 'sld_pn_white',
+      pip: 'sld_pn_white',
+    },
+    sld_pn_collegiate_gold: {
+      hex: 'eca800',
+      logo: 'sld_pn_white',
+      cuff: 'sld_pn_white',
+      pip: 'sld_pn_white',
+    },
+    sld_pn_collegiate_navy: {
+      hex: '#000F44',
+      logo: 'sld_pn_white',
+      cuff: 'sld_pn_white',
+      pip: 'sld_pn_white',
+    },
+    sld_pn_collegiate_orange: {
+      hex: '#b74024',
+      logo: 'sld_pn_white',
+      cuff: 'sld_pn_white',
+      pip: 'sld_pn_white',
+    },
+    sld_pn_collegiate_purple: {
+      hex: '#38305a',
+      logo: 'sld_pn_white',
+      cuff: 'sld_pn_white',
+      pip: 'sld_pn_white',
+    },
+    sld_pn_collegiate_royal: {
+      hex: '#2b3c74',
+      logo: 'sld_pn_white',
+      cuff: 'sld_pn_white',
+      pip: 'sld_pn_white',
+    },
+    sld_pn_maroon: {
+      hex: '#4a2d35',
+      logo: 'sld_pn_white',
+      cuff: 'sld_pn_white',
+      pip: 'sld_pn_white',
+    },
+    sld_pn_onix: {
+      hex: '#555f66',
+      logo: 'sld_pn_white',
+      cuff: 'sld_pn_onix',
+      pip: 'sld_pn_onix',
+    },
+    sld_pn_power_red: {
+      hex: '#891e2e',
+      logo: 'sld_pn_white',
+      cuff: 'sld_pn_white',
+      pip: 'sld_pn_white',
+    },
+    sld_pn_white: {
+      hex: '#ffffff',
+      circle: '#000000',
+      logo: 'sld_pn_black',
+      cuff: 'sld_pn_white',
+      pip: 'sld_pn_white',
+    },
+    sld_pn_grey: {
+      hex: '#c0c0c0',
+      logo: 'sld_pn_white',
+      cuff: 'sld_pn_grey',
+      pip: 'sld_pn_grey',
+    },
+    sld_pn_white_navy: {
+      hex: '#ffffff',
+      circle: '#000F44',
+      logo: 'sld_pn_collegiate_navy',
+      cuff: 'sld_pn_collegiate_navy',
+      pip: 'sld_pn_collegiate_navy',
+    },
+    sld_pn_white_red: {
+      hex: '#ffffff',
+      circle: '#891e2e',
+      logo: 'sld_pn_power_red',
+      cuff: 'sld_pn_power_red',
+      pip: 'sld_pn_power_red',
+    },
+    sld_pn_white_royal: {
+      hex: '#ffffff',
+      circle: '#2b3c74',
+      logo: 'sld_pn_collegiate_royal',
+      cuff: 'sld_pn_collegiate_royal',
+      pip: 'sld_pn_collegiate_royal',
+    },
+  },
+  pant: {
+    sld_pn_green: {
+      hex: '#4c9900',
+      logo: 'sld_pn_white',
+    },
+    sld_pn_light_blue: {
+      hex: '#66b2ff',
+      logo: 'sld_pn_white',
+    },
+    sld_pn_sand: {
+      hex: '#c2b280',
+      logo: 'sld_pn_white',
+    },
+    sld_pn_dark_green: {
+      hex: '#324c44',
+      logo: 'sld_pn_white',
+    },
+    sld_pn_black: {
+      hex: '#000000',
+      logo: 'sld_pn_white',
+    },
+    sld_pn_collegiate_burgundy: {
+      hex: '#602732',
+      logo: 'sld_pn_white',
+    },
+    sld_pn_collegiate_gold: {
+      hex: 'eca800',
+      logo: 'sld_pn_white',
+    },
+    sld_pn_collegiate_navy: {
+      hex: '#000F44',
+      logo: 'sld_pn_white',
+    },
+    sld_pn_collegiate_orange: {
+      hex: '#b74024',
+      logo: 'sld_pn_white',
+    },
+    sld_pn_collegiate_purple: {
+      hex: '#38305a',
+      logo: 'sld_pn_white',
+    },
+    sld_pn_collegiate_royal: {
+      hex: '#2b3c74',
+      logo: 'sld_pn_white',
+    },
+    sld_pn_maroon: {
+      hex: '#4a2d35',
+      logo: 'sld_pn_white',
+    },
+    sld_pn_onix: {
+      hex: '#555f66',
+      logo: 'sld_pn_white',
+    },
+    sld_pn_power_red: {
+      hex: '#891e2e',
+      logo: 'sld_pn_white',
+    },
+    sld_pn_white: {
+      hex: '#ffffff',
+      circle: '#000000',
+      logo: 'sld_pn_black',
+    },
+    sld_pn_grey: {
+      hex: '#c0c0c0',
+      logo: 'sld_pn_white',
+    },
+  },
 }
 
 const COLORS_LIST = {
@@ -379,6 +569,7 @@ module.exports = {
   JERSEY_URL,
   PANTS_URL,
   FONTS,
+  BASEOPTIONS,
   getColors,
   colorMapBase,
   homeDecorations,
