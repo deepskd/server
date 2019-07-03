@@ -101,6 +101,8 @@ const updateJersey = (
     textColorCode,
     strokeColorCode,
     frontText,
+    cuffColorCode,
+    pipeColorCode,
   },
   font
 ) =>
@@ -113,4 +115,6 @@ const updateJersey = (
     .replace(/(TEAM|NUMBER)FONT/g, font)
     .replace(/APPLICATION_TYPE/g, 'heat_transfer') //TODO needs to be fixed in later version
     .replace(/PLAYERNUMBER/g, _.random(0, 99))
+    .replace(/CUFFCOLOR/, cuffColorCode)
+    .replace(/PIPECOLOR/, pipeColorCode)
     .value()
