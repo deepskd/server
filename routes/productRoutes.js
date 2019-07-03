@@ -1,6 +1,4 @@
 const mongoose = require('mongoose')
-const yaml = require('js-yaml')
-const fs = require('fs')
 const _ = require('lodash')
 require('../models/Team')
 
@@ -15,6 +13,7 @@ const football = (team, applicationType = 'heat_transfer') => {
   const mascot = _.chain(team.mascot || team.name)
     .truncate(12)
     .replace('/', ' ')
+    .toUpper()
     .value()
 
   let home = {},
@@ -22,11 +21,11 @@ const football = (team, applicationType = 'heat_transfer') => {
     pant = {}
 
   jersey.articleDescription = 'A1 PrimeKnit Jersey'
-  jersey.price = '$185'
+  jersey.price = '$195'
   pant.articleDescription = 'A1 PrimeKnit Pant'
-  pant.price = '$145'
+  pant.price = '$155'
 
-  jersey.frontText = _.toUpper(mascot)
+  jersey.frontText = mascot
   jersey.baseImageURL = a1PrimeKnitUniform.JERSEY_URL
 
   jersey.baseColor = team.colors ? team.colors[0] : 'black'
@@ -67,73 +66,54 @@ const football = (team, applicationType = 'heat_transfer') => {
   let away = {}
   jersey = {}
   pant = {}
+  jerseyParams = {}
+  pantParams = {}
 
   jersey.articleDescription = 'A1 PrimeKnit Jersey'
-  jersey.price = '$185'
+  jersey.price = '$195'
   pant.articleDescription = 'A1 PrimeKnit Pant'
-  pant.price = '$145'
+  pant.price = '$155'
 
   jersey.frontText = _.toUpper(_.replace(team.name, '/', ' '))
+  jersey.frontText = _.chain(team.name)
+    .truncate(12)
+    .replace('/', ' ')
+    .toUpper()
+    .value()
   jersey.baseImageURL = a1PrimeKnitUniform.JERSEY_URL
-  jersey.frontImage = _.replace(
-    a1PrimeKnitUniform.JERSEY_URL,
-    /TEAMNAME/,
-    jersey.frontText
-  )
-  jersey.frontImage = _.replace(
-    jersey.frontImage,
-    /APPLICATION_TYPE/g,
-    applicationType
-  )
+
   jersey.baseColor = 'white'
-  jersey.baseColorCode = a1PrimeKnitUniform.colorMapBase('white')
-  jersey.frontImage = _.replace(
-    jersey.frontImage,
-    /BASECOLOR/,
-    jersey.baseColorCode
-  )
+  jersey.baseColorCode = a1PrimeKnitUniform.colorMapBase(jersey.baseColor)
 
-  jersey.logoColor = 'black'
-  jersey.logoColorCode = a1PrimeKnitUniform.colorMapBase('black')
-  jersey.frontImage = _.replace(
-    jersey.frontImage,
-    /LOGOCOLOR/,
-    jersey.logoColorCode
-  )
-  jersey.frontImage = _.replace(
-    jersey.frontImage,
-    /PLAYERNUMBER/g,
-    playerNumber
-  )
-  jersey.frontImage = _.replace(jersey.frontImage, /(TEAM|NUMBER)FONT/g, font)
+  jerseyParams = a1PrimeKnitUniform.BASEOPTIONS.jersey[jersey.baseColorCode]
+  jersey.cuffColorCode = jerseyParams.cuff
+  jersey.logoColorCode = jerseyParams.logo
+  jersey.pipeColorCode = jerseyParams.pipe
+  jersey.baseColorHex = jerseyParams.hex
 
-  let awayPantBaseColor = team.colors ? team.colors[0] : 'black'
-  pant.baseColor = awayPantBaseColor
-  pant.baseColorCode = a1PrimeKnitUniform.colorMapBase(awayPantBaseColor)
+  jersey.frontImage = _.chain(jersey.baseImageURL)
+    .replace(/TEAMNAME/, jersey.frontText)
+    .replace(/APPLICATION_TYPE/g, applicationType)
+    .replace(/BASECOLOR/, jersey.baseColorCode)
+    .replace(/LOGOCOLOR/, jersey.logoColorCode)
+    .replace(/CUFFCOLOR/, jersey.cuffColorCode)
+    .replace(/PIPECOLOR/, jersey.pipeColorCode)
+    .replace(/PLAYERNUMBER/g, playerNumber)
+    .replace(/(TEAM|NUMBER)FONT/g, font)
+    .value()
+
+  pant.baseColor = team.colors ? team.colors[0] : 'black'
+  pant.baseColorCode = a1PrimeKnitUniform.colorMapBase(pant.baseColor)
   pant.baseImageURL = a1PrimeKnitUniform.PANTS_URL
-  pant.frontImage = _.replace(
-    a1PrimeKnitUniform.PANTS_URL,
-    /BASECOLOR/,
-    pant.baseColorCode
-  )
 
-  if (awayPantBaseColor === 'white') {
-    pant.logoColor = 'black'
-    pant.logoColorCode = a1PrimeKnitUniform.colorMapBase('black')
-    pant.frontImage = _.replace(
-      pant.frontImage,
-      /LOGOCOLOR/,
-      pant.logoColorCode
-    )
-  } else {
-    pant.logoColor = 'white'
-    pant.logoColorCode = a1PrimeKnitUniform.colorMapBase('white')
-    pant.frontImage = _.replace(
-      pant.frontImage,
-      /LOGOCOLOR/,
-      a1PrimeKnitUniform.colorMapBase('white')
-    )
-  }
+  pantParams = a1PrimeKnitUniform.BASEOPTIONS.pant[pant.baseColorCode]
+  pant.baseColorHex = pantParams.hex
+  pant.logoColorCode = pantParams.logo
+
+  pant.frontImage = _.chain(pant.baseImageURL)
+    .replace(/BASECOLOR/, pant.baseColorCode)
+    .replace(/LOGOCOLOR/, pant.logoColorCode)
+    .value()
   away = a1PrimeKnitUniform.awayDecorations({ jersey, pant }, team.colors)
 
   const colors = a1PrimeKnitUniform.getColors(applicationType)
@@ -142,6 +122,7 @@ const football = (team, applicationType = 'heat_transfer') => {
     home,
     away,
     fonts: a1PrimeKnitUniform.FONTS,
+    baseOptions: a1PrimeKnitUniform.BASEOPTIONS,
     selectedFont: font,
     colors: colors,
   }
