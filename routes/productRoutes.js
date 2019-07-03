@@ -12,7 +12,10 @@ const Team = mongoose.model('teams')
 const football = (team, applicationType = 'heat_transfer') => {
   const playerNumber = _.random(0, 99)
   const font = _.sample(Object.keys(a1PrimeKnitUniform.FONTS))
-  const mascot = _.replace(team.mascot || team.name, '/', ' ')
+  const mascot = _.chain(team.mascot || team.name)
+    .truncate(12)
+    .replace('/', ' ')
+    .value()
 
   let home = {},
     jersey = {},
@@ -25,80 +28,40 @@ const football = (team, applicationType = 'heat_transfer') => {
 
   jersey.frontText = _.toUpper(mascot)
   jersey.baseImageURL = a1PrimeKnitUniform.JERSEY_URL
-  jersey.frontImage = _.replace(
-    a1PrimeKnitUniform.JERSEY_URL,
-    /TEAMNAME/,
-    jersey.frontText
-  )
-  jersey.frontImage = _.replace(
-    jersey.frontImage,
-    /APPLICATION_TYPE/g,
-    applicationType
-  )
 
-  const homeJerseyBaseColor = team.colors ? team.colors[0] : 'black'
+  jersey.baseColor = team.colors ? team.colors[0] : 'black'
+  jersey.baseColorCode = a1PrimeKnitUniform.colorMapBase(jersey.baseColor)
 
-  if (a1PrimeKnitUniform.colorMapBase(homeJerseyBaseColor) === 'sld_pn_black') {
-    jersey.frontImage = _.replace(
-      jersey.frontImage,
-      'cuf&src=sld_pn_white',
-      'cuf&src=sld_pn_black'
-    )
-    jersey.frontImage = _.replace(
-      jersey.frontImage,
-      'pip&src=sld_pn_white',
-      'pip&src=sld_pn_black'
-    )
-  }
-  jersey.baseColor = homeJerseyBaseColor
-  jersey.baseColorCode = a1PrimeKnitUniform.colorMapBase(homeJerseyBaseColor)
-  jersey.frontImage = _.replace(
-    jersey.frontImage,
-    /BASECOLOR/,
-    jersey.baseColorCode
-  )
+  let jerseyParams = a1PrimeKnitUniform.BASEOPTIONS.jersey[jersey.baseColorCode]
+  jersey.cuffColorCode = jerseyParams.cuff
+  jersey.logoColorCode = jerseyParams.logo
+  jersey.pipeColorCode = jerseyParams.pipe
+  jersey.baseColorHex = jerseyParams.hex
 
-  jersey.logoColor = 'white'
-  jersey.logoColorCode = a1PrimeKnitUniform.colorMapBase('white')
-  jersey.frontImage = _.replace(
-    jersey.frontImage,
-    /LOGOCOLOR/,
-    jersey.logoColorCode
-  )
-  jersey.frontImage = _.replace(
-    jersey.frontImage,
-    /PLAYERNUMBER/g,
-    playerNumber
-  )
-  jersey.frontImage = _.replace(jersey.frontImage, /(TEAM|NUMBER)FONT/g, font)
+  jersey.frontImage = _.chain(jersey.baseImageURL)
+    .replace(/TEAMNAME/, jersey.frontText)
+    .replace(/APPLICATION_TYPE/g, applicationType)
+    .replace(/BASECOLOR/, jersey.baseColorCode)
+    .replace(/LOGOCOLOR/, jersey.logoColorCode)
+    .replace(/CUFFCOLOR/, jersey.cuffColorCode)
+    .replace(/PIPECOLOR/, jersey.pipeColorCode)
+    .replace(/PLAYERNUMBER/g, playerNumber)
+    .replace(/(TEAM|NUMBER)FONT/g, font)
+    .value()
 
-  const homePantBaseColor = team.colors ? team.colors[1] : 'black'
-  pant.baseColor = homePantBaseColor
-  pant.baseColorCode = a1PrimeKnitUniform.colorMapBase(homePantBaseColor)
+  pant.baseColor = team.colors ? team.colors[1] : 'black'
+  pant.baseColorCode = a1PrimeKnitUniform.colorMapBase(pant.baseColor)
   pant.baseImageURL = a1PrimeKnitUniform.PANTS_URL
-  pant.frontImage = _.replace(
-    a1PrimeKnitUniform.PANTS_URL,
-    /BASECOLOR/,
-    pant.baseColorCode
-  )
 
-  if (homePantBaseColor === 'white') {
-    pant.logoColor = 'black'
-    pant.logoColorCode = a1PrimeKnitUniform.colorMapBase('black')
-    pant.frontImage = _.replace(
-      pant.frontImage,
-      /LOGOCOLOR/,
-      a1PrimeKnitUniform.colorMapBase('black')
-    )
-  } else {
-    pant.logoColor = 'white'
-    pant.logoColorCode = a1PrimeKnitUniform.colorMapBase('white')
-    pant.frontImage = _.replace(
-      pant.frontImage,
-      /LOGOCOLOR/,
-      a1PrimeKnitUniform.colorMapBase('white')
-    )
-  }
+  let pantParams = a1PrimeKnitUniform.BASEOPTIONS.pant[pant.baseColorCode]
+  pant.baseColorHex = pantParams.hex
+  pant.logoColorCode = pantParams.logo
+
+  pant.frontImage = _.chain(pant.baseImageURL)
+    .replace(/BASECOLOR/, pant.baseColorCode)
+    .replace(/LOGOCOLOR/, pant.logoColorCode)
+    .value()
+
   home = a1PrimeKnitUniform.homeDecorations({ jersey, pant }, team.colors)
 
   let away = {}
