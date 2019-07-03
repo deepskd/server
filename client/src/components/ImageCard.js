@@ -99,7 +99,11 @@ class ImageCard extends Component {
     const { loaded, imageURL, checked } = this.state
 
     return (
-      <Card fluid style={{ width: '250px' }} color={checked ? 'green' : ''}>
+      <Card
+        fluid
+        style={{ width: '250px' }}
+        color={checked ? 'green' : 'black'}
+      >
         <Reveal
           active={loaded}
           className={`slide masked image`}
