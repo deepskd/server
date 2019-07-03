@@ -37,17 +37,21 @@ class ProductList extends React.Component {
   }
 
   renderProducts({ home, away }) {
+    const { baseOptions } = this.props.teamProducts.products
+
     return (
       <React.Fragment>
         <div className="ui two cards">
           <ImageCard
             src={home.jersey}
             alt={'Home Jersey'}
+            baseOptions={baseOptions.jersey}
             onSelect={selected => this.onCardSelect('home_jersey', selected)}
           />
           <ImageCard
             src={away.jersey}
             alt={'Away Jersey'}
+            baseOptions={baseOptions.jersey}
             onSelect={selected => this.onCardSelect('away_jersey', selected)}
           />
         </div>
@@ -55,11 +59,13 @@ class ProductList extends React.Component {
           <ImageCard
             src={home.pant}
             alt={'Home Pant'}
+            baseOptions={baseOptions.pant}
             onSelect={selected => this.onCardSelect('home_pant', selected)}
           />
           <ImageCard
             src={away.pant}
             alt={'Away Pant'}
+            baseOptions={baseOptions.pant}
             onSelect={selected => this.onCardSelect('away_pant', selected)}
           />
         </div>

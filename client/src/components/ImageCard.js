@@ -9,6 +9,7 @@ import {
   Checkbox,
   Header,
   Modal,
+  Dropdown,
 } from 'semantic-ui-react'
 import _ from 'lodash'
 
@@ -90,6 +91,50 @@ class ImageCard extends Component {
     )
   }
 
+  renderColors = () => {
+    const { baseOptions } = this.props
+    return Object.keys(baseOptions).map(c => {
+      console.log(baseOptions[c].hex)
+      return (
+        <Dropdown.Item key={`${c}`}>
+          <svg height="20" width="20">
+            <circle
+              cx="10"
+              cy="10"
+              r="10"
+              fill={baseOptions[c].hex}
+              style={{ stroke: 'black' }}
+            />
+          </svg>
+        </Dropdown.Item>
+      )
+    })
+  }
+
+  renderBaseColorOptions = () => {
+    const { src } = this.props
+
+    return (
+      <React.Fragment>
+        <span className="ui right floated">
+          <svg height="20" width="20">
+            <circle
+              cx="10"
+              cy="10"
+              r="10"
+              fill={src.baseColorHex}
+              style={{ stroke: 'black' }}
+            />
+          </svg>
+
+          <Dropdown item scrolling>
+            <Dropdown.Menu>{this.renderColors()}</Dropdown.Menu>
+          </Dropdown>
+        </span>
+      </React.Fragment>
+    )
+  }
+
   render() {
     const { src } = this.props
     if (!src) {
@@ -120,6 +165,7 @@ class ImageCard extends Component {
               onChange={this.addToCart}
               checked={this.state.checked}
             />
+            {this.renderBaseColorOptions()}
             {this.renderImageViews(imageURL)}
           </Reveal.Content>
         </Reveal>
