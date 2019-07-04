@@ -10,6 +10,7 @@ import {
   Header,
   Modal,
   Dropdown,
+  Label,
 } from 'semantic-ui-react'
 import _ from 'lodash'
 
@@ -94,18 +95,19 @@ class ImageCard extends Component {
   renderColors = () => {
     const { baseOptions } = this.props
     return Object.keys(baseOptions).map(c => {
-      console.log(baseOptions[c].hex)
+      const backgroundColor = `${baseOptions[c].hex}`
+      const borderColor = baseOptions[c].circle
+        ? baseOptions[c].circle
+        : '#000000'
+      const borderWidth = baseOptions[c].circle ? 'thick' : 'thin'
+      const colorStyle = {
+        backgroundColor,
+        borderColor,
+        borderWidth,
+      }
       return (
         <Dropdown.Item key={`${c}`}>
-          <svg height="20" width="20">
-            <circle
-              cx="10"
-              cy="10"
-              r="10"
-              fill={baseOptions[c].hex}
-              style={{ stroke: 'black' }}
-            />
-          </svg>
+          <Label cicle empty style={colorStyle}></Label>
         </Dropdown.Item>
       )
     })
@@ -116,7 +118,7 @@ class ImageCard extends Component {
 
     return (
       <React.Fragment>
-        <span className="ui right floated">
+        <span className="ui left floated">
           <svg height="20" width="20">
             <circle
               cx="10"

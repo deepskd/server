@@ -149,7 +149,6 @@ const BASEOPTIONS = {
     },
     sld_pn_white: {
       hex: '#ffffff',
-      circle: '#000000',
       logo: 'sld_pn_black',
       cuff: 'sld_pn_white',
       pipe: 'sld_pn_white',
@@ -241,7 +240,6 @@ const BASEOPTIONS = {
     },
     sld_pn_white: {
       hex: '#ffffff',
-      circle: '#000000',
       logo: 'sld_pn_black',
     },
     sld_pn_grey: {
