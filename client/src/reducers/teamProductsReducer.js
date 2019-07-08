@@ -4,6 +4,7 @@ import {
   FONT_CHANGED,
   JERSEY_TEXT_CHANGED,
   JERSEY_TEXTCOLOR_CHANGED,
+  BASE_COLOR_CHANGED,
 } from '../actions/types'
 
 export default (state = [], action) => {
@@ -16,6 +17,8 @@ export default (state = [], action) => {
       return updateJerseyText(state, action.payload)
     case JERSEY_TEXTCOLOR_CHANGED:
       return updateJerseyTextColors(state, action.payload)
+    case BASE_COLOR_CHANGED:
+      return updateBaseColor(state, action.payload)
     default:
       return state
   }
@@ -93,6 +96,56 @@ const updateJerseyTextColors = (state, typeAndColors) => {
   return newState
 }
 
+const updateBaseColor = (state, props) => {
+  let newState = { ...state }
+  const { baseOptions } = state.products
+
+  let jersey = {},
+    pant = {}
+  switch (props.item) {
+    case 'home_jersey':
+      jersey = _.clone(state.products.home.jersey)
+      jersey.baseColorCode = props.color
+      jersey.baseColorHex = baseOptions.jersey[props.color].hex
+      jersey.logoColorCode = baseOptions.jersey[props.color].logo
+      jersey.pipeColorCode = baseOptions.jersey[props.color].pipe
+      jersey.cuffColorCode = baseOptions.jersey[props.color].cuff
+      jersey.frontImage = updateJersey(jersey, state.products.selectedFont)
+      newState.products.home.jersey = jersey
+      break
+    case 'away_jersey':
+      jersey = _.clone(state.products.away.jersey)
+      jersey.baseColorCode = props.color
+      jersey.baseColorHex = baseOptions.jersey[props.color].hex
+      jersey.logoColorCode = baseOptions.jersey[props.color].logo
+      jersey.pipeColorCode = baseOptions.jersey[props.color].pipe || ''
+      jersey.cuffColorCode = baseOptions.jersey[props.color].cuff || ''
+      jersey.frontImage = updateJersey(jersey, state.products.selectedFont)
+      newState.products.away.jersey = jersey
+      break
+    case 'home_pant':
+      pant = _.clone(state.products.home.pant)
+      pant.baseColorCode = props.color
+      pant.baseColorHex = baseOptions.pant[props.color].hex
+      pant.logoColorCode = baseOptions.pant[props.color].logo
+      pant.frontImage = updatePant(pant)
+      newState.products.home.pant = pant
+      break
+    case 'away_pant':
+      pant = _.clone(state.products.away.pant)
+      pant.baseColorCode = props.color
+      pant.baseColorHex = baseOptions.pant[props.color].hex
+      pant.logoColorCode = baseOptions.pant[props.color].logo
+      pant.frontImage = updatePant(pant)
+      newState.products.away.pant = pant
+      break
+    default:
+      return newState
+  }
+
+  return newState
+}
+
 const updateJersey = (
   {
     baseImageURL,
@@ -101,6 +154,8 @@ const updateJersey = (
     textColorCode,
     strokeColorCode,
     frontText,
+    cuffColorCode,
+    pipeColorCode,
   },
   font
 ) =>
@@ -113,4 +168,12 @@ const updateJersey = (
     .replace(/(TEAM|NUMBER)FONT/g, font)
     .replace(/APPLICATION_TYPE/g, 'heat_transfer') //TODO needs to be fixed in later version
     .replace(/PLAYERNUMBER/g, _.random(0, 99))
+    .replace(/CUFFCOLOR/, cuffColorCode)
+    .replace(/PIPECOLOR/, pipeColorCode)
+    .value()
+
+const updatePant = ({ baseImageURL, baseColorCode, logoColorCode }) =>
+  _.chain(baseImageURL)
+    .replace(/BASECOLOR/, baseColorCode)
+    .replace(/LOGOCOLOR/, logoColorCode)
     .value()

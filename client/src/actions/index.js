@@ -6,6 +6,7 @@ import {
   FONT_CHANGED,
   JERSEY_TEXT_CHANGED,
   JERSEY_TEXTCOLOR_CHANGED,
+  BASE_COLOR_CHANGED,
 } from './types'
 
 export const findTeams = term => async dispatch => {
@@ -49,5 +50,12 @@ export const jerseyTextColorChnaged = typeAndColors => {
   return {
     type: JERSEY_TEXTCOLOR_CHANGED,
     payload: typeAndColors,
+  }
+}
+
+export const baseColorChanged = props => {
+  return {
+    type: BASE_COLOR_CHANGED,
+    payload: props,
   }
 }

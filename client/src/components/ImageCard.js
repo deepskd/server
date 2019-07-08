@@ -1,5 +1,8 @@
 import '../css/productImage.css'
+import _ from 'lodash'
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+
 import {
   Image,
   Placeholder,
@@ -9,8 +12,11 @@ import {
   Checkbox,
   Header,
   Modal,
+  Dropdown,
+  Label,
 } from 'semantic-ui-react'
-import _ from 'lodash'
+
+import { baseColorChanged } from '../actions'
 
 class ImageCard extends Component {
   constructor(props) {
@@ -20,7 +26,7 @@ class ImageCard extends Component {
       loaded: false,
       checked: false,
       imageURL: this.props.src.frontImage,
-      text: this.props.src.jerseyText,
+      baseColorHex: this.props.src.baseColorHex,
       modalOpen: false,
     }
 
@@ -39,6 +45,7 @@ class ImageCard extends Component {
     if (nextProps.src.frontImage !== this.state.imageURL) {
       this.setState({
         imageURL: nextProps.src.frontImage,
+        baseColorHex: nextProps.src.baseColorHex,
         loaded: false,
       })
     }
@@ -57,6 +64,13 @@ class ImageCard extends Component {
   handleOpen = () => this.setState({ modalOpen: true })
 
   handleClose = () => this.setState({ modalOpen: false })
+
+  handleBaseColorChange = baseColor => {
+    const props = {}
+    props.item = this.props.alt
+    props.color = baseColor
+    this.props.baseColorChanged(props)
+  }
 
   renderImageViews = imageURL => {
     const img1 = _.chain(imageURL).replace(/&wid=201$/, '')
@@ -90,6 +104,48 @@ class ImageCard extends Component {
     )
   }
 
+  renderColors = () => {
+    const { baseOptions } = this.props
+    return Object.keys(baseOptions).map(c => {
+      const backgroundColor = `${baseOptions[c].hex}`
+      const borderColor = baseOptions[c].circle
+        ? baseOptions[c].circle
+        : '#000000'
+      const borderWidth = baseOptions[c].circle ? 'thick' : 'thin'
+      const colorStyle = {
+        backgroundColor,
+        borderColor,
+        borderWidth,
+      }
+      return (
+        <Dropdown.Item
+          key={`${c}`}
+          onClick={() => this.handleBaseColorChange(c)}
+        >
+          <Label style={colorStyle}></Label>
+        </Dropdown.Item>
+      )
+    })
+  }
+
+  renderBaseColorOptions = () => {
+    const { baseColorHex } = this.state
+    return (
+      <React.Fragment>
+        <Label
+          style={{
+            backgroundColor: baseColorHex,
+            borderColor: 'black',
+            borderWidth: 'thin',
+          }}
+        />
+        <Dropdown item scrolling>
+          <Dropdown.Menu>{this.renderColors()}</Dropdown.Menu>
+        </Dropdown>
+      </React.Fragment>
+    )
+  }
+
   render() {
     const { src } = this.props
     if (!src) {
@@ -99,7 +155,11 @@ class ImageCard extends Component {
     const { loaded, imageURL, checked } = this.state
 
     return (
-      <Card fluid style={{ width: '250px' }} color={checked ? 'green' : ''}>
+      <Card
+        fluid
+        style={{ width: '250px' }}
+        color={checked ? 'green' : 'black'}
+      >
         <Reveal
           active={loaded}
           className={`slide masked image`}
@@ -111,10 +171,12 @@ class ImageCard extends Component {
             </Placeholder>
           </Reveal.Content>
           <Reveal.Content hidden style={{ height: '300px' }}>
+            {this.renderBaseColorOptions()}
             <Checkbox
               name="add"
               onChange={this.addToCart}
               checked={this.state.checked}
+              className="ui right floated"
             />
             {this.renderImageViews(imageURL)}
           </Reveal.Content>
@@ -130,4 +192,7 @@ class ImageCard extends Component {
   }
 }
 
-export default ImageCard
+export default connect(
+  null,
+  { baseColorChanged }
+)(ImageCard)
