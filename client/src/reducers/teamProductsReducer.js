@@ -98,8 +98,6 @@ const updateJerseyTextColors = (state, typeAndColors) => {
 
 const updateBaseColor = (state, props) => {
   let newState = { ...state }
-  console.log(state, props)
-
   const { baseOptions } = state.products
 
   let jersey = {},
@@ -108,6 +106,7 @@ const updateBaseColor = (state, props) => {
     case 'home_jersey':
       jersey = _.clone(state.products.home.jersey)
       jersey.baseColorCode = props.color
+      jersey.baseColorHex = baseOptions.jersey[props.color].hex
       jersey.logoColorCode = baseOptions.jersey[props.color].logo
       jersey.pipeColorCode = baseOptions.jersey[props.color].pipe
       jersey.cuffColorCode = baseOptions.jersey[props.color].cuff
@@ -117,6 +116,7 @@ const updateBaseColor = (state, props) => {
     case 'away_jersey':
       jersey = _.clone(state.products.away.jersey)
       jersey.baseColorCode = props.color
+      jersey.baseColorHex = baseOptions.jersey[props.color].hex
       jersey.logoColorCode = baseOptions.jersey[props.color].logo
       jersey.pipeColorCode = baseOptions.jersey[props.color].pipe || ''
       jersey.cuffColorCode = baseOptions.jersey[props.color].cuff || ''
@@ -126,6 +126,7 @@ const updateBaseColor = (state, props) => {
     case 'home_pant':
       pant = _.clone(state.products.home.pant)
       pant.baseColorCode = props.color
+      pant.baseColorHex = baseOptions.pant[props.color].hex
       pant.logoColorCode = baseOptions.pant[props.color].logo
       pant.frontImage = updatePant(pant)
       newState.products.home.pant = pant
@@ -133,6 +134,7 @@ const updateBaseColor = (state, props) => {
     case 'away_pant':
       pant = _.clone(state.products.away.pant)
       pant.baseColorCode = props.color
+      pant.baseColorHex = baseOptions.pant[props.color].hex
       pant.logoColorCode = baseOptions.pant[props.color].logo
       pant.frontImage = updatePant(pant)
       newState.products.away.pant = pant

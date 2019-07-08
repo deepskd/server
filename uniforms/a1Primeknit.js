@@ -100,7 +100,7 @@ const BASEOPTIONS = {
       pipe: 'sld_pn_white',
     },
     sld_pn_collegiate_gold: {
-      hex: 'eca800',
+      hex: '#eca800',
       logo: 'sld_pn_white',
       cuff: 'sld_pn_white',
       pipe: 'sld_pn_white',
@@ -207,7 +207,7 @@ const BASEOPTIONS = {
       logo: 'sld_pn_white',
     },
     sld_pn_collegiate_gold: {
-      hex: 'eca800',
+      hex: '#eca800',
       logo: 'sld_pn_white',
     },
     sld_pn_collegiate_navy: {

@@ -26,7 +26,7 @@ class ImageCard extends Component {
       loaded: false,
       checked: false,
       imageURL: this.props.src.frontImage,
-      text: this.props.src.jerseyText,
+      baseColorHex: this.props.src.baseColorHex,
       modalOpen: false,
     }
 
@@ -45,6 +45,7 @@ class ImageCard extends Component {
     if (nextProps.src.frontImage !== this.state.imageURL) {
       this.setState({
         imageURL: nextProps.src.frontImage,
+        baseColorHex: nextProps.src.baseColorHex,
         loaded: false,
       })
     }
@@ -128,17 +129,16 @@ class ImageCard extends Component {
   }
 
   renderBaseColorOptions = () => {
-    const { src } = this.props
-
+    const { baseColorHex } = this.state
     return (
       <React.Fragment>
         <Label
           style={{
-            backgroundColor: src.baseColorHex,
+            backgroundColor: baseColorHex,
             borderColor: 'black',
             borderWidth: 'thin',
           }}
-        ></Label>
+        />
         <Dropdown item scrolling>
           <Dropdown.Menu>{this.renderColors()}</Dropdown.Menu>
         </Dropdown>
@@ -171,13 +171,13 @@ class ImageCard extends Component {
             </Placeholder>
           </Reveal.Content>
           <Reveal.Content hidden style={{ height: '300px' }}>
+            {this.renderBaseColorOptions()}
             <Checkbox
               name="add"
               onChange={this.addToCart}
               checked={this.state.checked}
               className="ui right floated"
             />
-            {this.renderBaseColorOptions()}
             {this.renderImageViews(imageURL)}
           </Reveal.Content>
         </Reveal>
