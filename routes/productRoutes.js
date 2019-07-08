@@ -3,7 +3,8 @@ const _ = require('lodash')
 require('../models/Team')
 
 const a1PrimeKnitUniform = require('../uniforms/a1Primeknit')
-const tripleUp = require('../uniforms/tripleUp')
+// const tripleUp = require('../uniforms/tripleUp')
+const reign = require('../uniforms/reign')
 
 const Team = mongoose.model('teams')
 
@@ -130,38 +131,38 @@ const football = (team, applicationType = 'heat_transfer') => {
 
 const basketball = team => {
   const playerNumber = _.random(0, 99)
-  const font = _.sample(Object.keys(tripleUp.FONTS))
+  const font = _.sample(Object.keys(reign.FONTS))
   const mascot = _.replace(team.mascot || team.name, '/', ' ')
 
   let home = {},
     jersey = {},
     pant = {}
 
-  jersey.articleDescription = 'TripleUp Jersey'
-  jersey.price = '$80'
-  pant.articleDescription = 'TripeUp Pant'
-  pant.price = '$85'
+  jersey.articleDescription = 'Reign Jersey'
+  jersey.price = '$78'
+  pant.articleDescription = 'Reign Pant'
+  pant.price = '$77'
 
   jersey.frontText = _.toUpper(mascot)
-  jersey.baseImageURL = tripleUp.JERSEY_URL
+  jersey.baseImageURL = reign.JERSEY_URL
 
   jersey.baseColor = 'white'
-  jersey.baseColorCode = tripleUp.colorMap(jersey.baseColor)
-  jersey.baseColorHex = tripleUp.BASEOPTIONS.jersey[jersey.baseColorCode]
+  jersey.baseColorCode = reign.colorMap(jersey.baseColor)
+  jersey.baseColorHex = reign.BASEOPTIONS.jersey[jersey.baseColorCode]
 
   jersey.logoColor = team.colors ? team.colors[0] : 'black'
-  jersey.logoColorCode = tripleUp.colorMap(jersey.logoColor)
+  jersey.logoColorCode = reign.colorMap(jersey.logoColor)
 
   jersey.teamTextColor = team.colors ? team.colors[0] : 'black'
-  jersey.teamTextColorCode = tripleUp.colorMap(jersey.teamTextColor)
+  jersey.teamTextColorCode = reign.colorMap(jersey.teamTextColor)
 
   jersey.teamStrokeColor = team.colors ? team.colors[1] : 'black'
-  jersey.teamStrokeColorCode = tripleUp.colorMap(jersey.teamStrokeColor)
+  jersey.teamStrokeColorCode = reign.colorMap(jersey.teamStrokeColor)
 
   jersey.font = font
 
   jersey.frontImage = _.chain(jersey.baseImageURL)
-    .replace(/TEAMNAME/, jersey.frontText)
+    .replace(/TEAMNAME/g, jersey.frontText)
     .replace(/BASECOLOR/, jersey.baseColorCode)
     .replace(/LOGOCOLOR/, jersey.logoColorCode)
     .replace(/PLAYERNUMBER/g, playerNumber)
@@ -169,19 +170,19 @@ const basketball = team => {
     .replace(/TEAMTEXTCOLOR/g, jersey.teamTextColorCode)
     .replace(/TEAMSTROKECOLOR/g, jersey.teamStrokeColorCode)
     .value()
-  pant.baseImageURL = tripleUp.PANTS_URL
+  pant.baseImageURL = reign.PANTS_URL
   pant.baseColor = 'white'
-  pant.baseColorCode = tripleUp.colorMap(pant.baseColor)
-  pant.baseColorHex = tripleUp.BASEOPTIONS.pant[pant.baseColorCode]
+  pant.baseColorCode = reign.colorMap(pant.baseColor)
+  pant.baseColorHex = reign.BASEOPTIONS.pant[pant.baseColorCode]
 
   pant.logoColor = team.colors ? team.colors[0] : 'black'
-  pant.logoColorCode = tripleUp.colorMap(pant.logoColor)
+  pant.logoColorCode = reign.colorMap(pant.logoColor)
 
   pant.teamTextColor = team.colors ? team.colors[0] : 'black'
-  pant.teamTextColorCode = tripleUp.colorMap(pant.teamTextColor)
+  pant.teamTextColorCode = reign.colorMap(pant.teamTextColor)
 
   pant.teamStrokeColor = team.colors ? team.colors[1] : 'black'
-  pant.teamStrokeColorCode = tripleUp.colorMap(pant.teamStrokeColor)
+  pant.teamStrokeColorCode = reign.colorMap(pant.teamStrokeColor)
 
   pant.frontImage = _.chain(pant.baseImageURL)
     .replace(/BASECOLOR/, pant.baseColorCode)
@@ -190,37 +191,37 @@ const basketball = team => {
     .replace(/TEAMSTROKECOLOR/, pant.teamStrokeColorCode)
     .value()
 
-  home = tripleUp.homeDecorations({ jersey, pant }, team.colors)
+  home = reign.homeDecorations({ jersey, pant }, team.colors)
 
   let away = {}
   jersey = {}
   pant = {}
 
-  jersey.articleDescription = 'TripleUp Jersey'
-  jersey.price = '$80'
-  pant.articleDescription = 'TripeUp Pant'
-  pant.price = '$85'
+  jersey.articleDescription = 'Reign Jersey'
+  jersey.price = '$78'
+  pant.articleDescription = 'Reign Pant'
+  pant.price = '$77'
 
   jersey.frontText = _.toUpper(_.replace(team.name, '/', ' '))
-  jersey.baseImageURL = tripleUp.JERSEY_URL
+  jersey.baseImageURL = reign.JERSEY_URL
 
   jersey.baseColor = team.colors ? team.colors[0] : 'black'
-  jersey.baseColorCode = tripleUp.colorMap(jersey.baseColor)
-  jersey.baseColorHex = tripleUp.BASEOPTIONS.jersey[jersey.baseColorCode].hex
+  jersey.baseColorCode = reign.colorMap(jersey.baseColor)
+  jersey.baseColorHex = reign.BASEOPTIONS.jersey[jersey.baseColorCode].hex
 
   jersey.logoColor = team.colors ? team.colors[1] : 'white'
-  jersey.logoColorCode = tripleUp.colorMap(jersey.logoColor)
+  jersey.logoColorCode = reign.colorMap(jersey.logoColor)
 
   jersey.teamTextColor = team.colors ? team.colors[1] : 'white'
-  jersey.teamTextColorCode = tripleUp.colorMap(jersey.teamTextColor)
+  jersey.teamTextColorCode = reign.colorMap(jersey.teamTextColor)
 
   jersey.teamStrokeColor = team.colors ? team.colors[0] : 'white'
-  jersey.teamStrokeColorCode = tripleUp.colorMap(jersey.teamStrokeColor)
+  jersey.teamStrokeColorCode = reign.colorMap(jersey.teamStrokeColor)
 
   jersey.font = font
 
   jersey.frontImage = _.chain(jersey.baseImageURL)
-    .replace(/TEAMNAME/, jersey.frontText)
+    .replace(/TEAMNAME/g, jersey.frontText)
     .replace(/BASECOLOR/, jersey.baseColorCode)
     .replace(/LOGOCOLOR/, jersey.logoColorCode)
     .replace(/PLAYERNUMBER/g, playerNumber)
@@ -229,20 +230,20 @@ const basketball = team => {
     .replace(/TEAMSTROKECOLOR/g, jersey.teamStrokeColorCode)
     .value()
 
-  pant.baseImageURL = tripleUp.PANTS_URL
+  pant.baseImageURL = reign.PANTS_URL
 
   pant.baseColor = team.colors ? team.colors[0] : 'black'
-  pant.baseColorCode = tripleUp.colorMap(pant.baseColor)
-  pant.baseColorHex = tripleUp.BASEOPTIONS.pant[pant.baseColorCode].hex
+  pant.baseColorCode = reign.colorMap(pant.baseColor)
+  pant.baseColorHex = reign.BASEOPTIONS.pant[pant.baseColorCode].hex
 
   pant.logoColor = team.colors ? team.colors[1] : 'white'
-  pant.logoColorCode = tripleUp.colorMap(pant.logoColor)
+  pant.logoColorCode = reign.colorMap(pant.logoColor)
 
   pant.teamTextColor = team.colors ? team.colors[1] : 'white'
-  pant.teamTextColorCode = tripleUp.colorMap(pant.teamTextColor)
+  pant.teamTextColorCode = reign.colorMap(pant.teamTextColor)
 
   pant.teamStrokeColor = team.colors ? team.colors[0] : 'white'
-  pant.teamStrokeColorCode = tripleUp.colorMap(pant.teamStrokeColor)
+  pant.teamStrokeColorCode = reign.colorMap(pant.teamStrokeColor)
 
   pant.frontImage = _.chain(pant.baseImageURL)
     .replace(/BASECOLOR/, pant.baseColorCode)
@@ -250,15 +251,15 @@ const basketball = team => {
     .replace(/TEAMTEXTCOLOR/g, pant.teamTextColorCode)
     .replace(/TEAMSTROKECOLOR/, pant.teamStrokeColorCode)
     .value()
-  away = tripleUp.awayDecorations({ jersey, pant }, team.colors)
+  away = reign.awayDecorations({ jersey, pant }, team.colors)
 
   return {
     home,
     away,
-    fonts: tripleUp.FONTS,
-    baseOptions: tripleUp.BASEOPTIONS,
+    fonts: reign.FONTS,
+    baseOptions: reign.BASEOPTIONS,
     selectedFont: font,
-    colors: tripleUp.COLORS,
+    colors: reign.COLORS,
   }
 }
 
