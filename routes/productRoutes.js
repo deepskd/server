@@ -206,7 +206,7 @@ const basketball = team => {
 
   jersey.baseColor = team.colors ? team.colors[0] : 'black'
   jersey.baseColorCode = tripleUp.colorMap(jersey.baseColor)
-  jersey.baseColorHex = tripleUp.BASEOPTIONS.jersey[jersey.baseColorCode]
+  jersey.baseColorHex = tripleUp.BASEOPTIONS.jersey[jersey.baseColorCode].hex
 
   jersey.logoColor = team.colors ? team.colors[1] : 'white'
   jersey.logoColorCode = tripleUp.colorMap(jersey.logoColor)
@@ -233,7 +233,7 @@ const basketball = team => {
 
   pant.baseColor = team.colors ? team.colors[0] : 'black'
   pant.baseColorCode = tripleUp.colorMap(pant.baseColor)
-  pant.baseColorHex = tripleUp.BASEOPTIONS.pant[pant.baseColorCode]
+  pant.baseColorHex = tripleUp.BASEOPTIONS.pant[pant.baseColorCode].hex
 
   pant.logoColor = team.colors ? team.colors[1] : 'white'
   pant.logoColorCode = tripleUp.colorMap(pant.logoColor)
