@@ -61,7 +61,7 @@ class ImageCard extends Component {
   handleClose = () => this.setState({ modalOpen: false })
 
   handleBaseColorChange = baseColor => {
-    console.log(baseColor)
+    console.log(this.props.alt, '>>', baseColor)
   }
 
   renderImageViews = imageURL => {

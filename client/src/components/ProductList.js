@@ -44,13 +44,13 @@ class ProductList extends React.Component {
         <div className="ui two cards">
           <ImageCard
             src={home.jersey}
-            alt={'Home Jersey'}
+            alt="home_jersey"
             baseOptions={baseOptions.jersey}
             onSelect={selected => this.onCardSelect('home_jersey', selected)}
           />
           <ImageCard
             src={away.jersey}
-            alt={'Away Jersey'}
+            alt="away_jersey"
             baseOptions={baseOptions.jersey}
             onSelect={selected => this.onCardSelect('away_jersey', selected)}
           />
@@ -58,13 +58,13 @@ class ProductList extends React.Component {
         <div className="ui two cards">
           <ImageCard
             src={home.pant}
-            alt={'Home Pant'}
+            alt="home_pant"
             baseOptions={baseOptions.pant}
             onSelect={selected => this.onCardSelect('home_pant', selected)}
           />
           <ImageCard
             src={away.pant}
-            alt={'Away Pant'}
+            alt="away_pant"
             baseOptions={baseOptions.pant}
             onSelect={selected => this.onCardSelect('away_pant', selected)}
           />
