@@ -1,5 +1,8 @@
 import '../css/productImage.css'
+import _ from 'lodash'
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+
 import {
   Image,
   Placeholder,
@@ -12,7 +15,8 @@ import {
   Dropdown,
   Label,
 } from 'semantic-ui-react'
-import _ from 'lodash'
+
+import { baseColorChanged } from '../actions'
 
 class ImageCard extends Component {
   constructor(props) {
@@ -61,7 +65,10 @@ class ImageCard extends Component {
   handleClose = () => this.setState({ modalOpen: false })
 
   handleBaseColorChange = baseColor => {
-    console.log(this.props.alt, '>>', baseColor)
+    const props = {}
+    props.item = this.props.alt
+    props.color = baseColor
+    this.props.baseColorChanged(props)
   }
 
   renderImageViews = imageURL => {
@@ -185,4 +192,7 @@ class ImageCard extends Component {
   }
 }
 
-export default ImageCard
+export default connect(
+  null,
+  { baseColorChanged }
+)(ImageCard)
