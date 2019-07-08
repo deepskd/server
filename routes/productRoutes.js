@@ -145,50 +145,52 @@ const basketball = team => {
   jersey.frontText = _.toUpper(mascot)
   jersey.textFont = font
   jersey.baseImageURL = tripleUp.JERSEY_URL
-  jersey.frontImage = _.replace(
-    tripleUp.JERSEY_URL,
-    /TEAMNAME/,
-    jersey.frontText
-  )
+
   jersey.baseColor = 'white'
   jersey.baseColorCode = tripleUp.colorMap(jersey.baseColor)
-  jersey.frontImage = _.replace(
-    jersey.frontImage,
-    /BASECOLOR/,
-    jersey.baseColorCode
-  )
+  jersey.baseColorHex = tripleUp.BASEOPTIONS.jersey[jersey.baseColorCode]
+
   jersey.logoColor = team.colors ? team.colors[0] : 'black'
   jersey.logoColorCode = tripleUp.colorMap(jersey.logoColor)
-  jersey.frontImage = _.replace(
-    jersey.frontImage,
-    /LOGOCOLOR/,
-    jersey.logoColorCode
-  )
-  jersey.frontImage = _.replace(
-    jersey.frontImage,
-    /PLAYERNUMBER/g,
-    playerNumber
-  )
+
+  jersey.teamTextColor = team.colors ? team.colors[0] : 'black'
+  jersey.teamTextColorCode = tripleUp.colorMap(jersey.teamTextColor)
+
+  jersey.teamStrokeColor = team.colors ? team.colors[1] : 'black'
+  jersey.teamStrokeColorCode = tripleUp.colorMap(jersey.teamStrokeColor)
+
   jersey.font = font
-  jersey.frontImage = _.replace(jersey.frontImage, /(TEAM|NUMBER)FONT/g, font)
 
+  jersey.frontImage = _.chain(jersey.baseImageURL)
+    .replace(/TEAMNAME/, jersey.frontText)
+    .replace(/BASECOLOR/, jersey.baseColorCode)
+    .replace(/LOGOCOLOR/, jersey.logoColorCode)
+    .replace(/PLAYERNUMBER/g, playerNumber)
+    .replace(/(TEAM|NUMBER)FONT/g, jersey.font)
+    .replace(/TEAMTEXTCOLOR/g, jersey.teamTextColorCode)
+    .replace(/TEAMSTROKECOLOR/g, jersey.teamStrokeColorCode)
+    .value()
   pant.baseImageURL = tripleUp.PANTS_URL
-  pant.frontImage = _.replace(
-    tripleUp.PANTS_URL,
-    /BASECOLOR/,
-    tripleUp.colorMap('white')
-  )
+  pant.baseColor = 'white'
+  pant.baseColorCode = tripleUp.colorMap(pant.baseColor)
+  pant.baseColorHex = tripleUp.BASEOPTIONS.pant[pant.baseColorCode]
 
-  pant.frontImage = _.replace(
-    pant.frontImage,
-    /(LOGO|TEAMTEXT)COLOR/g,
-    tripleUp.colorMap(team.colors ? team.colors[0] : 'black')
-  )
-  pant.frontImage = _.replace(
-    pant.frontImage,
-    /TEAMSTROKECOLOR/,
-    tripleUp.colorMap(team.colors ? team.colors[1] : 'black')
-  )
+  pant.logoColor = team.colors ? team.colors[0] : 'black'
+  pant.logoColorCode = tripleUp.colorMap(pant.logoColor)
+
+  pant.teamTextColor = team.colors ? team.colors[0] : 'black'
+  pant.teamTextColorCode = tripleUp.colorMap(pant.teamTextColor)
+
+  pant.teamStrokeColor = team.colors ? team.colors[1] : 'black'
+  pant.teamStrokeColorCode = tripleUp.colorMap(pant.teamStrokeColor)
+
+  pant.frontImage = _.chain(pant.baseImageURL)
+    .replace(/BASECOLOR/, pant.baseColorCode)
+    .replace(/LOGOCOLOR/, pant.logoColorCode)
+    .replace(/TEAMTEXTCOLOR/g, pant.teamTextColorCode)
+    .replace(/TEAMSTROKECOLOR/, pant.teamStrokeColorCode)
+    .value()
+
   home = tripleUp.homeDecorations({ jersey, pant }, team.colors)
 
   let away = {}
@@ -254,6 +256,7 @@ const basketball = team => {
     home,
     away,
     fonts: tripleUp.FONTS,
+    baseOptions: tripleUp.BASEOPTIONS,
     selectedFont: font,
     colors: tripleUp.COLORS,
   }

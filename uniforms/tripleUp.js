@@ -102,6 +102,53 @@ const COLORS = {
   tru_clear_onix: '#a9abb0',
 }
 
+const BASEOPTIONS = {
+  jersey: {
+    tru_black: { hex: '#000000' },
+    tru_white: { hex: '#ffffff' },
+    tru_collegiate_navy: { hex: '#000F44' },
+    tru_collegiate_royal: { hex: '#2b3c74' },
+    tru_light_blue: { hex: '#7092bc' },
+    tru_maroon: { hex: '#4a2d35' },
+    tru_collegiate_burgundy: { hex: '#602732' },
+    tru_power_red: { hex: '#891e2e' },
+    tru_collegiate_orange: { hex: '#b74024' },
+    tru_collegiate_gold: { hex: '#eca800' },
+    tru_yellow: { hex: '#e8d000' },
+    tru_sand: { hex: '#baab81' },
+    tru_coffee: { hex: '#6f4e37' },
+    tru_collegiate_aqua: { hex: '#03bb85' },
+    tru_green: { hex: '#40735e' },
+    tru_dark_green: { hex: '#324c44' },
+    tru_collegiate_purple: { hex: '#38305a' },
+    tru_intense_pink: { hex: '#cf388b' },
+    tru_onix: { hex: '#555f66' },
+    tru_clear_onix: { hex: '#a9abb0' },
+  },
+  pant: {
+    tru_black: { hex: '#000000' },
+    tru_white: { hex: '#ffffff' },
+    tru_collegiate_navy: { hex: '#000F44' },
+    tru_collegiate_royal: { hex: '#2b3c74' },
+    tru_light_blue: { hex: '#7092bc' },
+    tru_maroon: { hex: '#4a2d35' },
+    tru_collegiate_burgundy: { hex: '#602732' },
+    tru_power_red: { hex: '#891e2e' },
+    tru_collegiate_orange: { hex: '#b74024' },
+    tru_collegiate_gold: { hex: '#eca800' },
+    tru_yellow: { hex: '#e8d000' },
+    tru_sand: { hex: '#baab81' },
+    tru_coffee: { hex: '#6f4e37' },
+    tru_collegiate_aqua: { hex: '#03bb85' },
+    tru_green: { hex: '#40735e' },
+    tru_dark_green: { hex: '#324c44' },
+    tru_collegiate_purple: { hex: '#38305a' },
+    tru_intense_pink: { hex: '#cf388b' },
+    tru_onix: { hex: '#555f66' },
+    tru_clear_onix: { hex: '#a9abb0' },
+  },
+}
+
 const colorMap = color => {
   let colorCode = ''
   colorCode = Object.entries(COLORMAP).filter(clrMap =>
@@ -164,6 +211,7 @@ module.exports = {
   JERSEY_URL,
   PANTS_URL,
   FONTS,
+  BASEOPTIONS,
   COLORS,
   colorMap,
   homeDecorations,
