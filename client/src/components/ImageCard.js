@@ -60,6 +60,10 @@ class ImageCard extends Component {
 
   handleClose = () => this.setState({ modalOpen: false })
 
+  handleBaseColorChange = baseColor => {
+    console.log(baseColor)
+  }
+
   renderImageViews = imageURL => {
     const img1 = _.chain(imageURL).replace(/&wid=201$/, '')
     const img4 = _.chain(img1).replace(/_\d/, '_4')
@@ -106,8 +110,11 @@ class ImageCard extends Component {
         borderWidth,
       }
       return (
-        <Dropdown.Item key={`${c}`}>
-          <Label cicle empty style={colorStyle}></Label>
+        <Dropdown.Item
+          key={`${c}`}
+          onClick={() => this.handleBaseColorChange(c)}
+        >
+          <Label style={colorStyle}></Label>
         </Dropdown.Item>
       )
     })
@@ -118,21 +125,16 @@ class ImageCard extends Component {
 
     return (
       <React.Fragment>
-        <span className="ui left floated">
-          <svg height="20" width="20">
-            <circle
-              cx="10"
-              cy="10"
-              r="10"
-              fill={src.baseColorHex}
-              style={{ stroke: 'black' }}
-            />
-          </svg>
-
-          <Dropdown item scrolling>
-            <Dropdown.Menu>{this.renderColors()}</Dropdown.Menu>
-          </Dropdown>
-        </span>
+        <Label
+          style={{
+            backgroundColor: src.baseColorHex,
+            borderColor: 'black',
+            borderWidth: 'thin',
+          }}
+        ></Label>
+        <Dropdown item scrolling>
+          <Dropdown.Menu>{this.renderColors()}</Dropdown.Menu>
+        </Dropdown>
       </React.Fragment>
     )
   }
@@ -166,6 +168,7 @@ class ImageCard extends Component {
               name="add"
               onChange={this.addToCart}
               checked={this.state.checked}
+              className="ui right floated"
             />
             {this.renderBaseColorOptions()}
             {this.renderImageViews(imageURL)}
