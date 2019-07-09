@@ -107,7 +107,8 @@ const updateBaseColor = (state, props) => {
       jersey = _.clone(state.products.home.jersey)
       jersey.baseColorCode = props.color
       jersey.baseColorHex = baseOptions.jersey[props.color].hex
-      jersey.logoColorCode = baseOptions.jersey[props.color].logo
+      jersey.logoColorCode =
+        baseOptions.jersey[props.color].logo || jersey.logoColorCode
       jersey.pipeColorCode = baseOptions.jersey[props.color].pipe
       jersey.cuffColorCode = baseOptions.jersey[props.color].cuff
       jersey.frontImage = updateJersey(jersey, state.products.selectedFont)
@@ -117,7 +118,8 @@ const updateBaseColor = (state, props) => {
       jersey = _.clone(state.products.away.jersey)
       jersey.baseColorCode = props.color
       jersey.baseColorHex = baseOptions.jersey[props.color].hex
-      jersey.logoColorCode = baseOptions.jersey[props.color].logo
+      jersey.logoColorCode =
+        baseOptions.jersey[props.color].logo || jersey.logoColorCode
       jersey.pipeColorCode = baseOptions.jersey[props.color].pipe || ''
       jersey.cuffColorCode = baseOptions.jersey[props.color].cuff || ''
       jersey.frontImage = updateJersey(jersey, state.products.selectedFont)
@@ -127,7 +129,8 @@ const updateBaseColor = (state, props) => {
       pant = _.clone(state.products.home.pant)
       pant.baseColorCode = props.color
       pant.baseColorHex = baseOptions.pant[props.color].hex
-      pant.logoColorCode = baseOptions.pant[props.color].logo
+      pant.logoColorCode =
+        baseOptions.pant[props.color].logo || pant.logoColorCode
       pant.frontImage = updatePant(pant)
       newState.products.home.pant = pant
       break
@@ -135,7 +138,8 @@ const updateBaseColor = (state, props) => {
       pant = _.clone(state.products.away.pant)
       pant.baseColorCode = props.color
       pant.baseColorHex = baseOptions.pant[props.color].hex
-      pant.logoColorCode = baseOptions.pant[props.color].logo
+      pant.logoColorCode =
+        baseOptions.pant[props.color].logo || pant.logoColorCode
       pant.frontImage = updatePant(pant)
       newState.products.away.pant = pant
       break
@@ -172,8 +176,16 @@ const updateJersey = (
     .replace(/PIPECOLOR/, pipeColorCode)
     .value()
 
-const updatePant = ({ baseImageURL, baseColorCode, logoColorCode }) =>
+const updatePant = ({
+  baseImageURL,
+  baseColorCode,
+  logoColorCode,
+  teamTextColorCode,
+  teamStrokeColorCode,
+}) =>
   _.chain(baseImageURL)
     .replace(/BASECOLOR/, baseColorCode)
     .replace(/LOGOCOLOR/, logoColorCode)
+    .replace(/TEAMTEXTCOLOR/g, teamTextColorCode)
+    .replace(/TEAMSTROKECOLOR/, teamStrokeColorCode)
     .value()
