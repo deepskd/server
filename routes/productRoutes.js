@@ -148,7 +148,7 @@ const basketball = team => {
 
   jersey.baseColor = 'white'
   jersey.baseColorCode = reign.colorMap(jersey.baseColor)
-  jersey.baseColorHex = reign.BASEOPTIONS.jersey[jersey.baseColorCode]
+  jersey.baseColorHex = reign.BASEOPTIONS.jersey[jersey.baseColorCode].hex
 
   jersey.logoColor = team.colors ? team.colors[0] : 'black'
   jersey.logoColorCode = reign.colorMap(jersey.logoColor)
@@ -173,7 +173,7 @@ const basketball = team => {
   pant.baseImageURL = reign.PANTS_URL
   pant.baseColor = 'white'
   pant.baseColorCode = reign.colorMap(pant.baseColor)
-  pant.baseColorHex = reign.BASEOPTIONS.pant[pant.baseColorCode]
+  pant.baseColorHex = reign.BASEOPTIONS.pant[pant.baseColorCode].hex
 
   pant.logoColor = team.colors ? team.colors[0] : 'black'
   pant.logoColorCode = reign.colorMap(pant.logoColor)
