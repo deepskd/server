@@ -32,7 +32,7 @@ $application=sublimation&\
 $text=PLAYERNUMBER&$font=NUMBERFONT&$text_color=TEAMTEXTCOLOR&$stroke_color=NUMBERSTROKECOLOR}&\
 obj=a&req=object}&resMode=sharp2&wid=250&op_usm=1.2,1,4,0`
 
-const PANTS_URL = `https://embodee.adidas.com/api2/rewrite/adidas16/is/image/adidasAG/agm?&src=ir{adidasAGRender/APP16_vuw_sho_13?&\
+const PANTS_URL = `https://embodee.adidas.com/api2/rewrite/adidas16/is/image/adidasAG/agm?&src=ir{adidasAGRender/APP16_vuw_sho_1?&\
 obj=a/m/bas&src=BASECOLOR&show&\
 obj=a/m/wai&show&\
 obj=a/f/nvr&show&\
@@ -43,9 +43,8 @@ obj=a/s/shg&show&\
 obj=a/o/gra_ob&src=TEAMTEXTCOLOR&show&\
 obj=a/o/str_s0&show&\
 obj=a/o/log&src=LOGOCOLOR&show&\
-obj=a/o/wba&decal&show&res=35.3185595567867&pos=0,0&src=fxg{adidasAG/APP16_vum_sho_teamname?&$application=sublimation&$text=TEAMNAME&$font=TEAMFONT&$text_color=TEAMTEXTCOLOR&$stroke_color=TEAMSTROKECOLOR}&\
 obj=a&req=object}&resMode=sharp2&op_usm=1.2,1,4,0`
-
+//obj=a/o/wba&decal&show&res=35.3185595567867&pos=0,0&src=fxg{adidasAG/APP16_vum_sho_teamname?&$application=sublimation&$text=TEAMNAME&$font=TEAMFONT&$text_color=TEAMTEXTCOLOR&$stroke_color=TEAMSTROKECOLOR}&\
 const FONTS = {
   times_bold: 'Times Bold',
   full_block: 'Full Block',

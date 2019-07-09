@@ -38,6 +38,14 @@ class TeamItem extends React.Component {
             <Icon name="basketball ball" color="blue" />
             Basketball
           </List.Item>
+          <List.Item
+            as={Link}
+            to={`/volleyball/${this.props.team._id}`}
+            onClick={() => this.onTeamSelect(team, 'volleyball')}
+          >
+            <Icon name="volleyball ball" color="blue" />
+            Volleyball
+          </List.Item>
         </List>
       </Item>
     )
