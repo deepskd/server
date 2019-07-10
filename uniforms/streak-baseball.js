@@ -10,8 +10,8 @@ obj=a/o/sfr_g1&src=str_white&show&\
 obj=a/o/sf2_e1&src=str_white&show&\
 obj=a/o/log&src=LOGOCOLOR&show&\
 obj=a/o/ufa&decal&show&res=41.940789473684205&pos=0,0&src=fxg{adidasAG/APP16_stm_jfb_teamname_straight?&$text=TEAMNAME&$font=TEAMFONT&$text_color=TEAMTEXTCOLOR&$stroke_color=TEAMSTROKECOLOR&$application=sublimation}&\
-obj=a/o/ubu&decal&show&res=13.421052631578947&pos=0,0&src=fxg{adidasAG/APP16_stm_jfb_playernumber?&$application=sublimation&$text=PLAYERNUMBER&$font=NUMBERFONT&$text_color=str_dark_green&$stroke_color=str_white}&\
-obj=a/o/ufl&decal&show&res=26.842105263157894&pos=0,0&src=fxg{adidasAG/APP16_stm_jfb_playernumber?&$application=sublimation&$text=PLAYERNUMBER&$font=NUMBERFONT&$text_color=str_dark_green&$stroke_color=str_white}&\
+obj=a/o/ubu&decal&show&res=13.421052631578947&pos=0,0&src=fxg{adidasAG/APP16_stm_jfb_playernumber?&$application=sublimation&$text=PLAYERNUMBER&$font=NUMBERFONT&$text_color=NUMBERTEXTCOLOR&$stroke_color=NUMBERSTROKECOLOR}&\
+obj=a/o/ufl&decal&show&res=26.842105263157894&pos=0,0&src=fxg{adidasAG/APP16_stm_jfb_playernumber?&$application=sublimation&$text=PLAYERNUMBER&$font=NUMBERFONT&$text_color=NUMBERTEXTCOLOR&$stroke_color=NUMBERSTROKECOLOR}&\
 obj=a&req=object}&resMode=sharp2&wid=250&op_usm=1.2,1,4,0`
 
 const PANTS_URL = `https://embodee.adidas.com/api2/rewrite/adidas16/is/image/adidasAG/agm?&src=ir{adidasAGRender/APP16_stm_pan_ap_1?&\
@@ -77,38 +77,38 @@ const COLORS = {
 
 const BASEOPTIONS = {
   jersey: {
-    str_white: { hex: '#ffffff' },
-    str_black: { hex: '#000000' },
-    str_collegiate_navy: { hex: '#000F44' },
-    str_collegiate_royal: { hex: '#2b3c74' },
-    str_light_blue: { hex: '#7092bc' },
-    str_collegiate_burgundy: { hex: '#602732' },
-    str_power_red: { hex: '#891e2e' },
-    str_collegiate_orange: { hex: '#b74024' },
-    str_collegiate_gold: { hex: '#eca800' },
-    str_sand: { hex: '#baab81' },
-    str_dark_green: { hex: '#324c44' },
-    str_collegiate_purple: { hex: '#38305a' },
-    str_intense_pink: { hex: '#cf388b' },
-    str_onix: { hex: '#555f66' },
-    str_light_onix: { hex: '#a9abb0' },
+    str_white: { hex: '#ffffff', label: 'White' },
+    str_black: { hex: '#000000', label: 'Black' },
+    str_collegiate_navy: { hex: '#000F44', label: 'Navy' },
+    str_collegiate_royal: { hex: '#2b3c74', label: 'Royal' },
+    str_light_blue: { hex: '#7092bc', label: 'Light Blue' },
+    str_collegiate_burgundy: { hex: '#602732', label: 'Burgundy' },
+    str_power_red: { hex: '#891e2e', label: 'Power Red' },
+    str_collegiate_orange: { hex: '#b74024', label: 'Orange' },
+    str_collegiate_gold: { hex: '#eca800', label: 'Gold' },
+    str_sand: { hex: '#baab81', label: 'Sand' },
+    str_dark_green: { hex: '#324c44', label: 'Dark Green' },
+    str_collegiate_purple: { hex: '#38305a', label: 'Purple' },
+    str_intense_pink: { hex: '#cf388b', label: 'Pink' },
+    str_onix: { hex: '#555f66', label: 'Onix' },
+    str_light_onix: { hex: '#a9abb0', label: 'Light Onix' },
   },
   pant: {
-    str_white: { hex: '#ffffff' },
-    str_black: { hex: '#000000' },
-    str_collegiate_navy: { hex: '#000F44' },
-    str_collegiate_royal: { hex: '#2b3c74' },
-    str_light_blue: { hex: '#7092bc' },
-    str_collegiate_burgundy: { hex: '#602732' },
-    str_power_red: { hex: '#891e2e' },
-    str_collegiate_orange: { hex: '#b74024' },
-    str_collegiate_gold: { hex: '#eca800' },
-    str_sand: { hex: '#baab81' },
-    str_dark_green: { hex: '#324c44' },
-    str_collegiate_purple: { hex: '#38305a' },
-    str_intense_pink: { hex: '#cf388b' },
-    str_onix: { hex: '#555f66' },
-    str_light_onix: { hex: '#a9abb0' },
+    str_white: { hex: '#ffffff', label: 'White' },
+    str_black: { hex: '#000000', label: 'Black' },
+    str_collegiate_navy: { hex: '#000F44', label: 'Navy' },
+    str_collegiate_royal: { hex: '#2b3c74', label: 'Royal' },
+    str_light_blue: { hex: '#7092bc', label: 'Light Blue' },
+    str_collegiate_burgundy: { hex: '#602732', label: 'Burgundy' },
+    str_power_red: { hex: '#891e2e', label: 'Power Red' },
+    str_collegiate_orange: { hex: '#b74024', label: 'Orange' },
+    str_collegiate_gold: { hex: '#eca800', label: 'Gold' },
+    str_sand: { hex: '#baab81', label: 'Sand' },
+    str_dark_green: { hex: '#324c44', label: 'Dark Green' },
+    str_collegiate_purple: { hex: '#38305a', label: 'Purple' },
+    str_intense_pink: { hex: '#cf388b', label: 'Pink' },
+    str_onix: { hex: '#555f66', label: 'Onix' },
+    str_light_onix: { hex: '#a9abb0', label: 'Light Onix' },
   },
 }
 
