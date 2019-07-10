@@ -122,7 +122,8 @@ class ImageCard extends Component {
           key={`${c}`}
           onClick={() => this.handleBaseColorChange(c)}
         >
-          <Label style={colorStyle}></Label>
+          <Label style={colorStyle} />
+          {baseOptions[c].label}
         </Dropdown.Item>
       )
     })
@@ -139,7 +140,7 @@ class ImageCard extends Component {
             borderWidth: 'thin',
           }}
         />
-        <Dropdown item scrolling>
+        <Dropdown scrolling>
           <Dropdown.Menu>{this.renderColors()}</Dropdown.Menu>
         </Dropdown>
       </React.Fragment>
