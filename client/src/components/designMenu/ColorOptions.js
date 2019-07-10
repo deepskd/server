@@ -1,9 +1,10 @@
-import React from 'react'
-import { Menu, Segment, Dropdown, Grid, Button } from 'semantic-ui-react'
+import React, { Component } from 'react'
+import { Menu, Segment, Dropdown, Grid, Button, Label } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import { jerseyTextColorChnaged } from '../../actions'
+import { runInThisContext } from 'vm'
 
-class ColorOptions extends React.Component {
+class ColorOptions extends Component {
   constructor(props) {
     super(props)
     const { home, away, colors } = this.props.products
@@ -52,34 +53,21 @@ class ColorOptions extends React.Component {
     }
   }
 
-  handleTabChange(tab) {
-    if (tab === 'home') {
-      this.setState({
-        activeTab: 'home',
-      })
-    } else if (tab === 'away') {
-      this.setState({
-        activeTab: 'away',
-      })
-    }
-  }
+  handleTabChange = (e, { name }) => this.setState({ activeTab: name })
 
   renderColors(obj, colors) {
     return Object.values(colors).map(c => {
+      const style = {
+        backgroundColor: c,
+        borderColor: 'black',
+        borderWidth: 'thin',
+      }
       return (
         <Dropdown.Item
           key={`${obj}${c}`}
           onClick={e => this.handleColorChange(obj, c)}
         >
-          <svg height="20" width="20">
-            <circle
-              cx="10"
-              cy="10"
-              r="10"
-              fill={c}
-              style={{ stroke: 'black' }}
-            />
-          </svg>
+          <Label style={style} />
         </Dropdown.Item>
       )
     })
@@ -130,45 +118,49 @@ class ColorOptions extends React.Component {
   renderColorOptions() {
     const { colors } = this.props.products
 
+    const textColorStyle = {
+      backgroundColor: this.getColor('text'),
+      borderColor: 'black',
+      borderWidth: 'thin',
+    }
+    const strokeColorStyle = {
+      backgroundColor: this.getColor('stroke'),
+      borderColor: 'black',
+      borderWidth: 'thin',
+    }
+    const textColorLabel = (
+      <span>
+        <Label size="big" style={textColorStyle} />
+      </span>
+    )
+    const strokeColorLabel = (
+      <span>
+        <Label size="big" style={strokeColorStyle} />
+      </span>
+    )
     return (
       <React.Fragment>
-        <Grid>
+        <Grid columns={3}>
           <Grid.Row>
-            <Grid.Column floated="left" width={6}>
-              <svg height="30px" width="40px">
-                <rect
-                  height="100%"
-                  width="100%"
-                  fill={this.getColor('text')}
-                  style={{ stroke: 'black' }}
-                />
-              </svg>
-              <Dropdown item scrolling>
+            <Grid.Column width={4}>
+              <Dropdown trigger={textColorLabel} item scrolling>
                 <Dropdown.Menu>
                   {this.renderColors('text', colors)}
                 </Dropdown.Menu>
               </Dropdown>
             </Grid.Column>
-            <Grid.Column floated="right" width={6}>
-              <svg height="30px" width="40px">
-                <rect
-                  height="100%"
-                  width="100%"
-                  fill={this.getColor('stroke')}
-                  style={{ stroke: 'black' }}
-                />
-              </svg>
-              <Dropdown item scrolling>
+            <Grid.Column width={4}>
+              <Dropdown trigger={strokeColorLabel} item scrolling>
                 <Dropdown.Menu>
                   {this.renderColors('stroke', colors)}
                 </Dropdown.Menu>
               </Dropdown>
             </Grid.Column>
-          </Grid.Row>
-          <Grid.Row centered>
-            <Button size="mini" color="blue" onClick={this.handleColorUpdate}>
-              Update
-            </Button>
+            <Grid.Column width={6}>
+              <Button size="mini" color="blue" onClick={this.handleColorUpdate}>
+                Update
+              </Button>
+            </Grid.Column>
           </Grid.Row>
         </Grid>
       </React.Fragment>
@@ -184,12 +176,12 @@ class ColorOptions extends React.Component {
           <Menu.Item
             name="home"
             active={activeTab === 'home'}
-            onClick={() => this.handleTabChange('home')}
+            onClick={this.handleTabChange}
           />
           <Menu.Item
             name="away"
             active={activeTab === 'away'}
-            onClick={() => this.handleTabChange('away')}
+            onClick={this.handleTabChange}
           />
         </Menu>
         <Segment attached="bottom">{this.renderColorOptions()}</Segment>
