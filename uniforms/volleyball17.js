@@ -24,12 +24,12 @@ obj=a/o/cfc&decal&show&\
 res=26.315789473684216&pos=0,0&\
 src=fxg{adidasAG/APP16_vuw_playernumber?&\
 $application=sublimation&\
-$text=PLAYERNUMBER&$font=NUMBERFONT&$text_color=TEAMTEXTCOLOR&$stroke_color=NUMBERSTROKECOLOR}&\
+$text=PLAYERNUMBER&$font=NUMBERFONT&$text_color=NUMBERTEXTCOLOR&$stroke_color=NUMBERSTROKECOLOR}&\
 obj=a/o/cbc&decal&show&\
 res=13.22271195229453&pos=0,0&\
 src=fxg{adidasAG/APP16_vuw_playernumber?&\
 $application=sublimation&\
-$text=PLAYERNUMBER&$font=NUMBERFONT&$text_color=TEAMTEXTCOLOR&$stroke_color=NUMBERSTROKECOLOR}&\
+$text=PLAYERNUMBER&$font=NUMBERFONT&$text_color=NUMBERTEXTCOLOR&$stroke_color=NUMBERSTROKECOLOR}&\
 obj=a&req=object}&resMode=sharp2&wid=250&op_usm=1.2,1,4,0`
 
 const PANTS_URL = `https://embodee.adidas.com/api2/rewrite/adidas16/is/image/adidasAG/agm?&src=ir{adidasAGRender/APP16_vuw_sho_1?&\
