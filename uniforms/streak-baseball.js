@@ -14,7 +14,7 @@ obj=a/o/ubu&decal&show&res=13.421052631578947&pos=0,0&src=fxg{adidasAG/APP16_stm
 obj=a/o/ufl&decal&show&res=26.842105263157894&pos=0,0&src=fxg{adidasAG/APP16_stm_jfb_playernumber?&$application=sublimation&$text=PLAYERNUMBER&$font=NUMBERFONT&$text_color=str_dark_green&$stroke_color=str_white}&\
 obj=a&req=object}&resMode=sharp2&wid=250&op_usm=1.2,1,4,0`
 
-const PANTS_URL = `https://embodee.adidas.com/api2/rewrite/adidas16/is/image/adidasAG/agm?&src=ir{adidasAGRender/APP16_stm_pan_ap_5?&\
+const PANTS_URL = `https://embodee.adidas.com/api2/rewrite/adidas16/is/image/adidasAG/agm?&src=ir{adidasAGRender/APP16_stm_pan_ap_1?&\
 obj=a/f/nvr&show&\
 obj=a/m/shp_ap&show&\
 obj=a/m/bas&src=BASECOLOR&show&\
