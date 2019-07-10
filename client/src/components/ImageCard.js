@@ -122,7 +122,8 @@ class ImageCard extends Component {
           key={`${c}`}
           onClick={() => this.handleBaseColorChange(c)}
         >
-          <Label style={colorStyle}></Label>
+          <Label style={colorStyle} />
+          {baseOptions[c].label}
         </Dropdown.Item>
       )
     })
@@ -130,8 +131,9 @@ class ImageCard extends Component {
 
   renderBaseColorOptions = () => {
     const { baseColorHex } = this.state
-    return (
-      <React.Fragment>
+
+    const trigger = (
+      <span>
         <Label
           style={{
             backgroundColor: baseColorHex,
@@ -139,7 +141,11 @@ class ImageCard extends Component {
             borderWidth: 'thin',
           }}
         />
-        <Dropdown item scrolling>
+      </span>
+    )
+    return (
+      <React.Fragment>
+        <Dropdown trigger={trigger} scrolling>
           <Dropdown.Menu>{this.renderColors()}</Dropdown.Menu>
         </Dropdown>
       </React.Fragment>
