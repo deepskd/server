@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { Menu, Segment, Dropdown, Grid, Button, Label } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import { jerseyTextColorChnaged } from '../../actions'
-import { runInThisContext } from 'vm'
 
 class ColorOptions extends Component {
   constructor(props) {
