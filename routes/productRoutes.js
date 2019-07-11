@@ -428,7 +428,8 @@ const baseball = team => {
   props.price = '$40'
   pant = pantFactory(streakBaseBall, props)
 
-  home = streakBaseBall.homeDecorations({ jersey, pant }, team.colors)
+  home.jersey = jersey
+  home.pant = pant
 
   let away = {}
   jersey = {}
@@ -452,7 +453,8 @@ const baseball = team => {
   props.price = '$40'
   pant = pantFactory(streakBaseBall, props)
 
-  away = streakBaseBall.awayDecorations({ jersey, pant }, team.colors)
+  away.jersey = jersey
+  away.pant = pant
 
   return {
     home,
@@ -496,17 +498,22 @@ const jerseyFactory = (
 
   jersey.teamStrokeColor = secondaryColor
   jersey.teamStrokeColorCode = uniform.colorMap(jersey.teamStrokeColor)
+  //TODO - fields need to be fixed
+  jersey.textColor = primaryColor
+  jersey.strokeColor = secondaryColor
+  jersey.textColorCode = uniform.colorMap(jersey.textColor)
+  jersey.strokeColorCode = uniform.colorMap(jersey.strokeColor)
 
   jersey.font = font
 
-  jersey.frontImage = _.chain(jersey.baseImageURL)
+  jersey.teamTextColor = jersey.frontImage = _.chain(jersey.baseImageURL)
     .replace(/TEAMNAME/g, jersey.frontText)
     .replace(/BASECOLOR/, jersey.baseColorCode)
     .replace(/LOGOCOLOR/, jersey.logoColorCode)
     .replace(/PLAYERNUMBER/g, playerNumber)
     .replace(/(TEAM|NUMBER)FONT/g, jersey.font)
-    .replace(/TEAMTEXTCOLOR/g, jersey.teamTextColorCode)
-    .replace(/TEAMSTROKECOLOR/g, jersey.teamStrokeColorCode)
+    .replace(/(TEAM|NUMBER)TEXTCOLOR/g, jersey.teamTextColorCode)
+    .replace(/(TEAM|NUMBER)STROKECOLOR/g, jersey.teamStrokeColorCode)
     .value()
 
   return jersey
