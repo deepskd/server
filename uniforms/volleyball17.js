@@ -165,51 +165,51 @@ const colorMap = color => {
   return colorCode[0]
 }
 
-const homeDecorations = ({ jersey, pant }, colors) => {
-  if (colors && colors.length === 2) {
-    jersey.textColor = colors[0]
-    jersey.strokeColor = colors[1] === 'white' ? 'gold' : colors[1]
-  } else if (colors && colors.length === 3) {
-    jersey.textColor = colors[0]
-    jersey.strokeColor = colors[1] === 'white' ? colors[2] : colors[1]
-  } else {
-    jersey.textColor = colors ? colors[0] : 'red'
-    jersey.strokeColor = 'black'
-  }
+// const homeDecorations = ({ jersey, pant }, colors) => {
+//   if (colors && colors.length === 2) {
+//     jersey.textColor = colors[0]
+//     jersey.strokeColor = colors[1] === 'white' ? 'gold' : colors[1]
+//   } else if (colors && colors.length === 3) {
+//     jersey.textColor = colors[0]
+//     jersey.strokeColor = colors[1] === 'white' ? colors[2] : colors[1]
+//   } else {
+//     jersey.textColor = colors ? colors[0] : 'red'
+//     jersey.strokeColor = 'black'
+//   }
 
-  jersey.textColorCode = colorMap(jersey.textColor)
-  jersey.strokeColorCode = colorMap(jersey.strokeColor)
+//   jersey.textColorCode = colorMap(jersey.textColor)
+//   jersey.strokeColorCode = colorMap(jersey.strokeColor)
 
-  jersey.frontImage = _.chain(jersey.frontImage)
-    .replace(/(TEAM|NUMBER)TEXTCOLOR/g, jersey.textColorCode)
-    .replace(/(TEAM|NUMBER)STROKECOLOR/g, jersey.strokeColorCode)
-    .value()
-  return { jersey, pant }
-}
+//   jersey.frontImage = _.chain(jersey.frontImage)
+//     .replace(/(TEAM|NUMBER)TEXTCOLOR/g, jersey.textColorCode)
+//     .replace(/(TEAM|NUMBER)STROKECOLOR/g, jersey.strokeColorCode)
+//     .value()
+//   return { jersey, pant }
+// }
 
-const awayDecorations = ({ jersey, pant }, colors) => {
-  if (colors && colors.length === 2) {
-    jersey.textColor = colors[1]
-    jersey.strokeColor = colors[1].match(/gold/)
-      ? 'white'
-      : _.sample[('gold', 'black')]
-  } else if (colors && colors.length === 3) {
-    jersey.textColor = colors[1]
-    jersey.strokeColor = colors[2]
-  } else {
-    jersey.textColor = 'white'
-    jersey.strokeColor = 'black'
-  }
+// const awayDecorations = ({ jersey, pant }, colors) => {
+//   if (colors && colors.length === 2) {
+//     jersey.textColor = colors[1]
+//     jersey.strokeColor = colors[1].match(/gold/)
+//       ? 'white'
+//       : _.sample[('gold', 'black')]
+//   } else if (colors && colors.length === 3) {
+//     jersey.textColor = colors[1]
+//     jersey.strokeColor = colors[2]
+//   } else {
+//     jersey.textColor = 'white'
+//     jersey.strokeColor = 'black'
+//   }
 
-  jersey.textColorCode = colorMap(jersey.textColor)
-  jersey.strokeColorCode = colorMap(jersey.strokeColor)
+//   jersey.textColorCode = colorMap(jersey.textColor)
+//   jersey.strokeColorCode = colorMap(jersey.strokeColor)
 
-  jersey.frontImage = _.chain(jersey.frontImage)
-    .replace(/(TEAM|NUMBER)TEXTCOLOR/g, jersey.textColorCode)
-    .replace(/(TEAM|NUMBER)STROKECOLOR/g, jersey.strokeColorCode)
-    .value()
-  return { jersey, pant }
-}
+//   jersey.frontImage = _.chain(jersey.frontImage)
+//     .replace(/(TEAM|NUMBER)TEXTCOLOR/g, jersey.textColorCode)
+//     .replace(/(TEAM|NUMBER)STROKECOLOR/g, jersey.strokeColorCode)
+//     .value()
+//   return { jersey, pant }
+// }
 
 module.exports = {
   JERSEY_URL,
@@ -218,6 +218,4 @@ module.exports = {
   BASEOPTIONS,
   COLORS,
   colorMap,
-  homeDecorations,
-  awayDecorations,
 }
