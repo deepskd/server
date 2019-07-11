@@ -410,59 +410,23 @@ const baseball = team => {
     jersey = {},
     pant = {}
 
-  jersey.articleDescription = 'Streak Full Button Jersey'
-  jersey.price = '$70'
-  pant.articleDescription = 'Streak Pant'
-  pant.price = '$40'
+  let props = {
+    articleDescription: 'Streak Full Button Jersey',
+    price: '$70',
+    baseColor: 'white',
+    logoColor: team.colors ? team.colors[0] : 'black',
+    primaryColor: team.colors ? team.colors[0] : 'black',
+    secondaryColor: team.colors ? team.colors[1] : 'black',
+    frontText: mascot,
+    font,
+    playerNumber,
+  }
 
-  jersey.frontText = _.toUpper(mascot)
-  jersey.baseImageURL = streakBaseBall.JERSEY_URL
+  jersey = jerseyFactory(streakBaseBall, props)
 
-  jersey.baseColor = 'white'
-  jersey.baseColorCode = streakBaseBall.colorMap(jersey.baseColor)
-  jersey.baseColorHex =
-    streakBaseBall.BASEOPTIONS.jersey[jersey.baseColorCode].hex
-
-  jersey.logoColor = team.colors ? team.colors[0] : 'black'
-  jersey.logoColorCode = streakBaseBall.colorMap(jersey.logoColor)
-
-  jersey.teamTextColor = team.colors ? team.colors[0] : 'black'
-  jersey.teamTextColorCode = streakBaseBall.colorMap(jersey.teamTextColor)
-
-  jersey.teamStrokeColor = team.colors ? team.colors[1] : 'black'
-  jersey.teamStrokeColorCode = streakBaseBall.colorMap(jersey.teamStrokeColor)
-
-  jersey.font = font
-
-  jersey.frontImage = _.chain(jersey.baseImageURL)
-    .replace(/TEAMNAME/g, jersey.frontText)
-    .replace(/BASECOLOR/, jersey.baseColorCode)
-    .replace(/LOGOCOLOR/, jersey.logoColorCode)
-    .replace(/PLAYERNUMBER/g, playerNumber)
-    .replace(/(TEAM|NUMBER)FONT/g, jersey.font)
-    .replace(/TEAMTEXTCOLOR/g, jersey.teamTextColorCode)
-    .replace(/TEAMSTROKECOLOR/g, jersey.teamStrokeColorCode)
-    .value()
-  pant.baseImageURL = streakBaseBall.PANTS_URL
-  pant.baseColor = 'white'
-  pant.baseColorCode = streakBaseBall.colorMap(pant.baseColor)
-  pant.baseColorHex = streakBaseBall.BASEOPTIONS.pant[pant.baseColorCode].hex
-
-  pant.logoColor = team.colors ? team.colors[0] : 'black'
-  pant.logoColorCode = streakBaseBall.colorMap(pant.logoColor)
-
-  pant.teamTextColor = team.colors ? team.colors[0] : 'black'
-  pant.teamTextColorCode = streakBaseBall.colorMap(pant.teamTextColor)
-
-  pant.teamStrokeColor = team.colors ? team.colors[1] : 'black'
-  pant.teamStrokeColorCode = streakBaseBall.colorMap(pant.teamStrokeColor)
-
-  pant.frontImage = _.chain(pant.baseImageURL)
-    .replace(/BASECOLOR/, pant.baseColorCode)
-    .replace(/LOGOCOLOR/, pant.logoColorCode)
-    .replace(/TEAMTEXTCOLOR/g, pant.teamTextColorCode)
-    .replace(/TEAMSTROKECOLOR/, pant.teamStrokeColorCode)
-    .value()
+  props.articleDescription = 'Streak Pant'
+  props.price = '$40'
+  pant = pantFactory(streakBaseBall, props)
 
   home = streakBaseBall.homeDecorations({ jersey, pant }, team.colors)
 
@@ -470,61 +434,24 @@ const baseball = team => {
   jersey = {}
   pant = {}
 
-  jersey.articleDescription = 'Streak Full Button Jersey'
-  jersey.price = '$70'
-  pant.articleDescription = 'Streak Pant'
-  pant.price = '$40'
+  props = {
+    articleDescription: 'Streak Full Button Jersey',
+    price: '$70',
+    baseColor: team.colors ? team.colors[0] : 'black',
+    logoColor: team.colors ? team.colors[1] : 'white',
+    primaryColor: team.colors ? team.colors[1] : 'white',
+    secondaryColor: team.colors ? team.colors[0] : 'white',
+    frontText: _.toUpper(_.replace(team.name, '/', ' ')),
+    font,
+    playerNumber,
+  }
 
-  jersey.frontText = _.toUpper(_.replace(team.name, '/', ' '))
-  jersey.baseImageURL = streakBaseBall.JERSEY_URL
+  jersey = jerseyFactory(streakBaseBall, props)
 
-  jersey.baseColor = team.colors ? team.colors[0] : 'black'
-  jersey.baseColorCode = streakBaseBall.colorMap(jersey.baseColor)
-  jersey.baseColorHex =
-    streakBaseBall.BASEOPTIONS.jersey[jersey.baseColorCode].hex
+  props.articleDescription = 'Streak Pant'
+  props.price = '$40'
+  pant = pantFactory(streakBaseBall, props)
 
-  jersey.logoColor = team.colors ? team.colors[1] : 'white'
-  jersey.logoColorCode = streakBaseBall.colorMap(jersey.logoColor)
-
-  jersey.teamTextColor = team.colors ? team.colors[1] : 'white'
-  jersey.teamTextColorCode = streakBaseBall.colorMap(jersey.teamTextColor)
-
-  jersey.teamStrokeColor = team.colors ? team.colors[0] : 'white'
-  jersey.teamStrokeColorCode = streakBaseBall.colorMap(jersey.teamStrokeColor)
-
-  jersey.font = font
-
-  jersey.frontImage = _.chain(jersey.baseImageURL)
-    .replace(/TEAMNAME/g, jersey.frontText)
-    .replace(/BASECOLOR/, jersey.baseColorCode)
-    .replace(/LOGOCOLOR/, jersey.logoColorCode)
-    .replace(/PLAYERNUMBER/g, playerNumber)
-    .replace(/(TEAM|NUMBER)FONT/g, jersey.font)
-    .replace(/TEAMTEXTCOLOR/g, jersey.teamTextColorCode)
-    .replace(/TEAMSTROKECOLOR/g, jersey.teamStrokeColorCode)
-    .value()
-
-  pant.baseImageURL = streakBaseBall.PANTS_URL
-
-  pant.baseColor = team.colors ? team.colors[0] : 'black'
-  pant.baseColorCode = streakBaseBall.colorMap(pant.baseColor)
-  pant.baseColorHex = streakBaseBall.BASEOPTIONS.pant[pant.baseColorCode].hex
-
-  pant.logoColor = team.colors ? team.colors[1] : 'white'
-  pant.logoColorCode = streakBaseBall.colorMap(pant.logoColor)
-
-  pant.teamTextColor = team.colors ? team.colors[1] : 'white'
-  pant.teamTextColorCode = streakBaseBall.colorMap(pant.teamTextColor)
-
-  pant.teamStrokeColor = team.colors ? team.colors[0] : 'white'
-  pant.teamStrokeColorCode = streakBaseBall.colorMap(pant.teamStrokeColor)
-
-  pant.frontImage = _.chain(pant.baseImageURL)
-    .replace(/BASECOLOR/, pant.baseColorCode)
-    .replace(/LOGOCOLOR/, pant.logoColorCode)
-    .replace(/TEAMTEXTCOLOR/g, pant.teamTextColorCode)
-    .replace(/TEAMSTROKECOLOR/, pant.teamStrokeColorCode)
-    .value()
   away = streakBaseBall.awayDecorations({ jersey, pant }, team.colors)
 
   return {
@@ -536,7 +463,85 @@ const baseball = team => {
     colors: streakBaseBall.COLORS,
   }
 }
+const jerseyFactory = (
+  uniform,
+  {
+    description,
+    price,
+    baseColor,
+    logoColor,
+    primaryColor,
+    secondaryColor,
+    frontText,
+    font,
+    playerNumber,
+  }
+) => {
+  let jersey = {}
+  jersey.articleDescription = description
+  jersey.price = price
 
+  jersey.frontText = _.toUpper(frontText)
+  jersey.baseImageURL = uniform.JERSEY_URL
+
+  jersey.baseColor = baseColor
+  jersey.baseColorCode = uniform.colorMap(jersey.baseColor)
+  jersey.baseColorHex = uniform.BASEOPTIONS.jersey[jersey.baseColorCode].hex
+
+  jersey.logoColor = logoColor
+  jersey.logoColorCode = uniform.colorMap(jersey.logoColor)
+
+  jersey.teamTextColor = primaryColor
+  jersey.teamTextColorCode = uniform.colorMap(jersey.teamTextColor)
+
+  jersey.teamStrokeColor = secondaryColor
+  jersey.teamStrokeColorCode = uniform.colorMap(jersey.teamStrokeColor)
+
+  jersey.font = font
+
+  jersey.frontImage = _.chain(jersey.baseImageURL)
+    .replace(/TEAMNAME/g, jersey.frontText)
+    .replace(/BASECOLOR/, jersey.baseColorCode)
+    .replace(/LOGOCOLOR/, jersey.logoColorCode)
+    .replace(/PLAYERNUMBER/g, playerNumber)
+    .replace(/(TEAM|NUMBER)FONT/g, jersey.font)
+    .replace(/TEAMTEXTCOLOR/g, jersey.teamTextColorCode)
+    .replace(/TEAMSTROKECOLOR/g, jersey.teamStrokeColorCode)
+    .value()
+
+  return jersey
+}
+
+const pantFactory = (
+  uniform,
+  { description, price, baseColor, logoColor, primaryColor, secondaryColor }
+) => {
+  let pant = {}
+  pant.articleDescription = description
+  pant.price = price
+  pant.baseImageURL = uniform.PANTS_URL
+  pant.baseColor = baseColor
+  pant.baseColorCode = uniform.colorMap(pant.baseColor)
+  pant.baseColorHex = uniform.BASEOPTIONS.pant[pant.baseColorCode].hex
+
+  pant.logoColor = logoColor
+  pant.logoColorCode = uniform.colorMap(pant.logoColor)
+
+  pant.teamTextColor = primaryColor
+  pant.teamTextColorCode = uniform.colorMap(pant.teamTextColor)
+
+  pant.teamStrokeColor = secondaryColor
+  pant.teamStrokeColorCode = uniform.colorMap(pant.teamStrokeColor)
+
+  pant.frontImage = _.chain(pant.baseImageURL)
+    .replace(/BASECOLOR/, pant.baseColorCode)
+    .replace(/LOGOCOLOR/, pant.logoColorCode)
+    .replace(/TEAMTEXTCOLOR/g, pant.teamTextColorCode)
+    .replace(/TEAMSTROKECOLOR/, pant.teamStrokeColorCode)
+    .value()
+
+  return pant
+}
 module.exports = app => {
   app.get('/api/products', async (req, res) => {
     res.setHeader('Access-Control-Allow-Origin', '*')
