@@ -2,15 +2,10 @@ const mongoose = require('mongoose')
 const _ = require('lodash')
 require('../models/Team')
 
-const a1PrimeKnitUniform = require('../uniforms/a1Primeknit')
-// const tripleUp = require('../uniforms/tripleUp')
-const reign = require('../uniforms/reign')
-const volleyball17 = require('../uniforms/volleyball17')
-const streakBaseBall = require('../uniforms/streak-baseball')
-
 const Team = mongoose.model('teams')
 
 const football = (team, applicationType = 'heat_transfer') => {
+  const a1PrimeKnitUniform = require('../uniforms/a1Primeknit')
   const playerNumber = _.random(0, 99)
   const font = _.sample(Object.keys(a1PrimeKnitUniform.FONTS))
   const mascot = _.chain(team.mascot || team.name)
@@ -132,6 +127,7 @@ const football = (team, applicationType = 'heat_transfer') => {
 }
 
 const basketball = team => {
+  const reign = require('../uniforms/reign')
   const playerNumber = _.random(0, 99)
   const font = _.sample(Object.keys(reign.FONTS))
   const mascot = _.replace(team.mascot || team.name, '/', ' ')
@@ -266,6 +262,7 @@ const basketball = team => {
 }
 
 const volleyball = team => {
+  const volleyball17 = require('../uniforms/volleyball17')
   const playerNumber = _.random(0, 99)
   const font = _.sample(Object.keys(volleyball17.FONTS))
   const mascot = _.replace(team.mascot || team.name, '/', ' ')
@@ -402,6 +399,7 @@ const volleyball = team => {
 }
 
 const baseball = team => {
+  const streakBaseBall = require('../uniforms/streak-baseball')
   const playerNumber = _.random(0, 99)
   const font = _.sample(Object.keys(streakBaseBall.FONTS))
   const mascot = _.replace(team.mascot || team.name, '/', ' ')
