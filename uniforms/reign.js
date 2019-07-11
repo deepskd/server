@@ -5,27 +5,15 @@ src=ir{adidasAGRender/APP18_rem_je_1?&obj=a/f/nvr&show\
 &obj=a/m/bas&src=BASECOLOR&show&\
 obj=a/m/nec&src=TEAMTEXTCOLOR&show\
 &obj=a/m/log&src=LOGOCOLOR&show\
-&obj=a/s/shg&show&\
-obj=a/o/ust_u1&src=TEAMTEXTCOLOR&show\
+&obj=a/s/shg&show\
+&obj=a/o/ust_u1&src=TEAMTEXTCOLOR&show\
 &obj=a/o/lst_l1&src=TEAMSTROKECOLOR&show\
 &obj=a/o/str_s0&show\
-&obj=a/o/ufr&decal&show\
-&res=42.606516290726816&pos=0,0&src=fxg{APP18_rem_jer_teamname_straight?&\
-$application=sublimation&\
-$text=TEAMNAME&$font=TEAMFONT&$text_color=TEAMTEXTCOLOR&$stroke_color=TEAMSTROKECOLOR}\
-&obj=a/o/lfr&decal&show\
-&res=42.606516290726816&pos=0,0&src=fxg{APP18_rem_jer_teamname_reverse_vertical?&\
-$application=sublimation&\
-$text=TEAMNAME&$font=TEAMFONT&$text_color=TEAMTEXTCOLOR&$stroke_color=TEAMSTROKECOLOR}\
-&obj=a/o/cch&decal&show\
-&res=17.65927977839335&pos=0,0&src=fxg{APP18_rem_jer_playernumber?\
-&$application=sublimation&\
-$text=PLAYERNUMBER&$font=NUMBERFONT&$color=NUMBERTEXTCOLOR&$stroke_color=NUMBERSTROKECOLOR}\
-&obj=a/o/cba&decal\
-&show&res=13.22271195229453&pos=0,0&src=fxg{APP18_rem_jer_playernumber?&\
-$application=sublimation&\
-$text=PLAYERNUMBER&$font=NUMBERFONT&$color=NUMBERTEXTCOLOR&$stroke_color=NUMBERSTROKECOLOR}&\
-obj=a&req=object}&resMode=sharp2&wid=250&op_usm=1.2,1,4,0`
+&obj=a/o/ufr&decal&show&res=42.606516290726816&pos=0,0&src=fxg{APP18_rem_jer_teamname_straight?&$application=sublimation&$text=TEAMNAME&$font=TEAMFONT&$text_color=TEAMTEXTCOLOR&$stroke_color=TEAMSTROKECOLOR}\
+&obj=a/o/lfr&decal&show&res=42.606516290726816&pos=0,0&src=fxg{APP18_rem_jer_teamname_reverse_vertical?&$application=sublimation&$text=TEAMNAME&$font=TEAMFONT&$text_color=TEAMTEXTCOLOR&$stroke_color=TEAMSTROKECOLOR}\
+&obj=a/o/cch&decal&show&res=17.65927977839335&pos=0,0&src=fxg{APP18_rem_jer_playernumber?&$application=sublimation&$text=PLAYERNUMBER&$font=NUMBERFONT&$color=NUMBERTEXTCOLOR&$stroke_color=NUMBERSTROKECOLOR}\
+&obj=a/o/cba&decal&show&res=13.22271195229453&pos=0,0&src=fxg{APP18_rem_jer_playernumber?&$application=sublimation&$text=PLAYERNUMBER&$font=NUMBERFONT&$color=NUMBERTEXTCOLOR&$stroke_color=NUMBERSTROKECOLOR}\
+&obj=a&req=object}&resMode=sharp2&wid=250&op_usm=1.2,1,4,0`
 
 // stroke=false&$stroke_color=none
 // res=42.606516290726816&pos=0,0&src=fxg{APP18_rem_jer_teamname_vertical?& Team name curved first line
@@ -44,14 +32,8 @@ obj=a/o/lst_l1&src=TEAMTEXTCOLOR&show&\
 obj=a/o/str_s0&show\
 &obj=a&req=object}&resMode=sharp2&wid=250&op_usm=1.2,1,4,0`
 
-// &obj=a/o/rle&decal&show&res=10.567757977621218&pos=0,0&\
-// src=fxg{APP18_rem_sho_teamletter?\
-// $application=sublimation&\
-// &$text=TEAMLETTER&$font=TEAMFONT&$text_color=TEAMTEXTCOLOR&$stroke_color=TEAMSTROKECOLOR}&\
-// obj=a/o/lle&decal&show&res=10.567757977621218&pos=0,0&
-// src=fxg{APP18_rem_sho_teamletter?&\
-// $application=sublimation&\
-// $text=TEAMLETTER&$font=TEAMFONT&$text_color=TEAMTEXTCOLOR&$stroke_color=TEAMSTROKECOLOR}
+// &obj=a/o/rle&decal&show&res=10.567757977621218&pos=0,0&src=fxg{APP18_rem_sho_teamletter?$application=sublimation&&$text=TEAMLETTER&$font=TEAMFONT&$text_color=TEAMTEXTCOLOR&$stroke_color=TEAMSTROKECOLOR}&\
+// obj=a/o/lle&decal&show&res=10.567757977621218&pos=0,0&src=fxg{APP18_rem_sho_teamletter?&$application=sublimation&$text=TEAMLETTER&$font=TEAMFONT&$text_color=TEAMTEXTCOLOR&$stroke_color=TEAMSTROKECOLOR}
 
 const FONTS = {
   adineue_pro_bold: 'Adineue Pro Bold',
@@ -166,51 +148,51 @@ const colorMap = color => {
   return colorCode[0]
 }
 
-const homeDecorations = ({ jersey, pant }, colors) => {
-  if (colors && colors.length === 2) {
-    jersey.textColor = colors[0]
-    jersey.strokeColor = colors[1] === 'white' ? 'gold' : colors[1]
-  } else if (colors && colors.length === 3) {
-    jersey.textColor = colors[0]
-    jersey.strokeColor = colors[1] === 'white' ? colors[2] : colors[1]
-  } else {
-    jersey.textColor = colors ? colors[0] : 'red'
-    jersey.strokeColor = 'black'
-  }
+// const homeDecorations = ({ jersey, pant }, colors) => {
+//   if (colors && colors.length === 2) {
+//     jersey.textColor = colors[0]
+//     jersey.strokeColor = colors[1] === 'white' ? 'gold' : colors[1]
+//   } else if (colors && colors.length === 3) {
+//     jersey.textColor = colors[0]
+//     jersey.strokeColor = colors[1] === 'white' ? colors[2] : colors[1]
+//   } else {
+//     jersey.textColor = colors ? colors[0] : 'red'
+//     jersey.strokeColor = 'black'
+//   }
 
-  jersey.textColorCode = colorMap(jersey.textColor)
-  jersey.strokeColorCode = colorMap(jersey.strokeColor)
+//   jersey.textColorCode = colorMap(jersey.textColor)
+//   jersey.strokeColorCode = colorMap(jersey.strokeColor)
 
-  jersey.frontImage = _.chain(jersey.frontImage)
-    .replace(/(TEAM|NUMBER)TEXTCOLOR/g, jersey.textColorCode)
-    .replace(/(TEAM|NUMBER)STROKECOLOR/g, jersey.strokeColorCode)
-    .value()
-  return { jersey, pant }
-}
+//   jersey.frontImage = _.chain(jersey.frontImage)
+//     .replace(/(TEAM|NUMBER)TEXTCOLOR/g, jersey.textColorCode)
+//     .replace(/(TEAM|NUMBER)STROKECOLOR/g, jersey.strokeColorCode)
+//     .value()
+//   return { jersey, pant }
+// }
 
-const awayDecorations = ({ jersey, pant }, colors) => {
-  if (colors && colors.length === 2) {
-    jersey.textColor = colors[1]
-    jersey.strokeColor = colors[1].match(/gold/)
-      ? 'white'
-      : _.sample[('gold', 'black')]
-  } else if (colors && colors.length === 3) {
-    jersey.textColor = colors[1]
-    jersey.strokeColor = colors[2]
-  } else {
-    jersey.textColor = 'white'
-    jersey.strokeColor = 'black'
-  }
+// const awayDecorations = ({ jersey, pant }, colors) => {
+//   if (colors && colors.length === 2) {
+//     jersey.textColor = colors[1]
+//     jersey.strokeColor = colors[1].match(/gold/)
+//       ? 'white'
+//       : _.sample[('gold', 'black')]
+//   } else if (colors && colors.length === 3) {
+//     jersey.textColor = colors[1]
+//     jersey.strokeColor = colors[2]
+//   } else {
+//     jersey.textColor = 'white'
+//     jersey.strokeColor = 'black'
+//   }
 
-  jersey.textColorCode = colorMap(jersey.textColor)
-  jersey.strokeColorCode = colorMap(jersey.strokeColor)
+//   jersey.textColorCode = colorMap(jersey.textColor)
+//   jersey.strokeColorCode = colorMap(jersey.strokeColor)
 
-  jersey.frontImage = _.chain(jersey.frontImage)
-    .replace(/(TEAM|NUMBER)TEXTCOLOR/g, jersey.textColorCode)
-    .replace(/(TEAM|NUMBER)STROKECOLOR/g, jersey.strokeColorCode)
-    .value()
-  return { jersey, pant }
-}
+//   jersey.frontImage = _.chain(jersey.frontImage)
+//     .replace(/(TEAM|NUMBER)TEXTCOLOR/g, jersey.textColorCode)
+//     .replace(/(TEAM|NUMBER)STROKECOLOR/g, jersey.strokeColorCode)
+//     .value()
+//   return { jersey, pant }
+// }
 
 module.exports = {
   JERSEY_URL,
@@ -219,6 +201,4 @@ module.exports = {
   BASEOPTIONS,
   COLORS,
   colorMap,
-  homeDecorations,
-  awayDecorations,
 }

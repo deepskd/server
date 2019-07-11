@@ -130,126 +130,52 @@ const basketball = team => {
   const reign = require('../uniforms/reign')
   const playerNumber = _.random(0, 99)
   const font = _.sample(Object.keys(reign.FONTS))
-  const mascot = _.replace(team.mascot || team.name, '/', ' ')
+  const mascot = _.toUpper(_.replace(team.mascot || team.name, '/', ' '))
 
-  let home = {},
-    jersey = {},
-    pant = {}
+  let home = {}
 
-  jersey.articleDescription = 'Reign Jersey'
-  jersey.price = '$78'
-  pant.articleDescription = 'Reign Shorts'
-  pant.price = '$77'
+  let props = {
+    description: 'Reign Jersey',
+    price: '$78',
+    baseColor: 'white',
+    logoColor: team.colors ? team.colors[0] : 'black',
+    primaryColor: team.colors ? team.colors[0] : 'black',
+    secondaryColor: team.colors ? team.colors[1] : 'black',
+    frontText: mascot,
+    font,
+    playerNumber,
+  }
 
-  jersey.frontText = _.toUpper(mascot)
-  jersey.baseImageURL = reign.JERSEY_URL
+  props.description = 'Reign Shorts'
+  props.price = '$77'
 
-  jersey.baseColor = 'white'
-  jersey.baseColorCode = reign.colorMap(jersey.baseColor)
-  jersey.baseColorHex = reign.BASEOPTIONS.jersey[jersey.baseColorCode].hex
+  home.jersey = jerseyFactory(reign, props)
 
-  jersey.logoColor = team.colors ? team.colors[0] : 'black'
-  jersey.logoColorCode = reign.colorMap(jersey.logoColor)
+  props.description = 'Reign Shorts'
+  props.price = '$77'
 
-  jersey.teamTextColor = team.colors ? team.colors[0] : 'black'
-  jersey.teamTextColorCode = reign.colorMap(jersey.teamTextColor)
-
-  jersey.teamStrokeColor = team.colors ? team.colors[1] : 'black'
-  jersey.teamStrokeColorCode = reign.colorMap(jersey.teamStrokeColor)
-
-  jersey.font = font
-
-  jersey.frontImage = _.chain(jersey.baseImageURL)
-    .replace(/TEAMNAME/g, jersey.frontText)
-    .replace(/BASECOLOR/, jersey.baseColorCode)
-    .replace(/LOGOCOLOR/, jersey.logoColorCode)
-    .replace(/PLAYERNUMBER/g, playerNumber)
-    .replace(/(TEAM|NUMBER)FONT/g, jersey.font)
-    .replace(/TEAMTEXTCOLOR/g, jersey.teamTextColorCode)
-    .replace(/TEAMSTROKECOLOR/g, jersey.teamStrokeColorCode)
-    .value()
-  pant.baseImageURL = reign.PANTS_URL
-  pant.baseColor = 'white'
-  pant.baseColorCode = reign.colorMap(pant.baseColor)
-  pant.baseColorHex = reign.BASEOPTIONS.pant[pant.baseColorCode].hex
-
-  pant.logoColor = team.colors ? team.colors[0] : 'black'
-  pant.logoColorCode = reign.colorMap(pant.logoColor)
-
-  pant.teamTextColor = team.colors ? team.colors[0] : 'black'
-  pant.teamTextColorCode = reign.colorMap(pant.teamTextColor)
-
-  pant.teamStrokeColor = team.colors ? team.colors[1] : 'black'
-  pant.teamStrokeColorCode = reign.colorMap(pant.teamStrokeColor)
-
-  pant.frontImage = _.chain(pant.baseImageURL)
-    .replace(/BASECOLOR/, pant.baseColorCode)
-    .replace(/LOGOCOLOR/, pant.logoColorCode)
-    .replace(/TEAMTEXTCOLOR/g, pant.teamTextColorCode)
-    .replace(/TEAMSTROKECOLOR/, pant.teamStrokeColorCode)
-    .value()
-
-  home = reign.homeDecorations({ jersey, pant }, team.colors)
+  home.pant = pantFactory(reign, props)
 
   let away = {}
-  jersey = {}
-  pant = {}
 
-  jersey.articleDescription = 'Reign Jersey'
-  jersey.price = '$78'
-  pant.articleDescription = 'Reign Shorts'
-  pant.price = '$77'
+  props = {
+    description: 'Volleyball 17 Jersey',
+    price: '$70',
+    baseColor: team.colors ? team.colors[0] : 'black',
+    logoColor: team.colors ? team.colors[1] : 'white',
+    primaryColor: team.colors ? team.colors[1] : 'white',
+    secondaryColor: team.colors ? team.colors[0] : 'white',
+    frontText: _.toUpper(_.replace(team.name, '/', ' ')),
+    font,
+    playerNumber,
+  }
 
-  jersey.frontText = _.toUpper(_.replace(team.name, '/', ' '))
-  jersey.baseImageURL = reign.JERSEY_URL
+  away.jersey = jerseyFactory(reign, props)
 
-  jersey.baseColor = team.colors ? team.colors[0] : 'black'
-  jersey.baseColorCode = reign.colorMap(jersey.baseColor)
-  jersey.baseColorHex = reign.BASEOPTIONS.jersey[jersey.baseColorCode].hex
+  props.description = 'Reign Shorts'
+  props.price = '$77'
 
-  jersey.logoColor = team.colors ? team.colors[1] : 'white'
-  jersey.logoColorCode = reign.colorMap(jersey.logoColor)
-
-  jersey.teamTextColor = team.colors ? team.colors[1] : 'white'
-  jersey.teamTextColorCode = reign.colorMap(jersey.teamTextColor)
-
-  jersey.teamStrokeColor = team.colors ? team.colors[0] : 'white'
-  jersey.teamStrokeColorCode = reign.colorMap(jersey.teamStrokeColor)
-
-  jersey.font = font
-
-  jersey.frontImage = _.chain(jersey.baseImageURL)
-    .replace(/TEAMNAME/g, jersey.frontText)
-    .replace(/BASECOLOR/, jersey.baseColorCode)
-    .replace(/LOGOCOLOR/, jersey.logoColorCode)
-    .replace(/PLAYERNUMBER/g, playerNumber)
-    .replace(/(TEAM|NUMBER)FONT/g, jersey.font)
-    .replace(/TEAMTEXTCOLOR/g, jersey.teamTextColorCode)
-    .replace(/TEAMSTROKECOLOR/g, jersey.teamStrokeColorCode)
-    .value()
-
-  pant.baseImageURL = reign.PANTS_URL
-
-  pant.baseColor = team.colors ? team.colors[0] : 'black'
-  pant.baseColorCode = reign.colorMap(pant.baseColor)
-  pant.baseColorHex = reign.BASEOPTIONS.pant[pant.baseColorCode].hex
-
-  pant.logoColor = team.colors ? team.colors[1] : 'white'
-  pant.logoColorCode = reign.colorMap(pant.logoColor)
-
-  pant.teamTextColor = team.colors ? team.colors[1] : 'white'
-  pant.teamTextColorCode = reign.colorMap(pant.teamTextColor)
-
-  pant.teamStrokeColor = team.colors ? team.colors[0] : 'white'
-  pant.teamStrokeColorCode = reign.colorMap(pant.teamStrokeColor)
-
-  pant.frontImage = _.chain(pant.baseImageURL)
-    .replace(/BASECOLOR/, pant.baseColorCode)
-    .replace(/LOGOCOLOR/, pant.logoColorCode)
-    .replace(/TEAMTEXTCOLOR/g, pant.teamTextColorCode)
-    .replace(/TEAMSTROKECOLOR/, pant.teamStrokeColorCode)
-    .value()
-  away = reign.awayDecorations({ jersey, pant }, team.colors)
+  away.pant = pantFactory(reign, props)
 
   return {
     home,
