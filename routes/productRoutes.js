@@ -265,128 +265,48 @@ const volleyball = team => {
   const volleyball17 = require('../uniforms/volleyball17')
   const playerNumber = _.random(0, 99)
   const font = _.sample(Object.keys(volleyball17.FONTS))
-  const mascot = _.replace(team.mascot || team.name, '/', ' ')
+  const mascot = _.toUpper(_.replace(team.mascot || team.name, '/', ' '))
 
-  let home = {},
-    jersey = {},
-    pant = {}
+  let home = {}
 
-  jersey.articleDescription = 'Volleyball 17 Jersey'
-  jersey.price = '$70'
-  pant.articleDescription = 'Volleyball 17 Shorts'
-  pant.price = '$40'
+  let props = {
+    articleDescription: 'Volleyball 17 Jersey',
+    price: '$70',
+    baseColor: 'white',
+    logoColor: team.colors ? team.colors[0] : 'black',
+    primaryColor: team.colors ? team.colors[0] : 'black',
+    secondaryColor: team.colors ? team.colors[1] : 'black',
+    frontText: mascot,
+    font,
+    playerNumber,
+  }
 
-  jersey.frontText = _.toUpper(mascot)
-  jersey.baseImageURL = volleyball17.JERSEY_URL
+  home.jersey = jerseyFactory(volleyball17, props)
 
-  jersey.baseColor = 'white'
-  jersey.baseColorCode = volleyball17.colorMap(jersey.baseColor)
-  jersey.baseColorHex =
-    volleyball17.BASEOPTIONS.jersey[jersey.baseColorCode].hex
-
-  jersey.logoColor = team.colors ? team.colors[0] : 'black'
-  jersey.logoColorCode = volleyball17.colorMap(jersey.logoColor)
-
-  jersey.teamTextColor = team.colors ? team.colors[0] : 'black'
-  jersey.teamTextColorCode = volleyball17.colorMap(jersey.teamTextColor)
-
-  jersey.teamStrokeColor = team.colors ? team.colors[1] : 'black'
-  jersey.teamStrokeColorCode = volleyball17.colorMap(jersey.teamStrokeColor)
-
-  jersey.font = font
-
-  jersey.frontImage = _.chain(jersey.baseImageURL)
-    .replace(/TEAMNAME/g, jersey.frontText)
-    .replace(/BASECOLOR/, jersey.baseColorCode)
-    .replace(/LOGOCOLOR/, jersey.logoColorCode)
-    .replace(/PLAYERNUMBER/g, playerNumber)
-    .replace(/(TEAM|NUMBER)FONT/g, jersey.font)
-    .replace(/TEAMTEXTCOLOR/g, jersey.teamTextColorCode)
-    .replace(/TEAMSTROKECOLOR/g, jersey.teamStrokeColorCode)
-    .value()
-  pant.baseImageURL = volleyball17.PANTS_URL
-  pant.baseColor = 'white'
-  pant.baseColorCode = volleyball17.colorMap(pant.baseColor)
-  pant.baseColorHex = volleyball17.BASEOPTIONS.pant[pant.baseColorCode].hex
-
-  pant.logoColor = team.colors ? team.colors[0] : 'black'
-  pant.logoColorCode = volleyball17.colorMap(pant.logoColor)
-
-  pant.teamTextColor = team.colors ? team.colors[0] : 'black'
-  pant.teamTextColorCode = volleyball17.colorMap(pant.teamTextColor)
-
-  pant.teamStrokeColor = team.colors ? team.colors[1] : 'black'
-  pant.teamStrokeColorCode = volleyball17.colorMap(pant.teamStrokeColor)
-
-  pant.frontImage = _.chain(pant.baseImageURL)
-    .replace(/BASECOLOR/, pant.baseColorCode)
-    .replace(/LOGOCOLOR/, pant.logoColorCode)
-    .replace(/TEAMTEXTCOLOR/g, pant.teamTextColorCode)
-    .replace(/TEAMSTROKECOLOR/, pant.teamStrokeColorCode)
-    .value()
-
-  home = volleyball17.homeDecorations({ jersey, pant }, team.colors)
+  props.articleDescription = 'Volleyball 17 Shorts'
+  props.price = '$40'
+  home.pant = pantFactory(volleyball17, props)
 
   let away = {}
-  jersey = {}
-  pant = {}
 
-  jersey.articleDescription = 'Volleyball 17 Jersey'
-  jersey.price = '$70'
-  pant.articleDescription = 'Volleyball 17 Shorts'
-  pant.price = '$40'
+  props = {
+    articleDescription: 'Volleyball 17 Jersey',
+    price: '$70',
+    baseColor: team.colors ? team.colors[0] : 'black',
+    logoColor: team.colors ? team.colors[1] : 'white',
+    primaryColor: team.colors ? team.colors[1] : 'white',
+    secondaryColor: team.colors ? team.colors[0] : 'white',
+    frontText: _.toUpper(_.replace(team.name, '/', ' ')),
+    font,
+    playerNumber,
+  }
 
-  jersey.frontText = _.toUpper(_.replace(team.name, '/', ' '))
-  jersey.baseImageURL = volleyball17.JERSEY_URL
+  away.jersey = jerseyFactory(volleyball17, props)
 
-  jersey.baseColor = team.colors ? team.colors[0] : 'black'
-  jersey.baseColorCode = volleyball17.colorMap(jersey.baseColor)
-  jersey.baseColorHex =
-    volleyball17.BASEOPTIONS.jersey[jersey.baseColorCode].hex
+  props.articleDescription = 'Volleyball 17 Shorts'
+  props.price = '$40'
 
-  jersey.logoColor = team.colors ? team.colors[1] : 'white'
-  jersey.logoColorCode = volleyball17.colorMap(jersey.logoColor)
-
-  jersey.teamTextColor = team.colors ? team.colors[1] : 'white'
-  jersey.teamTextColorCode = volleyball17.colorMap(jersey.teamTextColor)
-
-  jersey.teamStrokeColor = team.colors ? team.colors[0] : 'white'
-  jersey.teamStrokeColorCode = volleyball17.colorMap(jersey.teamStrokeColor)
-
-  jersey.font = font
-
-  jersey.frontImage = _.chain(jersey.baseImageURL)
-    .replace(/TEAMNAME/g, jersey.frontText)
-    .replace(/BASECOLOR/, jersey.baseColorCode)
-    .replace(/LOGOCOLOR/, jersey.logoColorCode)
-    .replace(/PLAYERNUMBER/g, playerNumber)
-    .replace(/(TEAM|NUMBER)FONT/g, jersey.font)
-    .replace(/TEAMTEXTCOLOR/g, jersey.teamTextColorCode)
-    .replace(/TEAMSTROKECOLOR/g, jersey.teamStrokeColorCode)
-    .value()
-
-  pant.baseImageURL = volleyball17.PANTS_URL
-
-  pant.baseColor = team.colors ? team.colors[0] : 'black'
-  pant.baseColorCode = volleyball17.colorMap(pant.baseColor)
-  pant.baseColorHex = volleyball17.BASEOPTIONS.pant[pant.baseColorCode].hex
-
-  pant.logoColor = team.colors ? team.colors[1] : 'white'
-  pant.logoColorCode = volleyball17.colorMap(pant.logoColor)
-
-  pant.teamTextColor = team.colors ? team.colors[1] : 'white'
-  pant.teamTextColorCode = volleyball17.colorMap(pant.teamTextColor)
-
-  pant.teamStrokeColor = team.colors ? team.colors[0] : 'white'
-  pant.teamStrokeColorCode = volleyball17.colorMap(pant.teamStrokeColor)
-
-  pant.frontImage = _.chain(pant.baseImageURL)
-    .replace(/BASECOLOR/, pant.baseColorCode)
-    .replace(/LOGOCOLOR/, pant.logoColorCode)
-    .replace(/TEAMTEXTCOLOR/g, pant.teamTextColorCode)
-    .replace(/TEAMSTROKECOLOR/, pant.teamStrokeColorCode)
-    .value()
-  away = volleyball17.awayDecorations({ jersey, pant }, team.colors)
+  away.pant = pantFactory(volleyball17, props)
 
   return {
     home,
@@ -402,11 +322,9 @@ const baseball = team => {
   const streakBaseBall = require('../uniforms/streak-baseball')
   const playerNumber = _.random(0, 99)
   const font = _.sample(Object.keys(streakBaseBall.FONTS))
-  const mascot = _.replace(team.mascot || team.name, '/', ' ')
+  const mascot = _.toUpper(_.replace(team.mascot || team.name, '/', ' '))
 
-  let home = {},
-    jersey = {},
-    pant = {}
+  let home = {}
 
   let props = {
     articleDescription: 'Streak Full Button Jersey',
@@ -420,18 +338,13 @@ const baseball = team => {
     playerNumber,
   }
 
-  jersey = jerseyFactory(streakBaseBall, props)
+  home.jersey = jerseyFactory(streakBaseBall, props)
 
   props.articleDescription = 'Streak Pant'
   props.price = '$40'
-  pant = pantFactory(streakBaseBall, props)
-
-  home.jersey = jersey
-  home.pant = pant
+  home.pant = pantFactory(streakBaseBall, props)
 
   let away = {}
-  jersey = {}
-  pant = {}
 
   props = {
     articleDescription: 'Streak Full Button Jersey',
@@ -445,14 +358,11 @@ const baseball = team => {
     playerNumber,
   }
 
-  jersey = jerseyFactory(streakBaseBall, props)
+  away.jersey = jerseyFactory(streakBaseBall, props)
 
   props.articleDescription = 'Streak Pant'
   props.price = '$40'
-  pant = pantFactory(streakBaseBall, props)
-
-  away.jersey = jersey
-  away.pant = pant
+  away.pant = pantFactory(streakBaseBall, props)
 
   return {
     home,
