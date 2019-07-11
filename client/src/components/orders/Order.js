@@ -12,8 +12,10 @@ const options = [
   { key: 100132, text: 'Bumblebee', value: 100132 },
   { key: 100142, text: 'Cardinal Sports', value: 100142 },
   { key: 100535, text: 'MB2', value: 100535 },
-  { key: 100476, text: 'Universal 1', value: 100476},
-  { key: 100477, text: 'Universal 2', value: 100477 }
+  { key: 100476, text: 'Universal 1', value: 100476 },
+  { key: 100477, text: 'Universal 2', value: 100477 },
+  { key: 205820, text: 'Third Generation Sports', value: 205820 },
+  { key: 101105, text: 'Brennan-Eberly ', value: 101105 },
 ]
 
 class Order extends Component {
@@ -25,11 +27,10 @@ class Order extends Component {
     this.props.findOrder({ orderName, retailerId, article })
   }
 
-  onInputChange = (event, {name, value}) => {
+  onInputChange = (event, { name, value }) => {
     this.setState({ [name]: value })
   }
 
- 
   render() {
     return (
       <React.Fragment>
@@ -60,10 +61,12 @@ class Order extends Component {
               onChange={this.onInputChange}
             />
           </Form.Group>
-          <Button primary type="submit">Find Orders</Button>
+          <Button primary type="submit">
+            Find Orders
+          </Button>
         </Form>
         <Divider />
-        <OrderList formData={this.state}/>
+        <OrderList formData={this.state} />
       </React.Fragment>
     )
   }
