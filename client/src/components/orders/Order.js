@@ -15,7 +15,7 @@ const options = [
   { key: 100476, text: 'Universal 1', value: 100476 },
   { key: 100477, text: 'Universal 2', value: 100477 },
   { key: 205820, text: 'Third Generation Sports', value: 205820 },
-  { key: 101105, text: 'Brennan-Eberly ', value: 101105 },
+  { key: 101105, text: 'Brennan-Eberly', value: 101105 },
 ]
 
 class Order extends Component {
