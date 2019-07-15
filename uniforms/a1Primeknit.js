@@ -373,13 +373,12 @@ const COLORMAP_BASE = {
   sld_pn_green: ['green', 'kelly green'],
   sld_pn_collegiate_burgundy: ['burgandy'],
   sld_pn_power_red: ['power red', 'red', 'cardinal', 'scarlet', 'cherry'],
-  sld_pn_light_blue: ['carolina blue'],
+  sld_pn_light_blue: ['carolina blue', 'aqua'],
   sld_pn_grey: ['grey', 'gray'],
   sld_pn_sand: ['vegas gold', 'old gold'],
   sld_pn_white: ['white'],
   sld_pn_collegiate_gold: ['gold', 'yellow'],
-  sld_pn_collegiate_royal: ['royal blue', 'royal'],
-  sld_pn_light_blue: ['blue', 'aqua', 'carolina blue'],
+  sld_pn_collegiate_royal: ['royal blue', 'royal', 'blue'],
   sld_pn_onix: ['silver'],
 }
 
