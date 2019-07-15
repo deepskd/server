@@ -74,19 +74,19 @@ const updateJerseyTextColors = (state, typeAndColors) => {
   switch (jerseyType) {
     case 'home':
       jersey = _.clone(state.products.home.jersey)
-      jersey.textColor = typeAndColors.home.text[1]
-      jersey.textColorCode = typeAndColors.home.text[0]
-      jersey.strokeColor = typeAndColors.home.stroke[1]
-      jersey.strokeColorCode = typeAndColors.home.stroke[0]
+      jersey.textColor = ''
+      jersey.textColorCode = typeAndColors.home.text
+      jersey.strokeColor = ''
+      jersey.strokeColorCode = typeAndColors.home.stroke
       jersey.frontImage = updateJersey(jersey, state.products.selectedFont)
       newState.products.home.jersey = jersey
       break
     case 'away':
       jersey = _.clone(state.products.away.jersey)
-      jersey.textColor = typeAndColors.away.text[1]
-      jersey.textColorCode = typeAndColors.away.text[0]
-      jersey.strokeColor = typeAndColors.away.stroke[1]
-      jersey.strokeColorCode = typeAndColors.away.stroke[0]
+      jersey.textColor = ''
+      jersey.textColorCode = typeAndColors.away.text
+      jersey.strokeColor = ''
+      jersey.strokeColorCode = typeAndColors.away.stroke
       jersey.frontImage = updateJersey(jersey, state.products.selectedFont)
       newState.products.away.jersey = jersey
       break

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import _ from 'lodash'
 import { Menu, Segment, Dropdown, Grid, Button, Label } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import { jerseyTextColorChnaged } from '../../actions'
@@ -9,10 +10,10 @@ class ColorOptions extends Component {
     const { home, away, colors } = this.props.products
     this.state = {
       activeTab: 'home',
-      hometextColor: colors[home.jersey.textColorCode],
-      homestrokeColor: colors[home.jersey.strokeColorCode],
-      awaytextColor: colors[away.jersey.textColorCode],
-      awaystrokeColor: colors[away.jersey.strokeColorCode],
+      hometextColor: colors[home.jersey.textColorCode].hex,
+      homestrokeColor: colors[home.jersey.strokeColorCode].hex,
+      awaytextColor: colors[away.jersey.textColorCode].hex,
+      awaystrokeColor: colors[away.jersey.strokeColorCode].hex,
     }
   }
 
@@ -22,12 +23,11 @@ class ColorOptions extends Component {
       home.jersey.frontImage !== this.props.products.home.jersey.frontImage ||
       away.jersey.frontImage !== this.props.products.away.jersey.frontImage
     ) {
-      console.log(colors, home, away)
       this.setState({
-        hometextColor: colors[home.jersey.textColorCode],
-        homestrokeColor: colors[home.jersey.strokeColorCode],
-        awaytextColor: colors[away.jersey.textColorCode],
-        awaystrokeColor: colors[away.jersey.strokeColorCode],
+        hometextColor: colors[home.jersey.textColorCode].hex,
+        homestrokeColor: colors[home.jersey.strokeColorCode].hex,
+        awaytextColor: colors[away.jersey.textColorCode].hex,
+        awaystrokeColor: colors[away.jersey.strokeColorCode].hex,
       })
     }
   }
@@ -58,16 +58,17 @@ class ColorOptions extends Component {
   renderColors(obj, colors) {
     return Object.values(colors).map(c => {
       const style = {
-        backgroundColor: c,
+        backgroundColor: c.hex,
         borderColor: 'black',
         borderWidth: 'thin',
       }
       return (
         <Dropdown.Item
-          key={`${obj}${c}`}
-          onClick={e => this.handleColorChange(obj, c)}
+          key={`${obj}${c.hex}`}
+          onClick={e => this.handleColorChange(obj, c.hex)}
         >
           <Label style={style} />
+          {c.label}
         </Dropdown.Item>
       )
     })
@@ -87,10 +88,8 @@ class ColorOptions extends Component {
 
   getColorCode = color => {
     const { colors } = this.props.products
-
-    return Object.entries(colors).filter(colorMap => {
-      return colorMap[1].includes(color)
-    })[0]
+    console.log(color)
+    return _.findKey(colors, { hex: color })
   }
 
   handleColorUpdate = () => {
