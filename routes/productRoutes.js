@@ -327,16 +327,11 @@ const jerseyFactory = (
   jersey.logoColor = logoColor
   jersey.logoColorCode = uniform.colorMap(jersey.logoColor)
 
-  jersey.teamTextColor = primaryColor
-  jersey.teamTextColorCode = uniform.colorMap(jersey.teamTextColor)
-
-  jersey.teamStrokeColor = secondaryColor
-  jersey.teamStrokeColorCode = uniform.colorMap(jersey.teamStrokeColor)
-  //TODO - fields need to be fixed
   jersey.textColor = primaryColor
+  jersey.textColorCode = uniform.colorMap(jersey.teamTextColor)
+
   jersey.strokeColor = secondaryColor
-  jersey.textColorCode = uniform.colorMap(jersey.textColor)
-  jersey.strokeColorCode = uniform.colorMap(jersey.strokeColor)
+  jersey.strokeColorCode = uniform.colorMap(jersey.teamStrokeColor)
 
   jersey.font = font
 
@@ -346,8 +341,8 @@ const jerseyFactory = (
     .replace(/LOGOCOLOR/, jersey.logoColorCode)
     .replace(/PLAYERNUMBER/g, playerNumber)
     .replace(/(TEAM|NUMBER)FONT/g, jersey.font)
-    .replace(/(TEAM|NUMBER)TEXTCOLOR/g, jersey.teamTextColorCode)
-    .replace(/(TEAM|NUMBER)STROKECOLOR/g, jersey.teamStrokeColorCode)
+    .replace(/(TEAM|NUMBER)TEXTCOLOR/g, jersey.textColorCode)
+    .replace(/(TEAM|NUMBER)STROKECOLOR/g, jersey.strokeColorCode)
     .value()
 
   return jersey
@@ -368,17 +363,17 @@ const pantFactory = (
   pant.logoColor = logoColor
   pant.logoColorCode = uniform.colorMap(pant.logoColor)
 
-  pant.teamTextColor = primaryColor
-  pant.teamTextColorCode = uniform.colorMap(pant.teamTextColor)
+  pant.textColor = primaryColor
+  pant.textColorCode = uniform.colorMap(pant.teamTextColor)
 
-  pant.teamStrokeColor = secondaryColor
-  pant.teamStrokeColorCode = uniform.colorMap(pant.teamStrokeColor)
+  pant.strokeColor = secondaryColor
+  pant.strokeColorCode = uniform.colorMap(pant.teamStrokeColor)
 
   pant.frontImage = _.chain(pant.baseImageURL)
     .replace(/BASECOLOR/, pant.baseColorCode)
     .replace(/LOGOCOLOR/, pant.logoColorCode)
-    .replace(/TEAMTEXTCOLOR/g, pant.teamTextColorCode)
-    .replace(/TEAMSTROKECOLOR/, pant.teamStrokeColorCode)
+    .replace(/TEAMTEXTCOLOR/g, pant.textColorCode)
+    .replace(/TEAMSTROKECOLOR/, pant.strokeColorCode)
     .value()
 
   return pant

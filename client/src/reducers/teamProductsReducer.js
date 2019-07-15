@@ -180,12 +180,12 @@ const updatePant = ({
   baseImageURL,
   baseColorCode,
   logoColorCode,
-  teamTextColorCode,
-  teamStrokeColorCode,
+  textColorCode,
+  strokeColorCode,
 }) =>
   _.chain(baseImageURL)
     .replace(/BASECOLOR/, baseColorCode)
     .replace(/LOGOCOLOR/, logoColorCode)
-    .replace(/TEAMTEXTCOLOR/g, teamTextColorCode)
-    .replace(/TEAMSTROKECOLOR/, teamStrokeColorCode)
+    .replace(/TEAMTEXTCOLOR/g, textColorCode)
+    .replace(/TEAMSTROKECOLOR/, strokeColorCode)
     .value()

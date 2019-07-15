@@ -321,7 +321,7 @@ const COLORMAP_SP = {
   sld_pn_black_sp: ['black'],
   sld_pn_onix_sp: ['onix'],
   sld_pn_collegiate_navy_sp: ['navy', 'navy blue'],
-  sld_pn_collegiate_royal_sp: ['royal'],
+  sld_pn_collegiate_royal_sp: ['royal', 'royal blue', 'blue'],
   sld_pn_light_blue_sp: ['light blue', 'columbia blue'],
   sld_pn_collegiate_purple_sp: ['purple'],
   sld_pn_coffee_sp: ['coffee'],
