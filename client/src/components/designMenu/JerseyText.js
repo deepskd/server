@@ -3,25 +3,32 @@ import { connect } from 'react-redux'
 import { Menu, Segment, Form } from 'semantic-ui-react'
 import { jerseyTextChanged } from '../../actions'
 
+import JerseyTextColors from './JerseyTextColors'
+
 class JerseyText extends React.Component {
   constructor(props) {
     super(props)
+    const { home, away } = this.props.products
     this.state = {
       activeTab: 'home',
       jerseyText: {
-        home: this.props.mascot,
-        away: this.props.teamName,
+        home: home.jersey.frontText,
+        away: away.jersey.frontText,
       },
     }
   }
 
   componentWillReceiveProps(nextProps) {
+    const { home, away } = nextProps.products
     if (
-      nextProps.mascot !== this.props.mascot ||
-      nextProps.teamName !== this.props.teamName
+      home.jersey.frontImage !== this.props.products.home.jersey.frontImage ||
+      away.jersey.frontImage !== this.props.products.away.jersey.frontImage
     ) {
       this.setState({
-        jerseyText: { home: nextProps.mascot, away: nextProps.teamName },
+        jerseyText: {
+          home: home.jersey.frontText,
+          away: away.jersey.frontText,
+        },
       })
     }
   }
@@ -71,6 +78,10 @@ class JerseyText extends React.Component {
               }
             }}
             onChange={e => this.handleInputChange(e)}
+          />
+          <JerseyTextColors
+            products={this.props.products}
+            activeTab={activeTab}
           />
         </Segment>
       </div>

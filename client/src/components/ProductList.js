@@ -5,7 +5,6 @@ import ImageCard from './ImageCard'
 import SchoolCard from './SchoolCard'
 import EmbellishmentSwitch from './designMenu/EmbellishmentSwitch'
 import JerseyText from './designMenu/JerseyText'
-import ColorOptions from './designMenu/ColorOptions'
 import { selectTeam, fontChanged } from '../actions'
 
 import { Grid, Button, Form } from 'semantic-ui-react'
@@ -105,14 +104,7 @@ class ProductList extends React.Component {
                 </select>
               </Form.Field>
               <Form.Field>
-                <JerseyText
-                  mascot={team.mascot.toUpperCase()}
-                  teamName={team.name.toUpperCase()}
-                />
-              </Form.Field>
-              <Form.Field>
-                <label>Colors</label>
-                <ColorOptions products={products} />
+                <JerseyText products={products} />
               </Form.Field>
             </Form>
           </Grid.Column>

@@ -1,15 +1,14 @@
 import React, { Component } from 'react'
 import _ from 'lodash'
-import { Menu, Segment, Dropdown, Grid, Button, Label } from 'semantic-ui-react'
+import { Dropdown, Grid, Button, Label } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import { jerseyTextColorChnaged } from '../../actions'
 
-class ColorOptions extends Component {
+class JerseyTextColors extends Component {
   constructor(props) {
     super(props)
     const { home, away, colors } = this.props.products
     this.state = {
-      activeTab: 'home',
       textColor: {
         home: colors[home.jersey.textColorCode].hex,
         away: colors[away.jersey.textColorCode].hex,
@@ -41,7 +40,7 @@ class ColorOptions extends Component {
   }
 
   handleColorChange(obj, c) {
-    const { activeTab } = this.state
+    const { activeTab } = this.props
 
     const update = _.cloneDeep(this.state)
     update.textColor[activeTab] =
@@ -50,8 +49,6 @@ class ColorOptions extends Component {
       obj === 'stroke' ? c : this.state.strokeColor[activeTab]
     this.setState(update)
   }
-
-  handleTabChange = (e, { name }) => this.setState({ activeTab: name })
 
   renderColors(obj, colors) {
     return Object.values(colors).map(c => {
@@ -73,7 +70,7 @@ class ColorOptions extends Component {
   }
 
   getColor(option) {
-    const { activeTab } = this.state
+    const { activeTab } = this.props
     if (option === 'text') {
       return this.state.textColor[activeTab]
     } else if (option === 'stroke') {
@@ -87,7 +84,8 @@ class ColorOptions extends Component {
   }
 
   handleColorUpdate = () => {
-    const { activeTab, textColor, strokeColor } = this.state
+    const { textColor, strokeColor } = this.state
+    const { activeTab } = this.props
 
     const color = {}
     color['text'] = this.getColorCode(textColor[activeTab])
@@ -98,7 +96,7 @@ class ColorOptions extends Component {
     this.props.jerseyTextColorChnaged(result)
   }
 
-  renderColorOptions() {
+  render() {
     const { colors } = this.props.products
 
     const textColorStyle = {
@@ -149,31 +147,9 @@ class ColorOptions extends Component {
       </React.Fragment>
     )
   }
-
-  render() {
-    const { activeTab } = this.state
-
-    return (
-      <div>
-        <Menu attached="top" tabular size="mini">
-          <Menu.Item
-            name="home"
-            active={activeTab === 'home'}
-            onClick={this.handleTabChange}
-          />
-          <Menu.Item
-            name="away"
-            active={activeTab === 'away'}
-            onClick={this.handleTabChange}
-          />
-        </Menu>
-        <Segment attached="bottom">{this.renderColorOptions()}</Segment>
-      </div>
-    )
-  }
 }
 
 export default connect(
   null,
   { jerseyTextColorChnaged }
-)(ColorOptions)
+)(JerseyTextColors)
