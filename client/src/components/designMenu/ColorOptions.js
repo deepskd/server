@@ -10,10 +10,14 @@ class ColorOptions extends Component {
     const { home, away, colors } = this.props.products
     this.state = {
       activeTab: 'home',
-      hometextColor: colors[home.jersey.textColorCode].hex,
-      homestrokeColor: colors[home.jersey.strokeColorCode].hex,
-      awaytextColor: colors[away.jersey.textColorCode].hex,
-      awaystrokeColor: colors[away.jersey.strokeColorCode].hex,
+      textColor: {
+        home: colors[home.jersey.textColorCode].hex,
+        away: colors[away.jersey.textColorCode].hex,
+      },
+      strokeColor: {
+        home: colors[home.jersey.strokeColorCode].hex,
+        away: colors[away.jersey.strokeColorCode].hex,
+      },
     }
   }
 
@@ -24,33 +28,27 @@ class ColorOptions extends Component {
       away.jersey.frontImage !== this.props.products.away.jersey.frontImage
     ) {
       this.setState({
-        hometextColor: colors[home.jersey.textColorCode].hex,
-        homestrokeColor: colors[home.jersey.strokeColorCode].hex,
-        awaytextColor: colors[away.jersey.textColorCode].hex,
-        awaystrokeColor: colors[away.jersey.strokeColorCode].hex,
+        textColor: {
+          home: colors[home.jersey.textColorCode].hex,
+          away: colors[away.jersey.textColorCode].hex,
+        },
+        strokeColor: {
+          home: colors[home.jersey.strokeColorCode].hex,
+          away: colors[away.jersey.strokeColorCode].hex,
+        },
       })
     }
   }
 
   handleColorChange(obj, c) {
     const { activeTab } = this.state
-    if (activeTab === 'home') {
-      const textColor = obj === 'text' ? c : this.state.hometextColor
-      const strokeColor = obj === 'stroke' ? c : this.state.homestrokeColor
-      this.setState({
-        activeTab: 'home',
-        hometextColor: textColor,
-        homestrokeColor: strokeColor,
-      })
-    } else if (activeTab === 'away') {
-      const textColor = obj === 'text' ? c : this.state.awaytextColor
-      const strokeColor = obj === 'stroke' ? c : this.state.awaystrokeColor
-      this.setState({
-        activeTab: 'away',
-        awaytextColor: textColor,
-        awaystrokeColor: strokeColor,
-      })
-    }
+
+    const update = _.cloneDeep(this.state)
+    update.textColor[activeTab] =
+      obj === 'text' ? c : this.state.textColor[activeTab]
+    update.strokeColor[activeTab] =
+      obj === 'stroke' ? c : this.state.strokeColor[activeTab]
+    this.setState(update)
   }
 
   handleTabChange = (e, { name }) => this.setState({ activeTab: name })
@@ -75,42 +73,28 @@ class ColorOptions extends Component {
   }
 
   getColor(option) {
+    const { activeTab } = this.state
     if (option === 'text') {
-      return this.state.activeTab === 'home'
-        ? this.state.hometextColor
-        : this.state.awaytextColor
+      return this.state.textColor[activeTab]
     } else if (option === 'stroke') {
-      return this.state.activeTab === 'home'
-        ? this.state.homestrokeColor
-        : this.state.awaystrokeColor
+      return this.state.strokeColor[activeTab]
     }
   }
 
   getColorCode = color => {
     const { colors } = this.props.products
-    console.log(color)
     return _.findKey(colors, { hex: color })
   }
 
   handleColorUpdate = () => {
-    const {
-      activeTab,
-      hometextColor,
-      awaytextColor,
-      homestrokeColor,
-      awaystrokeColor,
-    } = this.state
+    const { activeTab, textColor, strokeColor } = this.state
 
     const color = {}
-    if (activeTab === 'home') {
-      color['text'] = this.getColorCode(hometextColor)
-      color['stroke'] = this.getColorCode(homestrokeColor)
-    } else {
-      color['text'] = this.getColorCode(awaytextColor)
-      color['stroke'] = this.getColorCode(awaystrokeColor)
-    }
+    color['text'] = this.getColorCode(textColor[activeTab])
+    color['stroke'] = this.getColorCode(strokeColor[activeTab])
     const result = {}
     result[activeTab] = color
+    console.log(result)
     this.props.jerseyTextColorChnaged(result)
   }
 
