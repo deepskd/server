@@ -57,22 +57,22 @@ const COLORMAP = {
 }
 
 const COLORS = {
-  str_white: '#ffffff',
-  str_black: '#000000',
-  str_collegiate_navy: '#000F44',
-  str_collegiate_royal: '#2b3c74',
-  str_light_blue: '#7092bc',
-  str_maroon: '#4a2d35',
-  str_collegiate_burgundy: '#602732',
-  str_power_red: '#891e2e',
-  str_collegiate_orange: '#b74024',
-  str_collegiate_gold: '#eca800',
-  str_sand: '#baab81',
-  str_dark_green: '#324c44',
-  str_collegiate_purple: '#38305a',
-  str_intense_pink: '#cf388b',
-  str_onix: '#555f66',
-  str_light_onix: '#a9abb0',
+  str_white: { hex: '#ffffff', label: 'White' },
+  str_black: { hex: '#000000', label: 'Black' },
+  str_collegiate_navy: { hex: '#000F44', label: 'Navy' },
+  str_collegiate_royal: { hex: '#2b3c74', label: 'Royal Blue' },
+  str_light_blue: { hex: '#7092bc', label: 'Light Blue' },
+  str_maroon: { hex: '#4a2d35', label: 'Maroon' },
+  str_collegiate_burgundy: { hex: '#602732', label: 'Burgundy' },
+  str_power_red: { hex: '#891e2e', label: 'Power Red' },
+  str_collegiate_orange: { hex: '#b74024', label: 'Orange' },
+  str_collegiate_gold: { hex: '#eca800', label: 'Gold' },
+  str_sand: { hex: '#baab81', label: 'Sand' },
+  str_dark_green: { hex: '#324c44', label: 'Dark Green' },
+  str_collegiate_purple: { hex: '#38305a', label: 'Purple' },
+  str_intense_pink: { hex: '#cf388b', label: 'Pink' },
+  str_onix: { hex: '#555f66', label: 'Onix' },
+  str_light_onix: { hex: '#a9abb0', label: 'Light Onix' },
 }
 
 const BASEOPTIONS = {
