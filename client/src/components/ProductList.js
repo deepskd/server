@@ -112,11 +112,7 @@ class ProductList extends React.Component {
               </Form.Field>
               <Form.Field>
                 <label>Colors</label>
-                <ColorOptions
-                  mascot={team.mascot.toUpperCase()}
-                  teamName={team.name.toUpperCase()}
-                  products={products}
-                />
+                <ColorOptions products={products} />
               </Form.Field>
             </Form>
           </Grid.Column>

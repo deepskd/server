@@ -17,11 +17,12 @@ class ColorOptions extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    const { home, away, colors } = nextProps.products
     if (
-      nextProps.mascot !== this.props.mascot ||
-      nextProps.teamName !== this.props.teamName
+      home.jersey.frontImage !== this.props.products.home.jersey.frontImage ||
+      away.jersey.frontImage !== this.props.products.away.jersey.frontImage
     ) {
-      const { home, away, colors } = nextProps.products
+      console.log(colors, home, away)
       this.setState({
         hometextColor: colors[home.jersey.textColorCode],
         homestrokeColor: colors[home.jersey.strokeColorCode],

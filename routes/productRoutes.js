@@ -328,14 +328,14 @@ const jerseyFactory = (
   jersey.logoColorCode = uniform.colorMap(jersey.logoColor)
 
   jersey.textColor = primaryColor
-  jersey.textColorCode = uniform.colorMap(jersey.teamTextColor)
+  jersey.textColorCode = uniform.colorMap(jersey.textColor)
 
   jersey.strokeColor = secondaryColor
-  jersey.strokeColorCode = uniform.colorMap(jersey.teamStrokeColor)
+  jersey.strokeColorCode = uniform.colorMap(jersey.strokeColor)
 
   jersey.font = font
 
-  jersey.teamTextColor = jersey.frontImage = _.chain(jersey.baseImageURL)
+  jersey.frontImage = _.chain(jersey.baseImageURL)
     .replace(/TEAMNAME/g, jersey.frontText)
     .replace(/BASECOLOR/, jersey.baseColorCode)
     .replace(/LOGOCOLOR/, jersey.logoColorCode)
@@ -364,10 +364,10 @@ const pantFactory = (
   pant.logoColorCode = uniform.colorMap(pant.logoColor)
 
   pant.textColor = primaryColor
-  pant.textColorCode = uniform.colorMap(pant.teamTextColor)
+  pant.textColorCode = uniform.colorMap(pant.textColor)
 
   pant.strokeColor = secondaryColor
-  pant.strokeColorCode = uniform.colorMap(pant.teamStrokeColor)
+  pant.strokeColorCode = uniform.colorMap(pant.strokeColor)
 
   pant.frontImage = _.chain(pant.baseImageURL)
     .replace(/BASECOLOR/, pant.baseColorCode)
