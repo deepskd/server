@@ -55,7 +55,6 @@ class JerseyText extends React.Component {
         <Form.Input
           action={{ icon: 'edit', onClick: this.handleTextUpdate }}
           fluid
-          label="Team Name"
           value={jerseyText[activeTab]}
           onKeyPress={e => {
             if (e.key === 'Enter') {
