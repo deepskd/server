@@ -154,9 +154,8 @@ const updateBaseColor = (state, props) => {
 }
 
 const updateJerseyTeamCrest = (state, props) => {
-  console.log(state, props)
   const { team_crest } = state.products.decorations.jersey
-  console.log(state, props, team_crest)
+
   if (!team_crest) {
     return state
   }
@@ -228,7 +227,7 @@ const updateJersey = (
     .replace(/CUFFCOLOR/, cuffColorCode)
     .replace(/PIPECOLOR/, pipeColorCode)
     .replace(/TEAMCREST_LEFTSLEEVE/, crestLeftSleeve)
-    .replace(/TEAMCREST_RIGHTSLEVE/, crestRightSleeve)
+    .replace(/TEAMCREST_RIGHTSLEEVE/, crestRightSleeve)
     .value()
 
 const updatePant = ({
