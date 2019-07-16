@@ -5,6 +5,7 @@ import {
   JERSEY_TEXT_CHANGED,
   JERSEY_TEXTCOLOR_CHANGED,
   BASE_COLOR_CHANGED,
+  JERSEY_TEAMCREST_CHANGED,
 } from '../actions/types'
 
 export default (state = [], action) => {
@@ -19,6 +20,8 @@ export default (state = [], action) => {
       return updateJerseyTextColors(state, action.payload)
     case BASE_COLOR_CHANGED:
       return updateBaseColor(state, action.payload)
+    case JERSEY_TEAMCREST_CHANGED:
+      return updateJerseyTeamCrest(state, action.payload)
     default:
       return state
   }
@@ -147,6 +150,19 @@ const updateBaseColor = (state, props) => {
       return newState
   }
 
+  return newState
+}
+
+const updateJerseyTeamCrest = (state, props) => {
+  let newState = { ...state }
+  const { decorations } = state.products
+  console.log(decorations, props)
+  switch (props.item) {
+    case 'home':
+      break
+    case 'away':
+      break
+  }
   return newState
 }
 
