@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
-
+import { connect } from 'react-redux'
 import { Button, Modal, Image } from 'semantic-ui-react'
+
+import { jerseyTeamCrestChanged } from '../../actions'
 
 const images = [
   'https://gtsprod-res.cloudinary.com/image/upload/v1/miteam/imagelib/1095641786.png',
@@ -34,6 +36,11 @@ class TeamCrest extends Component {
 
     crest[activeTab] = image
     this.setState({ crest })
+
+    const props = {}
+    props.item = activeTab
+    props.imageUrl = image
+    this.props.jerseyTeamCrestChanged(props)
     this.handleClose()
   }
   render() {
@@ -59,4 +66,7 @@ class TeamCrest extends Component {
   }
 }
 
-export default TeamCrest
+export default connect(
+  null,
+  { jerseyTeamCrestChanged }
+)(TeamCrest)

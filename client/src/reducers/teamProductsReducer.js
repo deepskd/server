@@ -154,14 +154,49 @@ const updateBaseColor = (state, props) => {
 }
 
 const updateJerseyTeamCrest = (state, props) => {
-  let newState = { ...state }
-  const { decorations } = state.products
-  console.log(decorations, props)
+  console.log(state, props)
+  const { team_crest } = state.products.decorations.jersey
+  console.log(state, props, team_crest)
+  if (!team_crest) {
+    return state
+  }
+
+  let newState = { ...state },
+    jersey = {}
+
   switch (props.item) {
     case 'home':
+      jersey = _.clone(state.products.home.jersey)
+      jersey.crestLeftSleeve = _.replace(
+        team_crest.options.left_sleeve.url,
+        /TEAMCREST_IMAGEURL/,
+        props.imageUrl
+      )
+      jersey.crestRightSleeve = _.replace(
+        team_crest.options.right_sleeve.url,
+        /TEAMCREST_IMAGEURL/,
+        props.imageUrl
+      )
+      jersey.frontImage = updateJersey(jersey, state.products.selectedFont)
+      newState.products.home.jersey = jersey
       break
     case 'away':
+      jersey = _.clone(state.products.away.jersey)
+      jersey.crestLeftSleeve = _.replace(
+        team_crest.options.left_sleeve.url,
+        /TEAMCREST_IMAGEURL/,
+        props.imageUrl
+      )
+      jersey.crestRightSleeve = _.replace(
+        team_crest.options.right_sleeve.url,
+        /TEAMCREST_IMAGEURL/,
+        props.imageUrl
+      )
+      jersey.frontImage = updateJersey(jersey, state.products.selectedFont)
+      newState.products.away.jersey = jersey
       break
+    default:
+      return newState
   }
   return newState
 }
@@ -173,9 +208,11 @@ const updateJersey = (
     logoColorCode,
     textColorCode,
     strokeColorCode,
-    frontText,
-    cuffColorCode,
-    pipeColorCode,
+    frontText = '',
+    cuffColorCode = '',
+    pipeColorCode = '',
+    crestLeftSleeve = '',
+    crestRightSleeve = '',
   },
   font
 ) =>
@@ -190,6 +227,8 @@ const updateJersey = (
     .replace(/PLAYERNUMBER/g, _.random(0, 99))
     .replace(/CUFFCOLOR/, cuffColorCode)
     .replace(/PIPECOLOR/, pipeColorCode)
+    .replace(/TEAMCREST_LEFTSLEEVE/, crestLeftSleeve)
+    .replace(/TEAMCREST_RIGHTSLEVE/, crestRightSleeve)
     .value()
 
 const updatePant = ({
