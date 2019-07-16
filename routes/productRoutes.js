@@ -44,6 +44,7 @@ const football = (team, applicationType = 'heat_transfer') => {
     .replace(/PIPECOLOR/, jersey.pipeColorCode)
     .replace(/PLAYERNUMBER/g, playerNumber)
     .replace(/(TEAM|NUMBER)FONT/g, font)
+    .replace(/TEAMCREST_(LEFT|RIGHT)SLEEVE/g, '')
     .value()
 
   pant.baseColor = team.colors ? team.colors[1] : 'black'
@@ -98,6 +99,7 @@ const football = (team, applicationType = 'heat_transfer') => {
     .replace(/PIPECOLOR/, jersey.pipeColorCode)
     .replace(/PLAYERNUMBER/g, playerNumber)
     .replace(/(TEAM|NUMBER)FONT/g, font)
+    .replace(/TEAMCREST_(LEFT|RIGHT)SLEEVE/g, '')
     .value()
 
   pant.baseColor = team.colors ? team.colors[0] : 'black'
@@ -343,6 +345,7 @@ const jerseyFactory = (
     .replace(/(TEAM|NUMBER)FONT/g, jersey.font)
     .replace(/(TEAM|NUMBER)TEXTCOLOR/g, jersey.textColorCode)
     .replace(/(TEAM|NUMBER)STROKECOLOR/g, jersey.strokeColorCode)
+    .replace(/TEAMCREST_(LEFT|RIGHT)SLEEVE/g, '')
     .value()
 
   return jersey
