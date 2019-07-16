@@ -41,7 +41,7 @@ class DesignMenu extends React.Component {
         </Menu>
 
         <Segment basic attached="bottom">
-          <Accordion styled>
+          <Accordion>
             <Accordion.Title
               active={activeIndex === 0}
               index={0}
