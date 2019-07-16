@@ -3,6 +3,7 @@ import { Menu, Segment, Accordion, Icon } from 'semantic-ui-react'
 
 import JerseyTextColors from './JerseyTextColors'
 import JerseyText from './JerseyText'
+import TeamCrest from './TeamCrest'
 
 class DesignMenu extends React.Component {
   constructor(props) {
@@ -48,11 +49,22 @@ class DesignMenu extends React.Component {
               onClick={this.handleClick}
             >
               <Icon name="dropdown" />
-              Jersey Text
+              Jersey Front Text
             </Accordion.Title>
             <Accordion.Content active={activeIndex === 0}>
               <JerseyText products={products} activeTab={activeTab} />
               <JerseyTextColors products={products} activeTab={activeTab} />
+            </Accordion.Content>
+            <Accordion.Title
+              active={activeIndex === 1}
+              index={1}
+              onClick={this.handleClick}
+            >
+              <Icon name="dropdown" />
+              Jersey Team Crest
+            </Accordion.Title>
+            <Accordion.Content active={activeIndex === 1}>
+              <TeamCrest products={products} activeTab={activeTab} />
             </Accordion.Content>
           </Accordion>
         </Segment>
