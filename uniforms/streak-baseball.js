@@ -12,7 +12,9 @@ obj=a/o/log&src=LOGOCOLOR&show&\
 obj=a/o/ufa&decal&show&res=41.940789473684205&pos=0,0&src=fxg{adidasAG/APP16_stm_jfb_teamname_straight?&$text=TEAMNAME&$font=TEAMFONT&$text_color=TEAMTEXTCOLOR&$stroke_color=TEAMSTROKECOLOR&$application=sublimation}&\
 obj=a/o/ubu&decal&show&res=13.421052631578947&pos=0,0&src=fxg{adidasAG/APP16_stm_jfb_playernumber?&$application=sublimation&$text=PLAYERNUMBER&$font=NUMBERFONT&$text_color=NUMBERTEXTCOLOR&$stroke_color=NUMBERSTROKECOLOR}&\
 obj=a/o/ufl&decal&show&res=26.842105263157894&pos=0,0&src=fxg{adidasAG/APP16_stm_jfb_playernumber?&$application=sublimation&$text=PLAYERNUMBER&$font=NUMBERFONT&$text_color=NUMBERTEXTCOLOR&$stroke_color=NUMBERSTROKECOLOR}&\
-obj=a&req=object}&resMode=sharp2&wid=250&op_usm=1.2,1,4,0`
+obj=a&req=object}&resMode=sharp2&wid=250&op_usm=1.2,1,4,0\
+TEAMCREST_LEFTSLEEVE\
+TEAMCREST_RIGHTSLEEVE`
 
 const PANTS_URL = `https://embodee.adidas.com/api2/rewrite/adidas16/is/image/adidasAG/agm?&src=ir{adidasAGRender/APP16_stm_pan_ap_1?&\
 obj=a/f/nvr&show&\
@@ -172,6 +174,24 @@ const colorMap = color => {
 //   return { jersey, pant }
 // }
 
+const DECORATIONS = {
+  jersey: {
+    team_crest: {
+      label: 'Jersey Crest',
+      options: {
+        left_sleeve: {
+          label: 'Left Sleeve',
+          url: `&obj=a/o/lsl&decal&show&res=1342.1052631578946&pos=0,0&src=is{${imageUrl}?}`,
+        },
+        right_sleeve: {
+          label: 'Right Sleeve',
+          url: `&obj=a/o/rsl&decal&show&res=1342.1052631578946&pos=0,0&src=is{${imageUrl}?}`,
+        },
+      },
+    },
+  },
+}
+
 module.exports = {
   JERSEY_URL,
   PANTS_URL,
@@ -179,4 +199,5 @@ module.exports = {
   BASEOPTIONS,
   COLORS,
   colorMap,
+  DECORATIONS,
 }

@@ -30,7 +30,9 @@ res=13.22271195229453&pos=0,0&\
 src=fxg{adidasAG/APP16_vuw_playernumber?&\
 $application=sublimation&\
 $text=PLAYERNUMBER&$font=NUMBERFONT&$text_color=NUMBERTEXTCOLOR&$stroke_color=NUMBERSTROKECOLOR}&\
-obj=a&req=object}&resMode=sharp2&wid=250&op_usm=1.2,1,4,0`
+obj=a&req=object}&resMode=sharp2&wid=250&op_usm=1.2,1,4,0\
+TEAMCREST_LEFTSLEEVE\
+TEAMCREST_RIGHTSLEEVE`
 
 const PANTS_URL = `https://embodee.adidas.com/api2/rewrite/adidas16/is/image/adidasAG/agm?&src=ir{adidasAGRender/APP16_vuw_sho_1?&\
 obj=a/m/bas&src=BASECOLOR&show&\
@@ -153,6 +155,24 @@ const BASEOPTIONS = {
   },
 }
 
+const DECORATIONS = {
+  jersey: {
+    team_crest: {
+      label: 'Jersey Crest',
+      options: {
+        left_sleeve: {
+          label: 'Left Sleeve',
+          url: `&obj=a/o/lsl&decal&show&res=1342.1052631578946&pos=0,0&src=is{${imageUrl}?}`,
+        },
+        right_sleeve: {
+          label: 'Right Sleeve',
+          url: `&obj=a/o/rsl&decal&show&res=1342.1052631578946&pos=0,0&src=is{${imageUrl}?}`,
+        },
+      },
+    },
+  },
+}
+
 const colorMap = color => {
   let colorCode = ''
   colorCode = Object.entries(COLORMAP).filter(clrMap =>
@@ -218,4 +238,5 @@ module.exports = {
   BASEOPTIONS,
   COLORS,
   colorMap,
+  DECORATIONS,
 }
