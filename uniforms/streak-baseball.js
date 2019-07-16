@@ -181,11 +181,11 @@ const DECORATIONS = {
       options: {
         left_sleeve: {
           label: 'Left Sleeve',
-          url: `&obj=a/o/lsl&decal&show&res=1342.1052631578946&pos=0,0&src=is{${imageUrl}?}`,
+          url: `&obj=a/o/lsl&decal&show&res=1342.1052631578946&pos=0,0&src=is{TEAMCREST_IMAGEURL?}`,
         },
         right_sleeve: {
           label: 'Right Sleeve',
-          url: `&obj=a/o/rsl&decal&show&res=1342.1052631578946&pos=0,0&src=is{${imageUrl}?}`,
+          url: `&obj=a/o/rsl&decal&show&res=1342.1052631578946&pos=0,0&src=is{TEAMCREST_IMAGEURL?}`,
         },
       },
     },

@@ -193,7 +193,9 @@ const colorMap = color => {
 //     .value()
 //   return { jersey, pant }
 // }
-
+const DECORATIONS = {
+  jersey: {},
+}
 module.exports = {
   JERSEY_URL,
   PANTS_URL,
@@ -201,4 +203,5 @@ module.exports = {
   BASEOPTIONS,
   COLORS,
   colorMap,
+  DECORATIONS,
 }
