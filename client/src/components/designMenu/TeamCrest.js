@@ -52,6 +52,12 @@ class TeamCrest extends Component {
     }
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.teamProducts.team._id != this.props.teamProducts.team._id) {
+      this.props.getTeamImages(nextProps.teamProducts.team._id)
+    }
+  }
+
   handleCrestSelected = image => {
     const { crest } = this.state
     const { activeTab } = this.props
