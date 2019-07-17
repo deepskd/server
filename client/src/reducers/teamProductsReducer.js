@@ -5,6 +5,7 @@ import {
   JERSEY_TEXT_CHANGED,
   JERSEY_TEXTCOLOR_CHANGED,
   BASE_COLOR_CHANGED,
+  JERSEY_TEAMCREST_CHANGED,
 } from '../actions/types'
 
 export default (state = [], action) => {
@@ -19,6 +20,8 @@ export default (state = [], action) => {
       return updateJerseyTextColors(state, action.payload)
     case BASE_COLOR_CHANGED:
       return updateBaseColor(state, action.payload)
+    case JERSEY_TEAMCREST_CHANGED:
+      return updateJerseyTeamCrest(state, action.payload)
     default:
       return state
   }
@@ -74,19 +77,19 @@ const updateJerseyTextColors = (state, typeAndColors) => {
   switch (jerseyType) {
     case 'home':
       jersey = _.clone(state.products.home.jersey)
-      jersey.textColor = typeAndColors.home.text[1]
-      jersey.textColorCode = typeAndColors.home.text[0]
-      jersey.strokeColor = typeAndColors.home.stroke[1]
-      jersey.strokeColorCode = typeAndColors.home.stroke[0]
+      jersey.textColor = ''
+      jersey.textColorCode = typeAndColors.home.text
+      jersey.strokeColor = ''
+      jersey.strokeColorCode = typeAndColors.home.stroke
       jersey.frontImage = updateJersey(jersey, state.products.selectedFont)
       newState.products.home.jersey = jersey
       break
     case 'away':
       jersey = _.clone(state.products.away.jersey)
-      jersey.textColor = typeAndColors.away.text[1]
-      jersey.textColorCode = typeAndColors.away.text[0]
-      jersey.strokeColor = typeAndColors.away.stroke[1]
-      jersey.strokeColorCode = typeAndColors.away.stroke[0]
+      jersey.textColor = ''
+      jersey.textColorCode = typeAndColors.away.text
+      jersey.strokeColor = ''
+      jersey.strokeColorCode = typeAndColors.away.stroke
       jersey.frontImage = updateJersey(jersey, state.products.selectedFont)
       newState.products.away.jersey = jersey
       break
@@ -150,6 +153,53 @@ const updateBaseColor = (state, props) => {
   return newState
 }
 
+const updateJerseyTeamCrest = (state, props) => {
+  const { team_crest } = state.products.decorations.jersey
+
+  if (!team_crest) {
+    return state
+  }
+
+  let newState = { ...state },
+    jersey = {}
+
+  switch (props.item) {
+    case 'home':
+      jersey = _.clone(state.products.home.jersey)
+      jersey.crestLeftSleeve = _.replace(
+        team_crest.options.left_sleeve.url,
+        /TEAMCREST_IMAGEURL/,
+        props.imageUrl
+      )
+      jersey.crestRightSleeve = _.replace(
+        team_crest.options.right_sleeve.url,
+        /TEAMCREST_IMAGEURL/,
+        props.imageUrl
+      )
+      jersey.frontImage = updateJersey(jersey, state.products.selectedFont)
+      newState.products.home.jersey = jersey
+      break
+    case 'away':
+      jersey = _.clone(state.products.away.jersey)
+      jersey.crestLeftSleeve = _.replace(
+        team_crest.options.left_sleeve.url,
+        /TEAMCREST_IMAGEURL/,
+        props.imageUrl
+      )
+      jersey.crestRightSleeve = _.replace(
+        team_crest.options.right_sleeve.url,
+        /TEAMCREST_IMAGEURL/,
+        props.imageUrl
+      )
+      jersey.frontImage = updateJersey(jersey, state.products.selectedFont)
+      newState.products.away.jersey = jersey
+      break
+    default:
+      return newState
+  }
+  return newState
+}
+
 const updateJersey = (
   {
     baseImageURL,
@@ -157,9 +207,11 @@ const updateJersey = (
     logoColorCode,
     textColorCode,
     strokeColorCode,
-    frontText,
-    cuffColorCode,
-    pipeColorCode,
+    frontText = '',
+    cuffColorCode = '',
+    pipeColorCode = '',
+    crestLeftSleeve = '',
+    crestRightSleeve = '',
   },
   font
 ) =>
@@ -174,18 +226,20 @@ const updateJersey = (
     .replace(/PLAYERNUMBER/g, _.random(0, 99))
     .replace(/CUFFCOLOR/, cuffColorCode)
     .replace(/PIPECOLOR/, pipeColorCode)
+    .replace(/TEAMCREST_LEFTSLEEVE/, crestLeftSleeve)
+    .replace(/TEAMCREST_RIGHTSLEEVE/, crestRightSleeve)
     .value()
 
 const updatePant = ({
   baseImageURL,
   baseColorCode,
   logoColorCode,
-  teamTextColorCode,
-  teamStrokeColorCode,
+  textColorCode,
+  strokeColorCode,
 }) =>
   _.chain(baseImageURL)
     .replace(/BASECOLOR/, baseColorCode)
     .replace(/LOGOCOLOR/, logoColorCode)
-    .replace(/TEAMTEXTCOLOR/g, teamTextColorCode)
-    .replace(/TEAMSTROKECOLOR/, teamStrokeColorCode)
+    .replace(/TEAMTEXTCOLOR/g, textColorCode)
+    .replace(/TEAMSTROKECOLOR/, strokeColorCode)
     .value()

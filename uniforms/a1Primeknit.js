@@ -12,8 +12,10 @@ obj=a/o/pip&src=PIPECOLOR&show&\
 obj=a/o/ufr&decal&show&res=10.053222945002956&pos=0,0&src=fxg{APP18_pn1_jht_teamname?&$text=TEAMNAME&$font=TEAMFONT&$text_color=TEAMTEXTCOLOR&$stroke_color=TEAMSTROKECOLOR&$application=APPLICATION_TYPE}&
 obj=a/o/cfr&decal&show&res=10.567757977621218&pos=0,0&src=fxg{APP18_pn1_jht_playernumber?&$application=APPLICATION_TYPE&$text=PLAYERNUMBER&$font=NUMBERFONT&$text_color=NUMBERTEXTCOLOR&$stroke_color=NUMBERSTROKECOLOR}&\
 obj=a/o/cba&decal&show&res=8.800690250215704&pos=0,0&src=fxg{APP18_pn1_jht_playernumber?&$application=APPLICATION_TYPE&$text=PLAYERNUMBER&$font=NUMBERFONT&$text_color=NUMBERTEXTCOLOR&$stroke_color=NUMBERSTROKECOLOR}&\
-obj=a/o/sln&decal&show&res=35.78947368421053&pos=0,0&src=fxg{APP18_pn1_jht_playernumber?&$application=APPLICATION_TYPE&$text=PLAYERNUMBER&$font=NUMBERFONT&$text_color=NUMBERTEXTCOLOR&$stroke_color=NUMBERSTROKECOLOR}&\
-obj=a&req=object}&resMode=sharp2&wid=250&op_usm=1.2,1,4,0`
+&obj=a/o/sln&decal&show&res=35.78947368421053&pos=0,0&src=fxg{APP18_pn1_jht_playernumber?&$application=APPLICATION_TYPE&$text=PLAYERNUMBER&$font=NUMBERFONT&$text_color=NUMBERTEXTCOLOR&$stroke_color=NUMBERSTROKECOLOR}\
+&obj=a&req=object}&resMode=sharp2&wid=250&op_usm=1.2,1,4,0\
+TEAMCREST_LEFTSLEEVE\
+TEAMCREST_RIGHTSLEEVE`
 
 const PANTS_URL = `https://embodee.adidas.com/api2/rewrite/adidas16/is/image/adidasAG/agm?&src=ir\
 {adidasAGRender/APP18_pn1_pco_1?&obj=a/f/nvr&show\
@@ -257,45 +259,45 @@ const BASEOPTIONS = {
 }
 
 const COLORS_LIST = {
-  sld_pn_obsidian_shine_ht: '#000000',
-  sld_pn_collegiate_orange_ht: '#b74024',
-  sld_pn_collegiate_purple_ht: '#38305a',
-  sld_pn_maroon_ht: '#4a2d35',
-  sld_pn_collegiate_navy_ht: '#000F44',
-  sld_pn_dark_green_ht: '#324c44',
-  sld_pn_chameleon_ht: '#32b75b',
-  sld_pn_collegiate_burgundy_ht: '#602732',
-  sld_pn_power_red_ht: '#891e2e',
-  sld_pn_onix_shine: '#555f66',
-  sld_pn_24_karat_ht: '#a67c00',
-  sld_pn_white_ht: '#ffffff',
-  sld_pn_collegiate_gold_ht: '#eca800',
-  sld_pn_collegiate_royal_ht: '#2b3c74',
-  sld_pn_sterling_silver_ht: '#a9a9aa',
-  sld_pn_carbon_silver_ht: '#e6e6e6',
-  sld_pn_black_sp: '#000000',
-  sld_pn_onix_sp: '#555f66',
-  sld_pn_collegiate_navy_sp: '#000F44',
-  sld_pn_collegiate_royal_sp: '#2b3c74',
-  sld_pn_light_blue_sp: '#7092bc',
-  sld_pn_collegiate_purple_sp: '#38305a',
-  sld_pn_coffee_sp: '#6f4e37 ',
-  sld_pn_maroon_sp: '#4a2d35',
-  sld_pn_collegiate_burgundy_sp: '#602732',
-  sld_pn_power_red_sp: '#891e2e',
-  sld_pn_collegiate_orange_sp: '#b74024',
-  sld_pn_collegiate_gold_sp: '#eca800',
-  sld_pn_dark_green_sp: '#324c44',
-  sld_pn_kelly_green_sp: '#4cbb17',
-  sld_pn_aqua_sp: '#00ffff',
-  sld_pn_green_sp: '#15bc00',
-  sld_pn_bombay_brown_sp: '#8B4513',
-  sld_pn_vegas_gold_sp: '#c5b358',
-  sld_pn_sand_sp: '#c2b280',
-  sld_pn_stone_sp: '#abaeaf',
-  sld_pn_teal_sp: '#008080',
-  sld_pn_solar_red_sp: '#FE2E4B',
-  sld_pn_neon_green_sp: '#39ff14',
+  sld_pn_obsidian_shine_ht: { hex: '#000000', label: 'Obsidian Shine' },
+  sld_pn_collegiate_orange_ht: { hex: '#b74024', label: 'Orange' },
+  sld_pn_collegiate_purple_ht: { hex: '#38305a', label: 'Purple' },
+  sld_pn_maroon_ht: { hex: '#4a2d35', label: 'Maroon' },
+  sld_pn_collegiate_navy_ht: { hex: '#000F44', label: 'Navy' },
+  sld_pn_dark_green_ht: { hex: '#324c44', label: 'Dark Green' },
+  sld_pn_chameleon_ht: { hex: '#32b75b', label: 'Chameleon' },
+  sld_pn_collegiate_burgundy_ht: { hex: '#602732', label: 'Burgundy' },
+  sld_pn_power_red_ht: { hex: '#891e2e', label: 'Power Red' },
+  sld_pn_onix_shine: { hex: '#555f66', label: 'Onix Shine' },
+  sld_pn_24_karat_ht: { hex: '#a67c00', label: '24K Gold' },
+  sld_pn_white_ht: { hex: '#ffffff', label: 'White' },
+  sld_pn_collegiate_gold_ht: { hex: '#eca800', label: 'Gold' },
+  sld_pn_collegiate_royal_ht: { hex: '#2b3c74', label: 'Royal Blue' },
+  sld_pn_sterling_silver_ht: { hex: '#a9a9aa', label: 'Sterling Silver' },
+  sld_pn_carbon_silver_ht: { hex: '#e6e6e6', label: 'Carbon Silver' },
+  sld_pn_black_sp: { hex: '#000000', label: 'Black' },
+  sld_pn_onix_sp: { hex: '#555f66', label: 'Onix' },
+  sld_pn_collegiate_navy_sp: { hex: '#000F44', label: 'Navy' },
+  sld_pn_collegiate_royal_sp: { hex: '#2b3c74', label: 'Royal Blue' },
+  sld_pn_light_blue_sp: { hex: '#7092bc', label: 'Light Blue' },
+  sld_pn_collegiate_purple_sp: { hex: '#38305a', label: 'Purple' },
+  sld_pn_coffee_sp: { hex: '#6f4e37 ', label: 'Coffee' },
+  sld_pn_maroon_sp: { hex: '#4a2d35', label: 'Maroon' },
+  sld_pn_collegiate_burgundy_sp: { hex: '#602732', label: 'Burgundy' },
+  sld_pn_power_red_sp: { hex: '#891e2e', label: 'Power Red' },
+  sld_pn_collegiate_orange_sp: { hex: '#b74024', label: 'Orange' },
+  sld_pn_collegiate_gold_sp: { hex: '#eca800', label: 'Gold' },
+  sld_pn_dark_green_sp: { hex: '#324c44', label: 'Dark Green' },
+  sld_pn_kelly_green_sp: { hex: '#4cbb17', label: 'Kelly Green' },
+  sld_pn_aqua_sp: { hex: '#00ffff', label: 'Aqua' },
+  sld_pn_green_sp: { hex: '#15bc00', label: 'Green' },
+  sld_pn_bombay_brown_sp: { hex: '#8B4513', label: 'Bombay Brown' },
+  sld_pn_vegas_gold_sp: { hex: '#c5b358', label: 'Vegas Gold' },
+  sld_pn_sand_sp: { hex: '#c2b280', label: 'Sand' },
+  sld_pn_stone_sp: { hex: '#abaeaf', label: 'Stone' },
+  sld_pn_teal_sp: { hex: '#008080', label: 'Teal' },
+  sld_pn_solar_red_sp: { hex: '#FE2E4B', label: 'Solar Red' },
+  sld_pn_neon_green_sp: { hex: '#39ff14', label: 'Neon Green' },
 }
 
 const COLORMAP_HT = {
@@ -321,7 +323,7 @@ const COLORMAP_SP = {
   sld_pn_black_sp: ['black'],
   sld_pn_onix_sp: ['onix'],
   sld_pn_collegiate_navy_sp: ['navy', 'navy blue'],
-  sld_pn_collegiate_royal_sp: ['royal'],
+  sld_pn_collegiate_royal_sp: ['royal', 'royal blue', 'blue'],
   sld_pn_light_blue_sp: ['light blue', 'columbia blue'],
   sld_pn_collegiate_purple_sp: ['purple'],
   sld_pn_coffee_sp: ['coffee'],
@@ -373,13 +375,12 @@ const COLORMAP_BASE = {
   sld_pn_green: ['green', 'kelly green'],
   sld_pn_collegiate_burgundy: ['burgandy'],
   sld_pn_power_red: ['power red', 'red', 'cardinal', 'scarlet', 'cherry'],
-  sld_pn_light_blue: ['carolina blue'],
+  sld_pn_light_blue: ['carolina blue', 'aqua'],
   sld_pn_grey: ['grey', 'gray'],
   sld_pn_sand: ['vegas gold', 'old gold'],
   sld_pn_white: ['white'],
   sld_pn_collegiate_gold: ['gold', 'yellow'],
-  sld_pn_collegiate_royal: ['royal blue', 'royal'],
-  sld_pn_light_blue: ['blue', 'aqua', 'carolina blue'],
+  sld_pn_collegiate_royal: ['royal blue', 'royal', 'blue'],
   sld_pn_onix: ['silver'],
 }
 
@@ -553,6 +554,24 @@ const PANTS_STRIPE_OPTIONS = [
   },
 ]
 
+const DECORATIONS = {
+  jersey: {
+    team_crest: {
+      label: 'Jersey Crest',
+      options: {
+        left_sleeve: {
+          label: 'Left Sleeve',
+          url: `&obj=a/o/slv&decal&show&res=1342.1052631578946&pos=0,0&src=is{TEAMCREST_IMAGEURL?}`,
+        },
+        right_sleeve: {
+          label: 'Right Sleeve',
+          url: `&obj=a/o/slf&decal&show&res=1342.1052631578946&pos=0,0&src=is{TEAMCREST_IMAGEURL?}`,
+        },
+      },
+    },
+  },
+}
+
 const getColors = applicationType => {
   const COLORS = {}
   if (applicationType === 'heat_transfer') {
@@ -579,4 +598,5 @@ module.exports = {
   colorMapBase,
   homeDecorations,
   awayDecorations,
+  DECORATIONS,
 }

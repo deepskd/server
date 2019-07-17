@@ -4,8 +4,7 @@ import { connect } from 'react-redux'
 import ImageCard from './ImageCard'
 import SchoolCard from './SchoolCard'
 import EmbellishmentSwitch from './designMenu/EmbellishmentSwitch'
-import JerseyText from './designMenu/JerseyText'
-import ColorOptions from './designMenu/ColorOptions'
+import DesignMenu from './designMenu/DesignMenu'
 import { selectTeam, fontChanged } from '../actions'
 
 import { Grid, Button, Form } from 'semantic-ui-react'
@@ -105,18 +104,7 @@ class ProductList extends React.Component {
                 </select>
               </Form.Field>
               <Form.Field>
-                <JerseyText
-                  mascot={team.mascot.toUpperCase()}
-                  teamName={team.name.toUpperCase()}
-                />
-              </Form.Field>
-              <Form.Field>
-                <label>Colors</label>
-                <ColorOptions
-                  mascot={team.mascot.toUpperCase()}
-                  teamName={team.name.toUpperCase()}
-                  products={products}
-                />
+                <DesignMenu products={products} />
               </Form.Field>
             </Form>
           </Grid.Column>

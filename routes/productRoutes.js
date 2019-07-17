@@ -44,6 +44,7 @@ const football = (team, applicationType = 'heat_transfer') => {
     .replace(/PIPECOLOR/, jersey.pipeColorCode)
     .replace(/PLAYERNUMBER/g, playerNumber)
     .replace(/(TEAM|NUMBER)FONT/g, font)
+    .replace(/TEAMCREST_(LEFT|RIGHT)SLEEVE/g, '')
     .value()
 
   pant.baseColor = team.colors ? team.colors[1] : 'black'
@@ -98,6 +99,7 @@ const football = (team, applicationType = 'heat_transfer') => {
     .replace(/PIPECOLOR/, jersey.pipeColorCode)
     .replace(/PLAYERNUMBER/g, playerNumber)
     .replace(/(TEAM|NUMBER)FONT/g, font)
+    .replace(/TEAMCREST_(LEFT|RIGHT)SLEEVE/g, '')
     .value()
 
   pant.baseColor = team.colors ? team.colors[0] : 'black'
@@ -123,6 +125,7 @@ const football = (team, applicationType = 'heat_transfer') => {
     baseOptions: a1PrimeKnitUniform.BASEOPTIONS,
     selectedFont: font,
     colors: colors,
+    decorations: a1PrimeKnitUniform.DECORATIONS,
   }
 }
 
@@ -184,6 +187,7 @@ const basketball = team => {
     baseOptions: reign.BASEOPTIONS,
     selectedFont: font,
     colors: reign.COLORS,
+    decorations: reign.decorations,
   }
 }
 
@@ -241,6 +245,7 @@ const volleyball = team => {
     baseOptions: volleyball17.BASEOPTIONS,
     selectedFont: font,
     colors: volleyball17.COLORS,
+    decorations: volleyball17.DECORATIONS,
   }
 }
 
@@ -297,6 +302,7 @@ const baseball = team => {
     baseOptions: streakBaseBall.BASEOPTIONS,
     selectedFont: font,
     colors: streakBaseBall.COLORS,
+    decorations: streakBaseBall.DECORATIONS,
   }
 }
 const jerseyFactory = (
@@ -327,27 +333,23 @@ const jerseyFactory = (
   jersey.logoColor = logoColor
   jersey.logoColorCode = uniform.colorMap(jersey.logoColor)
 
-  jersey.teamTextColor = primaryColor
-  jersey.teamTextColorCode = uniform.colorMap(jersey.teamTextColor)
-
-  jersey.teamStrokeColor = secondaryColor
-  jersey.teamStrokeColorCode = uniform.colorMap(jersey.teamStrokeColor)
-  //TODO - fields need to be fixed
   jersey.textColor = primaryColor
-  jersey.strokeColor = secondaryColor
   jersey.textColorCode = uniform.colorMap(jersey.textColor)
+
+  jersey.strokeColor = secondaryColor
   jersey.strokeColorCode = uniform.colorMap(jersey.strokeColor)
 
   jersey.font = font
 
-  jersey.teamTextColor = jersey.frontImage = _.chain(jersey.baseImageURL)
+  jersey.frontImage = _.chain(jersey.baseImageURL)
     .replace(/TEAMNAME/g, jersey.frontText)
     .replace(/BASECOLOR/, jersey.baseColorCode)
     .replace(/LOGOCOLOR/, jersey.logoColorCode)
     .replace(/PLAYERNUMBER/g, playerNumber)
     .replace(/(TEAM|NUMBER)FONT/g, jersey.font)
-    .replace(/(TEAM|NUMBER)TEXTCOLOR/g, jersey.teamTextColorCode)
-    .replace(/(TEAM|NUMBER)STROKECOLOR/g, jersey.teamStrokeColorCode)
+    .replace(/(TEAM|NUMBER)TEXTCOLOR/g, jersey.textColorCode)
+    .replace(/(TEAM|NUMBER)STROKECOLOR/g, jersey.strokeColorCode)
+    .replace(/TEAMCREST_(LEFT|RIGHT)SLEEVE/g, '')
     .value()
 
   return jersey
@@ -368,17 +370,17 @@ const pantFactory = (
   pant.logoColor = logoColor
   pant.logoColorCode = uniform.colorMap(pant.logoColor)
 
-  pant.teamTextColor = primaryColor
-  pant.teamTextColorCode = uniform.colorMap(pant.teamTextColor)
+  pant.textColor = primaryColor
+  pant.textColorCode = uniform.colorMap(pant.textColor)
 
-  pant.teamStrokeColor = secondaryColor
-  pant.teamStrokeColorCode = uniform.colorMap(pant.teamStrokeColor)
+  pant.strokeColor = secondaryColor
+  pant.strokeColorCode = uniform.colorMap(pant.strokeColor)
 
   pant.frontImage = _.chain(pant.baseImageURL)
     .replace(/BASECOLOR/, pant.baseColorCode)
     .replace(/LOGOCOLOR/, pant.logoColorCode)
-    .replace(/TEAMTEXTCOLOR/g, pant.teamTextColorCode)
-    .replace(/TEAMSTROKECOLOR/, pant.teamStrokeColorCode)
+    .replace(/TEAMTEXTCOLOR/g, pant.textColorCode)
+    .replace(/TEAMSTROKECOLOR/, pant.strokeColorCode)
     .value()
 
   return pant
