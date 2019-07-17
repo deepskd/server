@@ -163,40 +163,24 @@ const updateJerseyTeamCrest = (state, props) => {
   let newState = { ...state },
     jersey = {}
 
-  switch (props.item) {
-    case 'home':
-      jersey = _.clone(state.products.home.jersey)
-      jersey.crestLeftSleeve = _.replace(
+  jersey = _.clone(state.products[props.item].jersey)
+
+  jersey.crestLeftSleeve = props.imageUrl
+    ? _.replace(
         team_crest.options.left_sleeve.url,
         /TEAMCREST_IMAGEURL/,
         props.imageUrl
       )
-      jersey.crestRightSleeve = _.replace(
+    : ''
+  jersey.crestRightSleeve = props.imageUrl
+    ? _.replace(
         team_crest.options.right_sleeve.url,
         /TEAMCREST_IMAGEURL/,
         props.imageUrl
       )
-      jersey.frontImage = updateJersey(jersey, state.products.selectedFont)
-      newState.products.home.jersey = jersey
-      break
-    case 'away':
-      jersey = _.clone(state.products.away.jersey)
-      jersey.crestLeftSleeve = _.replace(
-        team_crest.options.left_sleeve.url,
-        /TEAMCREST_IMAGEURL/,
-        props.imageUrl
-      )
-      jersey.crestRightSleeve = _.replace(
-        team_crest.options.right_sleeve.url,
-        /TEAMCREST_IMAGEURL/,
-        props.imageUrl
-      )
-      jersey.frontImage = updateJersey(jersey, state.products.selectedFont)
-      newState.products.away.jersey = jersey
-      break
-    default:
-      return newState
-  }
+    : ''
+  jersey.frontImage = updateJersey(jersey, state.products.selectedFont)
+  newState.products[props.item].jersey = jersey
   return newState
 }
 
