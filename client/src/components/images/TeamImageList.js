@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { Component } from 'react'
+import _ from 'lodash'
 import { connect } from 'react-redux'
 import { Card, Image } from 'semantic-ui-react'
 
-class ImageList extends React.Component {
+class TeamImageList extends Component {
   renderImages = images => {
     return images.map((image, index) => {
       return (
@@ -23,7 +24,7 @@ class ImageList extends React.Component {
 
   render() {
     const { images } = this.props
-    if (images.length === 0) {
+    if (_.isEmpty(images)) {
       return <React.Fragment />
     }
 
@@ -38,4 +39,4 @@ class ImageList extends React.Component {
 const mapStateToProps = state => {
   return { images: state.images }
 }
-export default connect(mapStateToProps)(ImageList)
+export default connect(mapStateToProps)(TeamImageList)
