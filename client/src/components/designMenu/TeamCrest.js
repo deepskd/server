@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import _ from 'lodash'
 import { connect } from 'react-redux'
-import { Button, Modal, Image } from 'semantic-ui-react'
+import { Button, Modal, Image, Grid } from 'semantic-ui-react'
 
 import { jerseyTeamCrestChanged } from '../../actions'
 import { getTeamImages } from '../../actions/actionsImage'
@@ -71,6 +71,19 @@ class TeamCrest extends Component {
     this.props.jerseyTeamCrestChanged(props)
     this.handleClose()
   }
+
+  handleRemoveCrest = () => {
+    const { crest } = this.state
+    const { activeTab } = this.props
+
+    crest[activeTab] = ''
+    this.setState({ crest })
+
+    const props = {}
+    props.item = activeTab
+    props.imageUrl = ''
+    this.props.jerseyTeamCrestChanged(props)
+  }
   render() {
     const { modalOpen, crest } = this.state
     const { activeTab } = this.props
@@ -81,13 +94,31 @@ class TeamCrest extends Component {
     )
     if (crest[activeTab]) {
       trigger = (
-        <Image size="small" src={crest[activeTab]} onClick={this.handleOpen} />
+        <Grid columns={2}>
+          <Grid.Column width={12}>
+            <Image
+              size="tiny"
+              src={crest[activeTab]}
+              onClick={this.handleOpen}
+            />
+          </Grid.Column>
+          <Grid.Column width={4}>
+            <Button
+              negative
+              compact
+              color="red"
+              icon="close"
+              circular
+              onClick={this.handleRemoveCrest}
+            />
+          </Grid.Column>
+        </Grid>
       )
     }
     return (
       <Modal trigger={trigger} open={modalOpen} onClose={this.handleClose}>
         <Modal.Content>
-          <Image.Group size="small">{this.renderCrests()}</Image.Group>
+          <Image.Group size="tiny">{this.renderCrests()}</Image.Group>
         </Modal.Content>
       </Modal>
     )
