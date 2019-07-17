@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
+import _ from 'lodash'
 import { connect } from 'react-redux'
 import { Button, Modal, Image } from 'semantic-ui-react'
 
 import { jerseyTeamCrestChanged } from '../../actions'
+import { getTeamImages } from '../../actions/actionsImage'
 
 const images = [
   'https://gtsprod-res.cloudinary.com/image/upload/v1/miteam/imagelib/1095641786.png',
@@ -19,15 +21,35 @@ class TeamCrest extends Component {
   handleClose = () => this.setState({ modalOpen: false })
 
   renderCrests() {
-    return images.map((image, index) => {
+    const teamImages = this.props.images
+    if (_.isEmpty(teamImages)) {
+      return images.map((image, index) => {
+        return (
+          <Image
+            key={index}
+            src={image}
+            onClick={() => this.handleCrestSelected(image)}
+          />
+        )
+      })
+    }
+
+    return teamImages.map(image => {
       return (
         <Image
-          key={index}
-          src={image}
-          onClick={() => this.handleCrestSelected(image)}
+          key={image._id}
+          src={image.previewImageURL}
+          onClick={() => this.handleCrestSelected(image.previewImageURL)}
         />
       )
     })
+  }
+
+  componentDidMount() {
+    const { team } = this.props.teamProducts || null
+    if (team) {
+      this.props.getTeamImages(team._id)
+    }
   }
 
   handleCrestSelected = image => {
@@ -66,7 +88,11 @@ class TeamCrest extends Component {
   }
 }
 
+const mapStateToProps = state => {
+  return { images: state.images, teamProducts: state.teamProducts }
+}
+
 export default connect(
-  null,
-  { jerseyTeamCrestChanged }
+  mapStateToProps,
+  { jerseyTeamCrestChanged, getTeamImages }
 )(TeamCrest)
