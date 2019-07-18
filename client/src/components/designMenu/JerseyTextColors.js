@@ -92,7 +92,6 @@ class JerseyTextColors extends Component {
     color['stroke'] = this.getColorCode(strokeColor[activeTab])
     const result = {}
     result[activeTab] = color
-    console.log(result)
     this.props.jerseyTextColorChnaged(result)
   }
 
@@ -120,31 +119,27 @@ class JerseyTextColors extends Component {
       </span>
     )
     return (
-      <React.Fragment>
-        <Grid columns={3}>
-          <Grid.Row>
-            <Grid.Column width={4}>
-              <Dropdown trigger={textColorLabel} item scrolling>
-                <Dropdown.Menu>
-                  {this.renderColors('text', colors)}
-                </Dropdown.Menu>
-              </Dropdown>
-            </Grid.Column>
-            <Grid.Column width={4}>
-              <Dropdown trigger={strokeColorLabel} item scrolling>
-                <Dropdown.Menu>
-                  {this.renderColors('stroke', colors)}
-                </Dropdown.Menu>
-              </Dropdown>
-            </Grid.Column>
-            <Grid.Column width={6}>
-              <Button size="mini" color="blue" onClick={this.handleColorUpdate}>
-                Update
-              </Button>
-            </Grid.Column>
-          </Grid.Row>
-        </Grid>
-      </React.Fragment>
+      <Grid columns={3}>
+        <Grid.Row>
+          <Grid.Column width={4}>
+            <Dropdown trigger={textColorLabel} item scrolling>
+              <Dropdown.Menu>{this.renderColors('text', colors)}</Dropdown.Menu>
+            </Dropdown>
+          </Grid.Column>
+          <Grid.Column width={4}>
+            <Dropdown trigger={strokeColorLabel} item scrolling>
+              <Dropdown.Menu>
+                {this.renderColors('stroke', colors)}
+              </Dropdown.Menu>
+            </Dropdown>
+          </Grid.Column>
+          <Grid.Column width={6}>
+            <Button size="mini" color="blue" onClick={this.handleColorUpdate}>
+              Update
+            </Button>
+          </Grid.Column>
+        </Grid.Row>
+      </Grid>
     )
   }
 }

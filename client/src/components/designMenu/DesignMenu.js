@@ -4,6 +4,7 @@ import { Menu, Segment, Accordion } from 'semantic-ui-react'
 import JerseyTextColors from './JerseyTextColors'
 import JerseyText from './JerseyText'
 import TeamCrest from './TeamCrest'
+import LogoColor from './LogoColor'
 
 const menu = {
   football: {
@@ -86,6 +87,14 @@ class DesignMenu extends Component {
         )
       case 'jersey-team-crest':
         return <TeamCrest products={products} activeTab={activeTab} />
+      case 'jersey-logo':
+        return (
+          <LogoColor
+            products={products}
+            activeTab={activeTab}
+            uniformType="jersey"
+          />
+        )
       default:
         return ''
     }
