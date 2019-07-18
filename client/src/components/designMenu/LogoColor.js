@@ -55,7 +55,6 @@ class LogoColor extends Component {
     result.uniformType = uniformType
     result.colorType = activeTab
     result.colorCode = this.getColorCode(c)
-    console.log(result)
     this.props.logoColorChanged(result)
   }
 
