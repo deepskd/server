@@ -1,11 +1,70 @@
-import React from 'react'
-import { Menu, Segment, Accordion, Icon } from 'semantic-ui-react'
+import React, { Component } from 'react'
+import { Menu, Segment, Accordion } from 'semantic-ui-react'
 
 import JerseyTextColors from './JerseyTextColors'
 import JerseyText from './JerseyText'
 import TeamCrest from './TeamCrest'
 
-class DesignMenu extends React.Component {
+const menu = {
+  football: {
+    panels: [
+      {
+        key: 'jersey-front-text',
+        title: 'Jersey Front Text',
+      },
+      {
+        key: 'jersey-team-crest',
+        title: 'Jersey Team Crest',
+      },
+    ],
+  },
+  basketball: {
+    panels: [
+      {
+        key: 'jersey-front-text',
+        title: 'Jersey Front Text',
+      },
+      {
+        key: 'jersey-logo',
+        title: 'Jersey Logo',
+      },
+    ],
+  },
+  volleyball: {
+    panels: [
+      {
+        key: 'jersey-front-text',
+        title: 'Jersey Front Text',
+      },
+      {
+        key: 'jersey-team-crest',
+        title: 'Jersey Team Crest',
+      },
+      {
+        key: 'jersey-logo',
+        title: 'Jersey Logo',
+      },
+    ],
+  },
+  baseball: {
+    panels: [
+      {
+        key: 'jersey-front-text',
+        title: 'Jersey Front Text',
+      },
+      {
+        key: 'jersey-team-crest',
+        title: 'Jersey Team Crest',
+      },
+      {
+        key: 'jersey-logo',
+        title: 'Jersey Logo',
+      },
+    ],
+  },
+}
+
+class DesignMenu extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -14,17 +73,38 @@ class DesignMenu extends React.Component {
     }
   }
 
-  handleClick = (e, titleProps) => {
-    const { index } = titleProps
-    const { activeIndex } = this.state
-    const newIndex = activeIndex === index ? -1 : index
+  buildPanel = key => {
+    const { activeTab } = this.state
+    const { products } = this.props
+    switch (key) {
+      case 'jersey-front-text':
+        return (
+          <React.Fragment>
+            <JerseyText products={products} activeTab={activeTab} />
+            <JerseyTextColors products={products} activeTab={activeTab} />
+          </React.Fragment>
+        )
+      case 'jersey-team-crest':
+        return <TeamCrest products={products} activeTab={activeTab} />
+      default:
+        return ''
+    }
+  }
 
-    this.setState({ activeIndex: newIndex })
+  renderPanels = () => {
+    const { sports } = this.props
+
+    return menu[sports].panels.map(({ key, title }) => {
+      return {
+        key,
+        title,
+        content: { content: this.buildPanel(key) },
+      }
+    })
   }
 
   render() {
-    const { activeTab, activeIndex } = this.state
-    const { products } = this.props
+    const { activeTab } = this.state
 
     return (
       <React.Fragment>
@@ -42,31 +122,7 @@ class DesignMenu extends React.Component {
         </Menu>
 
         <Segment basic attached="bottom">
-          <Accordion>
-            <Accordion.Title
-              active={activeIndex === 0}
-              index={0}
-              onClick={this.handleClick}
-            >
-              <Icon name="dropdown" />
-              Jersey Front Text
-            </Accordion.Title>
-            <Accordion.Content active={activeIndex === 0}>
-              <JerseyText products={products} activeTab={activeTab} />
-              <JerseyTextColors products={products} activeTab={activeTab} />
-            </Accordion.Content>
-            <Accordion.Title
-              active={activeIndex === 1}
-              index={1}
-              onClick={this.handleClick}
-            >
-              <Icon name="dropdown" />
-              Jersey Team Crest
-            </Accordion.Title>
-            <Accordion.Content active={activeIndex === 1}>
-              <TeamCrest products={products} activeTab={activeTab} />
-            </Accordion.Content>
-          </Accordion>
+          <Accordion defaultActiveIndex={0} panels={this.renderPanels()} />
         </Segment>
       </React.Fragment>
     )
