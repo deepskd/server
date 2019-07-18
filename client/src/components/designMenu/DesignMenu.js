@@ -29,6 +29,10 @@ const menu = {
         key: 'jersey-logo',
         title: 'Jersey Logo',
       },
+      {
+        key: 'pant-logo',
+        title: 'Shorts Logo',
+      },
     ],
   },
   volleyball: {
@@ -45,6 +49,10 @@ const menu = {
         key: 'jersey-logo',
         title: 'Jersey Logo',
       },
+      {
+        key: 'pant-logo',
+        title: 'Shorts Logo',
+      },
     ],
   },
   baseball: {
@@ -60,6 +68,10 @@ const menu = {
       {
         key: 'jersey-logo',
         title: 'Jersey Logo',
+      },
+      {
+        key: 'pant-logo',
+        title: 'Pant Logo',
       },
     ],
   },
@@ -93,6 +105,14 @@ class DesignMenu extends Component {
             products={products}
             activeTab={activeTab}
             uniformType="jersey"
+          />
+        )
+      case 'pant-logo':
+        return (
+          <LogoColor
+            products={products}
+            activeTab={activeTab}
+            uniformType="pant"
           />
         )
       default:
