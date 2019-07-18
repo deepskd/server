@@ -51,11 +51,10 @@ class LogoColor extends Component {
     update.logoColor[activeTab] = c
     this.setState(update)
 
-    console.log(this.getColorCode(c))
-
     const result = {}
     result.uniformType = uniformType
-    result[activeTab] = this.getColorCode(c)
+    result.colorType = activeTab
+    result.colorCode = this.getColorCode(c)
     console.log(result)
     this.props.logoColorChanged(result)
   }
