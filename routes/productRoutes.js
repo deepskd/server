@@ -248,7 +248,7 @@ const volleyball = team => {
     selectedFont: font,
     colors: volleyball17.COLORS,
     decorations: volleyball17.DECORATIONS,
-    panels: volleyball.DESIGN_PANELS,
+    panels: volleyball17.DESIGN_PANELS,
   }
 }
 

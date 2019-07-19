@@ -104,7 +104,7 @@ class ProductList extends React.Component {
                 </select>
               </Form.Field>
               <Form.Field>
-                <DesignMenu products={products} sports={params.sports} />
+                <DesignMenu products={products} />
               </Form.Field>
             </Form>
           </Grid.Column>

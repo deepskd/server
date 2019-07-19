@@ -82,7 +82,6 @@ class DesignMenu extends Component {
     super(props)
     this.state = {
       activeTab: 'home',
-      activeIndex: 0,
     }
   }
 
