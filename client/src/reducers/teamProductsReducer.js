@@ -6,6 +6,7 @@ import {
   JERSEY_TEXTCOLOR_CHANGED,
   BASE_COLOR_CHANGED,
   JERSEY_TEAMCREST_CHANGED,
+  LOGO_COLOR_CHANGED,
 } from '../actions/types'
 
 export default (state = [], action) => {
@@ -22,6 +23,8 @@ export default (state = [], action) => {
       return updateBaseColor(state, action.payload)
     case JERSEY_TEAMCREST_CHANGED:
       return updateJerseyTeamCrest(state, action.payload)
+    case LOGO_COLOR_CHANGED:
+      return updateLogoColor(state, action.payload)
     default:
       return state
   }
@@ -159,7 +162,6 @@ const updateJerseyTeamCrest = (state, props) => {
   if (!team_crest) {
     return state
   }
-
   let newState = { ...state },
     jersey = {}
 
@@ -181,6 +183,26 @@ const updateJerseyTeamCrest = (state, props) => {
     : ''
   jersey.frontImage = updateJersey(jersey, state.products.selectedFont)
   newState.products[props.item].jersey = jersey
+  return newState
+}
+
+const updateLogoColor = (state, { uniformType, colorType, colorCode }) => {
+  let newState = { ...state }
+
+  if (uniformType === 'jersey') {
+    let jersey = _.clone(state.products[colorType].jersey)
+    jersey.logoColorCode = colorCode
+    jersey.frontImage = updateJersey(jersey, state.products.selectedFont)
+    newState.products[colorType].jersey = jersey
+  }
+
+  if (uniformType === 'pant') {
+    let pant = _.clone(state.products[colorType].pant)
+    pant.logoColorCode = colorCode
+    pant.frontImage = updatePant(pant)
+    newState.products[colorType].pant = pant
+  }
+
   return newState
 }
 

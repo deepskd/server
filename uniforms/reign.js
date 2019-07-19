@@ -193,6 +193,21 @@ const colorMap = color => {
 //     .value()
 //   return { jersey, pant }
 // }
+const DESIGN_PANELS = [
+  {
+    key: 'jersey-front-text',
+    title: 'Jersey Front Text',
+  },
+  {
+    key: 'jersey-logo',
+    title: 'Jersey Logo',
+  },
+  {
+    key: 'pant-logo',
+    title: 'Shorts Logo',
+  },
+]
+
 const DECORATIONS = {
   jersey: {},
 }
@@ -204,4 +219,5 @@ module.exports = {
   COLORS,
   colorMap,
   DECORATIONS,
+  DESIGN_PANELS,
 }

@@ -572,6 +572,17 @@ const DECORATIONS = {
   },
 }
 
+const DESIGN_PANELS = [
+  {
+    key: 'jersey-front-text',
+    title: 'Jersey Front Text',
+  },
+  {
+    key: 'jersey-team-crest',
+    title: 'Jersey Team Crest',
+  },
+]
+
 const getColors = applicationType => {
   const COLORS = {}
   if (applicationType === 'heat_transfer') {
@@ -599,4 +610,5 @@ module.exports = {
   homeDecorations,
   awayDecorations,
   DECORATIONS,
+  DESIGN_PANELS,
 }
