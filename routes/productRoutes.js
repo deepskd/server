@@ -126,6 +126,7 @@ const football = (team, applicationType = 'heat_transfer') => {
     selectedFont: font,
     colors: colors,
     decorations: a1PrimeKnitUniform.DECORATIONS,
+    panels: a1PrimeKnitUniform.DESIGN_PANELS,
   }
 }
 
@@ -188,6 +189,7 @@ const basketball = team => {
     selectedFont: font,
     colors: reign.COLORS,
     decorations: reign.decorations,
+    panels: reign.DESIGN_PANELS,
   }
 }
 
@@ -246,6 +248,7 @@ const volleyball = team => {
     selectedFont: font,
     colors: volleyball17.COLORS,
     decorations: volleyball17.DECORATIONS,
+    panels: volleyball.DESIGN_PANELS,
   }
 }
 
@@ -303,6 +306,7 @@ const baseball = team => {
     selectedFont: font,
     colors: streakBaseBall.COLORS,
     decorations: streakBaseBall.DECORATIONS,
+    panels: streakBaseBall.DESIGN_PANELS,
   }
 }
 const jerseyFactory = (
