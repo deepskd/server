@@ -6,76 +6,76 @@ import JerseyText from './JerseyText'
 import TeamCrest from './TeamCrest'
 import LogoColor from './LogoColor'
 
-const menu = {
-  football: {
-    panels: [
-      {
-        key: 'jersey-front-text',
-        title: 'Jersey Front Text',
-      },
-      {
-        key: 'jersey-team-crest',
-        title: 'Jersey Team Crest',
-      },
-    ],
-  },
-  basketball: {
-    panels: [
-      {
-        key: 'jersey-front-text',
-        title: 'Jersey Front Text',
-      },
-      {
-        key: 'jersey-logo',
-        title: 'Jersey Logo',
-      },
-      {
-        key: 'pant-logo',
-        title: 'Shorts Logo',
-      },
-    ],
-  },
-  volleyball: {
-    panels: [
-      {
-        key: 'jersey-front-text',
-        title: 'Jersey Front Text',
-      },
-      {
-        key: 'jersey-team-crest',
-        title: 'Jersey Team Crest',
-      },
-      {
-        key: 'jersey-logo',
-        title: 'Jersey Logo',
-      },
-      {
-        key: 'pant-logo',
-        title: 'Shorts Logo',
-      },
-    ],
-  },
-  baseball: {
-    panels: [
-      {
-        key: 'jersey-front-text',
-        title: 'Jersey Front Text',
-      },
-      {
-        key: 'jersey-team-crest',
-        title: 'Jersey Team Crest',
-      },
-      {
-        key: 'jersey-logo',
-        title: 'Jersey Logo',
-      },
-      {
-        key: 'pant-logo',
-        title: 'Pant Logo',
-      },
-    ],
-  },
-}
+// const menu = {
+//   football: {
+//     panels: [
+//       {
+//         key: 'jersey-front-text',
+//         title: 'Jersey Front Text',
+//       },
+//       {
+//         key: 'jersey-team-crest',
+//         title: 'Jersey Team Crest',
+//       },
+//     ],
+//   },
+//   basketball: {
+//     panels: [
+//       {
+//         key: 'jersey-front-text',
+//         title: 'Jersey Front Text',
+//       },
+//       {
+//         key: 'jersey-logo',
+//         title: 'Jersey Logo',
+//       },
+//       {
+//         key: 'pant-logo',
+//         title: 'Shorts Logo',
+//       },
+//     ],
+//   },
+//   volleyball: {
+//     panels: [
+//       {
+//         key: 'jersey-front-text',
+//         title: 'Jersey Front Text',
+//       },
+//       {
+//         key: 'jersey-team-crest',
+//         title: 'Jersey Team Crest',
+//       },
+//       {
+//         key: 'jersey-logo',
+//         title: 'Jersey Logo',
+//       },
+//       {
+//         key: 'pant-logo',
+//         title: 'Shorts Logo',
+//       },
+//     ],
+//   },
+//   baseball: {
+//     panels: [
+//       {
+//         key: 'jersey-front-text',
+//         title: 'Jersey Front Text',
+//       },
+//       {
+//         key: 'jersey-team-crest',
+//         title: 'Jersey Team Crest',
+//       },
+//       {
+//         key: 'jersey-logo',
+//         title: 'Jersey Logo',
+//       },
+//       {
+//         key: 'pant-logo',
+//         title: 'Pant Logo',
+//       },
+//     ],
+//   },
+// }
 
 class DesignMenu extends Component {
   constructor(props) {
@@ -121,9 +121,9 @@ class DesignMenu extends Component {
   }
 
   renderPanels = () => {
-    const { sports } = this.props
+    const { panels } = this.props.products
 
-    return menu[sports].panels.map(({ key, title }) => {
+    return panels.map(({ key, title }) => {
       return {
         key,
         title,
