@@ -9,7 +9,7 @@ obj=a/o/pst_s1&src=str_white&show&\
 obj=a/o/sfr_g1&src=str_white&show&\
 obj=a/o/sf2_e1&src=str_white&show&\
 obj=a/o/log&src=LOGOCOLOR&show&\
-obj=a/o/ufa&decal&show&res=41.940789473684205&pos=0,0&src=fxg{adidasAG/APP16_stm_jfb_teamname_straight?&$text=TEAMNAME&$font=TEAMFONT&$text_color=TEAMTEXTCOLOR&$stroke_color=TEAMSTROKECOLOR&$application=sublimation}&\
+JERSEYTEXT_UPPERFRONT\
 obj=a/o/ubu&decal&show&res=13.421052631578947&pos=0,0&src=fxg{adidasAG/APP16_stm_jfb_playernumber?&$application=sublimation&$text=PLAYERNUMBER&$font=NUMBERFONT&$text_color=NUMBERTEXTCOLOR&$stroke_color=NUMBERSTROKECOLOR}&\
 obj=a/o/ufl&decal&show&res=26.842105263157894&pos=0,0&src=fxg{adidasAG/APP16_stm_jfb_playernumber?&$application=sublimation&$text=PLAYERNUMBER&$font=NUMBERFONT&$text_color=NUMBERTEXTCOLOR&$stroke_color=NUMBERSTROKECOLOR}\
 TEAMCREST_LEFTSLEEVE\
