@@ -143,7 +143,7 @@ const DECORATIONS = {
           },
           large_straight: {
             label: '4 inch Straight',
-            url: `obj=a/o/ufa&decal&show&res=41.940789473684205&pos=0,0&src=fxg{adidasAG/APP16_stm_jfb_teamname_straight?&$text=TEAMNAME&$font=TEAMFONT&$text_color=TEAMTEXTCOLOR&$stroke_color=TEAMSTROKECOLOR&$application=sublimation}&`,
+            url: `obj=a/o/ufa&decal&show&res=26.315789473684216&pos=0,0&src=fxg{adidasAG/APP16_stm_jfb_teamname_straight?&$text=TEAMNAME&$font=TEAMFONT&$text_color=TEAMTEXTCOLOR&$stroke_color=TEAMSTROKECOLOR&$application=sublimation}&`,
           },
           small_curved: {
             label: '2.5 inch Curved',
@@ -151,7 +151,7 @@ const DECORATIONS = {
           },
           large_curved: {
             label: '4 inch Curved',
-            url: `obj=a/o/ufa&decal&show&res=41.940789473684205&pos=0,0&src=fxg{adidasAG/APP16_stm_jfb_teamname_vertical?&$text=TEAMNAME&$font=TEAMFONT&$text_color=TEAMTEXTCOLOR&$stroke_color=TEAMSTROKECOLOR&$application=sublimation}&`,
+            url: `obj=a/o/ufa&decal&show&res=26.315789473684216&pos=0,0&src=fxg{adidasAG/APP16_stm_jfb_teamname_vertical?&$text=TEAMNAME&$font=TEAMFONT&$text_color=TEAMTEXTCOLOR&$stroke_color=TEAMSTROKECOLOR&$application=sublimation}&`,
           },
         },
       },
