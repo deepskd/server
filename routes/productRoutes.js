@@ -325,6 +325,7 @@ const jerseyFactory = (
 ) => {
   let jersey = {},
     upperFront = ''
+  lowerFront = ''
   jersey.articleDescription = description
   jersey.price = price
 
@@ -349,6 +350,13 @@ const jerseyFactory = (
       upperFront =
         upper_front.options[`${jersey.textSize}_${jersey.textStyle}`].url
     }
+    const { lower_front } = uniform.DECORATIONS.jersey.text
+    if (lower_front) {
+      jersey.textSize = lower_front.options.size[0]
+      jersey.textStyle = lower_front.options.style[0]
+      lower_front =
+        lower_front.options[`${jersey.textSize}_${jersey.textStyle}`].url
+    }
   }
 
   jersey.strokeColor = secondaryColor
@@ -358,6 +366,7 @@ const jerseyFactory = (
 
   jersey.frontImage = _.chain(jersey.baseImageURL)
     .replace(/JERSEYTEXT_UPPERFRONT/, upperFront)
+    .replace(/JERSEYTEXT_LOWERFRONT/, lowerFront)
     .replace(/TEAMNAME/g, jersey.frontText)
     .replace(/BASECOLOR/, jersey.baseColorCode)
     .replace(/LOGOCOLOR/, jersey.logoColorCode)
