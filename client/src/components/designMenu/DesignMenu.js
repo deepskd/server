@@ -5,6 +5,8 @@ import JerseyTextColors from './JerseyTextColors'
 import JerseyText from './JerseyText'
 import TeamCrest from './TeamCrest'
 import LogoColor from './LogoColor'
+import JerseyTextSize from './JerseyTextSize'
+import JerseyTextStyle from './JerseyTextStyle'
 
 class DesignMenu extends Component {
   constructor(props) {
@@ -23,6 +25,8 @@ class DesignMenu extends Component {
           <React.Fragment>
             <JerseyText products={products} activeTab={activeTab} />
             <JerseyTextColors products={products} activeTab={activeTab} />
+            <JerseyTextSize products={products} activeTab={activeTab} />
+            <JerseyTextStyle products={products} activeTab={activeTab} />
           </React.Fragment>
         )
       case 'jersey-team-crest':
