@@ -2,13 +2,25 @@ import React, { Component } from 'react'
 import { Button } from 'semantic-ui-react'
 import _ from 'lodash'
 
+import connect from 'react-redux'
+import { jerseyTextStyleChanged } from '../../actions'
+
 class JerseyTextStyle extends Component {
+  handleClick = (e, { name }) => {
+    const props = {}
+    props.uniformType = 'jersey'
+    props.colorType = this.props.activeTab
+    props.textStyle = name
+    this.props.jerseyTextStyleChanged(props)
+  }
   renderStyleOptions() {
     const { upper_front } = this.props.products.decorations.jersey.text
     return upper_front.options.style.map((option, index) => {
       return (
         <React.Fragment key={index}>
-          <Button name={option}>{_.capitalize(option)}</Button>
+          <Button name={option} onClick={this.handleClick}>
+            {_.capitalize(option)}
+          </Button>
           {index === upper_front.options.style.length - 1 ? '' : <Button.Or />}
         </React.Fragment>
       )
@@ -35,4 +47,7 @@ class JerseyTextStyle extends Component {
   }
 }
 
-export default JerseyTextStyle
+export default connect(
+  null,
+  { jerseyTextStyleChanged }
+)(JerseyTextStyle)
