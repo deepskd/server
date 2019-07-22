@@ -324,8 +324,8 @@ const jerseyFactory = (
   }
 ) => {
   let jersey = {},
-    upperFront = ''
-  lowerFront = ''
+    upperFront = '',
+    lowerFront = ''
   jersey.articleDescription = description
   jersey.price = price
 
@@ -354,7 +354,7 @@ const jerseyFactory = (
     if (lower_front) {
       jersey.textSize = lower_front.options.size[0]
       jersey.textStyle = lower_front.options.style[0]
-      lower_front =
+      lowerFront =
         lower_front.options[`${jersey.textSize}_${jersey.textStyle}`].url
     }
   }

@@ -169,28 +169,32 @@ const DECORATIONS = {
       label: 'Jersey Text',
       upper_front: {
         label: 'Upper Front',
-        size: ['small'],
-        style: ['straight', 'curved'],
-        small_straight: {
-          label: '2.5 inch Straight',
-          url: `obj=a/o/ufr&decal&show&res=42.606516290726816&pos=0,0&src=fxg{APP18_rem_jer_teamname_straight?&$application=sublimation&$text=TEAMNAME&$font=TEAMFONT&$text_color=TEAMTEXTCOLOR&$stroke_color=TEAMSTROKECOLOR}&`,
-        },
-        small_curved: {
-          label: '2.5 inch Curved',
-          url: `obj=a/o/ufr&decal&show&res=42.606516290726816&pos=0,0&src=fxg{APP18_rem_jer_teamname_vertical?&$application=sublimation&$text=TEAMNAME&$font=TEAMFONT&$text_color=TEAMTEXTCOLOR&$stroke_color=TEAMSTROKECOLOR}&`,
+        options: {
+          size: ['small'],
+          style: ['straight', 'curved'],
+          small_straight: {
+            label: '2.5 inch Straight',
+            url: `obj=a/o/ufr&decal&show&res=42.606516290726816&pos=0,0&src=fxg{APP18_rem_jer_teamname_straight?&$application=sublimation&$text=TEAMNAME&$font=TEAMFONT&$text_color=TEAMTEXTCOLOR&$stroke_color=TEAMSTROKECOLOR}&`,
+          },
+          small_curved: {
+            label: '2.5 inch Curved',
+            url: `obj=a/o/ufr&decal&show&res=42.606516290726816&pos=0,0&src=fxg{APP18_rem_jer_teamname_vertical?&$application=sublimation&$text=TEAMNAME&$font=TEAMFONT&$text_color=TEAMTEXTCOLOR&$stroke_color=TEAMSTROKECOLOR}&`,
+          },
         },
       },
       lower_front: {
         label: 'Lower Front',
-        size: ['small'],
-        style: ['straight', 'curved'],
-        small_straight: {
-          label: '2.5 inch Straight',
-          url: `obj=a/o/lfr&decal&show&res=42.606516290726816&pos=0,0&src=fxg{APP18_rem_jer_teamname_straight?&$application=sublimation&$text=TEAMNAME&$font=TEAMFONT&$text_color=TEAMTEXTCOLOR&$stroke_color=TEAMSTROKECOLOR}&`,
-        },
-        small_curved: {
-          label: '2.5 inch curved',
-          url: `obj=a/o/lfr&decal&show&res=42.606516290726816&pos=0,0&src=fxg{APP18_rem_jer_teamname_reverse_vertical?&$application=sublimation&$text=TEAMNAME&$font=TEAMFONT&$text_color=TEAMTEXTCOLOR&$stroke_color=TEAMSTROKECOLOR}&`,
+        options: {
+          size: ['small'],
+          style: ['straight', 'curved'],
+          small_straight: {
+            label: '2.5 inch Straight',
+            url: `obj=a/o/lfr&decal&show&res=42.606516290726816&pos=0,0&src=fxg{APP18_rem_jer_teamname_straight?&$application=sublimation&$text=TEAMNAME&$font=TEAMFONT&$text_color=TEAMTEXTCOLOR&$stroke_color=TEAMSTROKECOLOR}&`,
+          },
+          small_curved: {
+            label: '2.5 inch curved',
+            url: `obj=a/o/lfr&decal&show&res=42.606516290726816&pos=0,0&src=fxg{APP18_rem_jer_teamname_reverse_vertical?&$application=sublimation&$text=TEAMNAME&$font=TEAMFONT&$text_color=TEAMTEXTCOLOR&$stroke_color=TEAMSTROKECOLOR}&`,
+          },
         },
       },
     },
