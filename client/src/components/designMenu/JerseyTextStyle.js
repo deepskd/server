@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Button } from 'semantic-ui-react'
 import _ from 'lodash'
 
-import connect from 'react-redux'
+import { connect } from 'react-redux'
 import { jerseyTextStyleChanged } from '../../actions'
 
 class JerseyTextStyle extends Component {

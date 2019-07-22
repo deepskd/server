@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import { Button } from 'semantic-ui-react'
 import _ from 'lodash'
 
-import connect from 'react-redux'
-import { JerseyTextSizeChanged } from '../../actions'
+import { connect } from 'react-redux'
+import { jerseyTextSizeChanged } from '../../actions'
 
 class JerseyTextSize extends Component {
   handleClick = (e, { name }) => {
@@ -11,7 +11,7 @@ class JerseyTextSize extends Component {
     props.uniformType = 'jersey'
     props.colorType = this.props.activeTab
     props.textSize = name
-    this.props.jerseyTextStyleChanged(props)
+    this.props.jerseyTextSizeChanged(props)
   }
   renderSizeOptions() {
     const { upper_front } = this.props.products.decorations.jersey.text
@@ -49,5 +49,5 @@ class JerseyTextSize extends Component {
 
 export default connect(
   null,
-  { JerseyTextSizeChanged }
+  { jerseyTextSizeChanged }
 )(JerseyTextSize)
