@@ -128,54 +128,32 @@ const colorMap = color => {
   return colorCode[0]
 }
 
-// const homeDecorations = ({ jersey, pant }, colors) => {
-//   if (colors && colors.length === 2) {
-//     jersey.textColor = colors[0]
-//     jersey.strokeColor = colors[1] === 'white' ? 'gold' : colors[1]
-//   } else if (colors && colors.length === 3) {
-//     jersey.textColor = colors[0]
-//     jersey.strokeColor = colors[1] === 'white' ? colors[2] : colors[1]
-//   } else {
-//     jersey.textColor = colors ? colors[0] : 'red'
-//     jersey.strokeColor = 'black'
-//   }
-
-//   jersey.textColorCode = colorMap(jersey.textColor)
-//   jersey.strokeColorCode = colorMap(jersey.strokeColor)
-
-//   jersey.frontImage = _.chain(jersey.frontImage)
-//     .replace(/(TEAM|NUMBER)TEXTCOLOR/g, jersey.textColorCode)
-//     .replace(/(TEAM|NUMBER)STROKECOLOR/g, jersey.strokeColorCode)
-//     .value()
-//   return { jersey, pant }
-// }
-
-// const awayDecorations = ({ jersey, pant }, colors) => {
-//   if (colors && colors.length === 2) {
-//     jersey.textColor = colors[1]
-//     jersey.strokeColor = colors[1].match(/gold/)
-//       ? 'white'
-//       : _.sample[('gold', 'black')]
-//   } else if (colors && colors.length === 3) {
-//     jersey.textColor = colors[1]
-//     jersey.strokeColor = colors[2]
-//   } else {
-//     jersey.textColor = 'white'
-//     jersey.strokeColor = 'black'
-//   }
-
-//   jersey.textColorCode = colorMap(jersey.textColor)
-//   jersey.strokeColorCode = colorMap(jersey.strokeColor)
-
-//   jersey.frontImage = _.chain(jersey.frontImage)
-//     .replace(/(TEAM|NUMBER)TEXTCOLOR/g, jersey.textColorCode)
-//     .replace(/(TEAM|NUMBER)STROKECOLOR/g, jersey.strokeColorCode)
-//     .value()
-//   return { jersey, pant }
-// }
-
 const DECORATIONS = {
   jersey: {
+    text: {
+      label: 'Jersey Text',
+      upper_front: {
+        label: 'Upper Front',
+        options: {
+          small_straight: {
+            label: '2.5 inch Straight',
+            url: `obj=a/o/ufa&decal&show&res=41.940789473684205&pos=0,0&src=fxg{adidasAG/APP16_stm_jfb_teamname_straight?&$text=TEAMNAME&$font=TEAMFONT&$text_color=TEAMTEXTCOLOR&$stroke_color=TEAMSTROKECOLOR&$application=sublimation}&`,
+          },
+          large_straight: {
+            label: '4 inch Straight',
+            url: `obj=a/o/ufa&decal&show&res=41.940789473684205&pos=0,0&src=fxg{adidasAG/APP16_stm_jfb_teamname_straight?&$text=TEAMNAME&$font=TEAMFONT&$text_color=TEAMTEXTCOLOR&$stroke_color=TEAMSTROKECOLOR&$application=sublimation}&`,
+          },
+          small_curved: {
+            label: '2.5 inch Curved',
+            url: `obj=a/o/ufa&decal&show&res=41.940789473684205&pos=0,0&src=fxg{adidasAG/APP16_stm_jfb_teamname_vertical?&$text=TEAMNAME&$font=TEAMFONT&$text_color=TEAMTEXTCOLOR&$stroke_color=TEAMSTROKECOLOR&$application=sublimation}&`,
+          },
+          large_curved: {
+            label: '4 inch Curved',
+            url: `obj=a/o/ufa&decal&show&res=41.940789473684205&pos=0,0&src=fxg{adidasAG/APP16_stm_jfb_teamname_vertical?&$text=TEAMNAME&$font=TEAMFONT&$text_color=TEAMTEXTCOLOR&$stroke_color=TEAMSTROKECOLOR&$application=sublimation}&`,
+          },
+        },
+      },
+    },
     team_crest: {
       label: 'Jersey Crest',
       options: {
