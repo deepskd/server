@@ -135,6 +135,8 @@ const DECORATIONS = {
       upper_front: {
         label: 'Upper Front',
         options: {
+          size: ['small', 'large'],
+          style: ['straight', 'curved'],
           small_straight: {
             label: '2.5 inch Straight',
             url: `obj=a/o/ufa&decal&show&res=41.940789473684205&pos=0,0&src=fxg{adidasAG/APP16_stm_jfb_teamname_straight?&$text=TEAMNAME&$font=TEAMFONT&$text_color=TEAMTEXTCOLOR&$stroke_color=TEAMSTROKECOLOR&$application=sublimation}&`,
