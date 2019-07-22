@@ -188,7 +188,7 @@ const basketball = team => {
     baseOptions: reign.BASEOPTIONS,
     selectedFont: font,
     colors: reign.COLORS,
-    decorations: reign.decorations,
+    decorations: reign.DECORATIONS,
     panels: reign.DESIGN_PANELS,
   }
 }
