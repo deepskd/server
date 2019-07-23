@@ -5,77 +5,8 @@ import JerseyTextColors from './JerseyTextColors'
 import JerseyText from './JerseyText'
 import TeamCrest from './TeamCrest'
 import LogoColor from './LogoColor'
-
-// const menu = {
-//   football: {
-//     panels: [
-//       {
-//         key: 'jersey-front-text',
-//         title: 'Jersey Front Text',
-//       },
-//       {
-//         key: 'jersey-team-crest',
-//         title: 'Jersey Team Crest',
-//       },
-//     ],
-//   },
-//   basketball: {
-//     panels: [
-//       {
-//         key: 'jersey-front-text',
-//         title: 'Jersey Front Text',
-//       },
-//       {
-//         key: 'jersey-logo',
-//         title: 'Jersey Logo',
-//       },
-//       {
-//         key: 'pant-logo',
-//         title: 'Shorts Logo',
-//       },
-//     ],
-//   },
-//   volleyball: {
-//     panels: [
-//       {
-//         key: 'jersey-front-text',
-//         title: 'Jersey Front Text',
-//       },
-//       {
-//         key: 'jersey-team-crest',
-//         title: 'Jersey Team Crest',
-//       },
-//       {
-//         key: 'jersey-logo',
-//         title: 'Jersey Logo',
-//       },
-//       {
-//         key: 'pant-logo',
-//         title: 'Shorts Logo',
-//       },
-//     ],
-//   },
-//   baseball: {
-//     panels: [
-//       {
-//         key: 'jersey-front-text',
-//         title: 'Jersey Front Text',
-//       },
-//       {
-//         key: 'jersey-team-crest',
-//         title: 'Jersey Team Crest',
-//       },
-//       {
-//         key: 'jersey-logo',
-//         title: 'Jersey Logo',
-//       },
-//       {
-//         key: 'pant-logo',
-//         title: 'Pant Logo',
-//       },
-//     ],
-//   },
-// }
+import JerseyTextSize from './JerseyTextSize'
+import JerseyTextStyle from './JerseyTextStyle'
 
 class DesignMenu extends Component {
   constructor(props) {
@@ -94,6 +25,8 @@ class DesignMenu extends Component {
           <React.Fragment>
             <JerseyText products={products} activeTab={activeTab} />
             <JerseyTextColors products={products} activeTab={activeTab} />
+            <JerseyTextSize products={products} activeTab={activeTab} />
+            <JerseyTextStyle products={products} activeTab={activeTab} />
           </React.Fragment>
         )
       case 'jersey-team-crest':

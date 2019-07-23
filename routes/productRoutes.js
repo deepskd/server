@@ -188,7 +188,7 @@ const basketball = team => {
     baseOptions: reign.BASEOPTIONS,
     selectedFont: font,
     colors: reign.COLORS,
-    decorations: reign.decorations,
+    decorations: reign.DECORATIONS,
     panels: reign.DESIGN_PANELS,
   }
 }
@@ -323,7 +323,9 @@ const jerseyFactory = (
     playerNumber,
   }
 ) => {
-  let jersey = {}
+  let jersey = {},
+    upperFront = '',
+    lowerFront = ''
   jersey.articleDescription = description
   jersey.price = price
 
@@ -340,12 +342,31 @@ const jerseyFactory = (
   jersey.textColor = primaryColor
   jersey.textColorCode = uniform.colorMap(jersey.textColor)
 
+  if (uniform.DECORATIONS.jersey.text) {
+    const { upper_front } = uniform.DECORATIONS.jersey.text
+    if (upper_front) {
+      jersey.textSize = upper_front.options.size[0] //take the first size - usually small
+      jersey.textStyle = upper_front.options.style[0] //take the first style - usually straight
+      upperFront =
+        upper_front.options[`${jersey.textSize}_${jersey.textStyle}`].url
+    }
+    const { lower_front } = uniform.DECORATIONS.jersey.text
+    if (lower_front) {
+      jersey.textSize = lower_front.options.size[0]
+      jersey.textStyle = lower_front.options.style[0]
+      lowerFront =
+        lower_front.options[`${jersey.textSize}_${jersey.textStyle}`].url
+    }
+  }
+
   jersey.strokeColor = secondaryColor
   jersey.strokeColorCode = uniform.colorMap(jersey.strokeColor)
 
   jersey.font = font
 
   jersey.frontImage = _.chain(jersey.baseImageURL)
+    .replace(/JERSEYTEXT_UPPERFRONT/, upperFront)
+    .replace(/JERSEYTEXT_LOWERFRONT/, lowerFront)
     .replace(/TEAMNAME/g, jersey.frontText)
     .replace(/BASECOLOR/, jersey.baseColorCode)
     .replace(/LOGOCOLOR/, jersey.logoColorCode)

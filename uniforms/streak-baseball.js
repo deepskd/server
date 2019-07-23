@@ -9,7 +9,7 @@ obj=a/o/pst_s1&src=str_white&show&\
 obj=a/o/sfr_g1&src=str_white&show&\
 obj=a/o/sf2_e1&src=str_white&show&\
 obj=a/o/log&src=LOGOCOLOR&show&\
-obj=a/o/ufa&decal&show&res=41.940789473684205&pos=0,0&src=fxg{adidasAG/APP16_stm_jfb_teamname_straight?&$text=TEAMNAME&$font=TEAMFONT&$text_color=TEAMTEXTCOLOR&$stroke_color=TEAMSTROKECOLOR&$application=sublimation}&\
+JERSEYTEXT_UPPERFRONT\
 obj=a/o/ubu&decal&show&res=13.421052631578947&pos=0,0&src=fxg{adidasAG/APP16_stm_jfb_playernumber?&$application=sublimation&$text=PLAYERNUMBER&$font=NUMBERFONT&$text_color=NUMBERTEXTCOLOR&$stroke_color=NUMBERSTROKECOLOR}&\
 obj=a/o/ufl&decal&show&res=26.842105263157894&pos=0,0&src=fxg{adidasAG/APP16_stm_jfb_playernumber?&$application=sublimation&$text=PLAYERNUMBER&$font=NUMBERFONT&$text_color=NUMBERTEXTCOLOR&$stroke_color=NUMBERSTROKECOLOR}\
 TEAMCREST_LEFTSLEEVE\
@@ -128,54 +128,34 @@ const colorMap = color => {
   return colorCode[0]
 }
 
-// const homeDecorations = ({ jersey, pant }, colors) => {
-//   if (colors && colors.length === 2) {
-//     jersey.textColor = colors[0]
-//     jersey.strokeColor = colors[1] === 'white' ? 'gold' : colors[1]
-//   } else if (colors && colors.length === 3) {
-//     jersey.textColor = colors[0]
-//     jersey.strokeColor = colors[1] === 'white' ? colors[2] : colors[1]
-//   } else {
-//     jersey.textColor = colors ? colors[0] : 'red'
-//     jersey.strokeColor = 'black'
-//   }
-
-//   jersey.textColorCode = colorMap(jersey.textColor)
-//   jersey.strokeColorCode = colorMap(jersey.strokeColor)
-
-//   jersey.frontImage = _.chain(jersey.frontImage)
-//     .replace(/(TEAM|NUMBER)TEXTCOLOR/g, jersey.textColorCode)
-//     .replace(/(TEAM|NUMBER)STROKECOLOR/g, jersey.strokeColorCode)
-//     .value()
-//   return { jersey, pant }
-// }
-
-// const awayDecorations = ({ jersey, pant }, colors) => {
-//   if (colors && colors.length === 2) {
-//     jersey.textColor = colors[1]
-//     jersey.strokeColor = colors[1].match(/gold/)
-//       ? 'white'
-//       : _.sample[('gold', 'black')]
-//   } else if (colors && colors.length === 3) {
-//     jersey.textColor = colors[1]
-//     jersey.strokeColor = colors[2]
-//   } else {
-//     jersey.textColor = 'white'
-//     jersey.strokeColor = 'black'
-//   }
-
-//   jersey.textColorCode = colorMap(jersey.textColor)
-//   jersey.strokeColorCode = colorMap(jersey.strokeColor)
-
-//   jersey.frontImage = _.chain(jersey.frontImage)
-//     .replace(/(TEAM|NUMBER)TEXTCOLOR/g, jersey.textColorCode)
-//     .replace(/(TEAM|NUMBER)STROKECOLOR/g, jersey.strokeColorCode)
-//     .value()
-//   return { jersey, pant }
-// }
-
 const DECORATIONS = {
   jersey: {
+    text: {
+      label: 'Jersey Text',
+      upper_front: {
+        label: 'Upper Front',
+        options: {
+          size: ['small', 'large'],
+          style: ['straight', 'curved'],
+          small_straight: {
+            label: '2.5 inch Straight',
+            url: `obj=a/o/ufa&decal&show&res=41.940789473684205&pos=0,0&src=fxg{adidasAG/APP16_stm_jfb_teamname_straight?&$text=TEAMNAME&$font=TEAMFONT&$text_color=TEAMTEXTCOLOR&$stroke_color=TEAMSTROKECOLOR&$application=sublimation}&`,
+          },
+          large_straight: {
+            label: '4 inch Straight',
+            url: `obj=a/o/ufa&decal&show&res=26.315789473684216&pos=0,0&src=fxg{adidasAG/APP16_stm_jfb_teamname_straight?&$text=TEAMNAME&$font=TEAMFONT&$text_color=TEAMTEXTCOLOR&$stroke_color=TEAMSTROKECOLOR&$application=sublimation}&`,
+          },
+          small_curved: {
+            label: '2.5 inch Curved',
+            url: `obj=a/o/ufa&decal&show&res=41.940789473684205&pos=0,0&src=fxg{adidasAG/APP16_stm_jfb_teamname_vertical?&$text=TEAMNAME&$font=TEAMFONT&$text_color=TEAMTEXTCOLOR&$stroke_color=TEAMSTROKECOLOR&$application=sublimation}&`,
+          },
+          large_curved: {
+            label: '4 inch Curved',
+            url: `obj=a/o/ufa&decal&show&res=26.315789473684216&pos=0,0&src=fxg{adidasAG/APP16_stm_jfb_teamname_vertical?&$text=TEAMNAME&$font=TEAMFONT&$text_color=TEAMTEXTCOLOR&$stroke_color=TEAMSTROKECOLOR&$application=sublimation}&`,
+          },
+        },
+      },
+    },
     team_crest: {
       label: 'Jersey Crest',
       options: {

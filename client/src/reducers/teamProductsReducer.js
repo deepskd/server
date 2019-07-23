@@ -7,6 +7,8 @@ import {
   BASE_COLOR_CHANGED,
   JERSEY_TEAMCREST_CHANGED,
   LOGO_COLOR_CHANGED,
+  JERSEY_TEXT_SIZE_CHANGED,
+  JERSEY_TEXT_STYLE_CHANGED,
 } from '../actions/types'
 
 export default (state = [], action) => {
@@ -25,6 +27,10 @@ export default (state = [], action) => {
       return updateJerseyTeamCrest(state, action.payload)
     case LOGO_COLOR_CHANGED:
       return updateLogoColor(state, action.payload)
+    case JERSEY_TEXT_SIZE_CHANGED:
+      return updateJerseyTextSize(state, action.payload)
+    case JERSEY_TEXT_STYLE_CHANGED:
+      return updateJerseyTextStyle(state, action.payload)
     default:
       return state
   }
@@ -57,13 +63,13 @@ const updateJerseyText = (state, typeAndText) => {
     case 'home':
       jersey = _.clone(state.products.home.jersey)
       jersey.frontText = typeAndText.home
-      jersey.frontImage = updateJersey(jersey, state.products.selectedFont)
+      jersey.frontImage = updateJersey(jersey, state.products)
       newState.products.home.jersey = jersey
       break
     case 'away':
       jersey = _.clone(state.products.away.jersey)
       jersey.frontText = typeAndText.away
-      jersey.frontImage = updateJersey(jersey, state.products.selectedFont)
+      jersey.frontImage = updateJersey(jersey, state.products)
       newState.products.away.jersey = jersey
       break
     default:
@@ -84,7 +90,7 @@ const updateJerseyTextColors = (state, typeAndColors) => {
       jersey.textColorCode = typeAndColors.home.text
       jersey.strokeColor = ''
       jersey.strokeColorCode = typeAndColors.home.stroke
-      jersey.frontImage = updateJersey(jersey, state.products.selectedFont)
+      jersey.frontImage = updateJersey(jersey, state.products)
       newState.products.home.jersey = jersey
       break
     case 'away':
@@ -93,7 +99,7 @@ const updateJerseyTextColors = (state, typeAndColors) => {
       jersey.textColorCode = typeAndColors.away.text
       jersey.strokeColor = ''
       jersey.strokeColorCode = typeAndColors.away.stroke
-      jersey.frontImage = updateJersey(jersey, state.products.selectedFont)
+      jersey.frontImage = updateJersey(jersey, state.products)
       newState.products.away.jersey = jersey
       break
     default:
@@ -117,7 +123,7 @@ const updateBaseColor = (state, props) => {
         baseOptions.jersey[props.color].logo || jersey.logoColorCode
       jersey.pipeColorCode = baseOptions.jersey[props.color].pipe
       jersey.cuffColorCode = baseOptions.jersey[props.color].cuff
-      jersey.frontImage = updateJersey(jersey, state.products.selectedFont)
+      jersey.frontImage = updateJersey(jersey, state.products)
       newState.products.home.jersey = jersey
       break
     case 'away_jersey':
@@ -128,7 +134,7 @@ const updateBaseColor = (state, props) => {
         baseOptions.jersey[props.color].logo || jersey.logoColorCode
       jersey.pipeColorCode = baseOptions.jersey[props.color].pipe || ''
       jersey.cuffColorCode = baseOptions.jersey[props.color].cuff || ''
-      jersey.frontImage = updateJersey(jersey, state.products.selectedFont)
+      jersey.frontImage = updateJersey(jersey, state.products)
       newState.products.away.jersey = jersey
       break
     case 'home_pant':
@@ -181,7 +187,7 @@ const updateJerseyTeamCrest = (state, props) => {
         props.imageUrl
       )
     : ''
-  jersey.frontImage = updateJersey(jersey, state.products.selectedFont)
+  jersey.frontImage = updateJersey(jersey, state.products)
   newState.products[props.item].jersey = jersey
   return newState
 }
@@ -192,7 +198,7 @@ const updateLogoColor = (state, { uniformType, colorType, colorCode }) => {
   if (uniformType === 'jersey') {
     let jersey = _.clone(state.products[colorType].jersey)
     jersey.logoColorCode = colorCode
-    jersey.frontImage = updateJersey(jersey, state.products.selectedFont)
+    jersey.frontImage = updateJersey(jersey, state.products)
     newState.products[colorType].jersey = jersey
   }
 
@@ -201,6 +207,35 @@ const updateLogoColor = (state, { uniformType, colorType, colorCode }) => {
     pant.logoColorCode = colorCode
     pant.frontImage = updatePant(pant)
     newState.products[colorType].pant = pant
+  }
+
+  return newState
+}
+
+const updateJerseyTextSize = (state, { uniformType, colorType, textSize }) => {
+  let newState = { ...state }
+
+  if (uniformType === 'jersey') {
+    let jersey = _.clone(state.products[colorType].jersey)
+    jersey.textSize = textSize
+    jersey.frontImage = updateJersey(jersey, state.products)
+    newState.products[colorType].jersey = jersey
+  }
+
+  return newState
+}
+
+const updateJerseyTextStyle = (
+  state,
+  { uniformType, colorType, textStyle }
+) => {
+  let newState = { ...state }
+
+  if (uniformType === 'jersey') {
+    let jersey = _.clone(state.products[colorType].jersey)
+    jersey.textStyle = textStyle
+    jersey.frontImage = updateJersey(jersey, state.products)
+    newState.products[colorType].jersey = jersey
   }
 
   return newState
@@ -218,16 +253,34 @@ const updateJersey = (
     pipeColorCode = '',
     crestLeftSleeve = '',
     crestRightSleeve = '',
+    textSize = '',
+    textStyle = '',
   },
-  font
-) =>
-  _.chain(baseImageURL)
+  { selectedFont, decorations }
+) => {
+  let lowerFront = '',
+    upperFront = ''
+
+  if (decorations.jersey.text) {
+    const { upper_front } = decorations.jersey.text
+    if (upper_front) {
+      upperFront = upper_front.options[`${textSize}_${textStyle}`].url
+    }
+    const { lower_front } = decorations.jersey.text
+    if (lower_front) {
+      lowerFront = lower_front.options[`${textSize}_${textStyle}`].url
+    }
+  }
+
+  return _.chain(baseImageURL)
+    .replace(/JERSEYTEXT_UPPERFRONT/, upperFront)
+    .replace(/JERSEYTEXT_LOWERFRONT/, lowerFront)
     .replace(/BASECOLOR/, baseColorCode)
     .replace(/LOGOCOLOR/, logoColorCode)
     .replace(/(TEAM|NUMBER)TEXTCOLOR/g, textColorCode)
     .replace(/(TEAM|NUMBER)STROKECOLOR/g, strokeColorCode)
     .replace(/TEAMNAME/, frontText)
-    .replace(/(TEAM|NUMBER)FONT/g, font)
+    .replace(/(TEAM|NUMBER)FONT/g, selectedFont)
     .replace(/APPLICATION_TYPE/g, 'heat_transfer') //TODO needs to be fixed in later version
     .replace(/PLAYERNUMBER/g, _.random(0, 99))
     .replace(/CUFFCOLOR/, cuffColorCode)
@@ -235,6 +288,7 @@ const updateJersey = (
     .replace(/TEAMCREST_LEFTSLEEVE/, crestLeftSleeve)
     .replace(/TEAMCREST_RIGHTSLEEVE/, crestRightSleeve)
     .value()
+}
 
 const updatePant = ({
   baseImageURL,
