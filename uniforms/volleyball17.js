@@ -16,20 +16,10 @@ obj=a/s/shg&show&\
 obj=a/o/gra_ob&src=mi_v17_white&show&\
 obj=a/o/str_s0&show&\
 obj=a/o/log&src=LOGOCOLOR&show&\
-obj=a/o/ufo&decal&show&\
-res=41.940789473684205&pos=0,0&src=fxg{adidasAG/APP16_vuw_teamname_straight?&\
-$application=sublimation&\
-$text=TEAMNAME&$font=TEAMFONT&$text_color=TEAMTEXTCOLOR&$stroke_color=TEAMSTROKECOLOR}&\
-obj=a/o/cfc&decal&show&\
-res=26.315789473684216&pos=0,0&\
-src=fxg{adidasAG/APP16_vuw_playernumber?&\
-$application=sublimation&\
-$text=PLAYERNUMBER&$font=NUMBERFONT&$text_color=NUMBERTEXTCOLOR&$stroke_color=NUMBERSTROKECOLOR}&\
-obj=a/o/cbc&decal&show&\
-res=13.22271195229453&pos=0,0&\
-src=fxg{adidasAG/APP16_vuw_playernumber?&\
-$application=sublimation&\
-$text=PLAYERNUMBER&$font=NUMBERFONT&$text_color=NUMBERTEXTCOLOR&$stroke_color=NUMBERSTROKECOLOR}&\
+JERSEYTEXT_UPPERFRONT\
+JERSEYTEXT_LOWERFRONT\
+obj=a/o/cfc&decal&show&res=26.315789473684216&pos=0,0&src=fxg{adidasAG/APP16_vuw_playernumber?&$application=sublimation&$text=PLAYERNUMBER&$font=NUMBERFONT&$text_color=NUMBERTEXTCOLOR&$stroke_color=NUMBERSTROKECOLOR}&\
+obj=a/o/cbc&decal&show&res=13.22271195229453&pos=0,0&src=fxg{adidasAG/APP16_vuw_playernumber?&$application=sublimation&$text=PLAYERNUMBER&$font=NUMBERFONT&$text_color=NUMBERTEXTCOLOR&$stroke_color=NUMBERSTROKECOLOR}&\
 obj=a&req=object}&resMode=sharp2&wid=250&op_usm=1.2,1,4,0\
 TEAMCREST_LEFTSLEEVE\
 TEAMCREST_RIGHTSLEEVE`
@@ -157,6 +147,31 @@ const BASEOPTIONS = {
 
 const DECORATIONS = {
   jersey: {
+    text: {
+      label: 'Jersey Text',
+      upper_front: {
+        label: 'Upper Front',
+        options: {
+          size: ['small'],
+          style: ['straight'],
+          small_straight: {
+            label: '2.5 inch Straight',
+            url: `obj=a/o/ufo&decal&show&res=41.940789473684205&pos=0,0&src=fxg{adidasAG/APP16_vuw_teamname_straight?&$application=sublimation&$text=TEAMNAME&$font=TEAMFONT&$text_color=TEAMTEXTCOLOR&$stroke_color=TEAMSTROKECOLOR}&`,
+          },
+        },
+      },
+      lower_front: {
+        label: 'Lower Front',
+        options: {
+          size: ['small'],
+          style: ['straight'],
+          small_straight: {
+            label: '2.5 inch Straight',
+            url: `obj=a/o/lfo&decal&show&res=41.940789473684205&pos=0,0&src=fxg{adidasAG/APP16_vuw_teamname_straight?&$application=sublimation&$text=TEAMNAME&$font=TEAMFONT&$text_color=TEAMTEXTCOLOR&$stroke_color=TEAMSTROKECOLOR}&`,
+          },
+        },
+      },
+    },
     team_crest: {
       label: 'Jersey Crest',
       options: {
