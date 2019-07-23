@@ -262,13 +262,18 @@ const updateJersey = (
     upperFront = ''
 
   if (decorations.jersey.text) {
-    const { upper_front } = decorations.jersey.text
-    if (upper_front) {
-      upperFront = upper_front.options[`${textSize}_${textStyle}`].url
-    }
-    const { lower_front } = decorations.jersey.text
-    if (lower_front) {
-      lowerFront = lower_front.options[`${textSize}_${textStyle}`].url
+    if (decorations.jersey.text.hasOwnProperty('upper_front')) {
+      const { upper_front } = decorations.jersey.text
+      if (upper_front) {
+        upperFront = upper_front.options[`${textSize}_${textStyle}`].url
+      }
+
+      if (decorations.jersey.text.hasOwnProperty('lower_front')) {
+        const { lower_front } = decorations.jersey.text
+        if (lowerFront) {
+          lowerFront = lower_front.options[`${textSize}_${textStyle}`].url
+        }
+      }
     }
   }
 
