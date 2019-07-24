@@ -39,11 +39,12 @@ class JerseyText extends React.Component {
   }
 
   handleTextUpdate = () => {
-    const { jerseyText } = this.state
     const { activeTab } = this.props
-    const updateText = {}
-    updateText[activeTab] = jerseyText[activeTab]
-    this.props.jerseyTextChanged(updateText)
+    const props = {}
+    props.uniformType = 'jersey'
+    props.colorType = activeTab
+    props.frontText = this.state.jerseyText[activeTab]
+    this.props.jerseyTextChanged(props)
   }
 
   render() {

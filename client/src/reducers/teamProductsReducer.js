@@ -54,26 +54,14 @@ const updateFont = (state, font) => {
   return newState
 }
 
-const updateJerseyText = (state, typeAndText) => {
+const updateJerseyText = (state, { uniformType, colorType, frontText }) => {
   let newState = { ...state }
-  const jerseyType = Object.keys(typeAndText)[0]
 
-  let jersey = {}
-  switch (jerseyType) {
-    case 'home':
-      jersey = _.clone(state.products.home.jersey)
-      jersey.frontText = typeAndText.home
-      jersey.frontImage = updateJersey(jersey, state.products)
-      newState.products.home.jersey = jersey
-      break
-    case 'away':
-      jersey = _.clone(state.products.away.jersey)
-      jersey.frontText = typeAndText.away
-      jersey.frontImage = updateJersey(jersey, state.products)
-      newState.products.away.jersey = jersey
-      break
-    default:
-      return newState
+  if (uniformType === 'jersey') {
+    let jersey = _.clone(state.products[colorType].jersey)
+    jersey.frontText = frontText
+    jersey.frontImage = updateJersey(jersey, state.products)
+    newState.products[colorType].jersey = jersey
   }
   return newState
 }
@@ -275,6 +263,10 @@ const updateJersey = (
         }
       }
     }
+  }
+
+  if (!frontText) {
+    upperFront = ''
   }
 
   return _.chain(baseImageURL)
