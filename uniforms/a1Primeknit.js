@@ -9,7 +9,7 @@ obj=a/o/st2_t0&show&\
 obj=a/o/log&src=LOGOCOLOR&show&\
 obj=a/o/cuf&src=CUFFCOLOR&show&\
 obj=a/o/pip&src=PIPECOLOR&show&\
-obj=a/o/ufr&decal&show&res=10.053222945002956&pos=0,0&src=fxg{APP18_pn1_jht_teamname?&$text=TEAMNAME&$font=TEAMFONT&$text_color=TEAMTEXTCOLOR&$stroke_color=TEAMSTROKECOLOR&$application=APPLICATION_TYPE}&
+JERSEYTEXT_UPPERFRONT\
 obj=a/o/cfr&decal&show&res=10.567757977621218&pos=0,0&src=fxg{APP18_pn1_jht_playernumber?&$application=APPLICATION_TYPE&$text=PLAYERNUMBER&$font=NUMBERFONT&$text_color=NUMBERTEXTCOLOR&$stroke_color=NUMBERSTROKECOLOR}&\
 obj=a/o/cba&decal&show&res=8.800690250215704&pos=0,0&src=fxg{APP18_pn1_jht_playernumber?&$application=APPLICATION_TYPE&$text=PLAYERNUMBER&$font=NUMBERFONT&$text_color=NUMBERTEXTCOLOR&$stroke_color=NUMBERSTROKECOLOR}&\
 &obj=a/o/sln&decal&show&res=35.78947368421053&pos=0,0&src=fxg{APP18_pn1_jht_playernumber?&$application=APPLICATION_TYPE&$text=PLAYERNUMBER&$font=NUMBERFONT&$text_color=NUMBERTEXTCOLOR&$stroke_color=NUMBERSTROKECOLOR}\
@@ -556,6 +556,20 @@ const PANTS_STRIPE_OPTIONS = [
 
 const DECORATIONS = {
   jersey: {
+    text: {
+      label: 'Jersey Text',
+      upper_front: {
+        label: 'Upper Front',
+        options: {
+          size: ['small'],
+          style: ['straight'],
+          small_straight: {
+            label: '2.5 inch Straight',
+            url: `obj=a/o/ufr&decal&show&res=10.053222945002956&pos=0,0&src=fxg{APP18_pn1_jht_teamname?&$text=TEAMNAME&$font=TEAMFONT&$text_color=TEAMTEXTCOLOR&$stroke_color=TEAMSTROKECOLOR&$application=APPLICATION_TYPE}&`,
+          },
+        },
+      },
+    },
     team_crest: {
       label: 'Jersey Crest',
       options: {
