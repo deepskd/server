@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Button } from 'semantic-ui-react'
+import { Grid, Button, Header } from 'semantic-ui-react'
 import _ from 'lodash'
 
 import { connect } from 'react-redux'
@@ -37,12 +37,16 @@ class JerseyTextStyle extends Component {
     }
 
     return (
-      <React.Fragment>
-        <br></br>Text Style <br />
-        <Button.Group compact size="tiny">
-          {this.renderStyleOptions()}
-        </Button.Group>
-      </React.Fragment>
+      <Grid colums={2}>
+        <Grid.Column width={4} verticalAlign="middle">
+          <Header sub>Style</Header>
+        </Grid.Column>
+        <Grid.Column width={12}>
+          <Button.Group compact size="mini">
+            {this.renderStyleOptions()}
+          </Button.Group>
+        </Grid.Column>
+      </Grid>
     )
   }
 }
