@@ -103,6 +103,14 @@ const football = (team, applicationType = 'heat_transfer') => {
   jersey.pipeColorCode = jerseyParams.pipe
   jersey.baseColorHex = jerseyParams.hex
 
+  if (a1PrimeKnitUniform.DECORATIONS.jersey.text) {
+    const { upper_front } = a1PrimeKnitUniform.DECORATIONS.jersey.text
+    if (upper_front) {
+      jersey.textSize = upper_front.options.size[0] //take the first size - usually small
+      jersey.textStyle = upper_front.options.style[0] //take the first style - usually straight
+    }
+  }
+
   jersey.frontImage = _.chain(jersey.baseImageURL)
     .replace(
       /JERSEYTEXT_UPPERFRONT/,
