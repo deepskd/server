@@ -88,7 +88,7 @@ class TeamCrest extends Component {
     const { modalOpen, crest } = this.state
     const { activeTab } = this.props
     let trigger = (
-      <Button size="small" onClick={this.handleOpen}>
+      <Button compact size="tiny" onClick={this.handleOpen}>
         Add Crest
       </Button>
     )
