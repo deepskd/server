@@ -3,8 +3,7 @@ const _ = require('lodash')
 const JERSEY_URL = `https://embodee.adidas.com/api2/rewrite/adidas16/is/image/adidasAG/agm?&src=ir\
 {adidasAGRender/APP18_pn1_com_1?&obj=a/f/nvr&show&\
 obj=a/m/bas&src=BASECOLOR&show&\
-obj=a/s/shg&show&\
-obj=a/o/st1_s0&show&\
+SLEEVE_STRIPES\
 obj=a/o/st2_t0&show&\
 obj=a/o/log&src=LOGOCOLOR&show&\
 obj=a/o/cuf&src=CUFFCOLOR&show&\
@@ -12,7 +11,7 @@ obj=a/o/pip&src=PIPECOLOR&show&\
 JERSEYTEXT_UPPERFRONT\
 obj=a/o/cfr&decal&show&res=10.567757977621218&pos=0,0&src=fxg{APP18_pn1_jht_playernumber?&$application=APPLICATION_TYPE&$text=PLAYERNUMBER&$font=NUMBERFONT&$text_color=NUMBERTEXTCOLOR&$stroke_color=NUMBERSTROKECOLOR}&\
 obj=a/o/cba&decal&show&res=8.800690250215704&pos=0,0&src=fxg{APP18_pn1_jht_playernumber?&$application=APPLICATION_TYPE&$text=PLAYERNUMBER&$font=NUMBERFONT&$text_color=NUMBERTEXTCOLOR&$stroke_color=NUMBERSTROKECOLOR}&\
-&obj=a/o/sln&decal&show&res=35.78947368421053&pos=0,0&src=fxg{APP18_pn1_jht_playernumber?&$application=APPLICATION_TYPE&$text=PLAYERNUMBER&$font=NUMBERFONT&$text_color=NUMBERTEXTCOLOR&$stroke_color=NUMBERSTROKECOLOR}\
+SLEEVE_NUMBER\
 &obj=a&req=object}&resMode=sharp2&wid=250&op_usm=1.2,1,4,0\
 TEAMCREST_LEFTSLEEVE\
 TEAMCREST_RIGHTSLEEVE`
@@ -496,59 +495,65 @@ const stripesOnPants = (primaryColor, secondaryColor) => {
 
 const JERSEY_STRIPE_OPTIONS = [
   {
+    key: 'two_stripe',
     name: 'Two Stripe',
     url:
       'obj=a/o/st1_s2&src=STRIPE_PRIMARY_COLOR&show&obj=a/o/st2_t2&src=STRIPE_SECONDARY_COLOR&show',
   },
   {
+    key: 'three_thin_stripes',
     name: 'Three Thin Stripes',
     url:
       'obj=a/o/st1_s3&src=STRIPE_PRIMARY_COLOR&show&obj=a/o/st2_t3&src=STRIPE_SECONDARY_COLOR&show',
   },
   {
+    key: 'three_thin_stripes',
     name: 'Burner Stripe',
     url:
       '&obj=a/o/st1_s7&src=STRIPE_PRIMARY_COLOR&show&obj=a/o/st2_t7&src=STRIPE_SECONDARY_COLOR&show&',
   },
   {
+    key: 'classic_stripe',
     name: 'Classic Stripe',
     url:
       'obj=a/o/st1_s1&src=STRIPE_PRIMARY_COLOR&show&obj=a/o/st2_t1&src=STRIPE_SECONDARY_COLOR&show&',
   },
   {
+    key: 'claw_stripe',
     name: 'Claw Stripe',
     url:
       'obj=a/o/st1_s5&src=STRIPE_PRIMARY_COLOR&show&obj=a/o/st2_t5&src=STRIPE_SECONDARY_COLOR&show&',
   },
   {
+    key: 'power_stripe',
     name: 'Power Stripe',
     url:
       'obj=a/o/st1_s4&src=STRIPE_PRIMARY_COLOR&show&obj=a/o/st2_t4&src=STRIPE_SECONDARY_COLOR&show&',
   },
   {
+    key: 'speed_stripe',
     name: 'Speed Stripe',
     url:
       'obj=a/o/st1_s6&src=STRIPE_PRIMARY_COLOR&show&obj=a/o/st2_t6&src=STRIPE_SECONDARY_COLOR&show&',
   },
   {
+    key: 'stinger_stripe',
     name: 'Stinger Stripe',
     url:
       'obj=a/o/st1_s8&src=STRIPE_PRIMARY_COLOR&show&obj=a/o/st2_t8&src=STRIPE_SECONDARY_COLOR&show&',
   },
   {
+    key: 'wings_stripe',
     name: 'Wings Stripe',
     url:
       'obj=a/o/st1_s9&src=STRIPE_PRIMARY_COLOR&show&obj=a/o/st2_t9&src=STRIPE_SECONDARY_COLOR&show&',
-  },
-  {
-    name: 'No Stripe',
-    url: 'obj=a/o/st1_s0&show&obj=a/o/st2_t0&show',
   },
 ]
 
 const PANTS_STRIPE_OPTIONS = [
   ...JERSEY_STRIPE_OPTIONS,
   {
+    key: 'solid_stripe',
     name: 'Solid Stripe',
     url: 'obj=a/o/st1_sd&src=STRIPE_PRIMARY_COLOR&show&obj=a/o/st2_t0&show',
   },
@@ -583,6 +588,14 @@ const DECORATIONS = {
         },
       },
     },
+    sleeve_number: {
+      label: 'Sleeve Number',
+      options: {
+        lable: 'Number',
+        url:
+          '&obj=a/o/sln&decal&show&res=35.78947368421053&pos=0,0&src=fxg{APP18_pn1_jht_playernumber?&$application=APPLICATION_TYPE&$text=PLAYERNUMBER&$font=NUMBERFONT&$text_color=NUMBERTEXTCOLOR&$stroke_color=NUMBERSTROKECOLOR}',
+      },
+    },
   },
 }
 
@@ -592,8 +605,38 @@ const DESIGN_PANELS = [
     title: 'Jersey Front Text',
   },
   {
-    key: 'jersey-team-crest',
-    title: 'Jersey Team Crest',
+    key: 'jersey-sleeve',
+    title: 'Jersey Sleeve',
+    options: [
+      { key: 'jersey_team_crest', label: 'Team Crest' },
+      { key: 'jersey_sleeve_number', label: 'Number' },
+      { key: 'jersey_sleeve_stripe', label: 'Stripes' },
+      { key: 'none', label: 'None' },
+    ],
+    children: {
+      jersey_team_crest: { type: 'simple' },
+      jersey_sleeve_number: { type: 'simple' },
+      jersey_sleeve_stripe: { type: 'complex', options: JERSEY_STRIPE_OPTIONS },
+      none: {
+        type: 'static',
+        options: [
+          {
+            key: 'no_stripe',
+            name: 'No Stripe',
+            url: 'obj=a/o/st1_s0&show&obj=a/o/st2_t0&show&',
+          },
+        ],
+      },
+    },
+  },
+  {
+    key: 'pant-sides',
+    title: 'Pant Sides',
+    options: [],
+    children: [
+      { key: 'pant_team_name', label: 'Team Name' },
+      { key: 'pant_stripe', label: 'Stripes' },
+    ],
   },
 ]
 
