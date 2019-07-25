@@ -591,9 +591,16 @@ const DECORATIONS = {
     sleeve_number: {
       label: 'Sleeve Number',
       options: {
-        lable: 'Number',
+        label: 'Number',
         url:
           '&obj=a/o/sln&decal&show&res=35.78947368421053&pos=0,0&src=fxg{APP18_pn1_jht_playernumber?&$application=APPLICATION_TYPE&$text=PLAYERNUMBER&$font=NUMBERFONT&$text_color=NUMBERTEXTCOLOR&$stroke_color=NUMBERSTROKECOLOR}',
+      },
+    },
+    sleeve_no_stripe: {
+      label: 'No Stripe',
+      options: {
+        label: 'No Stripe',
+        url: 'obj=a/o/st1_s0&show&obj=a/o/st2_t0&show&',
       },
     },
   },
@@ -614,18 +621,18 @@ const DESIGN_PANELS = [
       { key: 'none', label: 'None' },
     ],
     children: {
-      jersey_team_crest: { type: 'simple' },
-      jersey_sleeve_number: { type: 'simple' },
+      jersey_team_crest: {
+        type: 'simple',
+        options: DECORATIONS.jersey.team_crest,
+      },
+      jersey_sleeve_number: {
+        type: 'simple',
+        options: DECORATIONS.jersey.sleeve_number,
+      },
       jersey_sleeve_stripe: { type: 'complex', options: JERSEY_STRIPE_OPTIONS },
       none: {
-        type: 'static',
-        options: [
-          {
-            key: 'no_stripe',
-            name: 'No Stripe',
-            url: 'obj=a/o/st1_s0&show&obj=a/o/st2_t0&show&',
-          },
-        ],
+        type: 'simple',
+        url: DECORATIONS.jersey.sleeve_no_stripe,
       },
     },
   },
