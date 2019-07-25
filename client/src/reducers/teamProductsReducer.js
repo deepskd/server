@@ -9,6 +9,7 @@ import {
   LOGO_COLOR_CHANGED,
   JERSEY_TEXT_SIZE_CHANGED,
   JERSEY_TEXT_STYLE_CHANGED,
+  JERSEY_SLEEVE_UPDATED,
 } from '../actions/types'
 
 export default (state = [], action) => {
@@ -31,6 +32,8 @@ export default (state = [], action) => {
       return updateJerseyTextSize(state, action.payload)
     case JERSEY_TEXT_STYLE_CHANGED:
       return updateJerseyTextStyle(state, action.payload)
+    case JERSEY_SLEEVE_UPDATED:
+      return updateJerseySleeve(state, action.payload)
     default:
       return state
   }
@@ -229,6 +232,63 @@ const updateJerseyTextStyle = (
   return newState
 }
 
+const updateJerseySleeve = (
+  state,
+  { uniformType, colorType, sleeveOption, sleeveStripe }
+) => {
+  let newState = { ...state }
+  console.log(sleeveOption)
+  if (uniformType === 'jersey') {
+    let jersey = _.clone(state.products[colorType].jersey)
+    switch (sleeveOption) {
+      case 'none':
+        jersey.sleeveOption = 'none'
+        jersey.sleeveNumber = ''
+        jersey.crestLeftSleeve = ''
+        jersey.rightSleeve = ''
+        jersey.sleeveStripe =
+          state.products.decorations.jersey.sleeve_no_stripe.options.url
+        jersey.frontImage = updateJersey(jersey, state.products)
+        newState.products[colorType].jersey = jersey
+        break
+      case 'jersey_sleeve_number':
+        jersey.sleeveOption = 'number'
+        jersey.crestLeftSleeve = ''
+        jersey.rightSleeve = ''
+        jersey.sleeveNumber =
+          state.products.decorations.jersey.sleeve_number.options.url
+        jersey.sleeveStripe =
+          state.products.decorations.jersey.sleeve_no_stripe.options.url
+        jersey.frontImage = updateJersey(jersey, state.products)
+        newState.products[colorType].jersey = jersey
+        break
+      case 'jersey_team_crest':
+        jersey.sleeveOption = 'crest'
+        jersey.sleeveNumber = ''
+        jersey.crestLeftSleeve = ''
+        jersey.rightSleeve = ''
+        jersey.sleeveStripe =
+          state.products.decorations.jersey.sleeve_no_stripe.options.url
+        jersey.frontImage = updateJersey(jersey, state.products)
+        newState.products[colorType].jersey = jersey
+        break
+      case 'jersey_sleeve_stripe':
+        jersey.sleeveOption = 'stripe'
+        jersey.sleeveNumber = ''
+        jersey.crestLeftSleeve = ''
+        jersey.rightSleeve = ''
+        jersey.sleeveStripe = sleeveStripe
+        jersey.frontImage = updateJersey(jersey, state.products)
+        newState.products[colorType].jersey = jersey
+        break
+      default:
+        return newState
+    }
+  }
+
+  return newState
+}
+
 const updateJersey = (
   {
     baseImageURL,
@@ -243,6 +303,8 @@ const updateJersey = (
     crestRightSleeve = '',
     textSize = '',
     textStyle = '',
+    sleeveNumber = '',
+    sleeveStripe = '',
   },
   { selectedFont, decorations }
 ) => {
@@ -270,10 +332,12 @@ const updateJersey = (
   }
 
   return _.chain(baseImageURL)
+    .replace(/SLEEVE_STRIPES/, sleeveStripe)
     .replace(/JERSEYTEXT_UPPERFRONT/, upperFront)
     .replace(/JERSEYTEXT_LOWERFRONT/, lowerFront)
     .replace(/BASECOLOR/, baseColorCode)
     .replace(/LOGOCOLOR/, logoColorCode)
+    .replace(/SLEEVE_NUMBER/, sleeveNumber)
     .replace(/(TEAM|NUMBER)TEXTCOLOR/g, textColorCode)
     .replace(/(TEAM|NUMBER)STROKECOLOR/g, strokeColorCode)
     .replace(/TEAMNAME/, frontText)

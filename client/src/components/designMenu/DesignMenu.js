@@ -7,6 +7,7 @@ import TeamCrest from './TeamCrest'
 import LogoColor from './LogoColor'
 import JerseyTextSize from './JerseyTextSize'
 import JerseyTextStyle from './JerseyTextStyle'
+import JerseySleeve from './JerseySleeve'
 
 class DesignMenu extends Component {
   constructor(props) {
@@ -47,6 +48,8 @@ class DesignMenu extends Component {
             uniformType="pant"
           />
         )
+      case 'jersey-sleeve':
+        return <JerseySleeve products={products} activeTab={activeTab} />
       default:
         return ''
     }
