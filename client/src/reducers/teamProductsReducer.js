@@ -242,7 +242,7 @@ const updateJerseySleeve = (
     let jersey = _.clone(state.products[colorType].jersey)
     switch (sleeveOption) {
       case 'none':
-        jersey.sleeveOption = 'none'
+        jersey.sleeveOption = sleeveOption
         jersey.sleeveNumber = ''
         jersey.crestLeftSleeve = ''
         jersey.rightSleeve = ''
@@ -252,7 +252,7 @@ const updateJerseySleeve = (
         newState.products[colorType].jersey = jersey
         break
       case 'jersey_sleeve_number':
-        jersey.sleeveOption = 'number'
+        jersey.sleeveOption = sleeveOption
         jersey.crestLeftSleeve = ''
         jersey.rightSleeve = ''
         jersey.sleeveNumber =
@@ -263,7 +263,7 @@ const updateJerseySleeve = (
         newState.products[colorType].jersey = jersey
         break
       case 'jersey_team_crest':
-        jersey.sleeveOption = 'crest'
+        jersey.sleeveOption = sleeveOption
         jersey.sleeveNumber = ''
         jersey.crestLeftSleeve = ''
         jersey.rightSleeve = ''
@@ -273,7 +273,7 @@ const updateJerseySleeve = (
         newState.products[colorType].jersey = jersey
         break
       case 'jersey_sleeve_stripe':
-        jersey.sleeveOption = 'stripe'
+        jersey.sleeveOption = sleeveOption
         jersey.sleeveNumber = ''
         jersey.crestLeftSleeve = ''
         jersey.rightSleeve = ''
