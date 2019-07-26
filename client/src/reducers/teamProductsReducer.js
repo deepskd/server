@@ -237,7 +237,6 @@ const updateJerseySleeve = (
   { uniformType, colorType, sleeveOption, sleeveStripe }
 ) => {
   let newState = { ...state }
-  console.log(sleeveOption)
   if (uniformType === 'jersey') {
     let jersey = _.clone(state.products[colorType].jersey)
     switch (sleeveOption) {
@@ -245,6 +244,7 @@ const updateJerseySleeve = (
         jersey.sleeveOption = sleeveOption
         jersey.sleeveNumber = ''
         jersey.crestLeftSleeve = ''
+        jersey.crestRightSleeve = ''
         jersey.rightSleeve = ''
         jersey.sleeveStripe =
           state.products.decorations.jersey.sleeve_no_stripe.options.url
@@ -254,6 +254,7 @@ const updateJerseySleeve = (
       case 'jersey_sleeve_number':
         jersey.sleeveOption = sleeveOption
         jersey.crestLeftSleeve = ''
+        jersey.crestRightSleeve = ''
         jersey.rightSleeve = ''
         jersey.sleeveNumber =
           state.products.decorations.jersey.sleeve_number.options.url
@@ -266,6 +267,7 @@ const updateJerseySleeve = (
         jersey.sleeveOption = sleeveOption
         jersey.sleeveNumber = ''
         jersey.crestLeftSleeve = ''
+        jersey.crestRightSleeve = ''
         jersey.rightSleeve = ''
         jersey.sleeveStripe =
           state.products.decorations.jersey.sleeve_no_stripe.options.url
@@ -277,7 +279,10 @@ const updateJerseySleeve = (
         jersey.sleeveNumber = ''
         jersey.crestLeftSleeve = ''
         jersey.rightSleeve = ''
-        jersey.sleeveStripe = sleeveStripe
+        jersey.crestRightSleeve = ''
+        jersey.sleeveStripe =
+          sleeveStripe ||
+          state.products.decorations.jersey.sleeve_no_stripe.options.url
         jersey.frontImage = updateJersey(jersey, state.products)
         newState.products[colorType].jersey = jersey
         break
@@ -338,6 +343,8 @@ const updateJersey = (
     .replace(/BASECOLOR/, baseColorCode)
     .replace(/LOGOCOLOR/, logoColorCode)
     .replace(/SLEEVE_NUMBER/, sleeveNumber)
+    .replace(/STRIPE_PRIMARY_COLOR/, textColorCode)
+    .replace(/STRIPE_SECONDARY_COLOR/, strokeColorCode)
     .replace(/(TEAM|NUMBER)TEXTCOLOR/g, textColorCode)
     .replace(/(TEAM|NUMBER)STROKECOLOR/g, strokeColorCode)
     .replace(/TEAMNAME/, frontText)

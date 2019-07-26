@@ -7,6 +7,7 @@ import { connect } from 'react-redux'
 import { jerseySleeveUpdated } from '../../actions'
 
 import TeamCrest from './TeamCrest'
+import SleeveStripes from './SleeveStripes'
 
 class JerseySleeve extends Component {
   constructor(props) {
@@ -64,6 +65,15 @@ class JerseySleeve extends Component {
         return (
           <Grid.Row centered>
             <TeamCrest
+              products={this.props.products}
+              activeTab={this.props.activeTab}
+            />
+          </Grid.Row>
+        )
+      case 'jersey_sleeve_stripe':
+        return (
+          <Grid.Row centered>
+            <SleeveStripes
               products={this.props.products}
               activeTab={this.props.activeTab}
             />

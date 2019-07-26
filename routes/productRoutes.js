@@ -45,7 +45,8 @@ const football = (team, applicationType = 'heat_transfer') => {
 
   jersey.sleeveOption = 'none'
   jersey.sleeveNumber = ''
-  jersey.sleeveStripe = a1PrimeKnitUniform.DECORATIONS.jersey.sleeve_no_stripe
+  jersey.sleeveStripe =
+    a1PrimeKnitUniform.DECORATIONS.jersey.sleeve_no_stripe.options.url
 
   jersey.frontImage = _.chain(jersey.baseImageURL)
     .replace(
@@ -74,7 +75,13 @@ const football = (team, applicationType = 'heat_transfer') => {
   pant.baseColorHex = pantParams.hex
   pant.logoColorCode = pantParams.logo
 
+  pant.sideOption = 'pant_stripe'
+  pant.sideStripe =
+    a1PrimeKnitUniform.DECORATIONS.pant.side_default_stripe.options.url
+  pant.sideTeamName = ''
+
   pant.frontImage = _.chain(pant.baseImageURL)
+    .replace(/PANTS_STRIPES/, pant.sideStripe)
     .replace(/BASECOLOR/, pant.baseColorCode)
     .replace(/LOGOCOLOR/, pant.logoColorCode)
     .value()
@@ -110,8 +117,10 @@ const football = (team, applicationType = 'heat_transfer') => {
   jersey.baseColorHex = jerseyParams.hex
 
   jersey.sleeveOption = 'none'
+  // jersey.sleeveTypeKey = 'none'
   jersey.sleeveNumber = ''
-  jersey.sleeveStripe = a1PrimeKnitUniform.DECORATIONS.jersey.sleeve_no_stripe
+  jersey.sleeveStripe =
+    a1PrimeKnitUniform.DECORATIONS.jersey.sleeve_no_stripe.options.url
 
   if (a1PrimeKnitUniform.DECORATIONS.jersey.text) {
     const { upper_front } = a1PrimeKnitUniform.DECORATIONS.jersey.text
@@ -148,7 +157,13 @@ const football = (team, applicationType = 'heat_transfer') => {
   pant.baseColorHex = pantParams.hex
   pant.logoColorCode = pantParams.logo
 
+  pant.sideOption = 'pant_stripe'
+  pant.sideStripe =
+    a1PrimeKnitUniform.DECORATIONS.pant.side_default_stripe.options.url
+  pant.sideTeamName = ''
+
   pant.frontImage = _.chain(pant.baseImageURL)
+    .replace(/PANTS_STRIPES/, pant.sideStripe)
     .replace(/BASECOLOR/, pant.baseColorCode)
     .replace(/LOGOCOLOR/, pant.logoColorCode)
     .value()

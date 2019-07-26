@@ -20,7 +20,7 @@ const PANTS_URL = `https://embodee.adidas.com/api2/rewrite/adidas16/is/image/adi
 {adidasAGRender/APP18_pn1_pco_1?&obj=a/f/nvr&show\
 &obj=a/m/bas&src=BASECOLOR&show&\
 obj=a/s/shg&show&\
-&PANTS_STRIPES&\
+PANTS_STRIPES\
 obj=a/o/log&src=LOGOCOLOR&show&\
 obj=a&req=object}&resMode=sharp2&wid=250&op_usm=1.2,1,4,0`
 
@@ -426,11 +426,10 @@ const awayDecorations = ({ jersey, pant }, colors) => {
     .replace(/(TEAM|NUMBER)STROKECOLOR/g, jersey.strokeColorCode)
     .value()
 
-  pant.frontImage = _.replace(
-    pant.frontImage,
-    'PANTS_STRIPES',
-    stripesOnPants(pant.strokeColor1Code, pant.strokeColor2Code).url
-  )
+  pant.frontImage = _.chain(pant.frontImage)
+    .replace(/STRIPE_PRIMARY_COLOR/, pant.strokeColor1Code)
+    .replace(/STRIPE_SECONDARY_COLOR/, pant.strokeColor2Code)
+    .value()
 
   return { jersey, pant }
 }
@@ -474,77 +473,65 @@ const homeDecorations = ({ jersey, pant }, colors) => {
     .replace(/(TEAM|NUMBER)STROKECOLOR/g, jersey.strokeColorCode)
     .value()
 
-  pant.frontImage = _.replace(
-    pant.frontImage,
-    'PANTS_STRIPES',
-    stripesOnPants(pant.strokeColor1Code, pant.strokeColor2Code).url
-  )
-
+  pant.frontImage = _.chain(pant.frontImage)
+    .replace(/STRIPE_PRIMARY_COLOR/, pant.strokeColor1Code)
+    .replace(/STRIPE_SECONDARY_COLOR/, pant.strokeColor2Code)
+    .value()
   return { jersey, pant }
-}
-
-const stripesOnPants = (primaryColor, secondaryColor) => {
-  let stripe = _.sample(PANTS_STRIPE_OPTIONS)
-
-  stripe.url = _.chain(stripe.url)
-    .replace('STRIPE_PRIMARY_COLOR', primaryColor)
-    .replace('STRIPE_SECONDARY_COLOR', secondaryColor)
-
-  return stripe
 }
 
 const JERSEY_STRIPE_OPTIONS = [
   {
     key: 'two_stripe',
-    name: 'Two Stripe',
+    label: 'Two Stripe',
     url:
-      'obj=a/o/st1_s2&src=STRIPE_PRIMARY_COLOR&show&obj=a/o/st2_t2&src=STRIPE_SECONDARY_COLOR&show',
+      'obj=a/o/st1_s2&src=STRIPE_PRIMARY_COLOR&show&obj=a/o/st2_t2&src=STRIPE_SECONDARY_COLOR&show&',
   },
   {
     key: 'three_thin_stripes',
-    name: 'Three Thin Stripes',
+    label: 'Three Thin Stripes',
     url:
-      'obj=a/o/st1_s3&src=STRIPE_PRIMARY_COLOR&show&obj=a/o/st2_t3&src=STRIPE_SECONDARY_COLOR&show',
+      'obj=a/o/st1_s3&src=STRIPE_PRIMARY_COLOR&show&obj=a/o/st2_t3&src=STRIPE_SECONDARY_COLOR&show&',
   },
   {
-    key: 'three_thin_stripes',
-    name: 'Burner Stripe',
+    key: 'burner_stripes',
+    label: 'Burner Stripe',
     url:
-      '&obj=a/o/st1_s7&src=STRIPE_PRIMARY_COLOR&show&obj=a/o/st2_t7&src=STRIPE_SECONDARY_COLOR&show&',
+      'obj=a/o/st1_s7&src=STRIPE_PRIMARY_COLOR&show&obj=a/o/st2_t7&src=STRIPE_SECONDARY_COLOR&show&',
   },
   {
     key: 'classic_stripe',
-    name: 'Classic Stripe',
+    label: 'Classic Stripe',
     url:
       'obj=a/o/st1_s1&src=STRIPE_PRIMARY_COLOR&show&obj=a/o/st2_t1&src=STRIPE_SECONDARY_COLOR&show&',
   },
   {
     key: 'claw_stripe',
-    name: 'Claw Stripe',
+    label: 'Claw Stripe',
     url:
       'obj=a/o/st1_s5&src=STRIPE_PRIMARY_COLOR&show&obj=a/o/st2_t5&src=STRIPE_SECONDARY_COLOR&show&',
   },
   {
     key: 'power_stripe',
-    name: 'Power Stripe',
+    label: 'Power Stripe',
     url:
       'obj=a/o/st1_s4&src=STRIPE_PRIMARY_COLOR&show&obj=a/o/st2_t4&src=STRIPE_SECONDARY_COLOR&show&',
   },
   {
     key: 'speed_stripe',
-    name: 'Speed Stripe',
+    label: 'Speed Stripe',
     url:
       'obj=a/o/st1_s6&src=STRIPE_PRIMARY_COLOR&show&obj=a/o/st2_t6&src=STRIPE_SECONDARY_COLOR&show&',
   },
   {
     key: 'stinger_stripe',
-    name: 'Stinger Stripe',
+    label: 'Stinger Stripe',
     url:
       'obj=a/o/st1_s8&src=STRIPE_PRIMARY_COLOR&show&obj=a/o/st2_t8&src=STRIPE_SECONDARY_COLOR&show&',
   },
   {
     key: 'wings_stripe',
-    name: 'Wings Stripe',
+    label: 'Wings Stripe',
     url:
       'obj=a/o/st1_s9&src=STRIPE_PRIMARY_COLOR&show&obj=a/o/st2_t9&src=STRIPE_SECONDARY_COLOR&show&',
   },
@@ -554,8 +541,8 @@ const PANTS_STRIPE_OPTIONS = [
   ...JERSEY_STRIPE_OPTIONS,
   {
     key: 'solid_stripe',
-    name: 'Solid Stripe',
-    url: 'obj=a/o/st1_sd&src=STRIPE_PRIMARY_COLOR&show&obj=a/o/st2_t0&show',
+    label: 'Solid Stripe',
+    url: 'obj=a/o/st1_sd&src=STRIPE_PRIMARY_COLOR&show&obj=a/o/st2_t0&show&',
   },
 ]
 
@@ -604,6 +591,31 @@ const DECORATIONS = {
       },
     },
   },
+  pant: {
+    side_no_Stripe: {
+      label: 'No Stripe',
+      options: {
+        label: 'No Stripe',
+        url: 'obj=a/o/st1_s0&show&obj=a/o/st2_t0&show&',
+      },
+    },
+    side_default_stripe: {
+      label: 'Default Stripe',
+      options: {
+        key: 'classic_stripe',
+        label: 'Classic Stripe',
+        url:
+          'obj=a/o/st1_s1&src=STRIPE_PRIMARY_COLOR&show&obj=a/o/st2_t1&src=STRIPE_SECONDARY_COLOR&show&',
+      },
+    },
+    side_text: {
+      label: 'Text',
+      options: {
+        label: 'Team Name',
+        url: '',
+      },
+    },
+  },
 }
 
 const DESIGN_PANELS = [
@@ -617,32 +629,25 @@ const DESIGN_PANELS = [
     options: [
       { key: 'jersey_team_crest', label: 'Team Crest' },
       { key: 'jersey_sleeve_number', label: 'Number' },
-      { key: 'jersey_sleeve_stripe', label: 'Stripes' },
+      {
+        key: 'jersey_sleeve_stripe',
+        label: 'Stripes',
+        options: JERSEY_STRIPE_OPTIONS,
+      },
       { key: 'none', label: 'None' },
     ],
-    children: {
-      jersey_team_crest: {
-        type: 'simple',
-        options: DECORATIONS.jersey.team_crest,
-      },
-      jersey_sleeve_number: {
-        type: 'simple',
-        options: DECORATIONS.jersey.sleeve_number,
-      },
-      jersey_sleeve_stripe: { type: 'complex', options: JERSEY_STRIPE_OPTIONS },
-      none: {
-        type: 'simple',
-        url: DECORATIONS.jersey.sleeve_no_stripe,
-      },
-    },
   },
   {
     key: 'pant-sides',
     title: 'Pant Sides',
-    options: [],
-    children: [
+    options: [
       { key: 'pant_team_name', label: 'Team Name' },
-      { key: 'pant_stripe', label: 'Stripes' },
+      {
+        key: 'pant_stripe',
+        label: 'Stripes',
+        options: PANTS_STRIPE_OPTIONS,
+        default: true,
+      },
     ],
   },
 ]
