@@ -22,7 +22,7 @@ class PantStripes extends Component {
     const { activeTab } = nextProps.activeTab
     if (
       home.pant.sideStripe !== this.props.products.home.pant.sideStripe ||
-      away.pant.sideStripe !== this.props.productsaway.pant.sideStripe
+      away.pant.sideStripe !== this.props.products.away.pant.sideStripe
     ) {
       return this.setState({
         sideStripe: {
@@ -53,6 +53,7 @@ class PantStripes extends Component {
     props.colorType = activeTab
     props.sideOption = 'pant_stripe'
     props.sideStripe = value
+
     this.props.pantSideUpdated(props)
   }
 

@@ -10,6 +10,7 @@ import {
   JERSEY_TEXT_SIZE_CHANGED,
   JERSEY_TEXT_STYLE_CHANGED,
   JERSEY_SLEEVE_UPDATED,
+  PANT_SIDE_UPDATED,
 } from '../actions/types'
 
 export default (state = [], action) => {
@@ -34,6 +35,8 @@ export default (state = [], action) => {
       return updateJerseyTextStyle(state, action.payload)
     case JERSEY_SLEEVE_UPDATED:
       return updateJerseySleeve(state, action.payload)
+    case PANT_SIDE_UPDATED:
+      return updatePantSide(state, action.payload)
     default:
       return state
   }
@@ -294,6 +297,37 @@ const updateJerseySleeve = (
   return newState
 }
 
+const updatePantSide = (
+  state,
+  { uniformType, colorType, sideOption, sideStripe, sideText }
+) => {
+  let newState = { ...state }
+  if (uniformType === 'pant') {
+    let pant = _.clone(state.products[colorType].pant)
+    switch (sideOption) {
+      case 'pant_stripe':
+        pant.pantStripe = sideOption
+        pant.sideStripe = sideStripe
+        pant.frontImage = updatePant(pant)
+        newState.products[colorType].pant = pant
+        break
+      case 'pant_team_name':
+        pant.pantStripe = sideOption
+        pant.sideStripe =
+          state.products.decorations.pant.side_no_stripe.options.url
+        pant.sideText = sideText
+        pant.frontImage = updatePant(pant)
+        newState.products[colorType].pant = pant
+        break
+      default:
+        return newState
+    }
+    return newState
+  }
+
+  return newState
+}
+
 const updateJersey = (
   {
     baseImageURL,
@@ -364,10 +398,16 @@ const updatePant = ({
   logoColorCode,
   textColorCode,
   strokeColorCode,
+  sideStripe,
+  strokeColor1,
+  strokeColor2,
 }) =>
   _.chain(baseImageURL)
+    .replace(/PANTS_STRIPES/, sideStripe)
     .replace(/BASECOLOR/, baseColorCode)
     .replace(/LOGOCOLOR/, logoColorCode)
     .replace(/TEAMTEXTCOLOR/g, textColorCode)
     .replace(/TEAMSTROKECOLOR/, strokeColorCode)
+    .replace(/STRIPE_PRIMARY_COLOR/, strokeColor1)
+    .replace(/STRIPE_SECONDARY_COLOR/, strokeColor2)
     .value()
