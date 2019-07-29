@@ -344,6 +344,7 @@ const updateJersey = (
     textStyle = '',
     sleeveNumber = '',
     sleeveStripe = '',
+    numberOptions = {},
   },
   { selectedFont, decorations }
 ) => {
@@ -374,6 +375,8 @@ const updateJersey = (
     .replace(/SLEEVE_STRIPES/, sleeveStripe)
     .replace(/JERSEYTEXT_UPPERFRONT/, upperFront)
     .replace(/JERSEYTEXT_LOWERFRONT/, lowerFront)
+    .replace(/NUMBER_FRONT/, numberOptions.frontUrl)
+    .replace(/NUMBER_BACK/, numberOptions.backUrl)
     .replace(/BASECOLOR/, baseColorCode)
     .replace(/LOGOCOLOR/, logoColorCode)
     .replace(/SLEEVE_NUMBER/, sleeveNumber)
