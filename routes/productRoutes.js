@@ -48,6 +48,16 @@ const football = (team, applicationType = 'heat_transfer') => {
   jersey.sleeveStripe =
     a1PrimeKnitUniform.DECORATIONS.jersey.sleeve_no_stripe.options.url
 
+  let numberOptions = {}
+  const { front, back } = a1PrimeKnitUniform.DECORATIONS.jersey.number
+  numberOptions.frontSize = front.options.size[0]
+  numberOptions.frontUrl = front.options[`${numberOptions.frontSize}`].url
+
+  numberOptions.backSize = back.options.size[0]
+  numberOptions.backUrl = back.options[`${numberOptions.backSize}`].url
+
+  jersey.numberOptions = numberOptions
+
   jersey.frontImage = _.chain(jersey.baseImageURL)
     .replace(
       /JERSEYTEXT_UPPERFRONT/,
@@ -55,6 +65,8 @@ const football = (team, applicationType = 'heat_transfer') => {
         .small_straight.url
     )
     .replace(/SLEEVE_STRIPES/, jersey.sleeveStripe)
+    .replace(/NUMBER_FRONT/, jersey.numberOptions.frontUrl)
+    .replace(/NUMBER_BACK/, jersey.numberOptions.backUrl)
     .replace(/SLEEVE_NUMBER/, jersey.sleeveNumber)
     .replace(/TEAMNAME/, jersey.frontText)
     .replace(/APPLICATION_TYPE/g, applicationType)
@@ -130,6 +142,8 @@ const football = (team, applicationType = 'heat_transfer') => {
     }
   }
 
+  jersey.numberOptions = numberOptions //inherits same number options
+
   jersey.frontImage = _.chain(jersey.baseImageURL)
     .replace(
       /JERSEYTEXT_UPPERFRONT/,
@@ -137,6 +151,8 @@ const football = (team, applicationType = 'heat_transfer') => {
         .small_straight.url
     )
     .replace(/SLEEVE_STRIPES/, jersey.sleeveStripe)
+    .replace(/NUMBER_FRONT/, jersey.numberOptions.frontUrl)
+    .replace(/NUMBER_BACK/, jersey.numberOptions.backUrl)
     .replace(/SLEEVE_NUMBER/, jersey.sleeveNumber)
     .replace(/TEAMNAME/, jersey.frontText)
     .replace(/APPLICATION_TYPE/g, applicationType)
