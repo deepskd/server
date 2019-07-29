@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import _ from 'lodash'
 import { Grid, Dropdown } from 'semantic-ui-react'
 
+import PantStripes from './PantStripes'
+
 class PantSides extends Component {
   constructor(props) {
     super(props)
@@ -22,7 +24,7 @@ class PantSides extends Component {
       away.pant.sideOption !== this.props.products.away.pant.sideOption
     ) {
       return this.setState({
-        value: {
+        sideOption: {
           home: home.pant.sideOption,
           away: away.pant.sideOption,
         },
@@ -31,7 +33,7 @@ class PantSides extends Component {
 
     if (activeTab !== this.props.activeTab) {
       this.setState({
-        value: {
+        sideOption: {
           home: home.pant.sideOption,
           away: away.pant.sideOption,
         },
@@ -50,7 +52,14 @@ class PantSides extends Component {
       case 'pant_team_name':
         return <Grid.Row centered>Under Construction</Grid.Row>
       case 'pant_stripe':
-        return <Grid.Row centered>Under Construction</Grid.Row>
+        return (
+          <Grid.Row centered>
+            <PantStripes
+              products={this.props.products}
+              activeTab={this.props.activeTab}
+            />
+          </Grid.Row>
+        )
       default:
         return <React.Component />
     }
