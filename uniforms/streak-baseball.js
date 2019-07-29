@@ -10,7 +10,8 @@ obj=a/o/sfr_g1&src=str_white&show&\
 obj=a/o/sf2_e1&src=str_white&show&\
 obj=a/o/log&src=LOGOCOLOR&show&\
 JERSEYTEXT_UPPERFRONT\
-obj=a/o/ubu&decal&show&res=13.421052631578947&pos=0,0&src=fxg{adidasAG/APP16_stm_jfb_playernumber?&$application=sublimation&$text=PLAYERNUMBER&$font=NUMBERFONT&$text_color=NUMBERTEXTCOLOR&$stroke_color=NUMBERSTROKECOLOR}&\
+NUMBER_FRONT\
+NUMBER_BACK\
 obj=a/o/ufl&decal&show&res=26.842105263157894&pos=0,0&src=fxg{adidasAG/APP16_stm_jfb_playernumber?&$application=sublimation&$text=PLAYERNUMBER&$font=NUMBERFONT&$text_color=NUMBERTEXTCOLOR&$stroke_color=NUMBERSTROKECOLOR}\
 TEAMCREST_LEFTSLEEVE\
 TEAMCREST_RIGHTSLEEVE\
@@ -169,6 +170,37 @@ const DECORATIONS = {
         },
       },
     },
+    number: {
+      label: 'Player Number',
+      front: {
+        label: 'Front',
+        options: {
+          size: ['small', 'large'],
+          small: {
+            label: '3 inches',
+            url: `obj=a/o/ufl&decal&show&res=26.842105263157894&pos=0,0&src=fxg{adidasAG/APP16_stm_jfb_playernumber?&$application=sublimation&$text=PLAYERNUMBER&$font=NUMBERFONT&$text_color=NUMBERTEXTCOLOR&$stroke_color=NUMBERSTROKECOLOR}`,
+          },
+          large: {
+            label: '3.9 inches',
+            url: `obj=a/o/ufl&decal&show&res=35.78947368421053&pos=0,0&src=fxg{adidasAG/APP16_stm_jfb_playernumber?&$application=sublimation&$text=PLAYERNUMBER&$font=NUMBERFONT&$text_color=NUMBERTEXTCOLOR&$stroke_color=NUMBERSTROKECOLOR}`,
+          },
+        },
+      },
+      back: {
+        label: 'Back',
+        options: {
+          size: ['small', 'large'],
+          small: {
+            label: '7.9 inches',
+            url: `obj=a/o/ubu&decal&show&res=13.421052631578947&pos=0,0&src=fxg{adidasAG/APP16_stm_jfb_playernumber?&$application=sublimation&$text=PLAYERNUMBER&$font=NUMBERFONT&$text_color=NUMBERTEXTCOLOR&$stroke_color=NUMBERSTROKECOLOR}&`,
+          },
+          large: {
+            label: '10 inches',
+            url: `obj=a/o/ubu&decal&show&res=10.526315789473683&pos=0,0&src=fxg{adidasAG/APP16_stm_jfb_playernumber?&$application=sublimation&$text=PLAYERNUMBER&$font=NUMBERFONT&$text_color=NUMBERTEXTCOLOR&$stroke_color=NUMBERSTROKECOLOR}&`,
+          },
+        },
+      },
+    },
   },
 }
 
@@ -176,6 +208,10 @@ const DESIGN_PANELS = [
   {
     key: 'jersey-front-text',
     title: 'Jersey Front Text',
+  },
+  {
+    key: 'jersey-number',
+    title: 'Jersey Player Number',
   },
   {
     key: 'jersey-team-crest',

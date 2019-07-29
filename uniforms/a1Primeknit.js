@@ -9,8 +9,8 @@ obj=a/o/log&src=LOGOCOLOR&show&\
 obj=a/o/cuf&src=CUFFCOLOR&show&\
 obj=a/o/pip&src=PIPECOLOR&show&\
 JERSEYTEXT_UPPERFRONT\
-obj=a/o/cfr&decal&show&res=10.567757977621218&pos=0,0&src=fxg{APP18_pn1_jht_playernumber?&$application=APPLICATION_TYPE&$text=PLAYERNUMBER&$font=NUMBERFONT&$text_color=NUMBERTEXTCOLOR&$stroke_color=NUMBERSTROKECOLOR}&\
-obj=a/o/cba&decal&show&res=8.800690250215704&pos=0,0&src=fxg{APP18_pn1_jht_playernumber?&$application=APPLICATION_TYPE&$text=PLAYERNUMBER&$font=NUMBERFONT&$text_color=NUMBERTEXTCOLOR&$stroke_color=NUMBERSTROKECOLOR}&\
+NUMBER_FRONT\
+NUMBER_BACK\
 SLEEVE_NUMBER\
 &obj=a&req=object}&resMode=sharp2&wid=250&op_usm=1.2,1,4,0\
 TEAMCREST_LEFTSLEEVE\
@@ -575,6 +575,29 @@ const DECORATIONS = {
         },
       },
     },
+    number: {
+      label: 'Player Number',
+      front: {
+        label: 'Front',
+        options: {
+          size: ['only'],
+          only: {
+            label: '10 inches',
+            url: `obj=a/o/cfr&decal&show&res=10.567757977621218&pos=0,0&src=fxg{APP18_pn1_jht_playernumber?&$application=APPLICATION_TYPE&$text=PLAYERNUMBER&$font=NUMBERFONT&$text_color=NUMBERTEXTCOLOR&$stroke_color=NUMBERSTROKECOLOR}&`,
+          },
+        },
+      },
+      back: {
+        label: 'Back',
+        options: {
+          size: ['only'],
+          only: {
+            label: '12 inches',
+            url: `obj=a/o/cba&decal&show&res=8.800690250215704&pos=0,0&src=fxg{APP18_pn1_jht_playernumber?&$application=APPLICATION_TYPE&$text=PLAYERNUMBER&$font=NUMBERFONT&$text_color=NUMBERTEXTCOLOR&$stroke_color=NUMBERSTROKECOLOR}&`,
+          },
+        },
+      },
+    },
     sleeve_number: {
       label: 'Sleeve Number',
       options: {
@@ -622,6 +645,10 @@ const DESIGN_PANELS = [
   {
     key: 'jersey-front-text',
     title: 'Jersey Front Text',
+  },
+  {
+    key: 'jersey-number',
+    title: 'Jersey Player Number',
   },
   {
     key: 'jersey-sleeve',
