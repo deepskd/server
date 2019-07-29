@@ -412,6 +412,23 @@ const jerseyFactory = (
     }
   }
 
+  let numberOptions = {}
+  if (uniform.DECORATIONS.jersey.number) {
+    const { front } = uniform.DECORATIONS.jersey.number
+    if (front) {
+      numberOptions.frontSize = front.options.size[0]
+      numberOptions.frontUrl = front.options[`${numberOptions.frontSize}`].url
+    }
+
+    const { back } = uniform.DECORATIONS.jersey.number
+    if (back) {
+      numberOptions.backSize = back.options.size[0]
+      numberOptions.backUrl = back.options[`${numberOptions.backSize}`].url
+    }
+  }
+
+  jersey.numberOptions = numberOptions
+
   jersey.strokeColor = secondaryColor
   jersey.strokeColorCode = uniform.colorMap(jersey.strokeColor)
 
@@ -420,6 +437,8 @@ const jerseyFactory = (
   jersey.frontImage = _.chain(jersey.baseImageURL)
     .replace(/JERSEYTEXT_UPPERFRONT/, upperFront)
     .replace(/JERSEYTEXT_LOWERFRONT/, lowerFront)
+    .replace(/NUMBER_FRONT/, jersey.numberOptions.frontUrl)
+    .replace(/NUMBER_BACK/, jersey.numberOptions.backUrl)
     .replace(/TEAMNAME/g, jersey.frontText)
     .replace(/BASECOLOR/, jersey.baseColorCode)
     .replace(/LOGOCOLOR/, jersey.logoColorCode)

@@ -12,7 +12,6 @@ obj=a/o/log&src=LOGOCOLOR&show&\
 JERSEYTEXT_UPPERFRONT\
 NUMBER_FRONT\
 NUMBER_BACK\
-obj=a/o/ufl&decal&show&res=26.842105263157894&pos=0,0&src=fxg{adidasAG/APP16_stm_jfb_playernumber?&$application=sublimation&$text=PLAYERNUMBER&$font=NUMBERFONT&$text_color=NUMBERTEXTCOLOR&$stroke_color=NUMBERSTROKECOLOR}\
 TEAMCREST_LEFTSLEEVE\
 TEAMCREST_RIGHTSLEEVE\
 &obj=a&req=object}&resMode=sharp2&wid=250&op_usm=1.2,1,4,0`
