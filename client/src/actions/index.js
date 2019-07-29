@@ -12,6 +12,7 @@ import {
   JERSEY_TEXT_SIZE_CHANGED,
   JERSEY_TEXT_STYLE_CHANGED,
   JERSEY_SLEEVE_UPDATED,
+  PANT_SIDE_UPDATED,
 } from './types'
 
 export const findTeams = term => async dispatch => {
@@ -96,6 +97,13 @@ export const jerseyTextSizeChanged = props => {
 export const jerseySleeveUpdated = props => {
   return {
     type: JERSEY_SLEEVE_UPDATED,
+    payload: props,
+  }
+}
+
+export const pantSideUpdated = props => {
+  return {
+    type: PANT_SIDE_UPDATED,
     payload: props,
   }
 }
