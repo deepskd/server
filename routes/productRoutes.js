@@ -481,7 +481,9 @@ const pantFactory = (
   pant.baseImageURL = uniform.PANTS_URL
   pant.baseColor = baseColor
   pant.baseColorCode = uniform.colorMap(pant.baseColor)
-  pant.baseColorHex = uniform.BASEOPTIONS.pant[pant.baseColorCode].hex
+  pant.baseColorHex = uniform.BASEOPTIONS.pant[pant.baseColorCode]
+    ? uniform.BASEOPTIONS.pant[pant.baseColorCode].hex
+    : '#ffffff' // some articles may not have a option in the base color, defaults to white
 
   pant.logoColor = logoColor
   pant.logoColorCode = uniform.colorMap(pant.logoColor)
