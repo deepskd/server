@@ -344,6 +344,7 @@ const updateJersey = (
     textStyle = '',
     sleeveNumber = '',
     sleeveStripe = '',
+    playerNumber = '',
     numberOptions = {},
   },
   { selectedFont, decorations }
@@ -387,7 +388,7 @@ const updateJersey = (
     .replace(/TEAMNAME/, frontText)
     .replace(/(TEAM|NUMBER)FONT/g, selectedFont)
     .replace(/APPLICATION_TYPE/g, 'heat_transfer') //TODO needs to be fixed in later version
-    .replace(/PLAYERNUMBER/g, _.random(0, 99))
+    .replace(/PLAYERNUMBER/g, playerNumber)
     .replace(/CUFFCOLOR/, cuffColorCode)
     .replace(/PIPECOLOR/, pipeColorCode)
     .replace(/TEAMCREST_LEFTSLEEVE/, crestLeftSleeve)

@@ -24,6 +24,7 @@ const football = (team, applicationType = 'heat_transfer') => {
   pant.price = '$155'
 
   jersey.frontText = mascot
+  jersey.playerNumber = playerNumber
   jersey.baseImageURL = a1PrimeKnitUniform.JERSEY_URL
 
   jersey.baseColor = team.colors ? team.colors[0] : 'black'
@@ -74,7 +75,7 @@ const football = (team, applicationType = 'heat_transfer') => {
     .replace(/LOGOCOLOR/, jersey.logoColorCode)
     .replace(/CUFFCOLOR/, jersey.cuffColorCode)
     .replace(/PIPECOLOR/, jersey.pipeColorCode)
-    .replace(/PLAYERNUMBER/g, playerNumber)
+    .replace(/PLAYERNUMBER/g, jersey.playerNumber)
     .replace(/(TEAM|NUMBER)FONT/g, font)
     .replace(/TEAMCREST_(LEFT|RIGHT)SLEEVE/g, '')
     .value()
@@ -112,6 +113,7 @@ const football = (team, applicationType = 'heat_transfer') => {
   pant.price = '$155'
 
   jersey.frontText = _.toUpper(_.replace(team.name, '/', ' '))
+  jersey.playerNumber = playerNumber
   jersey.frontText = _.chain(team.name)
     .truncate(12)
     .replace('/', ' ')
@@ -160,7 +162,7 @@ const football = (team, applicationType = 'heat_transfer') => {
     .replace(/LOGOCOLOR/, jersey.logoColorCode)
     .replace(/CUFFCOLOR/, jersey.cuffColorCode)
     .replace(/PIPECOLOR/, jersey.pipeColorCode)
-    .replace(/PLAYERNUMBER/g, playerNumber)
+    .replace(/PLAYERNUMBER/g, jersey.playerNumber)
     .replace(/(TEAM|NUMBER)FONT/g, font)
     .replace(/TEAMCREST_(LEFT|RIGHT)SLEEVE/g, '')
     .value()
@@ -399,6 +401,7 @@ const jerseyFactory = (
   jersey.price = price
 
   jersey.frontText = _.toUpper(frontText)
+  jersey.playerNumber = playerNumber
   jersey.baseImageURL = uniform.JERSEY_URL
 
   jersey.baseColor = baseColor
@@ -458,7 +461,7 @@ const jerseyFactory = (
     .replace(/TEAMNAME/g, jersey.frontText)
     .replace(/BASECOLOR/, jersey.baseColorCode)
     .replace(/LOGOCOLOR/, jersey.logoColorCode)
-    .replace(/PLAYERNUMBER/g, playerNumber)
+    .replace(/PLAYERNUMBER/g, jersey.playerNumber)
     .replace(/(TEAM|NUMBER)FONT/g, jersey.font)
     .replace(/(TEAM|NUMBER)TEXTCOLOR/g, jersey.textColorCode)
     .replace(/(TEAM|NUMBER)STROKECOLOR/g, jersey.strokeColorCode)
