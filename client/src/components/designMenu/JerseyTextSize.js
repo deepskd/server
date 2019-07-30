@@ -9,6 +9,7 @@ class JerseyTextSize extends Component {
   handleClick = (e, { name }) => {
     const props = {}
     props.uniformType = 'jersey'
+    props.attribute = { type: 'text', location: 'upper_front' }
     props.colorType = this.props.activeTab
     props.textSize = name
     this.props.jerseyTextSizeChanged(props)
@@ -27,6 +28,18 @@ class JerseyTextSize extends Component {
     })
   }
 
+  handleNumberSizeChange = (e, { name }) => {
+    const { loc, activeTab } = this.props
+    console.log(loc, activeTab, name)
+
+    const props = {}
+    props.uniformType = 'jersey'
+    props.attribute = { type: 'number', location: loc }
+    props.colorType = activeTab
+    props.textSize = name
+    this.props.jerseyTextSizeChanged(props)
+  }
+
   renderNumberSizeOptions = () => {
     const { loc } = this.props
     const sizeOptions = this.props.products.decorations.jersey.number[loc]
@@ -34,7 +47,9 @@ class JerseyTextSize extends Component {
     return sizeOptions.map((option, index) => {
       return (
         <React.Fragment key={index}>
-          <Button name={option}>{_.capitalize(option)}</Button>
+          <Button name={option} onClick={this.handleNumberSizeChange}>
+            {_.capitalize(option)}
+          </Button>
           {index === sizeOptions.length - 1 ? '' : <Button.Or />}
         </React.Fragment>
       )
