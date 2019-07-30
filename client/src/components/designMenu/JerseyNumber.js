@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 import { Input, Grid } from 'semantic-ui-react'
 
 class JerseyNumber extends Component {
