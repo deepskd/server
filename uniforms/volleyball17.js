@@ -207,11 +207,11 @@ const DECORATIONS = {
           size: ['small', 'large'],
           small: {
             label: '6 inches',
-            url: `obj=a/o/cbc&decal&show&res=13.22271195229453&pos=0,0&src=fxg{adidasAG/APP16_vuw_playernumber?&$application=sublimation&$text=PLAYERNUMBER&$font=NUMBERFONT&$text_color=NUMBERTEXTCOLOR&$stroke_color=NUMBERSTROKECOLOR}&`,
+            url: `obj=a/o/cbc&decal&show&res=17.65927977839335&pos=0,0&src=fxg{adidasAG/APP16_vuw_playernumber?&$application=sublimation&$text=PLAYERNUMBER&$font=NUMBERFONT&$text_color=NUMBERTEXTCOLOR&$stroke_color=NUMBERSTROKECOLOR}&`,
           },
           large: {
             label: '8 inches',
-            url: `obj=a/o/cbc&decal&show&res=17.65927977839335&pos=0,0&src=fxg{adidasAG/APP16_vuw_playernumber?&$application=sublimation&$text=PLAYERNUMBER&$font=NUMBERFONT&$text_color=NUMBERTEXTCOLOR&$stroke_color=NUMBERSTROKECOLOR}&`,
+            url: `obj=a/o/cbc&decal&show&res=13.22271195229453&pos=0,0&src=fxg{adidasAG/APP16_vuw_playernumber?&$application=sublimation&$text=PLAYERNUMBER&$font=NUMBERFONT&$text_color=NUMBERTEXTCOLOR&$stroke_color=NUMBERSTROKECOLOR}&`,
           },
         },
       },
