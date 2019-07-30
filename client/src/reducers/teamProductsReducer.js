@@ -206,12 +206,23 @@ const updateLogoColor = (state, { uniformType, colorType, colorCode }) => {
   return newState
 }
 
-const updateJerseyTextSize = (state, { uniformType, colorType, textSize }) => {
+const updateJerseyTextSize = (
+  state,
+  { uniformType, colorType, attribute, textSize }
+) => {
   let newState = { ...state }
 
   if (uniformType === 'jersey') {
     let jersey = _.clone(state.products[colorType].jersey)
-    jersey.textSize = textSize
+    if (attribute.type === 'text') {
+      jersey.textSize = textSize
+    } else if (attribute.type === 'number') {
+      jersey.numberOptions[`${attribute.location}Size`] = textSize
+      jersey.numberOptions[`${attribute.location}Url`] =
+        state.products.decorations.jersey.number[
+          `${attribute.location}`
+        ].options[`${textSize}`].url
+    }
     jersey.frontImage = updateJersey(jersey, state.products)
     newState.products[colorType].jersey = jersey
   }
@@ -344,6 +355,8 @@ const updateJersey = (
     textStyle = '',
     sleeveNumber = '',
     sleeveStripe = '',
+    playerNumber = '',
+    numberOptions = {},
   },
   { selectedFont, decorations }
 ) => {
@@ -374,6 +387,8 @@ const updateJersey = (
     .replace(/SLEEVE_STRIPES/, sleeveStripe)
     .replace(/JERSEYTEXT_UPPERFRONT/, upperFront)
     .replace(/JERSEYTEXT_LOWERFRONT/, lowerFront)
+    .replace(/NUMBER_FRONT/, numberOptions.frontUrl)
+    .replace(/NUMBER_BACK/, numberOptions.backUrl)
     .replace(/BASECOLOR/, baseColorCode)
     .replace(/LOGOCOLOR/, logoColorCode)
     .replace(/SLEEVE_NUMBER/, sleeveNumber)
@@ -384,7 +399,7 @@ const updateJersey = (
     .replace(/TEAMNAME/, frontText)
     .replace(/(TEAM|NUMBER)FONT/g, selectedFont)
     .replace(/APPLICATION_TYPE/g, 'heat_transfer') //TODO needs to be fixed in later version
-    .replace(/PLAYERNUMBER/g, _.random(0, 99))
+    .replace(/PLAYERNUMBER/g, playerNumber)
     .replace(/CUFFCOLOR/, cuffColorCode)
     .replace(/PIPECOLOR/, pipeColorCode)
     .replace(/TEAMCREST_LEFTSLEEVE/, crestLeftSleeve)

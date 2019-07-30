@@ -9,8 +9,8 @@ obj=a/o/log&src=LOGOCOLOR&show&\
 obj=a/o/cuf&src=CUFFCOLOR&show&\
 obj=a/o/pip&src=PIPECOLOR&show&\
 JERSEYTEXT_UPPERFRONT\
-obj=a/o/cfr&decal&show&res=10.567757977621218&pos=0,0&src=fxg{APP18_pn1_jht_playernumber?&$application=APPLICATION_TYPE&$text=PLAYERNUMBER&$font=NUMBERFONT&$text_color=NUMBERTEXTCOLOR&$stroke_color=NUMBERSTROKECOLOR}&\
-obj=a/o/cba&decal&show&res=8.800690250215704&pos=0,0&src=fxg{APP18_pn1_jht_playernumber?&$application=APPLICATION_TYPE&$text=PLAYERNUMBER&$font=NUMBERFONT&$text_color=NUMBERTEXTCOLOR&$stroke_color=NUMBERSTROKECOLOR}&\
+NUMBER_FRONT\
+NUMBER_BACK\
 SLEEVE_NUMBER\
 &obj=a&req=object}&resMode=sharp2&wid=250&op_usm=1.2,1,4,0\
 TEAMCREST_LEFTSLEEVE\
@@ -267,7 +267,7 @@ const COLORS_LIST = {
   sld_pn_chameleon_ht: { hex: '#32b75b', label: 'Chameleon' },
   sld_pn_collegiate_burgundy_ht: { hex: '#602732', label: 'Burgundy' },
   sld_pn_power_red_ht: { hex: '#891e2e', label: 'Power Red' },
-  sld_pn_onix_shine: { hex: '#555f66', label: 'Onix Shine' },
+  sld_pn_onix_shine_ht: { hex: '#555f66', label: 'Onix Shine' },
   sld_pn_24_karat_ht: { hex: '#a67c00', label: '24K Gold' },
   sld_pn_white_ht: { hex: '#ffffff', label: 'White' },
   sld_pn_collegiate_gold_ht: { hex: '#eca800', label: 'Gold' },
@@ -309,7 +309,7 @@ const COLORMAP_HT = {
   sld_pn_chameleon_ht: ['green', 'kelly green'],
   sld_pn_collegiate_burgundy_ht: ['burgandy'],
   sld_pn_power_red_ht: ['power red', 'red', 'cardinal', 'scarlet', 'cherry'],
-  sld_pn_onix_shine: ['grey', 'gray'],
+  sld_pn_onix_shine_ht: ['grey', 'gray'],
   sld_pn_24_karat_ht: ['vegas gold', 'old gold'],
   sld_pn_white_ht: ['white'],
   sld_pn_collegiate_gold_ht: ['gold', 'yellow'],
@@ -575,6 +575,29 @@ const DECORATIONS = {
         },
       },
     },
+    number: {
+      label: 'Player Number',
+      front: {
+        label: 'Front',
+        options: {
+          size: ['only'],
+          only: {
+            label: '10 inches',
+            url: `obj=a/o/cfr&decal&show&res=10.567757977621218&pos=0,0&src=fxg{APP18_pn1_jht_playernumber?&$application=APPLICATION_TYPE&$text=PLAYERNUMBER&$font=NUMBERFONT&$text_color=NUMBERTEXTCOLOR&$stroke_color=NUMBERSTROKECOLOR}&`,
+          },
+        },
+      },
+      back: {
+        label: 'Back',
+        options: {
+          size: ['only'],
+          only: {
+            label: '12 inches',
+            url: `obj=a/o/cba&decal&show&res=8.800690250215704&pos=0,0&src=fxg{APP18_pn1_jht_playernumber?&$application=APPLICATION_TYPE&$text=PLAYERNUMBER&$font=NUMBERFONT&$text_color=NUMBERTEXTCOLOR&$stroke_color=NUMBERSTROKECOLOR}&`,
+          },
+        },
+      },
+    },
     sleeve_number: {
       label: 'Sleeve Number',
       options: {
@@ -622,6 +645,10 @@ const DESIGN_PANELS = [
   {
     key: 'jersey-front-text',
     title: 'Jersey Front Text',
+  },
+  {
+    key: 'jersey-number',
+    title: 'Jersey Player Number',
   },
   {
     key: 'jersey-sleeve',

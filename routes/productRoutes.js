@@ -24,6 +24,7 @@ const football = (team, applicationType = 'heat_transfer') => {
   pant.price = '$155'
 
   jersey.frontText = mascot
+  jersey.playerNumber = playerNumber
   jersey.baseImageURL = a1PrimeKnitUniform.JERSEY_URL
 
   jersey.baseColor = team.colors ? team.colors[0] : 'black'
@@ -48,6 +49,16 @@ const football = (team, applicationType = 'heat_transfer') => {
   jersey.sleeveStripe =
     a1PrimeKnitUniform.DECORATIONS.jersey.sleeve_no_stripe.options.url
 
+  let numberOptions = {}
+  const { front, back } = a1PrimeKnitUniform.DECORATIONS.jersey.number
+  numberOptions.frontSize = front.options.size[0]
+  numberOptions.frontUrl = front.options[`${numberOptions.frontSize}`].url
+
+  numberOptions.backSize = back.options.size[0]
+  numberOptions.backUrl = back.options[`${numberOptions.backSize}`].url
+
+  jersey.numberOptions = numberOptions
+
   jersey.frontImage = _.chain(jersey.baseImageURL)
     .replace(
       /JERSEYTEXT_UPPERFRONT/,
@@ -55,6 +66,8 @@ const football = (team, applicationType = 'heat_transfer') => {
         .small_straight.url
     )
     .replace(/SLEEVE_STRIPES/, jersey.sleeveStripe)
+    .replace(/NUMBER_FRONT/, jersey.numberOptions.frontUrl)
+    .replace(/NUMBER_BACK/, jersey.numberOptions.backUrl)
     .replace(/SLEEVE_NUMBER/, jersey.sleeveNumber)
     .replace(/TEAMNAME/, jersey.frontText)
     .replace(/APPLICATION_TYPE/g, applicationType)
@@ -62,7 +75,7 @@ const football = (team, applicationType = 'heat_transfer') => {
     .replace(/LOGOCOLOR/, jersey.logoColorCode)
     .replace(/CUFFCOLOR/, jersey.cuffColorCode)
     .replace(/PIPECOLOR/, jersey.pipeColorCode)
-    .replace(/PLAYERNUMBER/g, playerNumber)
+    .replace(/PLAYERNUMBER/g, jersey.playerNumber)
     .replace(/(TEAM|NUMBER)FONT/g, font)
     .replace(/TEAMCREST_(LEFT|RIGHT)SLEEVE/g, '')
     .value()
@@ -100,6 +113,7 @@ const football = (team, applicationType = 'heat_transfer') => {
   pant.price = '$155'
 
   jersey.frontText = _.toUpper(_.replace(team.name, '/', ' '))
+  jersey.playerNumber = playerNumber
   jersey.frontText = _.chain(team.name)
     .truncate(12)
     .replace('/', ' ')
@@ -130,6 +144,8 @@ const football = (team, applicationType = 'heat_transfer') => {
     }
   }
 
+  jersey.numberOptions = numberOptions //inherits same number options
+
   jersey.frontImage = _.chain(jersey.baseImageURL)
     .replace(
       /JERSEYTEXT_UPPERFRONT/,
@@ -137,6 +153,8 @@ const football = (team, applicationType = 'heat_transfer') => {
         .small_straight.url
     )
     .replace(/SLEEVE_STRIPES/, jersey.sleeveStripe)
+    .replace(/NUMBER_FRONT/, jersey.numberOptions.frontUrl)
+    .replace(/NUMBER_BACK/, jersey.numberOptions.backUrl)
     .replace(/SLEEVE_NUMBER/, jersey.sleeveNumber)
     .replace(/TEAMNAME/, jersey.frontText)
     .replace(/APPLICATION_TYPE/g, applicationType)
@@ -144,7 +162,7 @@ const football = (team, applicationType = 'heat_transfer') => {
     .replace(/LOGOCOLOR/, jersey.logoColorCode)
     .replace(/CUFFCOLOR/, jersey.cuffColorCode)
     .replace(/PIPECOLOR/, jersey.pipeColorCode)
-    .replace(/PLAYERNUMBER/g, playerNumber)
+    .replace(/PLAYERNUMBER/g, jersey.playerNumber)
     .replace(/(TEAM|NUMBER)FONT/g, font)
     .replace(/TEAMCREST_(LEFT|RIGHT)SLEEVE/g, '')
     .value()
@@ -315,7 +333,7 @@ const baseball = team => {
 
   let props = {
     articleDescription: 'Streak Full Button Jersey',
-    price: '$70',
+    price: '$85',
     baseColor: 'white',
     logoColor: team.colors ? team.colors[0] : 'black',
     primaryColor: team.colors ? team.colors[0] : 'black',
@@ -328,14 +346,14 @@ const baseball = team => {
   home.jersey = jerseyFactory(streakBaseBall, props)
 
   props.articleDescription = 'Streak Pant'
-  props.price = '$40'
+  props.price = '$85'
   home.pant = pantFactory(streakBaseBall, props)
 
   let away = {}
 
   props = {
     articleDescription: 'Streak Full Button Jersey',
-    price: '$70',
+    price: '$85',
     baseColor: team.colors ? team.colors[0] : 'black',
     logoColor: team.colors ? team.colors[1] : 'white',
     primaryColor: team.colors ? team.colors[1] : 'white',
@@ -348,7 +366,7 @@ const baseball = team => {
   away.jersey = jerseyFactory(streakBaseBall, props)
 
   props.articleDescription = 'Streak Pant'
-  props.price = '$40'
+  props.price = '$85'
   away.pant = pantFactory(streakBaseBall, props)
 
   return {
@@ -365,7 +383,7 @@ const baseball = team => {
 const jerseyFactory = (
   uniform,
   {
-    description,
+    articleDescription,
     price,
     baseColor,
     logoColor,
@@ -379,10 +397,11 @@ const jerseyFactory = (
   let jersey = {},
     upperFront = '',
     lowerFront = ''
-  jersey.articleDescription = description
+  jersey.articleDescription = articleDescription
   jersey.price = price
 
   jersey.frontText = _.toUpper(frontText)
+  jersey.playerNumber = playerNumber
   jersey.baseImageURL = uniform.JERSEY_URL
 
   jersey.baseColor = baseColor
@@ -412,6 +431,23 @@ const jerseyFactory = (
     }
   }
 
+  let numberOptions = {}
+  if (uniform.DECORATIONS.jersey.number) {
+    const { front } = uniform.DECORATIONS.jersey.number
+    if (front) {
+      numberOptions.frontSize = front.options.size[0]
+      numberOptions.frontUrl = front.options[`${numberOptions.frontSize}`].url
+    }
+
+    const { back } = uniform.DECORATIONS.jersey.number
+    if (back) {
+      numberOptions.backSize = back.options.size[0]
+      numberOptions.backUrl = back.options[`${numberOptions.backSize}`].url
+    }
+  }
+
+  jersey.numberOptions = numberOptions
+
   jersey.strokeColor = secondaryColor
   jersey.strokeColorCode = uniform.colorMap(jersey.strokeColor)
 
@@ -420,10 +456,12 @@ const jerseyFactory = (
   jersey.frontImage = _.chain(jersey.baseImageURL)
     .replace(/JERSEYTEXT_UPPERFRONT/, upperFront)
     .replace(/JERSEYTEXT_LOWERFRONT/, lowerFront)
+    .replace(/NUMBER_FRONT/, jersey.numberOptions.frontUrl)
+    .replace(/NUMBER_BACK/, jersey.numberOptions.backUrl)
     .replace(/TEAMNAME/g, jersey.frontText)
     .replace(/BASECOLOR/, jersey.baseColorCode)
     .replace(/LOGOCOLOR/, jersey.logoColorCode)
-    .replace(/PLAYERNUMBER/g, playerNumber)
+    .replace(/PLAYERNUMBER/g, jersey.playerNumber)
     .replace(/(TEAM|NUMBER)FONT/g, jersey.font)
     .replace(/(TEAM|NUMBER)TEXTCOLOR/g, jersey.textColorCode)
     .replace(/(TEAM|NUMBER)STROKECOLOR/g, jersey.strokeColorCode)
@@ -435,15 +473,24 @@ const jerseyFactory = (
 
 const pantFactory = (
   uniform,
-  { description, price, baseColor, logoColor, primaryColor, secondaryColor }
+  {
+    articleDescription,
+    price,
+    baseColor,
+    logoColor,
+    primaryColor,
+    secondaryColor,
+  }
 ) => {
   let pant = {}
-  pant.articleDescription = description
+  pant.articleDescription = articleDescription
   pant.price = price
   pant.baseImageURL = uniform.PANTS_URL
   pant.baseColor = baseColor
   pant.baseColorCode = uniform.colorMap(pant.baseColor)
-  pant.baseColorHex = uniform.BASEOPTIONS.pant[pant.baseColorCode].hex
+  pant.baseColorHex = uniform.BASEOPTIONS.pant[pant.baseColorCode]
+    ? uniform.BASEOPTIONS.pant[pant.baseColorCode].hex
+    : '#ffffff' // some articles may not have a option in the base color, defaults to white
 
   pant.logoColor = logoColor
   pant.logoColorCode = uniform.colorMap(pant.logoColor)

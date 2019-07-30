@@ -11,16 +11,11 @@ obj=a/m/nec&src=TEAMTEXTCOLOR&show\
 &obj=a/o/str_s0&show&\
 JERSEYTEXT_UPPERFRONT\
 JERSEYTEXT_LOWERFRONT\
-&obj=a/o/cch&decal&show&res=17.65927977839335&pos=0,0&src=fxg{APP18_rem_jer_playernumber?&$application=sublimation&$text=PLAYERNUMBER&$font=NUMBERFONT&$color=NUMBERTEXTCOLOR&$stroke_color=NUMBERSTROKECOLOR}\
-&obj=a/o/cba&decal&show&res=13.22271195229453&pos=0,0&src=fxg{APP18_rem_jer_playernumber?&$application=sublimation&$text=PLAYERNUMBER&$font=NUMBERFONT&$color=NUMBERTEXTCOLOR&$stroke_color=NUMBERSTROKECOLOR}\
+NUMBER_FRONT\
+NUMBER_BACK\
 &obj=a&req=object}&resMode=sharp2&wid=250&op_usm=1.2,1,4,0`
 
 // stroke=false&$stroke_color=none
-// res=42.606516290726816&pos=0,0&src=fxg{APP18_rem_jer_teamname_vertical?& Team name curved first line
-// res=42.606516290726816&pos=0,0&src=fxg{APP18_rem_jer_teamname_straight?& Team name straight second line
-
-// res=26.57634184471079&pos=0,0&src=fxg{APP18_rem_jer_playernumber? Small front number
-// res=17.65927977839335&pos=0,0&src=fxg{APP18_rem_jer_playernumber? Small Back NUmber
 
 const PANTS_URL = `https://embodee.adidas.com/api2/rewrite/adidas16/is/image/adidasAG/agm?&\
 src=ir{adidasAGRender/APP18_rem_sh_1?&\
@@ -154,6 +149,10 @@ const DESIGN_PANELS = [
     title: 'Jersey Front Text',
   },
   {
+    key: 'jersey-number',
+    title: 'Jersey Player Number',
+  },
+  {
     key: 'jersey-logo',
     title: 'Jersey Logo',
   },
@@ -194,6 +193,37 @@ const DECORATIONS = {
           small_curved: {
             label: '2.5 inch curved',
             url: `obj=a/o/lfr&decal&show&res=42.606516290726816&pos=0,0&src=fxg{APP18_rem_jer_teamname_reverse_vertical?&$application=sublimation&$text=TEAMNAME&$font=TEAMFONT&$text_color=TEAMTEXTCOLOR&$stroke_color=TEAMSTROKECOLOR}&`,
+          },
+        },
+      },
+    },
+    number: {
+      label: 'Player Number',
+      front: {
+        label: 'Front',
+        options: {
+          size: ['small', 'large'],
+          small: {
+            label: '4 inches',
+            url: `&obj=a/o/cch&decal&show&res=26.57634184471079&pos=0,0&src=fxg{APP18_rem_jer_playernumber?&$application=sublimation&$text=PLAYERNUMBER&$font=NUMBERFONT&$color=NUMBERTEXTCOLOR&$stroke_color=NUMBERSTROKECOLOR}`,
+          },
+          large: {
+            label: '6 inches',
+            url: `&obj=a/o/cch&decal&show&res=17.65927977839335&pos=0,0&src=fxg{APP18_rem_jer_playernumber?&$application=sublimation&$text=PLAYERNUMBER&$font=NUMBERFONT&$color=NUMBERTEXTCOLOR&$stroke_color=NUMBERSTROKECOLOR}`,
+          },
+        },
+      },
+      back: {
+        label: 'Back',
+        options: {
+          size: ['small', 'large'],
+          small: {
+            label: '6 inches',
+            url: `&obj=a/o/cba&decal&show&res=17.65927977839335&pos=0,0&src=fxg{APP18_rem_jer_playernumber?&$application=sublimation&$text=PLAYERNUMBER&$font=NUMBERFONT&$color=NUMBERTEXTCOLOR&$stroke_color=NUMBERSTROKECOLOR}`,
+          },
+          large: {
+            label: '8 inches',
+            url: `&obj=a/o/cba&decal&show&res=13.22271195229453&pos=0,0&src=fxg{APP18_rem_jer_playernumber?&$application=sublimation&$text=PLAYERNUMBER&$font=NUMBERFONT&$color=NUMBERTEXTCOLOR&$stroke_color=NUMBERSTROKECOLOR}`,
           },
         },
       },

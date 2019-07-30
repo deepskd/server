@@ -9,6 +9,7 @@ import JerseyTextSize from './JerseyTextSize'
 import JerseyTextStyle from './JerseyTextStyle'
 import JerseySleeve from './JerseySleeve'
 import PantSides from './PantSides'
+import JerseyNumber from './JerseyNumber'
 
 class DesignMenu extends Component {
   constructor(props) {
@@ -27,8 +28,31 @@ class DesignMenu extends Component {
           <React.Fragment>
             <JerseyText products={products} activeTab={activeTab} />
             <JerseyTextColors products={products} activeTab={activeTab} />
-            <JerseyTextSize products={products} activeTab={activeTab} />
+            <JerseyTextSize
+              products={products}
+              activeTab={activeTab}
+              type="text"
+              loc="upper_front"
+            />
             <JerseyTextStyle products={products} activeTab={activeTab} />
+          </React.Fragment>
+        )
+      case 'jersey-number':
+        return (
+          <React.Fragment>
+            <JerseyNumber products={products} activeTab={activeTab} />
+            <JerseyTextSize
+              products={products}
+              activeTab={activeTab}
+              type="number"
+              loc="front"
+            />
+            <JerseyTextSize
+              products={products}
+              activeTab={activeTab}
+              type="number"
+              loc="back"
+            />
           </React.Fragment>
         )
       case 'jersey-team-crest':
