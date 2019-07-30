@@ -206,12 +206,23 @@ const updateLogoColor = (state, { uniformType, colorType, colorCode }) => {
   return newState
 }
 
-const updateJerseyTextSize = (state, { uniformType, colorType, textSize }) => {
+const updateJerseyTextSize = (
+  state,
+  { uniformType, colorType, attribute, textSize }
+) => {
   let newState = { ...state }
 
   if (uniformType === 'jersey') {
     let jersey = _.clone(state.products[colorType].jersey)
-    jersey.textSize = textSize
+    if (attribute.type === 'text') {
+      jersey.textSize = textSize
+    } else if (attribute.type === 'number') {
+      jersey.numberOptions[`${attribute.location}Size`] = textSize
+      jersey.numberOptions[`${attribute.location}Url`] =
+        state.products.decorations.jersey.number[
+          `${attribute.location}`
+        ].options[`${textSize}`].url
+    }
     jersey.frontImage = updateJersey(jersey, state.products)
     newState.products[colorType].jersey = jersey
   }
