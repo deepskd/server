@@ -333,7 +333,7 @@ const baseball = team => {
 
   let props = {
     articleDescription: 'Streak Full Button Jersey',
-    price: '$70',
+    price: '$85',
     baseColor: 'white',
     logoColor: team.colors ? team.colors[0] : 'black',
     primaryColor: team.colors ? team.colors[0] : 'black',
@@ -346,14 +346,14 @@ const baseball = team => {
   home.jersey = jerseyFactory(streakBaseBall, props)
 
   props.articleDescription = 'Streak Pant'
-  props.price = '$40'
+  props.price = '$85'
   home.pant = pantFactory(streakBaseBall, props)
 
   let away = {}
 
   props = {
     articleDescription: 'Streak Full Button Jersey',
-    price: '$70',
+    price: '$85',
     baseColor: team.colors ? team.colors[0] : 'black',
     logoColor: team.colors ? team.colors[1] : 'white',
     primaryColor: team.colors ? team.colors[1] : 'white',
@@ -366,7 +366,7 @@ const baseball = team => {
   away.jersey = jerseyFactory(streakBaseBall, props)
 
   props.articleDescription = 'Streak Pant'
-  props.price = '$40'
+  props.price = '$85'
   away.pant = pantFactory(streakBaseBall, props)
 
   return {
@@ -383,7 +383,7 @@ const baseball = team => {
 const jerseyFactory = (
   uniform,
   {
-    description,
+    articleDescription,
     price,
     baseColor,
     logoColor,
@@ -397,7 +397,7 @@ const jerseyFactory = (
   let jersey = {},
     upperFront = '',
     lowerFront = ''
-  jersey.articleDescription = description
+  jersey.articleDescription = articleDescription
   jersey.price = price
 
   jersey.frontText = _.toUpper(frontText)
@@ -473,10 +473,17 @@ const jerseyFactory = (
 
 const pantFactory = (
   uniform,
-  { description, price, baseColor, logoColor, primaryColor, secondaryColor }
+  {
+    articleDescription,
+    price,
+    baseColor,
+    logoColor,
+    primaryColor,
+    secondaryColor,
+  }
 ) => {
   let pant = {}
-  pant.articleDescription = description
+  pant.articleDescription = articleDescription
   pant.price = price
   pant.baseImageURL = uniform.PANTS_URL
   pant.baseColor = baseColor
