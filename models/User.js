@@ -6,6 +6,7 @@ const User = new Schema(
     googleId: String,
     displayName: String,
     email: String,
+    authorized: { type: Boolean, default: false },
   },
   { timestamps: { updatedAt: 'lastLogIn' } }
 )
