@@ -30,7 +30,7 @@ function ColorOptions({ products, activeTab, uniformType, attributeType }) {
     const updatedColorCode = _.findKey(colors, { hex: color.hex })
     updateColorHex(color.hex)
     const props = {}
-    props.uniformType = 'jersey'
+    props.uniformType = uniformType
     props.colorType = activeTab
     props[attributeType] = updatedColorCode
     dispatch(jerseyGraphicUpdated(props))
