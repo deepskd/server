@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import { Menu, Segment, Accordion } from 'semantic-ui-react'
 
 import JerseyTextColors from './JerseyTextColors'
@@ -10,6 +10,7 @@ import JerseyTextStyle from './JerseyTextStyle'
 import JerseySleeve from './JerseySleeve'
 import PantSides from './PantSides'
 import JerseyNumber from './JerseyNumber'
+import JerseyGraphics from './JerseyGraphics'
 
 class DesignMenu extends Component {
   constructor(props) {
@@ -25,7 +26,7 @@ class DesignMenu extends Component {
     switch (key) {
       case 'jersey-front-text':
         return (
-          <React.Fragment>
+          <Fragment>
             <JerseyText products={products} activeTab={activeTab} />
             <JerseyTextColors products={products} activeTab={activeTab} />
             <JerseyTextSize
@@ -35,11 +36,11 @@ class DesignMenu extends Component {
               loc="upper_front"
             />
             <JerseyTextStyle products={products} activeTab={activeTab} />
-          </React.Fragment>
+          </Fragment>
         )
       case 'jersey-number':
         return (
-          <React.Fragment>
+          <Fragment>
             <JerseyNumber products={products} activeTab={activeTab} />
             <JerseyTextSize
               products={products}
@@ -53,7 +54,7 @@ class DesignMenu extends Component {
               type="number"
               loc="back"
             />
-          </React.Fragment>
+          </Fragment>
         )
       case 'jersey-team-crest':
         return <TeamCrest products={products} activeTab={activeTab} />
@@ -77,6 +78,12 @@ class DesignMenu extends Component {
         return <JerseySleeve products={products} activeTab={activeTab} />
       case 'pant-sides':
         return <PantSides products={products} activeTab={activeTab} />
+      case 'jersey-graphics':
+        return (
+          <Fragment>
+            <JerseyGraphics products={products} activeTab={activeTab} />
+          </Fragment>
+        )
       default:
         return ''
     }
