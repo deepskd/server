@@ -8,7 +8,6 @@ import {
   JERSEY_TEXTCOLOR_CHANGED,
   BASE_COLOR_CHANGED,
   JERSEY_TEAMCREST_CHANGED,
-  LOGO_COLOR_CHANGED,
   JERSEY_TEXT_SIZE_CHANGED,
   JERSEY_TEXT_STYLE_CHANGED,
   JERSEY_SLEEVE_UPDATED,
@@ -71,13 +70,6 @@ export const baseColorChanged = props => {
 export const jerseyTeamCrestChanged = props => {
   return {
     type: JERSEY_TEAMCREST_CHANGED,
-    payload: props,
-  }
-}
-
-export const logoColorChanged = props => {
-  return {
-    type: LOGO_COLOR_CHANGED,
     payload: props,
   }
 }

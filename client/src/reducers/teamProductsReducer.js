@@ -6,7 +6,6 @@ import {
   JERSEY_TEXTCOLOR_CHANGED,
   BASE_COLOR_CHANGED,
   JERSEY_TEAMCREST_CHANGED,
-  LOGO_COLOR_CHANGED,
   JERSEY_TEXT_SIZE_CHANGED,
   JERSEY_TEXT_STYLE_CHANGED,
   JERSEY_SLEEVE_UPDATED,
@@ -29,8 +28,6 @@ export default (state = [], action) => {
       return updateBaseColor(state, action.payload)
     case JERSEY_TEAMCREST_CHANGED:
       return updateJerseyTeamCrest(state, action.payload)
-    case LOGO_COLOR_CHANGED:
-      return updateLogoColor(state, action.payload)
     case JERSEY_TEXT_SIZE_CHANGED:
       return updateJerseyTextSize(state, action.payload)
     case JERSEY_TEXT_STYLE_CHANGED:
@@ -189,26 +186,6 @@ const updateJerseyTeamCrest = (state, props) => {
     : ''
   jersey.frontImage = updateJersey(jersey, state.products)
   newState.products[props.item].jersey = jersey
-  return newState
-}
-
-const updateLogoColor = (state, { uniformType, colorType, colorCode }) => {
-  let newState = { ...state }
-
-  if (uniformType === 'jersey') {
-    let jersey = _.clone(state.products[colorType].jersey)
-    jersey.logoColorCode = colorCode
-    jersey.frontImage = updateJersey(jersey, state.products)
-    newState.products[colorType].jersey = jersey
-  }
-
-  if (uniformType === 'pant') {
-    let pant = _.clone(state.products[colorType].pant)
-    pant.logoColorCode = colorCode
-    pant.frontImage = updatePant(pant)
-    newState.products[colorType].pant = pant
-  }
-
   return newState
 }
 
