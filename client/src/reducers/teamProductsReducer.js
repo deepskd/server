@@ -344,10 +344,17 @@ const updatePantSide = (
 
 const updateJerseyGraphic = (
   state,
-  { uniformType, colorType, grpahic, graphicColorCode }
+  { uniformType, colorType, graphicStyle, graphic, graphicColorCode }
 ) => {
   let newState = { ...state }
-  console.log(uniformType, colorType, grpahic, graphicColorCode)
+  if (uniformType === 'jersey') {
+    let jersey = _.clone(state.products[colorType].jersey)
+    jersey.graphicStyle = graphicStyle
+    jersey.graphic = graphic
+    jersey.graphicColorCode = graphicColorCode
+    jersey.frontImage = updateJersey(jersey, state.products)
+    newState.products[colorType].jersey = jersey
+  }
   return newState
 }
 
@@ -369,6 +376,8 @@ const updateJersey = (
     sleeveStripe = '',
     playerNumber = '',
     numberOptions = {},
+    graphic = '',
+    graphicColorCode = '',
   },
   { selectedFont, decorations }
 ) => {
@@ -401,6 +410,8 @@ const updateJersey = (
     .replace(/JERSEYTEXT_LOWERFRONT/, lowerFront)
     .replace(/NUMBER_FRONT/, numberOptions.frontUrl)
     .replace(/NUMBER_BACK/, numberOptions.backUrl)
+    .replace(/SUBLIMATION_GRAPHIC/, graphic)
+    .replace(/GRAPHIC_COLOR/g, graphicColorCode)
     .replace(/BASECOLOR/, baseColorCode)
     .replace(/LOGOCOLOR/, logoColorCode)
     .replace(/SLEEVE_NUMBER/, sleeveNumber)

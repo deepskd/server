@@ -27,12 +27,27 @@ function JerseyGraphics({ products, activeTab }) {
     props.colorType = activeTab
     props.graphicStyle = value
     props.graphic = graphics.options[value].url
-    console.log(props)
+    props.graphicColorCode = products[activeTab].jersey.textColorCode
     dispatch(jerseyGraphicUpdated(props))
   }
 
-  return (
-    <Grid>
+  const renderGraphicOptions = () => {
+    if (graphics.options[graphic].graphicColor) {
+      return (
+        <Grid.Row columns={2}>
+          <Grid.Column>
+            <Dropdown
+              options={graphicOptions}
+              value={graphic}
+              onChange={handleChange}
+            />
+          </Grid.Column>
+          <Grid.Column>Color Change</Grid.Column>
+        </Grid.Row>
+      )
+    }
+
+    return (
       <Grid.Row centered>
         <Dropdown
           options={graphicOptions}
@@ -40,8 +55,10 @@ function JerseyGraphics({ products, activeTab }) {
           onChange={handleChange}
         />
       </Grid.Row>
-    </Grid>
-  )
+    )
+  }
+
+  return <Grid>{renderGraphicOptions()}</Grid>
 }
 
 export default JerseyGraphics

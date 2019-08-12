@@ -221,24 +221,29 @@ const DECORATIONS = {
       label: 'Graphics',
       options: {
         style: ['solid', 'triax_camo', 'sunset', 'off_beat', 'block'],
+        //block is hardly used in US.. needs additional logic
         solid: {
           label: 'Solid',
           url: `&obj=a/o/gra_so&show`,
+          graphicColor: false,
           //&obj=a/o/grs_g0&src=mi_v17_bold_aqua_second&show
           //&obj=a/o/grt_p0&src=mi_v17_bold_aqua_third&show
         },
         triax_camo: {
           label: 'Triax Camo',
           url: `&obj=a/o/gra_tc&src=GRAPHIC_COLOR&show&obj=a/o/grs_g3&src=GRAPHIC_COLOR_second&show`,
+          graphicColor: true,
         },
         sunset: {
           label: 'Sunset',
           url: `&obj=a/o/gra_su&src=mi_v17_white&show`,
+          graphicColor: false,
           //Sunset is always white, base color impacts graphic
         },
         off_beat: {
           label: 'Off  Beat',
           url: `&obj=a/o/gra_ob&src=GRAPHIC_COLOR&show&obj=a/o/grs_g1&src=GRAPHIC_COLOR_second&show&obj=a/o/grt_p1&src=GRAPHIC_COLOR_third&show`,
+          graphicColor: true,
         },
         block: {
           label: 'Block',
