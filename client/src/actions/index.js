@@ -14,6 +14,7 @@ import {
   JERSEY_SLEEVE_UPDATED,
   PANT_SIDE_UPDATED,
   JERSEY_GRAPHIC_UPDATED,
+  ATTRIBUTE_COLOR_UPDATED,
 } from './types'
 
 export const findTeams = term => async dispatch => {
@@ -112,6 +113,13 @@ export const pantSideUpdated = props => {
 export const jerseyGraphicUpdated = props => {
   return {
     type: JERSEY_GRAPHIC_UPDATED,
+    payload: props,
+  }
+}
+
+export const attributeColorUpdated = props => {
+  return {
+    type: ATTRIBUTE_COLOR_UPDATED,
     payload: props,
   }
 }

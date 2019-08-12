@@ -12,6 +12,7 @@ import {
   JERSEY_SLEEVE_UPDATED,
   PANT_SIDE_UPDATED,
   JERSEY_GRAPHIC_UPDATED,
+  ATTRIBUTE_COLOR_UPDATED,
 } from '../actions/types'
 
 export default (state = [], action) => {
@@ -40,6 +41,8 @@ export default (state = [], action) => {
       return updatePantSide(state, action.payload)
     case JERSEY_GRAPHIC_UPDATED:
       return updateJerseyGraphic(state, action.payload)
+    case ATTRIBUTE_COLOR_UPDATED:
+      return updateAttributeColor(state, action.payload)
     default:
       return state
   }
@@ -351,9 +354,30 @@ const updateJerseyGraphic = (
     let jersey = _.clone(state.products[colorType].jersey)
     jersey.graphicStyle = graphicStyle || jersey.graphicStyle
     jersey.graphic = graphic || jersey.graphic
-    jersey.graphicColorCode = graphicColorCode
+    jersey.graphicColorCode = graphicColorCode || jersey.graphicColorCode
     jersey.frontImage = updateJersey(jersey, state.products)
     newState.products[colorType].jersey = jersey
+  }
+  return newState
+}
+
+const updateAttributeColor = (
+  state,
+  { uniformType, colorType, graphicColorCode, collarColorCode, logoColorCode }
+) => {
+  let newState = { ...state }
+  if (uniformType === 'jersey') {
+    let jersey = _.clone(state.products[colorType].jersey)
+    jersey.graphicColorCode = graphicColorCode || jersey.graphicColorCode
+    jersey.logoColorCode = logoColorCode || jersey.logoColorCode
+    jersey.collarColorCode = collarColorCode || jersey.collarColorCode
+    jersey.frontImage = updateJersey(jersey, state.products)
+    newState.products[colorType].jersey = jersey
+  } else if (uniformType === 'pant') {
+    let pant = _.clone(state.products[colorType].pant)
+    pant.logoColorCode = logoColorCode || pant.logoColorCode
+    pant.frontImage = updatePant(pant)
+    newState.products[colorType].pant = pant
   }
   return newState
 }
