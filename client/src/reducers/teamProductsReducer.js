@@ -349,8 +349,8 @@ const updateJerseyGraphic = (
   let newState = { ...state }
   if (uniformType === 'jersey') {
     let jersey = _.clone(state.products[colorType].jersey)
-    jersey.graphicStyle = graphicStyle
-    jersey.graphic = graphic
+    jersey.graphicStyle = graphicStyle || jersey.graphicStyle
+    jersey.graphic = graphic || jersey.graphic
     jersey.graphicColorCode = graphicColorCode
     jersey.frontImage = updateJersey(jersey, state.products)
     newState.products[colorType].jersey = jersey

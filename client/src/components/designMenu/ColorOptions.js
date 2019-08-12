@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
-// import { useDispatch } from 'react-redux'
+import _ from 'lodash'
+import { useDispatch } from 'react-redux'
 import { Grid, Label, Dropdown } from 'semantic-ui-react'
+import { jerseyGraphicUpdated } from '../../actions'
 
 function ColorOptions({ products, activeTab, uniformType, attributeType }) {
   const { colors } = products
@@ -8,7 +10,7 @@ function ColorOptions({ products, activeTab, uniformType, attributeType }) {
     products[activeTab][uniformType][attributeType] || Object.keys(colors)[0]
 
   const [colorHex, updateColorHex] = useState(colors[colorCode].hex)
-
+  const dispatch = useDispatch()
   useEffect(() => {
     updateColorHex(colors[colorCode].hex)
   }, [products, activeTab, uniformType, attributeType, colors, colorCode])
@@ -24,6 +26,16 @@ function ColorOptions({ products, activeTab, uniformType, attributeType }) {
     </span>
   )
 
+  const handleColorChange = color => {
+    const updatedColorCode = _.findKey(colors, { hex: color.hex })
+    updateColorHex(color.hex)
+    const props = {}
+    props.uniformType = 'jersey'
+    props.colorType = activeTab
+    props[attributeType] = updatedColorCode
+    dispatch(jerseyGraphicUpdated(props))
+  }
+
   const renderColors = () => {
     return Object.values(colors).map(c => {
       const style = {
@@ -32,7 +44,10 @@ function ColorOptions({ products, activeTab, uniformType, attributeType }) {
         borderWidth: 'thin',
       }
       return (
-        <Dropdown.Item key={`${activeTab}${c.hex}`}>
+        <Dropdown.Item
+          key={`${activeTab}${c.hex}`}
+          onClick={e => handleColorChange(c)}
+        >
           <Label style={style} />
           {c.label}
         </Dropdown.Item>
