@@ -3,6 +3,8 @@ import { useDispatch } from 'react-redux'
 import { Grid, Dropdown } from 'semantic-ui-react'
 import { jerseyGraphicUpdated } from '../../actions'
 
+import ColorOptions from './ColorOptions'
+
 function JerseyGraphics({ products, activeTab }) {
   const [graphic, updateGraphic] = useState(
     products[activeTab].jersey.graphicStyle
@@ -42,7 +44,14 @@ function JerseyGraphics({ products, activeTab }) {
               onChange={handleChange}
             />
           </Grid.Column>
-          <Grid.Column>Color Change</Grid.Column>
+          <Grid.Column>
+            <ColorOptions
+              products={products}
+              activeTab={activeTab}
+              uniformType="jersey"
+              attributeType="graphicColorCode"
+            />
+          </Grid.Column>
         </Grid.Row>
       )
     }
