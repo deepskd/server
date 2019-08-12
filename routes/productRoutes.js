@@ -451,7 +451,7 @@ const jerseyFactory = (
 
   if (sublimationGraphics) {
     const { graphics } = uniform.DECORATIONS.jersey
-    jersey.graphicStyle = graphics.options.style[4]
+    jersey.graphicStyle = graphics.options.style[0]
     jersey.graphic = graphics.options[jersey.graphicStyle].url
     if (jersey.graphic.match(/GRAPHIC_COLOR/)) {
       jersey.graphicColorCode = jersey.textColorCode
