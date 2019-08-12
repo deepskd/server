@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import _ from 'lodash'
 import { useDispatch } from 'react-redux'
 import { Grid, Label, Dropdown } from 'semantic-ui-react'
-import { jerseyGraphicUpdated } from '../../actions'
+import { attributeColorUpdated } from '../../actions'
 
 function ColorOptions({ products, activeTab, uniformType, attributeType }) {
   const { colors } = products
@@ -33,7 +33,7 @@ function ColorOptions({ products, activeTab, uniformType, attributeType }) {
     props.uniformType = uniformType
     props.colorType = activeTab
     props[attributeType] = updatedColorCode
-    dispatch(jerseyGraphicUpdated(props))
+    dispatch(attributeColorUpdated(props))
   }
 
   const renderColors = () => {
