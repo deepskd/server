@@ -281,7 +281,7 @@ const DESIGN_PANELS = [
     title: 'Jersey Player Number',
   },
   {
-    key: 'jersey-team-crest,',
+    key: 'jersey-team-crest',
     title: 'Jersey Team Crest',
   },
   {
