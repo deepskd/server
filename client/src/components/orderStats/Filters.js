@@ -4,7 +4,7 @@ import { Form } from 'semantic-ui-react'
 class Filters extends Component {
   state = { country: this.props.country, Wholesale: true, Promotion: true }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     if (nextProps.country !== this.state.country) {
       this.setState({
         Wholesale: true,

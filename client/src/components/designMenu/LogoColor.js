@@ -21,7 +21,7 @@ class LogoColor extends Component {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     const { home, away, colors } = nextProps.products
     const { uniformType } = this.props
     if (
