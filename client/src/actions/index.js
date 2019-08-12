@@ -107,3 +107,10 @@ export const pantSideUpdated = props => {
     payload: props,
   }
 }
+
+export const jerseyGraphicUpdated = props => {
+  return {
+    type: JERSEY_GRAPHIC_UPDATED,
+    payload: props,
+  }
+}
