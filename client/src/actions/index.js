@@ -13,6 +13,7 @@ import {
   JERSEY_TEXT_STYLE_CHANGED,
   JERSEY_SLEEVE_UPDATED,
   PANT_SIDE_UPDATED,
+  JERSEY_GRAPHIC_UPDATED,
 } from './types'
 
 export const findTeams = term => async dispatch => {
