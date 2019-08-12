@@ -10,10 +10,8 @@ obj=a/m/col&src=TEAMTEXTCOLOR&show&\
 obj=a/o/sha_ls&show&\
 obj=a/f/nvr&show&\
 obj=a/o/sep_u1&show&\
-obj=a/o/grs_g1&src=mi_v17_white_second&show&\
-obj=a/o/grt_p1&src=mi_v17_white_third&show&\
 obj=a/s/shg&show&\
-obj=a/o/gra_ob&src=mi_v17_white&show&\
+SUBLIMATION_GRAPHIC\
 obj=a/o/str_s0&show&\
 obj=a/o/log&src=LOGOCOLOR&show&\
 JERSEYTEXT_UPPERFRONT\
@@ -23,6 +21,9 @@ NUMBER_BACK\
 obj=a&req=object}&resMode=sharp2&wid=250&op_usm=1.2,1,4,0\
 TEAMCREST_LEFTSLEEVE\
 TEAMCREST_RIGHTSLEEVE`
+
+// obj=a/o/grs_g1&src=mi_v17_white_second&show&\
+// obj=a/o/grt_p1&src=mi_v17_white_third&show&\
 
 const PANTS_URL = `https://embodee.adidas.com/api2/rewrite/adidas16/is/image/adidasAG/agm?&src=ir{adidasAGRender/APP16_vuw_sho_1?&\
 obj=a/m/bas&src=BASECOLOR&show&\
@@ -216,6 +217,36 @@ const DECORATIONS = {
         },
       },
     },
+    graphics: {
+      label: 'Graphics',
+      options: {
+        style: ['solid', 'triax_camo', 'sunset', 'off_beat', 'block'],
+        solid: {
+          label: 'Solid',
+          url: `&obj=a/o/gra_so&show`,
+          //&obj=a/o/grs_g0&src=mi_v17_bold_aqua_second&show
+          //&obj=a/o/grt_p0&src=mi_v17_bold_aqua_third&show
+        },
+        triax_camo: {
+          label: 'Triax Camo',
+          url: `&obj=a/o/gra_tc&src=GRAPHIC_COLOR&show&obj=a/o/grs_g3&src=GRAPHIC_COLOR_second&show`,
+        },
+        sunset: {
+          label: 'Sunset',
+          url: `&obj=a/o/gra_su&src=mi_v17_white&show`,
+          //Sunset is always white, base color impacts graphic
+        },
+        off_beat: {
+          label: 'Off  Beat',
+          url: `&obj=a/o/gra_ob&src=GRAPHIC_COLOR&show&obj=a/o/grs_g1&src=GRAPHIC_COLOR_second&show&obj=a/o/grt_p1&src=GRAPHIC_COLOR_third&show`,
+        },
+        block: {
+          label: 'Block',
+          url: `&obj=a/o/gra_bl&src=GRAPHIC_COLOR&show&obj=a/o/grs_g2&srcGRAPHIC_COLOR_second&show&obj=a/o/grt_p2&src=GRAPHIC_COLOR_third&show`,
+          //Base color is always white - non editable
+        },
+      },
+    },
   },
 }
 
@@ -231,53 +262,11 @@ const colorMap = color => {
   return colorCode[0]
 }
 
-// const homeDecorations = ({ jersey, pant }, colors) => {
-//   if (colors && colors.length === 2) {
-//     jersey.textColor = colors[0]
-//     jersey.strokeColor = colors[1] === 'white' ? 'gold' : colors[1]
-//   } else if (colors && colors.length === 3) {
-//     jersey.textColor = colors[0]
-//     jersey.strokeColor = colors[1] === 'white' ? colors[2] : colors[1]
-//   } else {
-//     jersey.textColor = colors ? colors[0] : 'red'
-//     jersey.strokeColor = 'black'
-//   }
-
-//   jersey.textColorCode = colorMap(jersey.textColor)
-//   jersey.strokeColorCode = colorMap(jersey.strokeColor)
-
-//   jersey.frontImage = _.chain(jersey.frontImage)
-//     .replace(/(TEAM|NUMBER)TEXTCOLOR/g, jersey.textColorCode)
-//     .replace(/(TEAM|NUMBER)STROKECOLOR/g, jersey.strokeColorCode)
-//     .value()
-//   return { jersey, pant }
-// }
-
-// const awayDecorations = ({ jersey, pant }, colors) => {
-//   if (colors && colors.length === 2) {
-//     jersey.textColor = colors[1]
-//     jersey.strokeColor = colors[1].match(/gold/)
-//       ? 'white'
-//       : _.sample[('gold', 'black')]
-//   } else if (colors && colors.length === 3) {
-//     jersey.textColor = colors[1]
-//     jersey.strokeColor = colors[2]
-//   } else {
-//     jersey.textColor = 'white'
-//     jersey.strokeColor = 'black'
-//   }
-
-//   jersey.textColorCode = colorMap(jersey.textColor)
-//   jersey.strokeColorCode = colorMap(jersey.strokeColor)
-
-//   jersey.frontImage = _.chain(jersey.frontImage)
-//     .replace(/(TEAM|NUMBER)TEXTCOLOR/g, jersey.textColorCode)
-//     .replace(/(TEAM|NUMBER)STROKECOLOR/g, jersey.strokeColorCode)
-//     .value()
-//   return { jersey, pant }
-// }
-
 const DESIGN_PANELS = [
+  {
+    key: 'jersey-graphics',
+    title: 'Jersey Graphics',
+  },
   {
     key: 'jersey-front-text',
     title: 'Jersey Front Text',
@@ -287,7 +276,7 @@ const DESIGN_PANELS = [
     title: 'Jersey Player Number',
   },
   {
-    key: 'jersey-team-crest',
+    key: 'jersey-team-crest,',
     title: 'Jersey Team Crest',
   },
   {

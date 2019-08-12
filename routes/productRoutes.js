@@ -282,6 +282,7 @@ const volleyball = team => {
     frontText: mascot,
     font,
     playerNumber,
+    sublimationGraphics: true,
   }
 
   home.jersey = jerseyFactory(volleyball17, props)
@@ -302,6 +303,7 @@ const volleyball = team => {
     frontText: _.toUpper(_.replace(team.name, '/', ' ')),
     font,
     playerNumber,
+    sublimationGraphics: true,
   }
 
   away.jersey = jerseyFactory(volleyball17, props)
@@ -392,6 +394,7 @@ const jerseyFactory = (
     frontText,
     font,
     playerNumber,
+    sublimationGraphics = false,
   }
 ) => {
   let jersey = {},
@@ -446,6 +449,15 @@ const jerseyFactory = (
     }
   }
 
+  if (sublimationGraphics) {
+    const { graphics } = uniform.DECORATIONS.jersey
+    jersey.graphicStyle = graphics.options.style[4]
+    jersey.graphic = graphics.options[jersey.graphicStyle].url
+    if (jersey.graphic.match(/GRAPHIC_COLOR/)) {
+      jersey.graphicColorCode = jersey.textColorCode
+    }
+  }
+
   jersey.numberOptions = numberOptions
 
   jersey.strokeColor = secondaryColor
@@ -456,6 +468,8 @@ const jerseyFactory = (
   jersey.frontImage = _.chain(jersey.baseImageURL)
     .replace(/JERSEYTEXT_UPPERFRONT/, upperFront)
     .replace(/JERSEYTEXT_LOWERFRONT/, lowerFront)
+    .replace(/SUBLIMATION_GRAPHIC/, jersey.graphic)
+    .replace(/GRAPHIC_COLOR/g, jersey.graphicColorCode)
     .replace(/NUMBER_FRONT/, jersey.numberOptions.frontUrl)
     .replace(/NUMBER_BACK/, jersey.numberOptions.backUrl)
     .replace(/TEAMNAME/g, jersey.frontText)
