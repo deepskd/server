@@ -11,6 +11,7 @@ import {
   JERSEY_TEXT_STYLE_CHANGED,
   JERSEY_SLEEVE_UPDATED,
   PANT_SIDE_UPDATED,
+  JERSEY_GRAPHIC_UPDATED,
 } from '../actions/types'
 
 export default (state = [], action) => {
@@ -37,6 +38,8 @@ export default (state = [], action) => {
       return updateJerseySleeve(state, action.payload)
     case PANT_SIDE_UPDATED:
       return updatePantSide(state, action.payload)
+    case JERSEY_GRAPHIC_UPDATED:
+      return updateJerseyGraphic(state, action.payload)
     default:
       return state
   }
@@ -336,6 +339,15 @@ const updatePantSide = (
     return newState
   }
 
+  return newState
+}
+
+const updateJerseyGraphic = (
+  state,
+  { uniformType, colorType, grpahic, graphicColorCode }
+) => {
+  let newState = { ...state }
+  console.log(uniformType, colorType, grpahic, graphicColorCode)
   return newState
 }
 
