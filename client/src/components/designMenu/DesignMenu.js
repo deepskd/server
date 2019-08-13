@@ -67,15 +67,6 @@ class DesignMenu extends Component {
             attributeType="logoColorCode"
           />
         )
-      case 'pant-logo':
-        return (
-          <ColorOptions
-            products={products}
-            activeTab={activeTab}
-            uniformType="pant"
-            attributeType="logoColorCode"
-          />
-        )
       case 'jersey-collar':
         return (
           <ColorOptions
@@ -85,16 +76,21 @@ class DesignMenu extends Component {
             attributeType="collarColorCode"
           />
         )
+      case 'pant-logo':
+        return (
+          <ColorOptions
+            products={products}
+            activeTab={activeTab}
+            uniformType="pant"
+            attributeType="logoColorCode"
+          />
+        )
       case 'jersey-sleeve':
         return <JerseySleeve products={products} activeTab={activeTab} />
       case 'pant-sides':
         return <PantSides products={products} activeTab={activeTab} />
       case 'jersey-graphics':
-        return (
-          <Fragment>
-            <JerseyGraphics products={products} activeTab={activeTab} />
-          </Fragment>
-        )
+        return <JerseyGraphics products={products} activeTab={activeTab} />
       default:
         return ''
     }
