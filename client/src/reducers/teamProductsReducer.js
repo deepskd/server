@@ -6,11 +6,12 @@ import {
   JERSEY_TEXTCOLOR_CHANGED,
   BASE_COLOR_CHANGED,
   JERSEY_TEAMCREST_CHANGED,
-  LOGO_COLOR_CHANGED,
   JERSEY_TEXT_SIZE_CHANGED,
   JERSEY_TEXT_STYLE_CHANGED,
   JERSEY_SLEEVE_UPDATED,
   PANT_SIDE_UPDATED,
+  JERSEY_GRAPHIC_UPDATED,
+  ATTRIBUTE_COLOR_UPDATED,
 } from '../actions/types'
 
 export default (state = [], action) => {
@@ -27,8 +28,6 @@ export default (state = [], action) => {
       return updateBaseColor(state, action.payload)
     case JERSEY_TEAMCREST_CHANGED:
       return updateJerseyTeamCrest(state, action.payload)
-    case LOGO_COLOR_CHANGED:
-      return updateLogoColor(state, action.payload)
     case JERSEY_TEXT_SIZE_CHANGED:
       return updateJerseyTextSize(state, action.payload)
     case JERSEY_TEXT_STYLE_CHANGED:
@@ -37,6 +36,10 @@ export default (state = [], action) => {
       return updateJerseySleeve(state, action.payload)
     case PANT_SIDE_UPDATED:
       return updatePantSide(state, action.payload)
+    case JERSEY_GRAPHIC_UPDATED:
+      return updateJerseyGraphic(state, action.payload)
+    case ATTRIBUTE_COLOR_UPDATED:
+      return updateAttributeColor(state, action.payload)
     default:
       return state
   }
@@ -186,26 +189,6 @@ const updateJerseyTeamCrest = (state, props) => {
   return newState
 }
 
-const updateLogoColor = (state, { uniformType, colorType, colorCode }) => {
-  let newState = { ...state }
-
-  if (uniformType === 'jersey') {
-    let jersey = _.clone(state.products[colorType].jersey)
-    jersey.logoColorCode = colorCode
-    jersey.frontImage = updateJersey(jersey, state.products)
-    newState.products[colorType].jersey = jersey
-  }
-
-  if (uniformType === 'pant') {
-    let pant = _.clone(state.products[colorType].pant)
-    pant.logoColorCode = colorCode
-    pant.frontImage = updatePant(pant)
-    newState.products[colorType].pant = pant
-  }
-
-  return newState
-}
-
 const updateJerseyTextSize = (
   state,
   { uniformType, colorType, attribute, textSize }
@@ -339,6 +322,43 @@ const updatePantSide = (
   return newState
 }
 
+const updateJerseyGraphic = (
+  state,
+  { uniformType, colorType, graphicStyle, graphic, graphicColorCode }
+) => {
+  let newState = { ...state }
+  if (uniformType === 'jersey') {
+    let jersey = _.clone(state.products[colorType].jersey)
+    jersey.graphicStyle = graphicStyle || jersey.graphicStyle
+    jersey.graphic = graphic || jersey.graphic
+    jersey.graphicColorCode = graphicColorCode || jersey.graphicColorCode
+    jersey.frontImage = updateJersey(jersey, state.products)
+    newState.products[colorType].jersey = jersey
+  }
+  return newState
+}
+
+const updateAttributeColor = (
+  state,
+  { uniformType, colorType, graphicColorCode, collarColorCode, logoColorCode }
+) => {
+  let newState = { ...state }
+  if (uniformType === 'jersey') {
+    let jersey = _.clone(state.products[colorType].jersey)
+    jersey.graphicColorCode = graphicColorCode || jersey.graphicColorCode
+    jersey.logoColorCode = logoColorCode || jersey.logoColorCode
+    jersey.collarColorCode = collarColorCode || jersey.collarColorCode
+    jersey.frontImage = updateJersey(jersey, state.products)
+    newState.products[colorType].jersey = jersey
+  } else if (uniformType === 'pant') {
+    let pant = _.clone(state.products[colorType].pant)
+    pant.logoColorCode = logoColorCode || pant.logoColorCode
+    pant.frontImage = updatePant(pant)
+    newState.products[colorType].pant = pant
+  }
+  return newState
+}
+
 const updateJersey = (
   {
     baseImageURL,
@@ -357,6 +377,10 @@ const updateJersey = (
     sleeveStripe = '',
     playerNumber = '',
     numberOptions = {},
+    graphic = '',
+    graphicColorCode = '',
+    collarColorCode = '',
+    sleeveInsertColorCode = '',
   },
   { selectedFont, decorations }
 ) => {
@@ -389,8 +413,12 @@ const updateJersey = (
     .replace(/JERSEYTEXT_LOWERFRONT/, lowerFront)
     .replace(/NUMBER_FRONT/, numberOptions.frontUrl)
     .replace(/NUMBER_BACK/, numberOptions.backUrl)
+    .replace(/SUBLIMATION_GRAPHIC/, graphic)
+    .replace(/GRAPHIC_COLOR/g, graphicColorCode)
     .replace(/BASECOLOR/, baseColorCode)
     .replace(/LOGOCOLOR/, logoColorCode)
+    .replace(/COLLARCOLOR/, collarColorCode)
+    .replace(/SLEEVEINSERTCOLOR/, sleeveInsertColorCode)
     .replace(/SLEEVE_NUMBER/, sleeveNumber)
     .replace(/STRIPE_PRIMARY_COLOR/, textColorCode)
     .replace(/STRIPE_SECONDARY_COLOR/, strokeColorCode)

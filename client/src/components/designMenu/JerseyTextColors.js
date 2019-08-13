@@ -20,7 +20,7 @@ class JerseyTextColors extends Component {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     const { home, away, colors } = nextProps.products
     if (
       home.jersey.frontImage !== this.props.products.home.jersey.frontImage ||

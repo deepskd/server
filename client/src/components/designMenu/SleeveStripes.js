@@ -17,7 +17,7 @@ class SleeveStripe extends Component {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     const { home, away } = nextProps.products
     const { activeTab } = nextProps.activeTab
     if (

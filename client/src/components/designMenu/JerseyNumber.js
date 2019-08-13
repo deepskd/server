@@ -12,7 +12,7 @@ class JerseyNumber extends Component {
       },
     }
   }
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     const { home, away } = nextProps.products
     if (
       home.jersey.playerNumber !==

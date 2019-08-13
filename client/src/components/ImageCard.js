@@ -41,7 +41,7 @@ class ImageCard extends Component {
     this.imageRef.current.addEventListener('load', this.hideLoader)
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     if (nextProps.src.frontImage !== this.state.imageURL) {
       this.setState({
         imageURL: nextProps.src.frontImage,

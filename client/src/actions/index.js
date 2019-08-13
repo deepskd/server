@@ -8,11 +8,12 @@ import {
   JERSEY_TEXTCOLOR_CHANGED,
   BASE_COLOR_CHANGED,
   JERSEY_TEAMCREST_CHANGED,
-  LOGO_COLOR_CHANGED,
   JERSEY_TEXT_SIZE_CHANGED,
   JERSEY_TEXT_STYLE_CHANGED,
   JERSEY_SLEEVE_UPDATED,
   PANT_SIDE_UPDATED,
+  JERSEY_GRAPHIC_UPDATED,
+  ATTRIBUTE_COLOR_UPDATED,
 } from './types'
 
 export const findTeams = term => async dispatch => {
@@ -73,13 +74,6 @@ export const jerseyTeamCrestChanged = props => {
   }
 }
 
-export const logoColorChanged = props => {
-  return {
-    type: LOGO_COLOR_CHANGED,
-    payload: props,
-  }
-}
-
 export const jerseyTextStyleChanged = props => {
   return {
     type: JERSEY_TEXT_STYLE_CHANGED,
@@ -104,6 +98,20 @@ export const jerseySleeveUpdated = props => {
 export const pantSideUpdated = props => {
   return {
     type: PANT_SIDE_UPDATED,
+    payload: props,
+  }
+}
+
+export const jerseyGraphicUpdated = props => {
+  return {
+    type: JERSEY_GRAPHIC_UPDATED,
+    payload: props,
+  }
+}
+
+export const attributeColorUpdated = props => {
+  return {
+    type: ATTRIBUTE_COLOR_UPDATED,
     payload: props,
   }
 }

@@ -282,6 +282,9 @@ const volleyball = team => {
     frontText: mascot,
     font,
     playerNumber,
+    sublimationGraphics: true,
+    collarColor: true,
+    sleeveInsertColor: true,
   }
 
   home.jersey = jerseyFactory(volleyball17, props)
@@ -302,6 +305,9 @@ const volleyball = team => {
     frontText: _.toUpper(_.replace(team.name, '/', ' ')),
     font,
     playerNumber,
+    sublimationGraphics: true,
+    collarColor: true,
+    sleeveInsertColor: true,
   }
 
   away.jersey = jerseyFactory(volleyball17, props)
@@ -392,6 +398,9 @@ const jerseyFactory = (
     frontText,
     font,
     playerNumber,
+    sublimationGraphics = false,
+    collarColor = false,
+    sleeveInsertColor = false,
   }
 ) => {
   let jersey = {},
@@ -446,6 +455,22 @@ const jerseyFactory = (
     }
   }
 
+  if (sublimationGraphics) {
+    const { graphics } = uniform.DECORATIONS.jersey
+    jersey.graphicStyle = graphics.options.style[0]
+    jersey.graphic = graphics.options[jersey.graphicStyle].url
+    if (jersey.graphic.match(/GRAPHIC_COLOR/)) {
+      jersey.graphicColorCode = jersey.textColorCode
+    }
+  }
+
+  if (collarColor) {
+    jersey.collarColorCode = uniform.colorMap(primaryColor) // collar usually matches text, logo color or primary Color
+  }
+  if (sleeveInsertColor) {
+    jersey.sleeveInsertColorCode = uniform.colorMap(primaryColor) // this is a guess not sufficient data to make a case
+  }
+
   jersey.numberOptions = numberOptions
 
   jersey.strokeColor = secondaryColor
@@ -456,11 +481,15 @@ const jerseyFactory = (
   jersey.frontImage = _.chain(jersey.baseImageURL)
     .replace(/JERSEYTEXT_UPPERFRONT/, upperFront)
     .replace(/JERSEYTEXT_LOWERFRONT/, lowerFront)
+    .replace(/SUBLIMATION_GRAPHIC/, jersey.graphic)
+    .replace(/GRAPHIC_COLOR/g, jersey.graphicColorCode)
     .replace(/NUMBER_FRONT/, jersey.numberOptions.frontUrl)
     .replace(/NUMBER_BACK/, jersey.numberOptions.backUrl)
     .replace(/TEAMNAME/g, jersey.frontText)
     .replace(/BASECOLOR/, jersey.baseColorCode)
     .replace(/LOGOCOLOR/, jersey.logoColorCode)
+    .replace(/COLLARCOLOR/, jersey.collarColorCode)
+    .replace(/SLEEVEINSERTCOLOR/, jersey.sleeveInsertColorCode)
     .replace(/PLAYERNUMBER/g, jersey.playerNumber)
     .replace(/(TEAM|NUMBER)FONT/g, jersey.font)
     .replace(/(TEAM|NUMBER)TEXTCOLOR/g, jersey.textColorCode)
