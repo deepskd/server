@@ -283,6 +283,7 @@ const volleyball = team => {
     font,
     playerNumber,
     sublimationGraphics: true,
+    collarColor: true,
   }
 
   home.jersey = jerseyFactory(volleyball17, props)
@@ -304,6 +305,7 @@ const volleyball = team => {
     font,
     playerNumber,
     sublimationGraphics: true,
+    collarColor: true,
   }
 
   away.jersey = jerseyFactory(volleyball17, props)
@@ -395,6 +397,7 @@ const jerseyFactory = (
     font,
     playerNumber,
     sublimationGraphics = false,
+    collarColor = false,
   }
 ) => {
   let jersey = {},
@@ -458,6 +461,10 @@ const jerseyFactory = (
     }
   }
 
+  if (collarColor) {
+    jersey.collarColorCode = uniform.colorMap(primaryColor) // collar usually matches text, logo color or primary Color
+  }
+
   jersey.numberOptions = numberOptions
 
   jersey.strokeColor = secondaryColor
@@ -475,6 +482,7 @@ const jerseyFactory = (
     .replace(/TEAMNAME/g, jersey.frontText)
     .replace(/BASECOLOR/, jersey.baseColorCode)
     .replace(/LOGOCOLOR/, jersey.logoColorCode)
+    .replace(/COLLARCOLOR/, jersey.collarColorCode)
     .replace(/PLAYERNUMBER/g, jersey.playerNumber)
     .replace(/(TEAM|NUMBER)FONT/g, jersey.font)
     .replace(/(TEAM|NUMBER)TEXTCOLOR/g, jersey.textColorCode)
