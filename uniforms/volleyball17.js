@@ -6,7 +6,7 @@ obj=a/m/bas&src=BASECOLOR&show&\
 obj=a/m/sle&src=mi_v17_white&show&\
 obj=a/m/lsi&src=mi_v17_white&show&\
 obj=a/m/usi&src=mi_v17_collegiate_orange&show&\
-obj=a/m/col&src=TEAMTEXTCOLOR&show&\
+obj=a/m/col&src=COLLARCOLOR&show&\
 obj=a/o/sha_ls&show&\
 obj=a/f/nvr&show&\
 obj=a/o/sep_u1&show&\
@@ -283,6 +283,10 @@ const DESIGN_PANELS = [
   {
     key: 'jersey-team-crest',
     title: 'Jersey Team Crest',
+  },
+  {
+    key: 'jersey-collar',
+    type: 'Jersey Collar',
   },
   {
     key: 'jersey-logo',
