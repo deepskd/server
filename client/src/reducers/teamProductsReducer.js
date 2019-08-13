@@ -379,6 +379,7 @@ const updateJersey = (
     numberOptions = {},
     graphic = '',
     graphicColorCode = '',
+    collarColorCode = '',
   },
   { selectedFont, decorations }
 ) => {
@@ -415,6 +416,7 @@ const updateJersey = (
     .replace(/GRAPHIC_COLOR/g, graphicColorCode)
     .replace(/BASECOLOR/, baseColorCode)
     .replace(/LOGOCOLOR/, logoColorCode)
+    .replace(/COLLARCOLOR/, collarColorCode)
     .replace(/SLEEVE_NUMBER/, sleeveNumber)
     .replace(/STRIPE_PRIMARY_COLOR/, textColorCode)
     .replace(/STRIPE_SECONDARY_COLOR/, strokeColorCode)
