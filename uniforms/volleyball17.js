@@ -286,7 +286,7 @@ const DESIGN_PANELS = [
   },
   {
     key: 'jersey-collar',
-    type: 'Jersey Collar',
+    title: 'Jersey Collar',
   },
   {
     key: 'jersey-logo',
