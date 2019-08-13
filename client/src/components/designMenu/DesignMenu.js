@@ -76,6 +76,15 @@ class DesignMenu extends Component {
             attributeType="logoColorCode"
           />
         )
+      case 'jersey-collar':
+        return (
+          <ColorOptions
+            products={products}
+            activeTab={activeTab}
+            uniformType="jersey"
+            attributeType="collarColorCode"
+          />
+        )
       case 'jersey-sleeve':
         return <JerseySleeve products={products} activeTab={activeTab} />
       case 'pant-sides':
