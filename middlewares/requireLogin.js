@@ -1,5 +1,5 @@
 module.exports = (req, res, next) => {
-  if (!req.user) {
+  if (process.env.NODE_ENV === 'production' && !req.user) {
     return res.status(401).send({ error: 'Not authorized' })
   }
   next()
