@@ -5,7 +5,7 @@ src=ir{adidasAGRender/APP16_vuw_sht_ls_1?&\
 obj=a/m/bas&src=BASECOLOR&show&\
 obj=a/m/sle&src=mi_v17_white&show&\
 obj=a/m/lsi&src=mi_v17_white&show&\
-obj=a/m/usi&src=mi_v17_collegiate_orange&show&\
+obj=a/m/usi&src=SLEEVEINSERTCOLOR&show&\
 obj=a/m/col&src=COLLARCOLOR&show&\
 obj=a/o/sha_ls&show&\
 obj=a/f/nvr&show&\
@@ -287,6 +287,10 @@ const DESIGN_PANELS = [
   {
     key: 'jersey-collar',
     title: 'Jersey Collar',
+  },
+  {
+    key: 'jersey-sleeve-insert',
+    title: 'Jersey Sleeve Insert',
   },
   {
     key: 'jersey-logo',

@@ -380,6 +380,7 @@ const updateJersey = (
     graphic = '',
     graphicColorCode = '',
     collarColorCode = '',
+    sleeveInsertColorCode = '',
   },
   { selectedFont, decorations }
 ) => {
@@ -417,6 +418,7 @@ const updateJersey = (
     .replace(/BASECOLOR/, baseColorCode)
     .replace(/LOGOCOLOR/, logoColorCode)
     .replace(/COLLARCOLOR/, collarColorCode)
+    .replace(/SLEEVEINSERTCOLOR/, sleeveInsertColorCode)
     .replace(/SLEEVE_NUMBER/, sleeveNumber)
     .replace(/STRIPE_PRIMARY_COLOR/, textColorCode)
     .replace(/STRIPE_SECONDARY_COLOR/, strokeColorCode)
