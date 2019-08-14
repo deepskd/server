@@ -27,3 +27,4 @@ export const FIND_ORDERS = 'FIND_ORDERS'
 export const ORDER_STATS = 'ORDER_STATS'
 
 export const CREATE_TEAM = 'CREATE_TEAM'
+export const GET_TEAMS = 'GET_TEAMS'
