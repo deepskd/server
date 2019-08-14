@@ -15,7 +15,7 @@ module.exports = app => {
     res.status(200).send(team)
   })
 
-  app.get('/api/v2/team', requireLogin, TeamController.getTeams)
+  app.get('/api/v2/teams', requireLogin, TeamController.getTeams)
 
-  app.post('/api/team', requireLogin, TeamController.create)
+  app.post('/api/teams', requireLogin, TeamController.create)
 }
