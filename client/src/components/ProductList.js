@@ -11,10 +11,13 @@ import { Grid, Button, Form } from 'semantic-ui-react'
 
 class ProductList extends React.Component {
   componentDidMount() {
-    const { params } = this.props.match
-    const team = {}
-    team._id = params.id
-    this.props.selectTeam(team, params.sports)
+    const { history } = this.props
+    if (history.action === 'POP') {
+      const { params } = this.props.match
+      const team = {}
+      team._id = params.id
+      this.props.selectTeam(team, params.sports)
+    }
   }
 
   fontChanged(event) {
