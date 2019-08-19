@@ -40,3 +40,8 @@ exports.getTeams = async (req, res) => {
   )
   res.send(teams)
 }
+
+exports.getTeam = async (req, res) => {
+  const team = await Team.findById(req.params.team_id)
+  res.send(team)
+}
