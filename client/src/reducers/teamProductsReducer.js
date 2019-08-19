@@ -340,7 +340,17 @@ const updateJerseyGraphic = (
 
 const updateAttributeColor = (
   state,
-  { uniformType, colorType, graphicColorCode, collarColorCode, logoColorCode }
+  {
+    uniformType,
+    colorType,
+    graphicColorCode,
+    collarColorCode,
+    logoColorCode,
+    sleeveInsertColorCode,
+    neckColorCode,
+    stripe1ColorCode,
+    stripe2ColorCode,
+  }
 ) => {
   let newState = { ...state }
   if (uniformType === 'jersey') {
@@ -348,6 +358,11 @@ const updateAttributeColor = (
     jersey.graphicColorCode = graphicColorCode || jersey.graphicColorCode
     jersey.logoColorCode = logoColorCode || jersey.logoColorCode
     jersey.collarColorCode = collarColorCode || jersey.collarColorCode
+    jersey.sleeveInsertColorCode =
+      sleeveInsertColorCode || jersey.sleeveInsertColorCode
+    jersey.neckColorCode = neckColorCode || jersey.neckColorCode
+    jersey.stripe1ColorCode = stripe1ColorCode || jersey.stripe1ColorCode
+    jersey.stripe2ColorCode = stripe2ColorCode || jersey.stripe2ColorCode
     jersey.frontImage = updateJersey(jersey, state.products)
     newState.products[colorType].jersey = jersey
   } else if (uniformType === 'pant') {
@@ -381,6 +396,9 @@ const updateJersey = (
     graphicColorCode = '',
     collarColorCode = '',
     sleeveInsertColorCode = '',
+    neckColorCode = '',
+    stripe1ColorCode = '',
+    stripe2ColorCode = '',
   },
   { selectedFont, decorations }
 ) => {
@@ -419,6 +437,9 @@ const updateJersey = (
     .replace(/LOGOCOLOR/, logoColorCode)
     .replace(/COLLARCOLOR/, collarColorCode)
     .replace(/SLEEVEINSERTCOLOR/, sleeveInsertColorCode)
+    .replace(/NECKCOLOR/, neckColorCode)
+    .replace(/STRIPE1COLOR/, stripe1ColorCode)
+    .replace(/STRIPE2COLOR/, stripe2ColorCode)
     .replace(/SLEEVE_NUMBER/, sleeveNumber)
     .replace(/STRIPE_PRIMARY_COLOR/, textColorCode)
     .replace(/STRIPE_SECONDARY_COLOR/, strokeColorCode)

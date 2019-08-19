@@ -85,6 +85,33 @@ class DesignMenu extends Component {
             attributeType="sleeveInsertColorCode"
           />
         )
+      case 'jersey-neck':
+        return (
+          <ColorOptions
+            products={products}
+            activeTab={activeTab}
+            uniformType="jersey"
+            attributeType="neckColorCode"
+          />
+        )
+      case 'jersey-side-stripe-1':
+        return (
+          <ColorOptions
+            products={products}
+            activeTab={activeTab}
+            uniformType="jersey"
+            attributeType="stripe1ColorCode"
+          />
+        )
+      case 'jersey-side-stripe-2':
+        return (
+          <ColorOptions
+            products={products}
+            activeTab={activeTab}
+            uniformType="jersey"
+            attributeType="stripe2ColorCode"
+          />
+        )
       case 'pant-logo':
         return (
           <ColorOptions
