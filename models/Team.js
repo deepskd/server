@@ -10,6 +10,13 @@ const teamSchema = new Schema({
   zip: String,
   address: String,
   colors: [String],
+  type: String,
+  country: String,
+  createdBy: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+    required: false,
+  },
 })
 
 teamSchema.statics.findByNameState = function(q, cb) {

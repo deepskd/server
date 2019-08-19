@@ -12,8 +12,10 @@ import ImageStats from './images/ImageStats'
 import TeamImageStats from './images/TeamImageStats'
 import Order from './orders/Order'
 import OrderStats from './orderStats/OrderStat'
+import Teams from './teams/Teams'
+import TeamsNew from './teams/TeamsNew'
 
-import { BrowserRouter, Route } from 'react-router-dom'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
 
 import { Container } from 'semantic-ui-react'
 
@@ -38,7 +40,11 @@ class App extends React.Component {
             <TeamHeader />
             <Route path="/" exact component={SearchBar} />
             <Route path="/" exact component={TeamList} />
-            <Route path="/:sports/:id" component={ProductList} />
+            <Route path="/teams" exact component={Teams} />
+            <Switch>
+              <Route path="/teams/new" exact component={TeamsNew} />
+              <Route path="/:sports/:id" component={ProductList} />
+            </Switch>
             <Route path="/retailerImages" component={ImageStats} />
             <Route path="/teamImages" component={TeamImageStats} />
             <Route path="/orders" component={Order} />
