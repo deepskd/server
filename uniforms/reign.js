@@ -3,11 +3,11 @@ const _ = require('lodash')
 const JERSEY_URL = `https://embodee.adidas.com/api2/rewrite/adidas16/is/image/adidasAG/agm?&\
 src=ir{adidasAGRender/APP18_rem_je_1?&obj=a/f/nvr&show\
 &obj=a/m/bas&src=BASECOLOR&show&\
-obj=a/m/nec&src=TEAMTEXTCOLOR&show\
+obj=a/m/nec&src=NECKCOLOR&show\
 &obj=a/m/log&src=LOGOCOLOR&show\
 &obj=a/s/shg&show\
-&obj=a/o/ust_u1&src=TEAMTEXTCOLOR&show\
-&obj=a/o/lst_l1&src=TEAMSTROKECOLOR&show\
+&obj=a/o/ust_u1&src=STRIPE1COLOR&show\
+&obj=a/o/lst_l1&src=STRIPE2COLOR&show\
 &obj=a/o/str_s0&show&\
 JERSEYTEXT_UPPERFRONT\
 JERSEYTEXT_LOWERFRONT\
@@ -155,6 +155,18 @@ const DESIGN_PANELS = [
   {
     key: 'jersey-logo',
     title: 'Jersey Logo',
+  },
+  {
+    key: 'jersey-neck',
+    title: 'Jersey Neck',
+  },
+  {
+    key: 'jersey-side-stripe-1',
+    title: 'Jersey Side Upper Stripe',
+  },
+  {
+    key: 'jersey-side-stripe-2',
+    title: 'Jersey Side Lower Stripe',
   },
   {
     key: 'pant-logo',
