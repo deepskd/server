@@ -2,8 +2,9 @@ import gts from '../apis/gts'
 
 import { CREATE_TEAM, GET_TEAMS } from './types'
 
-export const createTeam = team => async dispatch => {
+export const createTeam = (team, history) => async dispatch => {
   const res = await gts.post('/teams', team)
+  history.push('/teams')
   dispatch({ type: CREATE_TEAM, payload: res })
 }
 
