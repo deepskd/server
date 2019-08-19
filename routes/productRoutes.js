@@ -220,6 +220,9 @@ const basketball = team => {
     frontText: mascot,
     font,
     playerNumber,
+    neckColor: true,
+    stripe1Color: true,
+    stripe2Color: true,
   }
 
   props.description = 'Reign Shorts'
@@ -244,6 +247,9 @@ const basketball = team => {
     frontText: _.toUpper(_.replace(team.name, '/', ' ')),
     font,
     playerNumber,
+    neckColor: true,
+    stripe1Color: true,
+    stripe2Color: true,
   }
 
   away.jersey = jerseyFactory(reign, props)
@@ -402,6 +408,9 @@ const jerseyFactory = (
     sublimationGraphics = false,
     collarColor = false,
     sleeveInsertColor = false,
+    neckColor = false,
+    stripe1Color = false,
+    stripe2Color = false,
   }
 ) => {
   let jersey = {},
@@ -470,6 +479,15 @@ const jerseyFactory = (
   }
   if (sleeveInsertColor) {
     jersey.sleeveInsertColorCode = uniform.colorMap(primaryColor) // this is a guess not sufficient data to make a case
+  }
+  if (neckColor) {
+    jersey.neckColorCode = uniform.colorMap(primaryColor)
+  }
+  if (stripe1Color) {
+    jersey.stripe1ColorCode = uniform.colorMap(primaryColor)
+  }
+  if (stripe2Color) {
+    jersey.stripe2ColorCode = uniform.colorMap(secondaryColor)
   }
 
   jersey.numberOptions = numberOptions
