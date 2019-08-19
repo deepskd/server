@@ -7,8 +7,11 @@ import { createTeam } from '../../actions/actionsTeam'
 const TeamsNew = ({ history }) => {
   const colors = [
     { key: 'red', text: 'Red', value: 'red' },
-    { key: 'blue', text: 'Blue', value: 'blue' },
-    { key: 'dark green', text: 'Green', value: 'dark green' },
+    { key: 'navy', text: 'Navy Blue', value: 'navy' },
+    { key: 'royal', text: 'Royal Blue', value: 'royal' },
+    { key: 'green', text: 'Green', value: 'green' },
+    { key: 'maroon', text: 'Maroon', value: 'maroon' },
+    { key: 'purple', text: 'Purple', value: 'purple' },
     { key: 'orange', text: 'Orange', value: 'orange' },
     { key: 'gold', text: 'Gold', value: 'gold' },
     { key: 'black', text: 'Black', value: 'black' },

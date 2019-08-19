@@ -66,7 +66,7 @@ const COLORMAP = {
   mi_v17_yellow: ['yellow'],
   mi_v17_collegiate_gold: ['gold'],
   mi_v17_sand: ['old gold', 'vegas gold'],
-  mi_v17_dark_green: ['forest green', 'dark green'],
+  mi_v17_dark_green: ['forest green', 'dark green', 'green'],
   mi_v17_bold_green: ['bold green'],
   mi_v17_collegiate_aqua: ['aqua'],
   mi_v17_collegiate_purple: ['purple'],
