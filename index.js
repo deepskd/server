@@ -3,16 +3,20 @@ require('newrelic')
 const express = require('express')
 const bodyParser = require('body-parser')
 const cookieSession = require('cookie-session')
+const formData = require('express-form-data')
 const passport = require('passport')
 const keys = require('./config/keys')
 
 require('./services/mongo')
+require('./services/cloudinary')
 require('./models/User')
 require('./services/passport')
 require('./models/Team')
 
 const app = express()
 app.use(bodyParser.json())
+app.use(formData.parse())
+
 app.use(
   cookieSession({
     maxAge: 30 * 24 * 60 * 60 * 1000,
