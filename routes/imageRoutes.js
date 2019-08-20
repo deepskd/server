@@ -2,6 +2,7 @@ require('../models/Image')
 const mongoose = require('mongoose')
 const requireLogin = require('../middlewares/requireLogin')
 const requireRole = require('../middlewares/requireRole')
+const cloudinary = require('cloudinary').v2
 
 const Image = mongoose.model('images')
 
@@ -48,5 +49,14 @@ module.exports = app => {
       req.body.teamId
     )
     res.status(200).send({ message: 'Records Updated', meta: updates })
+  })
+
+  app.post('/api/images', requireLogin, requireRole, async (req, res) => {
+    const values = Object.values(req.files)
+    const promises = values.map(image =>
+      cloudinary.uploader.upload(image.path, { folder: 'teamImages' })
+    )
+
+    Promise.all(promises).then(results => res.json(results))
   })
 }
