@@ -49,7 +49,6 @@ export const assignImagesToTeam = (
 
 export const uploadTeamImages = images => async dispatch => {
   try {
-    console.log(images)
     const res = await gts.post(`/images`, images)
     dispatch({ type: TEAM_IMAGES, payload: res })
   } catch (error) {

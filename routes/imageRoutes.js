@@ -60,8 +60,8 @@ module.exports = app => {
 
     try {
       const results = await Promise.all(promises)
-      await image.uploadTeamImages(results)
-      res.json(results)
+      await image.uploadTeamImages(results, req.body)
+      return await Image.findByTeamId(req.query.teamId)
     } catch (error) {
       console.log(error)
       res.status(501).send({ message: 'Error uploading images' })

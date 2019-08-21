@@ -4,13 +4,15 @@ import { getTeam } from '../../actions/actionsTeam'
 import { uploadTeamImages } from '../../actions/actionsImage'
 import { useDispatch, useSelector } from 'react-redux'
 
+import TeamImages from './TeamImages'
+
 const TeamEdit = ({ match }) => {
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(getTeam(match.params.id))
   }, [match.params.id, dispatch])
 
-  const teams = useSelector(state => state.teams)
+  const teams = useSelector(({ teams }) => teams)
 
   const onUpload = e => {
     const files = Array.from(e.target.files)
@@ -55,6 +57,7 @@ const TeamEdit = ({ match }) => {
             />
           </Label>
         </Segment>
+        <TeamImages teamId={team._id} />
       </Fragment>
     )
   }
