@@ -16,12 +16,14 @@ const TeamEdit = ({ match }) => {
     const files = Array.from(e.target.files)
 
     const formData = new FormData()
+
+    let team = teams[0]
+    formData.append('teamId', team._id)
+
     files.forEach((file, i) => {
       formData.append(i, file)
-      console.log(formData)
     })
 
-    console.log(files, formData)
     dispatch(uploadTeamImages(formData))
   }
 
