@@ -3,6 +3,7 @@ const mongoose = require('mongoose')
 const requireLogin = require('../middlewares/requireLogin')
 const requireRole = require('../middlewares/requireRole')
 const cloudinary = require('cloudinary').v2
+const image = require('../controllers/image')
 
 const Image = mongoose.model('images')
 
@@ -57,6 +58,13 @@ module.exports = app => {
       cloudinary.uploader.upload(image.path, { folder: 'teamImages' })
     )
 
-    Promise.all(promises).then(results => res.json(results))
+    try {
+      const results = await Promise.all(promises)
+      await image.uploadTeamImages(results)
+      res.json(results)
+    } catch (error) {
+      console.log(error)
+      res.status(501).send({ message: 'Error uploading images' })
+    }
   })
 }
