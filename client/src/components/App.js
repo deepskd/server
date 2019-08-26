@@ -14,6 +14,7 @@ import Order from './orders/Order'
 import OrderStats from './orderStats/OrderStat'
 import Teams from './teams/Teams'
 import TeamsNew from './teams/TeamsNew'
+import TeamsEdit from './teams/TeamsEdit'
 
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 
@@ -43,6 +44,7 @@ class App extends React.Component {
             <Route path="/teams" exact component={Teams} />
             <Switch>
               <Route path="/teams/new" exact component={TeamsNew} />
+              <Route path="/teams/:id" exact component={TeamsEdit} />
               <Route path="/:sports/:id" component={ProductList} />
             </Switch>
             <Route path="/retailerImages" component={ImageStats} />

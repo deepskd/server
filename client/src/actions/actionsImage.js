@@ -13,9 +13,9 @@ export const getRetailerImageStats = queryString => async dispatch => {
   dispatch({ type: RETAILER_IMAGE_STATS, payload: response })
 }
 
-export const getRetailerImages = (retailerId,activePage) => async dispatch => {
+export const getRetailerImages = (retailerId, activePage) => async dispatch => {
   let queryString = `retailerId=${retailerId}`
-  if(activePage){
+  if (activePage) {
     queryString += `&activePage=${activePage}`
   }
   const response = await gts.get(`/images?${queryString}`)
@@ -32,7 +32,11 @@ export const getTeamImages = teamId => async dispatch => {
   dispatch({ type: TEAM_IMAGES, payload: response })
 }
 
-export const assignImagesToTeam = (data, retailerId, activePage) => async dispatch => {
+export const assignImagesToTeam = (
+  data,
+  retailerId,
+  activePage
+) => async dispatch => {
   const updateResponse = await gts.patch(`/images`, data)
   console.log(`${updateResponse} records updated`)
   let queryString = `retailerId=${retailerId}`
@@ -41,4 +45,13 @@ export const assignImagesToTeam = (data, retailerId, activePage) => async dispat
   }
   const response = await gts.get(`/images?${queryString}`)
   dispatch({ type: ASSIGN_IMAGES_TO_TEAM, payload: response })
+}
+
+export const uploadTeamImages = images => async dispatch => {
+  try {
+    const res = await gts.post(`/images`, images)
+    dispatch({ type: TEAM_IMAGES, payload: res })
+  } catch (error) {
+    console.log(error)
+  }
 }

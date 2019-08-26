@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, Fragment } from 'react'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { Grid, List, Icon } from 'semantic-ui-react'
@@ -18,7 +18,16 @@ const Teams = () => {
       return null
     }
 
-    return teams.map(team => <TeamItem key={team._id} team={team} />)
+    return teams.map(team => {
+      return (
+        <Fragment key={team._id}>
+          <TeamItem team={team} />
+          <Link to={`/teams/${team._id}`} as="a">
+            Manage
+          </Link>
+        </Fragment>
+      )
+    })
   }
 
   return (

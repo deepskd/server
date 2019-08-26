@@ -16,6 +16,7 @@ module.exports = app => {
   })
 
   app.get('/api/v2/teams', requireLogin, TeamController.getTeams)
+  app.get('/api/v2/teams/:team_id', requireLogin, TeamController.getTeam)
 
   app.post('/api/teams', requireLogin, TeamController.create)
 }
