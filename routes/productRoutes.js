@@ -1,7 +1,6 @@
 const mongoose = require('mongoose')
 const _ = require('lodash')
 require('../models/Team')
-const requireLogin = require('../middlewares/requireLogin')
 
 const Team = mongoose.model('teams')
 
@@ -562,7 +561,7 @@ const pantFactory = (
   return pant
 }
 module.exports = app => {
-  app.get('/api/products', requireLogin, async (req, res) => {
+  app.get('/api/products', async (req, res) => {
     res.setHeader('Access-Control-Allow-Origin', '*')
     const team = await Team.getTeam(req.query.id)
     if (req.query.sports === 'basketball') {
