@@ -5,12 +5,12 @@ const requireLogin = require('../middlewares/requireLogin')
 const TeamController = require('../controllers/team')
 
 module.exports = app => {
-  app.get('/api/teams', requireLogin, async (req, res) => {
+  app.get('/api/teams', async (req, res) => {
     const teams = await Team.findByNameState(req.query.q)
     res.status(200).send(teams)
   })
 
-  app.get('/api/team', requireLogin, async (req, res) => {
+  app.get('/api/team', async (req, res) => {
     const team = await Team.getTeam(req.query.id)
     res.status(200).send(team)
   })
