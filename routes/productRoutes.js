@@ -416,6 +416,7 @@ const jerseyFactory = (
   let jersey = {},
     upperFront = '',
     lowerFront = ''
+
   jersey.articleDescription = articleDescription
   jersey.price = price
 
