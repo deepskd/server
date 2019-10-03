@@ -17,6 +17,7 @@ const options = [
   { key: 205820, text: 'Third Generation Sports', value: 205820 },
   { key: 101105, text: 'Brennan-Eberly', value: 101105 },
   { key: 100758, text: 'Marathon Sports', value: 100758 },
+  { key: 8146, text: 'Eurosports-Soccer.com', value: 8146 },
 ]
 
 class Order extends Component {

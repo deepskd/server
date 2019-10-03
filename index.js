@@ -6,6 +6,7 @@ const cookieSession = require('cookie-session')
 const formData = require('express-form-data')
 const passport = require('passport')
 const keys = require('./config/keys')
+const mongoSanitize = require('express-mongo-sanitize')
 
 require('./services/mongo')
 require('./services/cloudinary')
@@ -25,6 +26,7 @@ app.use(
 )
 app.use(passport.initialize())
 app.use(passport.session())
+app.use(mongoSanitize())
 
 require('./routes/teamRoutes')(app)
 require('./routes/productRoutes')(app)
