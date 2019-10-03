@@ -1,12 +1,16 @@
 require('newrelic')
 
 const express = require('express')
+const rateLimit = require('express-rate-limit')
+const helmet = require('helmet')
 const bodyParser = require('body-parser')
 const cookieSession = require('cookie-session')
 const formData = require('express-form-data')
 const passport = require('passport')
 const keys = require('./config/keys')
 const mongoSanitize = require('express-mongo-sanitize')
+const xss = require('xss-clean')
+const compression = require('compression')
 
 require('./services/mongo')
 require('./services/cloudinary')
@@ -15,8 +19,16 @@ require('./services/passport')
 require('./models/Team')
 
 const app = express()
+app.use(helmet())
 app.use(bodyParser.json())
 app.use(formData.parse())
+
+const limiter = rateLimit({
+  max: 100,
+  windowMs: 60 * 60 * 1000,
+  message: 'Too many requests from this IP, please try again in an hour!',
+})
+app.use('/api', limiter)
 
 app.use(
   cookieSession({
@@ -27,6 +39,8 @@ app.use(
 app.use(passport.initialize())
 app.use(passport.session())
 app.use(mongoSanitize())
+app.use(xss())
+app.use(compression())
 
 require('./routes/teamRoutes')(app)
 require('./routes/productRoutes')(app)
